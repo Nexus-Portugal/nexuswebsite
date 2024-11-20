@@ -5,199 +5,188 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NexusWeb</title>
     <style>
-        :root {
-            --green: #00ff00;
-            --black: #212121;
-            --white: #ffffff;
-        }
+:root {
+    --green: #00ff00;
+    --black: #212121;
+    --white: #ffffff;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--black);
-            color: var(--white);
-        }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--black);
+    color: var(--white);
+}
 
-        .sticky-nav {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            width: calc(100% - 40px);
-            z-index: 999;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+.sticky-nav {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: calc(100% - 40px);
+    z-index: 999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        .logo {
-            width: 220px;
-            height: 45px;
-            background-image: url('https://lh4.googleusercontent.com/l5-pbLm6U7Y1Xv3na_RNm0Q8XLJpJSITHgC5sJ6yxyGBNCs4OLnjQwMP8YEYEkJ5SHdFjowFsBdYuWQCTml2RWYupk9nqs4qkTuEaDk6WmDOtRbuertzsfJx_y5e6_eEyg=w1280');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: left;
-        }
+.logo {
+    width: 220px;
+    height: 45px;
+    background-image: url('https://kikalabs-app-server-static.netlify.app/images/site-nxweb/RealNexusWeb.png'); /* Logotipo atualizado */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left;
+}
 
-        #nav-btn {
-            width: 60px;
-            height: 60px;
-            cursor: pointer;
-        }
+#nav-btn {
+    width: 60px; /* Tamanho do botão do menu */
+    height: 60px; /* Tamanho do botão do menu */
+    cursor: pointer;
+}
 
-        #nav-btn svg {
-            width: 100%;
-            height: 100%;
-        }
+#nav-btn svg {
+    width: 100%;
+    height: 100%;
+}
 
-        #nav-btn svg path {
-            stroke: white;
-            stroke-width: 6;
-            fill: none;
-        }
+#nav-btn svg path {
+    stroke: white; /* Cor do menu burger em branco */
+    stroke-width: 6; 
+}
 
-        #takeover-nav {
-            position: fixed;
-            width: 300px;
-            height: 100vh;
-            right: -300px;
-            top: 0;
-            transition: all 0.3s ease-in-out;
-            z-index: 996;
-            background-color: var(--black);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+#takeover-nav {
+    position: fixed;
+    width: 300px; /* Largura do menu */
+    height: 100vh; 
+    right: -300px; /* Inicialmente fora da tela à direita */
+    top: 0;
+    transition: all 0.3s ease-in-out;
+    z-index: 996;
+    background-color: var(--black);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
-        #takeover-nav.shown {
-            right: 0;
-        }
+#takeover-nav.shown {
+    right: 0; /* Move para a direita quando ativo */
+}
 
-        .nav-items {
-            list-style-type: none;
-            padding: 0;
-            font-size: 1.5em;
-            font-weight: 700;
-        }
+.nav-items {
+    list-style-type: none;
+    padding: 0;
+    font-size: 1.5em; /* Tamanho da fonte */
+    font-weight: 700;
+}
 
-        .nav-items li {
-            margin-bottom: 1rem;
-            text-align: center;
-        }
+.nav-items li {
+    margin-bottom: 1rem;
+    text-align: center;
+}
 
-        .nav-items a {
-            color: var(--white);
-            text-decoration: none; 
-        }
+.nav-items a {
+    color: var(--white);
+    text-decoration: none;
+}
 
-        .nav-items a:hover {
-            color: var(--green); 
-        }
+.nav-items a:hover {
+    color: var(--green);
+}
 
-        .hero {
-            height: 100vh; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            position: relative; 
-            overflow: hidden; 
-        }
+.hero {
+    height: 100vh; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
 
-        .hero-content {
-            text-align: center; 
-            z-index: 2; 
-        }
+.hero-content {
+   text-align:center; 
+   z-index=2; 
+}
 
-        .hero-title { 
-            font-size: 4em; 
-            mix-blend-mode: difference; 
-            color: var(--white); 
-        }
+.hero-title {
+   font-size: 4em; /* Tamanho do texto */
+   color:black; /* Cor padrão do texto em preto */
+   animation: rgbLoop 3s linear infinite; /* Efeito de loop RGB */
+}
 
-        .video-wrap { 
-            position: absolute; 
-            width: 100%; 
-            height: 100%; 
-            overflow: hidden; 
-        }
+@keyframes rgbLoop {
+   0% { color: red; }
+   33% { color: green; }
+   66% { color: blue; }
+   100% { color: red; }
+}
 
-        #video-bg { 
-            width: 100%;
-            height: 100%;
-            object-fit: cover; 
-        }
+.video-wrap {
+   position:absolute; 
+   width=100%; 
+   height=100%; 
+   overflow:hidden; 
+   z-index:-1; /* O vídeo fica atrás do conteúdo */
+}
 
-        .gradient-overlay { 
-            position: absolute; 
-            bottom: 0; 
-            width: 100%; 
-            height: 50%; 
-            background: linear-gradient(to bottom, rgba(33,33,33,0) 0%, rgba(33,33,33,1) 100%); 
-            z-index: 1;  
-        }
+#video-bg {
+   width:auto; 
+   height:auto; 
+   object-fit:center; /* Ajusta o vídeo para preencher a tela */
+}
 
-        .services-submenu {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            padding: 20px 0;
-        }
+.gradient-overlay {
+   position:absolute; 
+   bottom=0; 
+   width=100%; 
+   height=50%; 
+   background:-moz-linear-gradient(top, rgba(33,33,33,0) 0%, rgba(33,33,33,1) 100%);
+   z-index=1; /* Fica atrás do título mas acima do vídeo */
+}
 
-        .services-submenu.active {
-            display: flex;
-        }
+.services-submenu { display:none; flex-direction:
+       column; align-items:center; width:
+       100%; padding:
+       20px
+       	0;}
 
-        .popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: var(--black);
-            border: 2px solid var(--green);
-            border-radius: 20px;
-            padding: 30px;
-            width: 80%;
-            max-width: 600px;
-            max-height: 80vh;
-            overflow-y: auto;
-            z-index: 1000;
-            text-align: center;
-        }
+.services-submenu.active { display:flex;}  
 
-        .popup-close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--white);
-        }
+.popup { display:none; position:
+       fixed; top:
+       50%; left:
+       50%; transform:
+       translate(-50%,-50%); background-color:
+       var(--black); border:
+       2px solid var(--green); border-radius:
+       20px; padding:
+       30px;width:
+       80%; max-width:
+       600px; max-height:
+       80vh; overflow-y:auto; z-index:
+       1000;text-align:center;}
 
-        .service-button {
-            background-color: var(--black);
-            color: var(--white);
-            border: 2px solid var(--green);
-            border-radius: 15px;
-            padding: 10px 15px;
-            margin: 5px;
-            width: calc(100% - 10px);
-            display: inline-block;
-            text-align: center;
-            text-decoration: none;
-            font-size: 0.9em;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+.popup-close { position:absolute; top:
+       10px; right:
+       10px;font-size:
+       24px;cursor:pointer;color:
+       var(--white);}
 
-        .service-button:hover {
-            background-color: var(--green);
-            color: var(--black);
-        }
+.service-button { background-color:
+       var(--black); color:
+       var(--white); border:
+       2px solid var(--green); border-radius:
+       15px;padding:
+       10px
+       	15px;margin:
+       	5px;width:
+       	calc(100% -
+       	10px);display:inline-block;text-align:center;text-decoration:none;font-size:
+       	0.9em;transition:
+       	all
+       	0.3s ease;width:auto;}
+
+.service-button:hover { background-color:
+       var(--green); color:
+       var(--black);}
     </style>
 </head>
 <body>
