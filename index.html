@@ -5,307 +5,208 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NexusWeb</title>
     <style>
-:root {
-    --green: #00ff00;
-    --black: #212121;
-    --white: #ffffff;
-}
+        :root {
+            --green: #00ff00;
+            --black: #212121;
+            --white: #ffffff;
+        }
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: var(--black);
-    color: var(--white);
-}
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--black);
+            color: var(--white);
+        }
 
-.sticky-nav {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    width: calc(100% - 40px);
-    z-index: 999;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}f
+        .sticky-nav {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: calc(100% - 40px);
+            z-index: 999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.logo {
-    width: 220px;
-    height: 45px;
-    background-image: url('https://kikalabs-app-server-static.netlify.app/images/site-nxweb/RealNexusWeb.png'); /* Logotipo atualizado */
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: left;
-}
+        .logo {
+            width: 220px;
+            height: 45px;
+            background-image: url('https://kikalabs-app-server-static.netlify.app/images/site-nxweb/RealNexusWeb.png'); /* Logotipo atualizado */
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: left;
+        }
 
-#nav-btn {
-    width: 60px; /* Tamanho do botão do menu */
-    height: 60px; /* Tamanho do botão do menu */
-    cursor: pointer;
-}
+        #nav-btn {
+            width: 60px; /* Tamanho do botão do menu */
+            height: 60px; /* Tamanho do botão do menu */
+            cursor: pointer;
+        }
 
-#nav-btn svg {
-    width: 100%;
-    height: 100%;
-}
+        #nav-btn svg {
+            width: 100%;
+            height: 100%;
+        }
 
-#nav-btn svg path {
-    stroke: white; /* Cor do menu burger em branco */
-    stroke-width: 6; 
-}
+        #nav-btn svg path {
+            stroke: white; /* Cor do menu burger em branco */
+            stroke-width: 6; 
+        }
 
-#takeover-nav {
-    position: fixed;
-    width: 300px; /* Largura do menu */
-    height: 100vh; 
-    right: -300px; /* Inicialmente fora da tela à direita */
-    top: 0;
-    transition: all 0.3s ease-in-out;
-    z-index: 996;
-    background-color: var(--black);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
+        #takeover-nav {
+            position: fixed;
+            width: 300px; /* Largura do menu */
+            height: 100vh; 
+            right: -300px; /* Inicialmente fora da tela à direita */
+            top: 0;
+            transition: all 0.3s ease-in-out;
+            z-index: 996;
+            background-color: var(--black);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-#takeover-nav.shown {
-    right: 0; /* Move para a direita quando ativo */
-}
+        #takeover-nav.shown {
+            right: 0; /* Move para a direita quando ativo */
+        }
 
-.nav-items {
-    list-style-type: none;
-    padding: 0;
-    font-size: 1.5em; /* Tamanho da fonte */
-    font-weight: 700;
-}
+        .nav-items {
+            list-style-type: none;
+            padding: 0;
+            font-size: 1.5em; /* Tamanho da fonte */
+            font-weight: 700;
+        }
 
-.nav-items li {
-    margin-bottom: 1rem;
-    text-align: center;
-}
+        .nav-items li {
+            margin-bottom: 1rem;
+            text-align: center;
+        }
 
-.nav-items a {
-    color: var(--white);
-    text-decoration: none;
-}
+        .nav-items a {
+            color: var(--white);
+            text-decoration: none;
+        }
 
-.nav-items a:hover {
-    color: var(--green);
-}
+        .nav-items a:hover {
+            color: var(--green);
+        }
 
-.hero {
-    height: 100vh; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-}
+        .hero {
+            height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
 
-.hero-content {
-   text-align:center; 
-   z-index=2; 
-}
+        .hero-content {
+           text-align:center; 
+           z-index=2; 
+        }
 
-.hero-title {
-   font-size: 4em; /* Tamanho do texto */
-   color:black; /* Cor padrão do texto em preto */
-   animation: rgbLoop 3s linear infinite; /* Efeito de loop RGB */
-}
+        .hero-title {
+           font-size: 4em; /* Tamanho do texto */
+           animation: rgbLoop 3s linear infinite; /* Efeito de loop RGB */
+        }
 
-@keyframes rgbLoop {
-   0% { color: red; }
-   33% { color: green; }
-   66% { color: blue; }
-   100% { color: red; }
-}
+        @keyframes rgbLoop {
+           0% { color:red; }
+           33% { color:green; }
+           66% { color:blue; }
+           100% { color:red; }
+        }
 
-.video-wrap {
-   position:absolute; 
-   width=100%; 
-   height=100%; 
-   overflow:hidden; 
-   z-index:-1; /* O vídeo fica atrás do conteúdo */
-}
+        .video-wrap {
+           position:absolute; 
+           width=100%; 
+           height=100%; 
+           overflow:hidden; 
+           z-index:-1; /* O vídeo fica atrás do conteúdo */
+        }
 
-#video-bg {
-   width:auto; 
-   height:auto; 
-   object-fit:center; /* Ajusta o vídeo para preencher a tela */
-}
+        #video-bg {
+           width:auto; 
+           height:auto; 
+           object-fit:center; /* Ajusta o vídeo para preencher a tela */
+        }
 
-.gradient-overlay {
-   position:absolute; 
-   bottom=0; 
-   width=100%; 
-   height=50%; 
-   background:-moz-linear-gradient(top, rgba(33,33,33,0) 0%, rgba(33,33,33,1) 100%);
-   z-index=1; /* Fica atrás do título mas acima do vídeo */
-}
+        .gradient-overlay {
+           position:absolute; 
+           bottom=0; 
+           width=100%; 
+           height=50%; 
+           background:-moz-linear-gradient(top, rgba(33,33,33,0) 0%, rgba(33,33,33,1) 100%);
+           z-index=1; /* Fica atrás do título mas acima do vídeo */
+        }
 
-.services-submenu { display:none; flex-direction:
-       column; align-items:center; width:
-       100%; padding:
-       20px
-       	0;}
+        .service-button { 
+          background-color:
+          var(--black); 
+          color:
+          var(--white); 
+          border:
+          2px solid var(--green); /* Contorno dos botões visível */
+          border-radius:
+          15px;padding:
+          10px
+          15px;margin:
+          5px;width:
+          calc(100% -
+          10px);display:inline-block;text-align:center;text-decoration:none;font-size:
+          0.9em;transition:
+          all
+          0.3s ease;width:auto;}
 
-.services-submenu.active { display:flex;}  
-
-.popup { display:none; position:
-       fixed; top:
-       50%; left:
-       50%; transform:
-       translate(-50%,-50%); background-color:
-       var(--black); border:
-       2px solid var(--green); border-radius:
-       20px; padding:
-       30px;width:
-       80%; max-width:
-       600px; max-height:
-       80vh; overflow-y:auto; z-index:
-       1000;text-align:center;}
-
-.popup-close { position:absolute; top:
-       10px; right:
-       10px;font-size:
-       24px;cursor:pointer;color:
-       var(--white);}
-
-.service-button { background-color:
-       var(--black); color:
-       var(--white); border:
-       2px solid var(--green); border-radius:
-       15px;padding:
-       10px
-       	15px;margin:
-       	5px;width:
-       	calc(100% -
-       	10px);display:inline-block;text-align:center;text-decoration:none;font-size:
-       	0.9em;transition:
-       	all
-       	0.3s ease;width:auto;}
-
-.service-button:hover { background-color:
-       var(--green); color:
-       var(--black);}
+       .service-button:hover { background-color:
+               var(--green); color:
+               var(--black);}
     </style>
 </head>
 <body>
     <header>
-        <nav class="sticky-nav">
-            <div class="logo"></div>
-            <div id="nav-btn">
-                <svg viewBox="0 0 100 100">
-                    <path id="top-line-1" d="M30,37 L70,37 Z"></path>
-                    <path id="middle-line-1" d="M30,50 L70,50 Z"></path>
-                    <path id="bottom-line-1" d="M30,63 L70,63 Z"></path>
-                </svg>
-            </div>
-        </nav>
+         <nav class="sticky-nav">
+             <div class="logo"></div>
+             <div id="nav-btn">
+                 <svg viewBox="0 0 100 100">
+                     <path id="top-line-1" d="M30,37 L70,37 Z"></path>
+                     <path id="middle-line-1" d="M30,50 L70,50 Z"></path>
+                     <path id="bottom-line-1" d="M30,63 L70,63 Z"></path>
+                 </svg>
+             </div>
+         </nav>
 
-        <div id="takeover-nav">
-            <ul class="nav-items">
-                <li>
-                    <a href="#" id="services-link">serviços</a>
-                    <div class="services-submenu">
-                        <a href="#" id="tv-link" class="service-button">TV</a>
-                        <a href="https://nexuschat-5h38.onrender.com/login?next=%2F" class="service-button">NexusChat</a>
-                        <a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/nexus-browser" class="service-button">NexusBrowser</a>
-                    </div>
-                </li>
-                <li><a href="#" id="about-link">sobre</a></li>
-                <li><a href="https://sites.google.com/view/nexusweb-help/nexusweb-help?authuser=0">contato</a></li>
-            </ul>
-        </div>
-    </header>
+         <div id="takeover-nav">
+             <ul class="nav-items">
+                 <li><a href="https://tvnexusweb.netlify.app" id="tv-link" class="service-button">TV</a></li> <!-- Redireciona para TV -->
+                 <li><a href="https://nexuschat-5h38.onrender.com/login?next=%2F" class="service-button">NexusChat</a></li> <!-- Link para NexusChat -->
+                 <li><a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/nexus-browser" class="service-button">NexusBrowser</a></li> <!-- Link para NexusBrowser -->
+                 <li><a href="#">portfólio</a></li>
+                 <li><a href="#">contato</a></li>
+                 <li><a href="#">sobre</a></li>
+             </ul>
+         </div>
+     </header>
 
-    <section class="hero">
-        <div class="video-wrap">
-            <video autoplay loop muted playsinline id="video-bg">
-                <source src="https://tactusmarketing.com/wp-content/uploads/tactus-waves-hero.mp4" type="video/mp4">
-            </video>
-        </div>
+     <section class="hero">
+         <div class="video-wrap">
+             <video autoplay loop muted playsinline id="video-bg">
+                 <source src="https://kikalabs-app-server-static.netlify.app/video/site-nxweb/background.mp4" type="video/mp4"> <!-- Vídeo atualizado -->
+             </video>
+         </div>
 
-        <div class="gradient-overlay"></div>
+         <div class="gradient-overlay"></div>
 
-        <div class="hero-content">
-            <h1 class="hero-title">Bem-vindo à NexusWeb</h1>
-        </div>
-    </section>
+         <div class="hero-content">
+             <h1 class="hero-title">Bem-vindo à NexusWeb</h1> <!-- Título alterado -->
+         </div>
+     </section>
 
-    <div id="tv-popup" class="popup">
-        <span class="popup-close">&times;</span>
-        <h2>Escolha um canal:</h2>
-        <a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/tv/sic" class="service-button">SIC</a>
-        <a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/tv/sic-noticias" class="service-button">SIC Notícias</a>
-        <a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/tv/tvi" class="service-button">TVI</a>
-        <a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/tv/v-tvi" class="service-button">V+</a>
-        <a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/tv/cnn-portugal" class="service-button">CNN Portugal</a>
-        <a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/tv" class="service-button">Web App</a>
-    </div>
-
-    <div id="about-popup" class="popup">
-        <span class="popup-close">&times;</span>
-        <h2>Quem Somos?</h2>
-        <p>Somos uma equipa de desenvolvedores e criamos em conjunto serviços para empresas e particulares, queremos facilitar a sua vida!</p>
-        <p>Agora que já sabes o que fazemos, queres te juntar a nós? Let's build together!</p>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const navBtn = document.getElementById('nav-btn');
-            const takeoverNav = document.getElementById('takeover-nav');
-            const servicesLink = document.getElementById('services-link');
-            const servicesSubmenu = document.querySelector('.services-submenu');
-            const tvLink = document.getElementById('tv-link');
-            const tvPopup = document.getElementById('tv-popup');
-            const aboutLink = document.getElementById('about-link');
-            const aboutPopup = document.getElementById('about-popup');
-            const popupCloses = document.querySelectorAll('.popup-close');
-
-            navBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                takeoverNav.classList.toggle('shown');
-            });
-
-            servicesLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                servicesSubmenu.classList.toggle('active');
-            });
-
-            tvLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                tvPopup.style.display = 'block';
-            });
-
-            aboutLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                aboutPopup.style.display = 'block';
-            });
-
-            popupCloses.forEach(function(close) {
-                close.addEventListener('click', function() {
-                    this.closest('.popup').style.display = 'none';
-                });
-            });
-
-            document.addEventListener('click', function(e) {
-                if (!takeoverNav.contains(e.target) && e.target !== navBtn) {
-                    takeoverNav.classList.remove('shown');
-                    servicesSubmenu.classList.remove('active');
-                }
-
-                if (!tvPopup.contains(e.target) && e.target !== tvLink) {
-                    tvPopup.style.display = 'none';
-                }
-
-                if (!aboutPopup.contains(e.target) && e.target !== aboutLink) {
-                    aboutPopup.style.display = 'none';
-                }
-            });
-        });
-    </script>
+     <script>
+         document.getElementById('nav-btn').addEventListener('click', function() {
+             document.getElementById('takeover-nav').classList.toggle('shown');
+         });
+     </script>
 </body>
 </html>
