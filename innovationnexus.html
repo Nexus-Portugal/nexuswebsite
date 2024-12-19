@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovation Nexus</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: linear-gradient(135deg, #4d3cff 0%, #7b68ee 100%);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .container {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px;
+            width: 90%;
+            max-width: 800px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(white, transparent 70%);
+            opacity: 0.1;
+            z-index: -1;
+        }
+        img {
+            width: 100%;
+            height: auto; 
+            max-height: 500px; 
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #fff, #aaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .description {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Innovation Nexus</h1>
+        <p class="description">Neste evento iremos apresentar as nossas apps e soluções inovadoras. Você terá a oportunidade de conhecer melhor as nossas aplicações e entender como elas são feitas, incluindo detalhes sobre o backend, frontend, APIs e muito mais!</p>
+        
+        <img src="https://nexuswebco.netlify.app/InnovationNexus.jpg" alt="Innovation Nexus">
+        
+        <h2>Venha nos conhecer!</h2>
+        <p>Estamos animados para compartilhar nossas inovações com você e mostrar como estamos moldando o futuro da tecnologia!</p>
+    </div>
+</body>
+</html>
