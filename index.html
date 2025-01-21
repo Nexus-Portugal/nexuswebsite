@@ -3,210 +3,342 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexusWeb</title>
+    <title>NexusWeb - Inovação Digital</title>
     <style>
         :root {
-            --green: #00ff00;
-            --black: #212121;
-            --white: #ffffff;
+            --primary: #00ff00;
+            --secondary: #00ccff;
+            --dark: #121212;
+            --light: #f8f8f8;
+            --transition: all 0.3s ease-in-out;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--black);
-            color: var(--white);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
         .sticky-nav {
             position: fixed;
-            top: 20px;
-            left: 20px;
-            width: calc(100% - 40px);
-            z-index: 999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+
+        .nav-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            width: 220px;
-            height: 45px;
-            background-image: url('https://kikalabs-app-server-static.netlify.app/images/site-nxweb/RealNexusWeb.png'); /* Logotipo atualizado */
+            width: 180px;
+            height: 40px;
+            background-image: url('https://kikalabs-app-server-static.netlify.app/images/site-nxweb/RealNexusWeb.png');
             background-size: contain;
             background-repeat: no-repeat;
-            background-position: left;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         #nav-btn {
-            width: 60px; /* Tamanho do botão do menu */
-            height: 60px; /* Tamanho do botão do menu */
+            width: 40px;
+            height: 40px;
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            background: none;
+            border: none;
         }
 
-        #nav-btn svg {
+        .nav-line {
             width: 100%;
-            height: 100%;
-        }
-
-        #nav-btn svg path {
-            stroke: white; /* Cor do menu burger em branco */
-            stroke-width: 6; 
+            height: 3px;
+            background-color: var(--light);
+            transition: var(--transition);
         }
 
         #takeover-nav {
             position: fixed;
-            width: 300px; /* Largura do menu */
-            height: 100vh; 
-            right: -300px; /* Inicialmente fora da tela à direita */
+            width: 100%;
+            height: 100vh;
+            right: -100%;
             top: 0;
-            transition: all 0.3s ease-in-out;
-            z-index: 996;
-            background-color: var(--black);
+            transition: var(--transition);
+            z-index: 999;
+            background-color: rgba(18, 18, 18, 0.95);
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center;
         }
 
         #takeover-nav.shown {
-            right: 0; /* Move para a direita quando ativo */
+            right: 0;
         }
 
         .nav-items {
             list-style-type: none;
-            padding: 0;
-            font-size: 1.5em; /* Tamanho da fonte */
-            font-weight: 700;
-        }
-
-        .nav-items li {
-            margin-bottom: 1rem;
             text-align: center;
         }
 
+        .nav-items li {
+            margin-bottom: 2rem;
+        }
+
         .nav-items a {
-            color: var(--white);
+            color: var(--light);
             text-decoration: none;
+            font-size: 2em;
+            font-weight: 700;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-items a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -5px;
+            left: 50%;
+            background-color: var(--primary);
+            transition: var(--transition);
         }
 
         .nav-items a:hover {
-            color: var(--green);
+            color: var(--primary);
+        }
+
+        .nav-items a:hover::after {
+            width: 100%;
+            left: 0;
         }
 
         .hero {
-            height: 100vh; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-        }
-
-        .hero-content {
-           text-align:center; 
-           z-index=2; 
-        }
-
-        .hero-title {
-           font-size: 4em; /* Tamanho do texto */
-           animation: rgbLoop 3s linear infinite; /* Efeito de loop RGB */
-        }
-
-        @keyframes rgbLoop {
-           0% { color:red; }
-           33% { color:green; }
-           66% { color:blue; }
-           100% { color:red; }
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
         }
 
         .video-wrap {
-           position:absolute; 
-           width=100%; 
-           height=100%; 
-           overflow:hidden; 
-           z-index:-1; /* O vídeo fica atrás do conteúdo */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
         }
 
         #video-bg {
-           width:auto; 
-           height:auto; 
-           object-fit:center; /* Ajusta o vídeo para preencher a tela */
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
         .gradient-overlay {
-           position:absolute; 
-           bottom=0; 
-           width=100%; 
-           height=50%; 
-           background:-moz-linear-gradient(top, rgba(33,33,33,0) 0%, rgba(33,33,33,1) 100%);
-           z-index=1; /* Fica atrás do título mas acima do vídeo */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(18, 18, 18, 0.3), rgba(18, 18, 18, 0.8));
         }
 
-        .service-button { 
-          background-color:
-          var(--black); 
-          color:
-          var(--white); 
-          border:
-          2px solid var(--green); /* Contorno dos botões visível */
-          border-radius:
-          15px;padding:
-          10px
-          15px;margin:
-          5px;width:
-          calc(100% -
-          10px);display:inline-block;text-align:center;text-decoration:none;font-size:
-          0.9em;transition:
-          all
-          0.3s ease;width:auto;}
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 20px;
+        }
 
-       .service-button:hover { background-color:
-               var(--green); color:
-               var(--black);}
+        .hero-title {
+            font-size: 4.5em;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: glowText 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glowText {
+            from {
+                text-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary), 0 0 15px var(--primary);
+            }
+            to {
+                text-shadow: 0 0 10px var(--secondary), 0 0 20px var(--secondary), 0 0 30px var(--secondary);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 1.5em;
+            margin-bottom: 40px;
+            opacity: 0.8;
+        }
+
+        .cta-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .cta-button {
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: var(--transition);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-primary {
+            background-color: var(--primary);
+            color: var(--dark);
+        }
+
+        .cta-secondary {
+            background-color: transparent;
+            color: var(--light);
+            border: 2px solid var(--light);
+        }
+
+        .cta-primary:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 204, 255, 0.3);
+        }
+
+        .cta-secondary:hover {
+            background-color: var(--light);
+            color: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(248, 248, 248, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3em;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2em;
+            }
+
+            .cta-container {
+                flex-direction: column;
+            }
+
+            .cta-button {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
-         <nav class="sticky-nav">
-             <div class="logo"></div>
-             <div id="nav-btn">
-                 <svg viewBox="0 0 100 100">
-                     <path id="top-line-1" d="M30,37 L70,37 Z"></path>
-                     <path id="middle-line-1" d="M30,50 L70,50 Z"></path>
-                     <path id="bottom-line-1" d="M30,63 L70,63 Z"></path>
-                 </svg>
-             </div>
-         </nav>
+        <nav class="sticky-nav">
+            <div class="container nav-content">
+                <div class="logo"></div>
+                <button id="nav-btn">
+                    <span class="nav-line"></span>
+                    <span class="nav-line"></span>
+                    <span class="nav-line"></span>
+                </button>
+            </div>
+        </nav>
 
-         <div id="takeover-nav">
-             <ul class="nav-items">
-                 <li><a href="https://tvnexusweb.netlify.app" id="tv-link" class="service-button">TV</a></li> <!-- Redireciona para TV -->
-                 <li><a href="https://nexuschat-5h38.onrender.com/login?next=%2F" class="service-button">NexusChat</a></li> <!-- Link para NexusChat -->
-                 <li><a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/nexus-browser" class="service-button">NexusBrowser</a></li> <!-- Link para NexusBrowser -->
-                 <li><a href="#">portfólio</a></li>
-                 <li><a href="#">contato</a></li>
-                 <li><a href="#">sobre</a></li>
-             </ul>
-         </div>
-     </header>
+        <div id="takeover-nav">
+            <ul class="nav-items">
+                <li><a href="https://tvnexusweb.netlify.app">TV</a></li>
+                <li><a href="https://nexuschat-5h38.onrender.com/login?next=%2F">NexusChat</a></li>
+                <li><a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/nexus-browser">NexusBrowser</a></li>
+                <li><a href="/contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </header>
 
-     <section class="hero">
-         <div class="video-wrap">
-             <video autoplay loop muted playsinline id="video-bg">
-                 <source src="https://kikalabs-app-server-static.netlify.app/video/site-nxweb/background.mp4" type="video/mp4"> <!-- Vídeo atualizado -->
-             </video>
-         </div>
 
-         <div class="gradient-overlay"></div>
+    <section class="hero">
+        <div class="video-wrap">
+            <video autoplay loop muted playsinline id="video-bg">
+                <source src="https://kikalabs-app-server-static.netlify.app/video/site-nxweb/background.mp4" type="video/mp4">
+            </video>
+        </div>
 
-         <div class="hero-content">
-             <h1 class="hero-title">Bem-vindo à NexusWeb</h1> <!-- Título alterado -->
-         </div>
-     </section>
+        <div class="gradient-overlay"></div>
 
-     <script>
-         document.getElementById('nav-btn').addEventListener('click', function() {
-             document.getElementById('takeover-nav').classList.toggle('shown');
-         });
-     </script>
+        <div class="hero-content">
+            <h1 class="hero-title">Bem-vindo à NexusWeb</h1>
+            <p class="hero-subtitle">Transformando ideias em realidade digital</p>
+            <div class="cta-container">
+                <button class="cta-button cta-primary">Explorar Serviços</button>
+                <a href="/contacto" class="cta-button cta-secondary">Contacto</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('nav-btn').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.getElementById('takeover-nav').classList.toggle('shown');
+        });
+
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.sticky-nav');
+            nav.classList.toggle('scrolled', window.scrollY > 0);
+        });
+    </script>
 </body>
 </html>
