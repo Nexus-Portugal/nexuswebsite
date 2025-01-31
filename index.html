@@ -285,6 +285,7 @@
             }
         }
     </style>
+    <link href="https://img.botschool.ai/cdn/chatui/chaticons.css" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -309,7 +310,6 @@
         </div>
     </header>
 
-
     <section class="hero">
         <div class="video-wrap">
             <video autoplay loop muted playsinline id="video-bg">
@@ -329,6 +329,15 @@
         </div>
     </section>
 
+    <!-- Componente do chatbot BotSchool -->
+    <chat-component
+        data-chat-key="d8688ed616a1422a9e6bb863f05893cc"
+        mic="false"
+        assetsURL="https://img.botschool.ai/cdn/chatui/assets/"
+        socket-url="https://api.botschool.ai/">
+    </chat-component>
+
+    <script src="https://img.botschool.ai/cdn/chatui/chat-component.js"></script>
     <script>
         document.getElementById('nav-btn').addEventListener('click', function() {
             this.classList.toggle('active');
