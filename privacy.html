@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NexusWeb - Política de Privacidade</title>
     <style>
-        /* Mantemos todos os estilos originais do site */
         :root {
             --primary: #00ff00;
             --secondary: #00ccff;
@@ -28,7 +27,13 @@
             overflow-x: hidden;
         }
 
-        /* Estilos do menu original */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
         .sticky-nav {
             position: fixed;
             top: 0;
@@ -45,9 +50,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
         }
 
         .logo {
@@ -56,6 +58,11 @@
             background-image: url('https://kikalabs-app-server-static.netlify.app/images/site-nxweb/RealNexusWeb.png');
             background-size: contain;
             background-repeat: no-repeat;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         #nav-btn {
@@ -67,7 +74,6 @@
             justify-content: space-around;
             background: none;
             border: none;
-            z-index: 1001;
         }
 
         .nav-line {
@@ -85,12 +91,11 @@
             top: 0;
             transition: var(--transition);
             z-index: 999;
-            background-color: rgba(18, 18, 18, 0.98);
+            background-color: rgba(18, 18, 18, 0.95);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            backdrop-filter: blur(15px);
         }
 
         #takeover-nav.shown {
@@ -100,7 +105,6 @@
         .nav-items {
             list-style-type: none;
             text-align: center;
-            padding: 0;
         }
 
         .nav-items li {
@@ -110,22 +114,25 @@
         .nav-items a {
             color: var(--light);
             text-decoration: none;
-            font-size: 1.8em;
-            font-weight: 600;
+            font-size: 2em;
+            font-weight: 700;
             position: relative;
             transition: var(--transition);
-            padding: 8px 15px;
         }
 
         .nav-items a::after {
             content: '';
             position: absolute;
             width: 0;
-            height: 2px;
-            bottom: 0;
+            height: 3px;
+            bottom: -5px;
             left: 50%;
             background-color: var(--primary);
             transition: var(--transition);
+        }
+
+        .nav-items a:hover {
+            color: var(--primary);
         }
 
         .nav-items a:hover::after {
@@ -217,14 +224,39 @@
                 font-size: 1.4em;
             }
         }
+
+        chat-component {
+            --chat-font-family: 'Segoe UI', 'Inter', 'Roboto', sans-serif;
+            --chat-primary-color: #00ff00;
+            --chat-secondary-color: #00ccff;
+            --chat-background-color: rgba(18, 18, 18, 0.95);
+            --chat-text-color: #f8f8f8;
+        }
+
+        chat-component::part(chat-container) {
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            line-height: 1.6;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 255, 0, 0.2);
+        }
     </style>
     <link href="https://img.botschool.ai/cdn/chatui/chaticons.css" rel="stylesheet">
 </head>
 <body>
-<header>
-    <nav class="sticky-nav">
-        <div class="container nav-content">
-            <div class="logo"></div>
+    <header>
+        <nav class="sticky-nav">
+            <div class="container nav-content">
+                <div class="logo"></div>
+                <button id="nav-btn">
+                    <span class="nav-line"></span>
+                    <span class="nav-line"></span>
+                    <span class="nav-line"></span>
+                </button>
+            </div>
+        </nav>
+
+        <div id="takeover-nav">
             <ul class="nav-items">
                 <li><a href="https://tvnexusweb.netlify.app">TV</a></li>
                 <li><a href="https://nexuschat-5h38.onrender.com/login?next=%2F">NexusChat</a></li>
@@ -232,10 +264,8 @@
                 <li><a href="/contacto">Contacto</a></li>
             </ul>
         </div>
-    </nav>
-</header>
-
-
+    </header>
+    
     <main class="privacy-container">
         <h1>Política de Privacidade</h1>
 
@@ -327,7 +357,6 @@
             <p>Nota: A desativação de cookies pode afetar a funcionalidade do chatbot e algumas características do website.</p>
         </div>
     </main>
-
     <chat-component
         data-chat-key="d8688ed616a1422a9e6bb863f05893cc"
         mic="false"
@@ -337,7 +366,6 @@
 
     <script src="https://img.botschool.ai/cdn/chatui/chat-component.js"></script>
     <script>
-        // Menu Mobile Original
         const navButton = document.getElementById('nav-btn');
         const takeoverNav = document.getElementById('takeover-nav');
 
@@ -345,7 +373,6 @@
             navButton.classList.toggle('active');
             takeoverNav.classList.toggle('shown');
             
-            // Animação do hamburger
             if (navButton.classList.contains('active')) {
                 navButton.style.transform = 'rotate(180deg)';
                 document.documentElement.style.overflow = 'hidden';
@@ -355,7 +382,6 @@
             }
         });
 
-        // Fechar menu ao clicar em links
         document.querySelectorAll('.nav-items a').forEach(link => {
             link.addEventListener('click', () => {
                 navButton.classList.remove('active');
@@ -364,7 +390,6 @@
             });
         });
 
-        // Efeito de scroll no header
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('.sticky-nav');
             nav.style.backgroundColor = window.scrollY > 50 
