@@ -26,6 +26,22 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
+        chat-component {
+    --chat-font-family: 'Segoe UI', 'Inter', 'Roboto', sans-serif;
+    --chat-primary-color: #00ff00; /* Correspondendo à paleta do site */
+    --chat-secondary-color: #00ccff;
+    --chat-background-color: rgba(18, 18, 18, 0.95);
+    --chat-text-color: #f8f8f8;
+}
+
+chat-component::part(chat-container) {
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    line-height: 1.6;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 255, 0, 0.2);
+}
+
 
         .container {
             width: 100%;
