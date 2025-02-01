@@ -1,88 +1,383 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-PT">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Política de Privacidade - Pets-ID</title>
+    <title>NexusWeb - Política de Privacidade</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
+        /* Mantemos todos os estilos originais do site */
+        :root {
+            --primary: #00ff00;
+            --secondary: #00ccff;
+            --dark: #121212;
+            --light: #f8f8f8;
+            --transition: all 0.3s ease-in-out;
+        }
+
+        * {
             margin: 0;
-            padding: 20px;
-            background-color: #f9f9f9;
-            color: #333;
+            padding: 0;
+            box-sizing: border-box;
         }
-        h1, h2 {
-            color: #2c3e50;
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
+
+        /* Estilos do menu original */
+        .sticky-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            width: 180px;
+            height: 40px;
+            background-image: url('https://kikalabs-app-server-static.netlify.app/images/site-nxweb/RealNexusWeb.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        #nav-btn {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            background: none;
+            border: none;
+            z-index: 1001;
+        }
+
+        .nav-line {
+            width: 100%;
+            height: 3px;
+            background-color: var(--light);
+            transition: var(--transition);
+        }
+
+        #takeover-nav {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            right: -100%;
+            top: 0;
+            transition: var(--transition);
+            z-index: 999;
+            background-color: rgba(18, 18, 18, 0.98);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(15px);
+        }
+
+        #takeover-nav.shown {
+            right: 0;
+        }
+
+        .nav-items {
+            list-style-type: none;
+            text-align: center;
+            padding: 0;
+        }
+
+        .nav-items li {
+            margin-bottom: 2rem;
+        }
+
+        .nav-items a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1.8em;
+            font-weight: 600;
+            position: relative;
+            transition: var(--transition);
+            padding: 8px 15px;
+        }
+
+        .nav-items a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-items a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        /* Estilos específicos da política de privacidade */
+        .privacy-container {
+            max-width: 800px;
+            margin: 120px auto 60px;
+            padding: 0 20px;
+        }
+
         h1 {
-            font-size: 2em;
+            font-size: 2.8em;
+            color: var(--primary);
+            margin-bottom: 40px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
         }
+
+        .section {
+            margin-bottom: 50px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid var(--secondary);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
         h2 {
-            font-size: 1.5em;
-            margin-top: 20px;
+            color: var(--secondary);
+            font-size: 1.6em;
+            margin-bottom: 25px;
+            font-weight: 600;
         }
-        p, ul {
-            margin-bottom: 15px;
+
+        p {
+            margin-bottom: 20px;
+            line-height: 1.8;
         }
+
         ul {
-            padding-left: 20px;
+            margin: 20px 0;
+            padding-left: 30px;
         }
+
         li {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 25px;
         }
-        footer {
-            margin-top: 20px;
-            font-size: 0.9em;
-            color: #555;
+
+        li::before {
+            content: "▹";
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+        }
+
+        a {
+            color: var(--secondary);
+            text-decoration: none;
+            border-bottom: 1px dashed currentColor;
+        }
+
+        a:hover {
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .privacy-container {
+                margin: 100px auto 40px;
+            }
+            
+            h1 {
+                font-size: 2.2em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            h2 {
+                font-size: 1.4em;
+            }
         }
     </style>
+    <link href="https://img.botschool.ai/cdn/chatui/chaticons.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Política de Privacidade - Pets-ID</h1>
-    <p>A sua privacidade é importante para nós. Por isso, elaboramos esta política para explicar como coletamos, utilizamos e protegemos os dados dos usuários do Pets-ID.</p>
+    <header>
+        <nav class="sticky-nav">
+            <div class="nav-content">
+                <a href="/" class="logo"></a>
+                <button id="nav-btn">
+                    <span class="nav-line"></span>
+                    <span class="nav-line"></span>
+                    <span class="nav-line"></span>
+                </button>
+            </div>
+        </nav>
 
-    <h2>Dados Coletados</h2>
-    <p>No Pets-ID, coletamos apenas os seguintes dados:</p>
-    <ul>
-        <li><strong>E-mail</strong>: utilizado para identificação do usuário e comunicações importantes sobre o serviço.</li>
-        <li><strong>Dados do animal</strong>: informações sobre o seu pet, como nome, espécie, raça, idade e outras informações opcionais fornecidas por você.</li>
-    </ul>
+        <div id="takeover-nav">
+            <ul class="nav-items">
+                <li><a href="https://tvnexusweb.netlify.app">TV Nexus</a></li>
+                <li><a href="https://nexuschat-5h38.onrender.com/login?next=%2F">NexusChat</a></li>
+                <li><a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/nexus-browser">Navegador</a></li>
+                <li><a href="/contacto">Contactos</a></li>
+            </ul>
+        </div>
+    </header>
 
-    <h2>Finalidade dos Dados</h2>
-    <p>Utilizamos os dados coletados exclusivamente para:</p>
-    <ul>
-        <li><strong>Gerenciar o cadastro do usuário e do animal</strong> no Pets-ID.</li>
-        <li><strong>Oferecer suporte</strong> e garantir a funcionalidade da nossa plataforma.</li>
-        <li><strong>Enviar comunicações importantes</strong>, como atualizações sobre o serviço.</li>
-    </ul>
+    <main class="privacy-container">
+        <h1>Política de Privacidade</h1>
 
-    <h2>Compartilhamento de Dados</h2>
-    <p>Não compartilhamos, vendemos ou utilizamos seus dados para fins publicitários. Seus dados serão mantidos estritamente no âmbito do Pets-ID.</p>
+        <div class="section">
+            <h2>1. Introdução</h2>
+            <p>A NexusWeb compromete-se a proteger a privacidade dos utilizadores. Esta política explica como recolhemos, usamos e protegemos a sua informação quando utiliza os nossos serviços, incluindo:</p>
+            <ul>
+                <li>Website principal e subdomínios</li>
+                <li>Aplicação NexusChat</li>
+                <li>Chatbot integrado (BotSchool)</li>
+            </ul>
+            <p>Esta política aplica-se a todos os dados processados através dos nossos serviços, incluindo aqueles recolhidos por ferramentas de análise como Microsoft Clarity e Google Analytics.</p>
+        </div>
 
-    <h2>Armazenamento e Proteção dos Dados</h2>
-    <p>Adotamos medidas técnicas e organizacionais para proteger seus dados contra acessos não autorizados, alterações, divulgações ou destruições indevidas.</p>
+        <div class="section">
+            <h2>2. Recolha de Dados</h2>
+            <p>Recolhemos diferentes tipos de informações para fornecer e melhorar os nossos serviços:</p>
+            <ul>
+                <li><strong>Dados de utilização:</strong> Páginas visitadas, tempo de sessão, cliques (via Clarity e Analytics)</li>
+                <li><strong>Dados técnicos:</strong> Tipo de browser, sistema operativo, resolução do ecrã</li>
+                <li><strong>Interações com chatbot:</strong> Histórico de conversas, perguntas frequentes</li>
+            </ul>
+            <p>Os cookies utilizados incluem apenas:</p>
+            <ul>
+                <li>Cookies essenciais de sessão</li>
+                <li>Cookies analíticos do Google Analytics</li>
+                <li>Cookies de desempenho do Microsoft Clarity</li>
+                <li>Cookies funcionais do BotSchool</li>
+            </ul>
+        </div>
 
-    <h2>Direitos do Usuário</h2>
-    <p>Você tem o direito de:</p>
-    <ul>
-        <li><strong>Acessar seus dados</strong> armazenados no Pets-ID.</li>
-        <li><strong>Solicitar a exclusão</strong> ou alteração dos seus dados.</li>
-        <li><strong>Revogar o consentimento</strong> para o uso de seus dados a qualquer momento.</li>
-    </ul>
+        <div class="section">
+            <h2>3. Finalidade do Tratamento</h2>
+            <p>Utilizamos os dados para as seguintes finalidades:</p>
+            <ul>
+                <li>Analisar padrões de tráfego e uso do website</li>
+                <li>Melhorar a experiência do utilizador</li>
+                <li>Otimizar o desempenho técnico</li>
+                <li>Personalizar interações com o chatbot</li>
+            </ul>
+            <p>O Microsoft Clarity é utilizado para gravações de sessão (heatmaps) com o único propósito de identificar problemas de usabilidade. As gravações são anonimizadas e nunca incluem dados sensíveis.</p>
+        </div>
 
-    <h2>Contato</h2>
-    <p>Se tiver qualquer dúvida ou solicitar a exclusão dos seus dados, entre em contato conosco pelo e-mail: <a href="mailto:help.nexusweb@gmail.com">help.nexusweb@gmail.com</a>.</p>
+        <div class="section">
+            <h2>4. Partilha de Dados</h2>
+            <p>Não partilhamos dados pessoais com terceiros exceto nos seguintes casos:</p>
+            <ul>
+                <li>Provedores de serviços essenciais (Google Cloud, Microsoft Azure)</li>
+                <li>Plataforma BotSchool para operação do chatbot</li>
+                <li>Requisitos legais ou regulamentares</li>
+            </ul>
+            <p>Os dados analíticos são partilhados com:</p>
+            <ul>
+                <li>Google Analytics (estatísticas agregadas)</li>
+                <li>Microsoft Clarity (dados de comportamento anonimizados)</li>
+            </ul>
+        </div>
 
-    <h2>Alterações nesta Política</h2>
-    <p>Esta política de privacidade pode ser atualizada periodicamente. Avisaremos sobre quaisquer mudanças relevantes através do seu e-mail ou de nossa plataforma.</p>
+        <div class="section">
+            <h2>5. Direitos do Utilizador</h2>
+            <p>De acordo com o RGPD, tem direito a:</p>
+            <ul>
+                <li>Acesso aos dados recolhidos</li>
+                <li>Retificação de informações incorretas</li>
+                <li>Eliminação de dados pessoais</li>
+                <li>Revogar consentimento a qualquer momento</li>
+            </ul>
+            <p>Para exercer estes direitos ou obter mais informações, contacte-nos através do email <a href="mailto:help.nexusweb@gmail.com">help.nexusweb@gmail.com</a>.</p>
+        </div>
 
-    <h2>Data de Última Atualização</h2>
-    <p>12 de dezembro de 2024.</p>
+        <div class="section">
+            <h2>6. Gestão de Cookies</h2>
+            <p>Pode controlar o uso de cookies através de:</p>
+            <ul>
+                <li>Definições do seu browser:
+                    <ul>
+                        <li><a href="https://support.google.com/chrome/answer/95647">Chrome</a></li>
+                        <li><a href="https://support.mozilla.org/pt-PT/kb/gestao-de-cookies">Firefox</a></li>
+                        <li><a href="https://support.microsoft.com/pt-pt/microsoft-edge/eliminar-cookies-no-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09">Edge</a></li>
+                    </ul>
+                </li>
+                <li>Ferramentas de opt-out específicas:
+                    <ul>
+                        <li><a href="https://tools.google.com/dlpage/gaoptout">Google Analytics Opt-out</a></li>
+                        <li><a href="https://clarity.microsoft.com/opt-out">Microsoft Clarity Opt-out</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <p>Nota: A desativação de cookies pode afetar a funcionalidade do chatbot e algumas características do website.</p>
+        </div>
+    </main>
 
-    <footer>
-        <p>Pets-ID é comprometido em proteger seus dados e os do seu pet. Use nosso serviço com tranquilidade!</p>
-    </footer>
+    <chat-component
+        data-chat-key="d8688ed616a1422a9e6bb863f05893cc"
+        mic="false"
+        assetsURL="https://img.botschool.ai/cdn/chatui/assets/"
+        socket-url="https://api.botschool.ai/">
+    </chat-component>
+
+    <script src="https://img.botschool.ai/cdn/chatui/chat-component.js"></script>
+    <script>
+        // Menu Mobile Original
+        const navButton = document.getElementById('nav-btn');
+        const takeoverNav = document.getElementById('takeover-nav');
+
+        navButton.addEventListener('click', () => {
+            navButton.classList.toggle('active');
+            takeoverNav.classList.toggle('shown');
+            
+            // Animação do hamburger
+            if (navButton.classList.contains('active')) {
+                navButton.style.transform = 'rotate(180deg)';
+                document.documentElement.style.overflow = 'hidden';
+            } else {
+                navButton.style.transform = 'rotate(0deg)';
+                document.documentElement.style.overflow = '';
+            }
+        });
+
+        // Fechar menu ao clicar em links
+        document.querySelectorAll('.nav-items a').forEach(link => {
+            link.addEventListener('click', () => {
+                navButton.classList.remove('active');
+                takeoverNav.classList.remove('shown');
+                document.documentElement.style.overflow = '';
+            });
+        });
+
+        // Efeito de scroll no header
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.sticky-nav');
+            nav.style.backgroundColor = window.scrollY > 50 
+                ? 'rgba(18, 18, 18, 0.95)' 
+                : 'rgba(18, 18, 18, 0.8)';
+        });
+    </script>
 </body>
 </html>
