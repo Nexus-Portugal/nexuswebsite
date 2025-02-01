@@ -365,38 +365,38 @@
         socket-url="https://api.botschool.ai/">
     </chat-component>
 
-    <script src="https://img.botschool.ai/cdn/chatui/chat-component.js"></script>
-    <script>
-        const navButton = document.getElementById('nav-btn');
-        const takeoverNav = document.getElementById('takeover-nav');
+<script src="https://img.botschool.ai/cdn/chatui/chat-component.js"></script>
+<script>
+    const navButton = document.getElementById('nav-btn');
+    const takeoverNav = document.getElementById('takeover-nav');
 
-        navButton.addEventListener('click', () => {
-            navButton.classList.toggle('active');
-            takeoverNav.classList.toggle('shown');
-            
-            if (navButton.classList.contains('active')) {
-                navButton.style.transform = 'rotate(180deg)';
-                document.documentElement.style.overflow = 'hidden';
-            } else {
-                navButton.style.transform = 'rotate(0deg)';
-                document.documentElement.style.overflow = '';
-            }
-        });
+    navButton.addEventListener('click', () => {
+        navButton.classList.toggle('active');
+        takeoverNav.classList.toggle('shown');
+        
+        if (navButton.classList.contains('active')) {
+            navButton.style.transform = 'rotate(180deg)';
+            document.documentElement.style.overflow = 'hidden';
+        } else {
+            navButton.style.transform = 'rotate(0deg)';
+            document.documentElement.style.overflow = '';
+        }
+    });
 
-        document.querySelectorAll('.nav-items a').forEach(link => {
-            link.addEventListener('click', () => {
-                navButton.classList.remove('active');
-                takeoverNav.classList.remove('shown');
-                document.documentElement.style.overflow = '';
-            });
+    document.querySelectorAll('.nav-items a').forEach(link => {
+        link.addEventListener('click', () => {
+            navButton.classList.remove('active');
+            takeoverNav.classList.remove('shown');
+            document.documentElement.style.overflow = '';
         });
+    });
 
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('.sticky-nav');
-            nav.style.backgroundColor = window.scrollY > 50 
-                ? 'rgba(18, 18, 18, 0.95)' 
-                : 'rgba(18, 18, 18, 0.8)';
-        });
-    </script>
+    window.addEventListener('scroll', () => {
+        const nav = document.querySelector('.sticky-nav');
+        nav.style.backgroundColor = window.scrollY > 50 
+            ? 'rgba(18, 18, 18, 0.95)' 
+            : 'rgba(18, 18, 18, 0.8)';
+    });
+</script>
 </body>
 </html>
