@@ -4,44 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NexusWeb - Inovação Digital</title>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <style>
-        .modal {
-    display: none;
-    position: fixed;
-    z-index: 1001;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.4);
-}
-
-.modal-content {
-    background-color: var(--dark);
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid var(--primary);
-    width: 80%;
-    max-width: 500px;
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: 0 0 20px var(--primary);
-}
-
-.close {
-    color: var(--light);
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.close:hover {
-    color: var(--primary);
-}
-
         :root {
             --primary: #00ff00;
             --secondary: #00ccff;
@@ -382,14 +345,6 @@ chat-component::part(chat-container) {
         </div>
     </section>
 
-    <div id="congratsModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Parabéns Gambriel182!</h2>
-    </div>
-</div>
-
-
     <!-- Componente do chatbot BotSchool -->
     <chat-component
         data-chat-key="d8688ed616a1422a9e6bb863f05893cc"
@@ -409,17 +364,6 @@ chat-component::part(chat-container) {
             const nav = document.querySelector('.sticky-nav');
             nav.classList.toggle('scrolled', window.scrollY > 0);
         });
-
-        function openCongratsModal() {
-    const modal = document.getElementById('congratsModal');
-    modal.style.display = "block";
-    
-    // Dispara os confetes
-    confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 }
-    });
 
     // Fecha o modal quando clicar no X
     const span = document.getElementsByClassName("close")[0];
