@@ -122,6 +122,11 @@
     </style>
 </head>
 <body>
+    <audio id="confettiSound">
+        <source src="https://www.myinstants.com/media/sounds/confetti-pop-sound.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
     <div class="modal">
         <h1>Parabéns Gambriel182!</h1>
         <p>Você é incrível!</p>
@@ -132,7 +137,7 @@
         <div class="envelope-flap"></div>
         <div class="envelope-content">
             <h2>Olá! 👋</h2>
-            <p>Parabéns Gambriel!!!.</p>
+            <p>Só queria deixar um pequeno registo de que és importante.</p>
             <p>Obrigado por fazeres parte desta jornada online.</p>
         </div>
         <div class="envelope-front">
@@ -140,20 +145,7 @@
         </div>
     </div>
 
-<audio id="confettiSound" autoplay>
-  <source src="https://www.myinstants.com/media/sounds/confetti-pop-sound.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
-
-
     <script>
-        window.onload = function() {
-  var audio = document.getElementById('confettiSound');
-  audio.play();
-  audio.onended = function() {
-    audio.remove(); // Remove o elemento de áudio após a reprodução
-  };
-  
         function launchConfetti() {
             const count = 100;
             const defaults = {
@@ -178,6 +170,12 @@
         }
 
         window.onload = function() {
+            var audio = document.getElementById('confettiSound');
+            audio.play();
+            audio.onended = function() {
+                audio.remove(); // Remove o elemento de áudio após a reprodução
+            };
+
             startContinuousConfetti();
 
             // Mostra o envelope após 5 segundos
