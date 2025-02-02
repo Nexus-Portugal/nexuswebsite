@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parabéns Gambriel182!</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .modal {
+            background-color: #121212;
+            padding: 20px;
+            border: 1px solid #00ff00;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 0 20px #00ff00;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+        }
+        h1 {
+            color: #00ff00;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+        .envelope {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 300px;
+            height: 200px;
+            background-color: #f0f0f0;
+            border: 2px solid #999;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            z-index: 2000;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+            animation: pulse 2s infinite;
+            perspective: 1000px;
+        }
+        .envelope.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .envelope-flap {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #e0e0e0;
+            clip-path: polygon(0 0, 50% 50%, 100% 0);
+            transition: transform 0.5s ease;
+            transform-origin: top;
+            z-index: 3;
+        }
+        .envelope-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            padding: 20px;
+            text-align: center;
+            color: #333;
+            font-size: 14px;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1;
+        }
+        .envelope-front {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+        .ctt-logo {
+            width: 100px;
+            height: auto;
+        }
+        .envelope.open .envelope-flap {
+            transform: rotateX(180deg);
+        }
+        .envelope.open .envelope-content {
+            opacity: 1;
+            z-index: 4;
+        }
+        .envelope.open .envelope-front {
+            opacity: 0;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 255, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="modal">
+        <h1>Parabéns Gambriel182!</h1>
+        <p>Você é incrível!</p>
+        <img src="https://i.ibb.co/bMcZMr99/Multilingual.png" alt="Multilingual Image">
+    </div>
+
+    <div class="envelope">
+        <div class="envelope-flap"></div>
+        <div class="envelope-content">
+            <h2>Olá! 👋</h2>
+            <p>Parabéns Gambriel!!!.</p>
+            <p>Obrigado por fazeres parte desta jornada online.</p>
+        </div>
+        <div class="envelope-front">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/CTT_LOGO.png" alt="CTT Logo" class="ctt-logo">
+        </div>
+    </div>
+
+<audio id="confettiSound" autoplay>
+  <source src="https://www.myinstants.com/media/sounds/confetti-pop-sound.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+
+    <script>
+        window.onload = function() {
+  var audio = document.getElementById('confettiSound');
+  audio.play();
+  audio.onended = function() {
+    audio.remove(); // Remove o elemento de áudio após a reprodução
+  };
+  
+        function launchConfetti() {
+            const count = 100;
+            const defaults = {
+                origin: { y: 0.7 }
+            };
+
+            function fire(particleRatio, opts) {
+                confetti(Object.assign({}, defaults, opts, {
+                    particleCount: Math.floor(count * particleRatio)
+                }));
+            }
+
+            fire(0.25, { spread: 26, startVelocity: 55 });
+            fire(0.2, { spread: 60 });
+            fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+            fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+            fire(0.1, { spread: 120, startVelocity: 45 });
+        }
+
+        function startContinuousConfetti() {
+            setInterval(launchConfetti, 300);
+        }
+
+        window.onload = function() {
+            startContinuousConfetti();
+
+            // Mostra o envelope após 5 segundos
+            setTimeout(() => {
+                document.querySelector('.envelope').classList.add('show');
+            }, 5000);
+
+            document.querySelector('.envelope').addEventListener('click', function() {
+                this.classList.toggle('open');
+                if (this.classList.contains('open')) {
+                    this.style.animation = 'none';
+                } else {
+                    this.style.animation = 'pulse 2s infinite';
+                }
+            });
+        };
+    </script>
+</body>
+</html>
