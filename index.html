@@ -1,16 +1,26 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-PT">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexusWeb - Inovação Digital</title>
+    <title>NexusWeb - Inovação Digital em Portugal</title>
+    <meta name="description" content="A NexusWeb oferece soluções digitais inovadoras e personalizadas para empresas em Portugal. Transformamos as suas ideias em realidade digital.">
+    <meta name="keywords" content="NexusWeb, inovação digital, soluções personalizadas, desenvolvimento web, Portugal">
+    <meta name="author" content="NexusWeb">
+    <link rel="canonical" href="https://www.nexusweb.pt">
+    <meta property="og:title" content="NexusWeb - Inovação Digital em Portugal">
+    <meta property="og:description" content="Transformamos ideias em realidade digital com soluções inovadoras e personalizadas.">
+    <meta property="og:image" content="https://www.nexusweb.pt/images/og-image.jpg">
+    <meta property="og:url" content="https://www.nexusweb.pt">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "q48rygpjz8");
-</script>
+    </script>
     <style>
         :root {
             --primary: #00ff00;
@@ -33,20 +43,43 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
-        chat-component {
-    --chat-font-family: 'Segoe UI', 'Inter', 'Roboto', sans-serif;
-    --chat-primary-color: #00ff00; /* Correspondendo à paleta do site */
-    --chat-secondary-color: #00ccff;
-    --chat-background-color: rgba(18, 18, 18, 0.95);
-    --chat-text-color: #f8f8f8;
+        ::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--primary), var(--secondary));
+    border-radius: 5px;
+    animation: scrollColorChange 3s ease-in-out infinite alternate;
 }
 
-chat-component::part(chat-container) {
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    line-height: 1.6;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 255, 0, 0.2);
+@keyframes scrollColorChange {
+    from {
+        background: linear-gradient(var(--primary), var(--secondary));
+    }
+    to {
+        background: linear-gradient(var(--secondary), var(--primary));
+    }
+}
+
+/* Estilo para a barra de rolagem */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--primary), var(--secondary));
+    border-radius: 5px;
+    animation: scrollColorChange 3s ease-in-out infinite alternate;
+}
+
+@keyframes scrollColorChange {
+    from {
+        background: linear-gradient(var(--primary), var(--secondary));
+    }
+    to {
+        background: linear-gradient(var(--secondary), var(--primary));
+    }
 }
 
 
@@ -238,38 +271,46 @@ chat-component::part(chat-container) {
         }
 
         .cta-button {
-            padding: 15px 30px;
-            font-size: 1.1em;
-            font-weight: 600;
-            text-transform: uppercase;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            text-decoration: none;
-            display: inline-block;
-        }
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: var(--transition);
-        }
+    padding: 15px 30px;
+    font-size: 1.1em;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    display: inline-block;
+}
 
-        .cta-button:hover::before {
-            left: 100%;
-        }
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: var(--transition);
+}
 
-        .cta-primary {
-            background-color: var(--primary);
-            color: var(--dark);
-        }
+.cta-button:hover::before {
+    left: 100%;
+}
+
+.cta-primary {
+    background-color: var(--primary);
+    color: var(--dark);
+}
+
+.cta-primary:hover {
+    background-color: var(--secondary);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 204, 255, 0.3);
+}
+
 
         .cta-secondary {
             background-color: transparent;
@@ -277,17 +318,55 @@ chat-component::part(chat-container) {
             border: 2px solid var(--light);
         }
 
-        .cta-primary:hover {
-            background-color: var(--secondary);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 204, 255, 0.3);
-        }
 
         .cta-secondary:hover {
             background-color: var(--light);
             color: var(--dark);
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(248, 248, 248, 0.3);
+        }
+
+        .about-section {
+            padding: 80px 0;
+            background-color: var(--dark);
+        }
+
+.about-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row-reverse; /* Inverte a ordem dos elementos */
+}
+
+.about-text .cta-button {
+    margin-top: 20px; /* Adiciona um espaço acima do botão */
+    align-self: flex-start; /* Alinha à esquerda */
+}
+
+.about-text {
+    flex: 1;
+    padding-left: 40px; /* Muda de padding-right para padding-left */
+    padding-right: 0;
+}
+
+
+        .about-image {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 255, 0, 0.2);
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: var(--light);
+            text-align: center;
+            padding: 20px 0;
         }
 
         @media (max-width: 768px) {
@@ -306,22 +385,59 @@ chat-component::part(chat-container) {
             .cta-button {
                 width: 100%;
             }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-text, .about-image {
+                width: 100%;
+                padding: 0;
+                margin-bottom: 30px;
+            }
+            .about-image {
+    flex: 1;
+    max-width: 500px;
+}
+        }
+
+        chat-component {
+            --chat-font-family: 'Segoe UI', 'Inter', 'Roboto', sans-serif;
+            --chat-primary-color: #00ff00;
+            --chat-secondary-color: #00ccff;
+            --chat-background-color: rgba(18, 18, 18, 0.95);
+            --chat-text-color: #f8f8f8;
+        }
+
+        chat-component::part(chat-container) {
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            line-height: 1.6;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 255, 0, 0.2);
         }
     </style>
-    <link href="https://img.botschool.ai/cdn/chatui/chaticons.css" rel="stylesheet">
 </head>
 <body>
+    
     <header>
         <nav class="sticky-nav">
             <div class="container nav-content">
                 <div class="logo"></div>
-                <button id="nav-btn">
+                <button id="nav-btn" aria-label="Menu de Navegação">
                     <span class="nav-line"></span>
                     <span class="nav-line"></span>
                     <span class="nav-line"></span>
                 </button>
             </div>
         </nav>
+        
+        <chat-component
+    data-chat-key="d8688ed616a1422a9e6bb863f05893cc"
+    mic="false" assetsURL = "https://img.botschool.ai/cdn/chatui/assets/"
+    socket-url="https://api.botschool.ai/"></chat-component>
+    <script src="https://img.botschool.ai/cdn/chatui/chat-component.js"></script>
+    <link href="https://img.botschool.ai/cdn/chatui/chaticons.css" rel="stylesheet">
 
         <div id="takeover-nav">
             <ul class="nav-items">
@@ -333,59 +449,57 @@ chat-component::part(chat-container) {
         </div>
     </header>
 
-    <section class="hero">
-        <div class="video-wrap">
-            <video autoplay loop muted playsinline id="video-bg">
-                <source src="https://kikalabs-app-server-static.netlify.app/video/site-nxweb/background.mp4" type="video/mp4">
-            </video>
-        </div>
-
-        <div class="gradient-overlay"></div>
-
-        <div class="hero-content">
-            <h1 class="hero-title">Bem-vindo à NexusWeb</h1>
-            <p class="hero-subtitle">Transformando ideias em realidade digital</p>
-            <div class="cta-container">
-                <button class="cta-button cta-primary">Explorar Serviços</button>
-                <a href="/contacto" class="cta-button cta-secondary">Contacto</a>
+    <main>
+        <section class="hero">
+            <div class="video-wrap">
+                <video preload="auto" autoplay loop muted playsinline id="video-bg">
+                    <source src="https://kikalabs-app-server-static.netlify.app/video/site-nxweb/backtech.mp4" type="video/mp4">
+                </video>
             </div>
-        </div>
-    </section>
 
-    <!-- Componente do chatbot BotSchool -->
-    <chat-component
-        data-chat-key="d8688ed616a1422a9e6bb863f05893cc"
-        mic="false"
-        assetsURL="https://img.botschool.ai/cdn/chatui/assets/"
-        socket-url="https://api.botschool.ai/">
-    </chat-component>
+            <div class="gradient-overlay"></div>
 
-    <script src="https://img.botschool.ai/cdn/chatui/chat-component.js"></script>
-    <script>
-        document.getElementById('nav-btn').addEventListener('click', function() {
-            this.classList.toggle('active');
-            document.getElementById('takeover-nav').classList.toggle('shown');
-        });
+            <div class="hero-content">
+                <h1 class="hero-title">Bem-vindo à NexusWeb</h1>
+                <p class="hero-subtitle">Transformando ideias em realidade digital</p>
+                <div class="cta-container">
+                    <button class="cta-button cta-primary">Explorar Serviços</button>
+                    <a href="/contacto" class="cta-button cta-secondary">Contacto</a>
+                </div>
+            </div>
+        </section>
 
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('.sticky-nav');
-            nav.classList.toggle('scrolled', window.scrollY > 0);
-        });
+        <section class="about-section">
+            <div class="container about-content">
+                <div class="about-text">
+                    <h2>Inovação à Medida</h2>
+                    <p>Na NexusWeb, somos pioneiros em soluções digitais inovadoras e personalizadas. A nossa equipa de especialistas está pronta para transformar as suas ideias mais ambiciosas em realidade digital.</p>
+                    <p>Oferecemos um leque completo de serviços, desde desenvolvimento web e aplicações móveis até soluções de inteligência artificial e análise de dados. Cada projeto é único e merece uma abordagem à medida.</p>
+                    <p>Não hesite em contactar-nos para discutir como podemos impulsionar o seu negócio para o futuro digital.</p>
+                    <a href="/contacto" class="cta-button cta-primary">Fale Connosco</a>
+                </div>
+                <div class="about-image">
+                    <img src="https://media.licdn.com/dms/image/C4E12AQG6zmVXIsSl6g/article-cover_image-shrink_720_1280/0/1543887351635?e=2147483647&v=beta&t=zpVov898uQBJUpi364tL6RPgjFKmkoLzrHkiKhKsvuY" alt="Equipa NexusWeb a trabalhar em soluções inovadoras" loading="lazy">
+                </div>
+            </div>
+        </section>
+    </main>
 
-    // Fecha o modal quando clicar no X
-    const span = document.getElementsByClassName("close")[0];
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
 
-    // Fecha o modal se clicar fora dele
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-}
+<footer>
+    <div class="container">
+        <p>&copy; 2025 NexusWeb. Todos os direitos reservados.</p>
+    </div>
+</footer>
 
-    </script>
-</body>
-</html>
+<script>
+    document.getElementById('nav-btn').addEventListener('click', function() {
+        this.classList.toggle('active');
+        document.getElementById('takeover-nav').classList.toggle('shown');
+    });
+
+    window.addEventListener('scroll', function() {
+        const nav = document.querySelector('.sticky-nav');
+        nav.classList.toggle('scrolled', window.scrollY > 0);
+    });
+</script>
