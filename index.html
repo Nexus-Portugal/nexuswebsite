@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NexusWeb - Inovação Digital em Portugal</title>
-    <meta name="description" content="A NexusWeb oferece soluções digitais inovadoras e personalizadas para empresas em Portugal. Transformamos as suas ideias em realidade digital.">
-    <meta name="keywords" content="NexusWeb, inovação digital, soluções personalizadas, desenvolvimento web, Portugal">
+    <meta name="description" content="A NexusWeb oferece soluções digitais inovadoras e personalizadas para empresas. Transformamos as suas ideias em realidade digital.">
+    <meta name="keywords" content="NexusWeb, inovação digital, soluções personalizadas, desenvolvimento web">
     <meta name="author" content="NexusWeb">
-    <link rel="canonical" href="https://www.nexusweb.pt">
+    <link rel="canonical" href="https://nexusweb.netlify.app">
     <meta property="og:title" content="NexusWeb - Inovação Digital em Portugal">
     <meta property="og:description" content="Transformamos ideias em realidade digital com soluções inovadoras e personalizadas.">
-    <meta property="og:image" content="https://www.nexusweb.pt/images/og-image.jpg">
-    <meta property="og:url" content="https://www.nexusweb.pt">
+    <meta property="og:image" content="https://kikalabs-app-server-static.netlify.app/images/site-nxweb/RealNexusWeb.png">
+    <meta property="og:url" content="https://nexusweb.netlify.app">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <script type="text/javascript">
@@ -44,44 +44,43 @@
             overflow-x: hidden;
         }
         ::-webkit-scrollbar-thumb {
-    background: linear-gradient(var(--primary), var(--secondary));
-    border-radius: 5px;
-    animation: scrollColorChange 3s ease-in-out infinite alternate;
-}
+            background: linear-gradient(var(--primary), var(--secondary));
+            border-radius: 5px;
+            animation: scrollColorChange 3s ease-in-out infinite alternate;
+        }
 
-@keyframes scrollColorChange {
-    from {
-        background: linear-gradient(var(--primary), var(--secondary));
-    }
-    to {
-        background: linear-gradient(var(--secondary), var(--primary));
-    }
-}
+        @keyframes scrollColorChange {
+            from {
+                background: linear-gradient(var(--primary), var(--secondary));
+            }
+            to {
+                background: linear-gradient(var(--secondary), var(--primary));
+            }
+        }
 
-/* Estilo para a barra de rolagem */
-::-webkit-scrollbar {
-    width: 10px;
-}
+        /* Estilo para a barra de rolagem */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
 
-::-webkit-scrollbar-track {
-    background: var(--dark);
-}
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
 
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(var(--primary), var(--secondary));
-    border-radius: 5px;
-    animation: scrollColorChange 3s ease-in-out infinite alternate;
-}
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--primary), var(--secondary));
+            border-radius: 5px;
+            animation: scrollColorChange 3s ease-in-out infinite alternate;
+        }
 
-@keyframes scrollColorChange {
-    from {
-        background: linear-gradient(var(--primary), var(--secondary));
-    }
-    to {
-        background: linear-gradient(var(--secondary), var(--primary));
-    }
-}
-
+        @keyframes scrollColorChange {
+            from {
+                background: linear-gradient(var(--primary), var(--secondary));
+            }
+            to {
+                background: linear-gradient(var(--secondary), var(--primary));
+            }
+        }
 
         .container {
             width: 100%;
@@ -98,7 +97,7 @@
             z-index: 1000;
             background-color: rgba(18, 18, 18, 0.8);
             backdrop-filter: blur(10px);
-            padding: 20px 0;
+            padding: 10px 0;
             transition: var(--transition);
         }
 
@@ -121,6 +120,7 @@
             transform: scale(1.05);
         }
 
+        /* Menu Hamburguer (Mobile) */
         #nav-btn {
             width: 40px;
             height: 40px;
@@ -139,6 +139,7 @@
             transition: var(--transition);
         }
 
+        /* Takeover Nav (Mobile) */
         #takeover-nav {
             position: fixed;
             width: 100%;
@@ -196,6 +197,55 @@
             left: 0;
         }
 
+        /* Navbar (Desktop) */
+        .navbar {
+            display: none; /* Esconde por padrão, mostra em telas maiores */
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .navbar a:hover {
+            color: var(--primary);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--dark);
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+       .dropdown-content a {
+            padding: 10px;
+            text-decoration: none;
+            display: block;
+            clear: both;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Hero Section */
         .hero {
             height: 100vh;
             display: flex;
@@ -271,53 +321,51 @@
         }
 
         .cta-button {
-    padding: 15px 30px;
-    font-size: 1.1em;
-    font-weight: 600;
-    text-transform: uppercase;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: var(--transition);
-    position: relative;
-    overflow: hidden;
-    text-decoration: none;
-    display: inline-block;
-}
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: inline-block;
+        }
 
-.cta-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transition: var(--transition);
-}
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: var(--transition);
+        }
 
-.cta-button:hover::before {
-    left: 100%;
-}
+        .cta-button:hover::before {
+            left: 100%;
+        }
 
-.cta-primary {
-    background-color: var(--primary);
-    color: var(--dark);
-}
+        .cta-primary {
+            background-color: var(--primary);
+            color: var(--dark);
+        }
 
-.cta-primary:hover {
-    background-color: var(--secondary);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 204, 255, 0.3);
-}
-
+        .cta-primary:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 204, 255, 0.3);
+        }
 
         .cta-secondary {
             background-color: transparent;
             color: var(--light);
             border: 2px solid var(--light);
         }
-
 
         .cta-secondary:hover {
             background-color: var(--light);
@@ -326,30 +374,40 @@
             box-shadow: 0 10px 20px rgba(248, 248, 248, 0.3);
         }
 
+        /* About Section */
         .about-section {
             padding: 80px 0;
             background-color: var(--dark);
         }
 
-.about-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    flex-direction: row-reverse; /* Inverte a ordem dos elementos */
-}
+        .about-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            flex-direction: row-reverse; /* Inverte a ordem dos elementos */
+        }
 
-.about-text .cta-button {
-    margin-top: 20px; /* Adiciona um espaço acima do botão */
-    align-self: flex-start; /* Alinha à esquerda */
-}
+        .about-text .cta-button {
+            margin-top: 20px; /* Adiciona um espaço acima do botão */
+            align-self: flex-start; /* Alinha à esquerda */
+        }
 
-.about-text {
-    flex: 1;
-    padding-left: 40px; /* Muda de padding-right para padding-left */
-    padding-right: 0;
-}
+        .about-text {
+            flex: 1;
+            padding-left: 40px; /* Muda de padding-right para padding-left */
+            padding-right: 0;
+        }
 
+        .about-text h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
 
         .about-image {
             flex: 1;
@@ -362,11 +420,23 @@
             box-shadow: 0 10px 30px rgba(0, 255, 0, 0.2);
         }
 
+        /* Footer */
         footer {
             background-color: var(--dark);
             color: var(--light);
             text-align: center;
             padding: 20px 0;
+        }
+
+        /* Media Queries */
+        @media (min-width: 769px) {
+            #nav-btn {
+                display: none; /* Esconde o menu hamburguer no desktop */
+            }
+
+            .navbar {
+                display: flex; /* Mostra a navbar no desktop */
+            }
         }
 
         @media (max-width: 768px) {
@@ -396,9 +466,9 @@
                 margin-bottom: 30px;
             }
             .about-image {
-    flex: 1;
-    max-width: 500px;
-}
+                flex: 1;
+                max-width: 500px;
+            }
         }
 
         chat-component {
@@ -416,14 +486,119 @@
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 255, 0, 0.2);
         }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7); /* Mais escuro para destacar */
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: var(--dark);
+            padding: 30px; /* Aumentei o preenchimento */
+            border-radius: 15px; /* Mais arredondado */
+            width: auto; /* Largura automática */
+            max-width: 500px; /* Largura máxima */
+            box-shadow: 0 5px 15px rgba(0, 255, 0, 0.3); /* Sombra mais suave */
+            text-align: center; /* Centralizar o texto */
+        }
+
+        .close {
+            color: var(--light);
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px; /* Tamanho maior para o "x" */
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s ease-in-out; /* Transição suave na cor */
+        }
+
+        .close:hover,
+        .close:focus {
+            color: var(--primary); /* Cor primária ao passar o mouse */
+            text-decoration: none;
+        }
+
+        .modal-content h2 {
+            color: var(--primary); /* Título com cor primária */
+            margin-bottom: 20px;
+        }
+
+        .modal-content ul {
+            list-style: none; /* Remove as bolinhas */
+            padding: 0;
+        }
+
+        .modal-content li {
+            margin-bottom: 10px;
+        }
+
+        .modal-content a {
+            color: var(--secondary); /* Links com cor secundária */
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        }
+
+        .modal-content a:hover {
+            color: var(--light); /* Links ficam claros ao passar o mouse */
+            text-decoration: underline;
+        }
+
+        /* Gradient Glow */
+        @keyframes gradientGlow {
+            0% { text-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary), 0 0 15px var(--primary); }
+            50% { text-shadow: 0 0 10px var(--secondary), 0 0 20px var(--secondary), 0 0 30px var(--secondary); }
+            100% { text-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary), 0 0 15px var(--primary); }
+        }
+
+        .hero-title {
+            font-size: 4.5em;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: gradientGlow 3s ease-in-out infinite alternate; /* Apply the gradient glow */
+        }
+
     </style>
 </head>
 <body>
-    
+
     <header>
         <nav class="sticky-nav">
             <div class="container nav-content">
                 <div class="logo"></div>
+
+                <!-- Navbar (Desktop) -->
+                <nav class="navbar">
+                    <ul>
+                        <li class="dropdown">
+                            <a href="#">Serviços</a>
+                            <div class="dropdown-content">
+                                <a href="/servicos/tv">NexusTV</a>
+                                <a href="/servicos/nexuschat">NexusChat</a>
+                                <a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/nexus-browser">NexusBrowser</a>
+                                <a href="https://pets-id-itxs.onrender.com/login">Pets ID</a>
+                            </div>
+                        </li>
+                        <li><a href="mailto:reportesit.cimesis.nexusweb@gmail.com">CIMESIS Nexus</a></li>
+                        <li><a href="/contacto">Contacto</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Menu Hamburguer (Mobile) -->
                 <button id="nav-btn" aria-label="Menu de Navegação">
                     <span class="nav-line"></span>
                     <span class="nav-line"></span>
@@ -431,14 +606,15 @@
                 </button>
             </div>
         </nav>
-        
-        <chat-component
-    data-chat-key="d8688ed616a1422a9e6bb863f05893cc"
-    mic="false" assetsURL = "https://img.botschool.ai/cdn/chatui/assets/"
-    socket-url="https://api.botschool.ai/"></chat-component>
-    <script src="https://img.botschool.ai/cdn/chatui/chat-component.js"></script>
-    <link href="https://img.botschool.ai/cdn/chatui/chaticons.css" rel="stylesheet">
 
+        <chat-component
+            data-chat-key="d8688ed616a1422a9e6bb863f05893cc"
+            mic="false" assetsURL = "https://img.botschool.ai/cdn/chatui/assets/"
+            socket-url="https://api.botschool.ai/"></chat-component>
+        <script src="https://img.botschool.ai/cdn/chatui/chat-component.js"></script>
+        <link href="https://img.botschool.ai/cdn/chatui/chaticons.css" rel="stylesheet">
+
+        <!-- Takeover Nav (Mobile) -->
         <div id="takeover-nav">
             <ul class="nav-items">
                 <li><a href="/servicos/tv">NexusTV</a></li>
@@ -465,8 +641,8 @@
                 <h1 class="hero-title">Bem-vindo à NexusWeb</h1>
                 <p class="hero-subtitle">Transformando ideias em realidade digital</p>
                 <div class="cta-container">
-                    <button class="cta-button cta-primary">Explorar Serviços</button>
-                    <a href="/contacto" class="cta-button cta-secondary">Contacto</a>
+                    <button class="cta-button cta-primary" id="openModalBtn">Explorar Serviços</button>
+                    <a href="/contacto" class="cta-button cta-secondary">Contacte-nos</a>
                 </div>
             </div>
         </section>
@@ -474,9 +650,9 @@
         <section class="about-section">
             <div class="container about-content">
                 <div class="about-text">
-                    <h2>Inovação à Medida</h2>
+                    <h2>Inovação à Sua Medida</h2>
                     <p>Na NexusWeb, somos pioneiros em soluções digitais inovadoras e personalizadas. A nossa equipa de especialistas está pronta para transformar as suas ideias mais ambiciosas em realidade digital.</p>
-                    <p>Oferecemos um leque completo de serviços, desde desenvolvimento web e aplicações móveis até soluções de inteligência artificial e análise de dados. Cada projeto é único e merece uma abordagem à medida.</p>
+                    <p>Oferecemos um leque completo de serviços, desde desenvolvimento web e aplicações móveis até soluções de inteligência artificial e análise de dados. Cada projecto é único e merece uma abordagem à medida.</p>
                     <p>Não hesite em contactar-nos para discutir como podemos impulsionar o seu negócio para o futuro digital.</p>
                     <a href="/contacto" class="cta-button cta-primary">Fale Connosco</a>
                 </div>
@@ -487,21 +663,55 @@
         </section>
     </main>
 
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 NexusWeb. Todos os direitos reservados.</p>
+        </div>
+    </footer>
 
-<footer>
-    <div class="container">
-        <p>&copy; 2025 NexusWeb. Todos os direitos reservados.</p>
+    <!-- The Modal -->
+    <div id="servicesModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Os Nossos Serviços</h2>
+            <ul>
+                <li><a href="/servicos/tv">NexusTV</a> - Entretenimento inovador.</li>
+                <li><a href="/servicos/nexuschat">NexusChat</a> - Comunicação inteligente.</li>
+                <li><a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/nexus-browser">NexusBrowser</a> - Navegação otimizada.</li>
+                <li><a href="https://pets-id-itxs.onrender.com/login">Pets ID</a> - ID para animais de estimação.</li>
+            </ul>
+        </div>
     </div>
-</footer>
 
-<script>
-    document.getElementById('nav-btn').addEventListener('click', function() {
-        this.classList.toggle('active');
-        document.getElementById('takeover-nav').classList.toggle('shown');
-    });
+    <script>
+        document.getElementById('nav-btn').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.getElementById('takeover-nav').classList.toggle('shown');
+        });
 
-    window.addEventListener('scroll', function() {
-        const nav = document.querySelector('.sticky-nav');
-        nav.classList.toggle('scrolled', window.scrollY > 0);
-    });
-</script>
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.sticky-nav');
+            nav.classList.toggle('scrolled', window.scrollY > 0);
+        });
+
+        // Modal Functionality
+        var modal = document.getElementById("servicesModal");
+        var btn = document.getElementById("openModalBtn");
+        var span = document.querySelector(".close");
+
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
