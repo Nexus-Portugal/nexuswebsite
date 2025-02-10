@@ -4,8 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NexusWeb - Política de Privacidade</title>
+    <meta name="description" content="Política de Privacidade da NexusWeb">
+    <meta name="keywords" content="NexusWeb, privacidade, política de privacidade, dados pessoais, PT-PT">
+    <meta name="author" content="NexusWeb">
+    <link rel="canonical" href="https://nexusweb.netlify.app/privacidade">
+    <meta property="og:title" content="NexusWeb - Política de Privacidade">
+    <meta property="og:description" content="Leia a nossa política de privacidade para entender como protegemos os seus dados.">
+    <meta property="og:image" content="https://kikalabs-app-server-static.netlify.app/images/site-nxweb/RealNexusWeb.png">
+    <meta property="og:url" content="https://nexusweb.netlify.app/privacidade">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <style>
-        /* Mantemos todos os estilos originais do site */
         :root {
             --primary: #00ff00;
             --secondary: #00ccff;
@@ -28,7 +37,32 @@
             overflow-x: hidden;
         }
 
-        /* Estilos do menu original */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--primary), var(--secondary));
+            border-radius: 5px;
+            animation: scrollColorChange 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes scrollColorChange {
+            from { background: linear-gradient(var(--primary), var(--secondary)); }
+            to { background: linear-gradient(var(--secondary), var(--primary)); }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
         .sticky-nav {
             position: fixed;
             top: 0;
@@ -37,7 +71,7 @@
             z-index: 1000;
             background-color: rgba(18, 18, 18, 0.8);
             backdrop-filter: blur(10px);
-            padding: 20px 0;
+            padding: 10px 0;
             transition: var(--transition);
         }
 
@@ -45,9 +79,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
         }
 
         .logo {
@@ -56,8 +87,14 @@
             background-image: url('https://kikalabs-app-server-static.netlify.app/images/site-nxweb/RealNexusWeb.png');
             background-size: contain;
             background-repeat: no-repeat;
+            transition: var(--transition);
         }
 
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        /* Menu Hamburguer (Mobile) */
         #nav-btn {
             width: 40px;
             height: 40px;
@@ -67,7 +104,6 @@
             justify-content: space-around;
             background: none;
             border: none;
-            z-index: 1001;
         }
 
         .nav-line {
@@ -77,6 +113,7 @@
             transition: var(--transition);
         }
 
+        /* Takeover Nav (Mobile) */
         #takeover-nav {
             position: fixed;
             width: 100%;
@@ -85,12 +122,11 @@
             top: 0;
             transition: var(--transition);
             z-index: 999;
-            background-color: rgba(18, 18, 18, 0.98);
+            background-color: rgba(18, 18, 18, 0.95);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            backdrop-filter: blur(15px);
         }
 
         #takeover-nav.shown {
@@ -100,7 +136,6 @@
         .nav-items {
             list-style-type: none;
             text-align: center;
-            padding: 0;
         }
 
         .nav-items li {
@@ -110,22 +145,25 @@
         .nav-items a {
             color: var(--light);
             text-decoration: none;
-            font-size: 1.8em;
-            font-weight: 600;
+            font-size: 2em;
+            font-weight: 700;
             position: relative;
             transition: var(--transition);
-            padding: 8px 15px;
         }
 
         .nav-items a::after {
             content: '';
             position: absolute;
             width: 0;
-            height: 2px;
-            bottom: 0;
+            height: 3px;
+            bottom: -5px;
             left: 50%;
             background-color: var(--primary);
             transition: var(--transition);
+        }
+
+        .nav-items a:hover {
+            color: var(--primary);
         }
 
         .nav-items a:hover::after {
@@ -133,99 +171,227 @@
             left: 0;
         }
 
-        /* Estilos específicos da política de privacidade */
-        .privacy-container {
-            max-width: 800px;
-            margin: 120px auto 60px;
-            padding: 0 20px;
+        /* Navbar (Desktop) */
+        .navbar {
+            display: none; /* Esconde por padrão, mostra em telas maiores */
         }
 
-        h1 {
-            font-size: 2.8em;
-            color: var(--primary);
-            margin-bottom: 40px;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
         }
 
-        .section {
-            margin-bottom: 50px;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 30px;
-            border-radius: 12px;
-            border-left: 4px solid var(--secondary);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        h2 {
-            color: var(--secondary);
-            font-size: 1.6em;
-            margin-bottom: 25px;
-            font-weight: 600;
-        }
-
-        p {
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
-
-        ul {
-            margin: 20px 0;
-            padding-left: 30px;
-        }
-
-        li {
-            margin-bottom: 15px;
-            position: relative;
-            padding-left: 25px;
-        }
-
-        li::before {
-            content: "▹";
-            color: var(--primary);
-            position: absolute;
-            left: 0;
-            font-size: 1.2em;
-        }
-
-        a {
-            color: var(--secondary);
+        .navbar a {
+            color: var(--light);
             text-decoration: none;
-            border-bottom: 1px dashed currentColor;
+            font-weight: 600;
+            transition: var(--transition);
         }
 
-        a:hover {
+        .navbar a:hover {
             color: var(--primary);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--dark);
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+       .dropdown-content a {
+            padding: 10px;
+            text-decoration: none;
+            display: block;
+            clear: both;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .content {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 0;
+        }
+
+        .video-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        #video-bg {
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(18, 18, 18, 0.3), rgba(18, 18, 18, 0.8));
+        }
+
+        .contact-form-container {
+            position: relative;
+            z-index: 10;
+            background-color: rgba(18, 18, 18, 0.6); /* Mais transparente */
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            animation: glowingBorder 5s ease-in-out infinite alternate;
+        }
+
+        @keyframes glowingBorder {
+            0% { box-shadow: 0 0 8px rgba(0, 255, 0, 0.5), 0 0 12px rgba(0, 255, 204, 0.4); } /* Cores mais suaves */
+            50% { box-shadow: 0 0 12px rgba(0, 204, 255, 0.4), 0 0 18px rgba(0, 153, 255, 0.3); }
+            100% { box-shadow: 0 0 8px rgba(0, 255, 0, 0.5), 0 0 12px rgba(0, 255, 204, 0.4); }
+        }
+
+        .contact-form-container h2 {
+            color: var(--light); /* Cor mais suave para o texto */
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 2em;
+            font-weight: 500; /* Peso da fonte mais leve */
+        }
+        iframe {
+            width: 80%; /* Aumenta a largura */
+            height: 600px; /* Aumenta a altura */
+            border: none;
+            border-radius: 10px; /* Bordas arredondadas */
+        }
+
+        @media (min-width: 769px) {
+            #nav-btn {
+                display: none; /* Esconde o menu hamburguer no desktop */
+            }
+
+            .navbar {
+                display: flex; /* Mostra a navbar no desktop */
+            }
         }
 
         @media (max-width: 768px) {
-            .privacy-container {
-                margin: 100px auto 40px;
-            }
-            
-            h1 {
-                font-size: 2.2em;
-            }
-            
-            .section {
+            .contact-form-container {
+                width: 95%;
                 padding: 20px;
             }
-            
-            h2 {
-                font-size: 1.4em;
+            .contact-form-container h2 {
+                font-size: 1.6em;
             }
         }
+
+        .privacy-policy-container {
+            position: relative;
+            z-index: 10;
+            background-color: rgba(18, 18, 18, 0.6);
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            animation: glowingBorder 5s ease-in-out infinite alternate;
+        }
+
+        @keyframes glowingBorder {
+            0% { box-shadow: 0 0 8px rgba(0, 255, 0, 0.5), 0 0 12px rgba(0, 255, 204, 0.4); }
+            50% { box-shadow: 0 0 12px rgba(0, 204, 255, 0.4), 0 0 18px rgba(0, 153, 255, 0.3); }
+            100% { box-shadow: 0 0 8px rgba(0, 255, 0, 0.5), 0 0 12px rgba(0, 255, 204, 0.4); }
+        }
+
+        .privacy-policy-container h1 {
+            color: var(--light);
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 2em;
+            font-weight: 500;
+        }
+
+        .privacy-policy-container h2 {
+            color: var(--light);
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            font-weight: 400;
+        }
+
+        .privacy-policy-container p,
+        .privacy-policy-container li {
+            color: var(--light);
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .privacy-policy-container ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .privacy-policy-container a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .privacy-policy-container a:hover {
+            text-decoration: underline;
+            color: var(--primary);
+        }
+
     </style>
-    <link href="https://img.botschool.ai/cdn/chatui/chaticons.css" rel="stylesheet">
 </head>
 <body>
     <header>
         <nav class="sticky-nav">
-            <div class="nav-content">
+            <div class="container nav-content">
                 <a href="/" class="logo"></a>
-                <button id="nav-btn">
+
+                 <!-- Navbar (Desktop) -->
+                <nav class="navbar">
+                    <ul>
+                        <li class="dropdown">
+                            <a href="#">Serviços</a>
+                            <div class="dropdown-content">
+                                <a href="/servicos/tv">NexusTV</a>
+                                <a href="/servicos/nexuschat">NexusChat</a>
+                                <a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/nexus-browser">NexusBrowser</a>
+                                <a href="https://pets-id-itxs.onrender.com/login">Pets ID</a>
+                            </div>
+                        </li>
+                        <li><a href="mailto:reportesit.cimesis.nexusweb@gmail.com">CIMESIS Nexus</a></li>
+                        <li><a href="/contacto">Contacto</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Menu Hamburguer (Mobile) -->
+                <button id="nav-btn" aria-label="Menu de Navegação">
                     <span class="nav-line"></span>
                     <span class="nav-line"></span>
                     <span class="nav-line"></span>
@@ -233,150 +399,105 @@
             </div>
         </nav>
 
+        <!-- Takeover Nav (Mobile) -->
         <div id="takeover-nav">
             <ul class="nav-items">
-                <li><a href="https://tvnexusweb.netlify.app">TV Nexus</a></li>
+                <li><a href="https://tvnexusweb.netlify.app">NexusTV</a></li>
                 <li><a href="https://nexuschat-5h38.onrender.com/login?next=%2F">NexusChat</a></li>
-                <li><a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/nexus-browser">Navegador</a></li>
-                <li><a href="/contacto">Contactos</a></li>
+                <li><a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/nexus-browser">NexusBrowser</a></li>
+                <li><a href="/">Início</a></li>
+                <li><a href="/contacto">Contacto</a></li>
             </ul>
         </div>
     </header>
 
-    <main class="privacy-container">
-        <h1>Política de Privacidade</h1>
-
-        <div class="section">
-            <h2>1. Introdução</h2>
-            <p>A NexusWeb compromete-se a proteger a privacidade dos utilizadores. Esta política explica como recolhemos, usamos e protegemos a sua informação quando utiliza os nossos serviços, incluindo:</p>
-            <ul>
-                <li>Website principal e subdomínios</li>
-                <li>Aplicação NexusChat</li>
-                <li>Chatbot integrado (BotSchool)</li>
-            </ul>
-            <p>Esta política aplica-se a todos os dados processados através dos nossos serviços, incluindo aqueles recolhidos por ferramentas de análise como Microsoft Clarity e Google Analytics.</p>
+    <div class="content">
+        <div class="video-wrap">
+            <video autoplay loop muted playsinline id="video-bg" loading="lazy">
+                <source src="https://kikalabs-app-server-static.netlify.app/video/site-nxweb/backtech.mp4" type="video/mp4">
+            </video>
+            <div class="gradient-overlay"></div>
         </div>
+        <div class="privacy-policy-container">
+            <h1>Política de Privacidade</h1>
 
-        <div class="section">
-            <h2>2. Recolha de Dados</h2>
-            <p>Recolhemos diferentes tipos de informações para fornecer e melhorar os nossos serviços:</p>
+            <p>A NexusWeb ("nós", "nosso/a/s"), está empenhada em proteger a sua privacidade. Esta Política de Privacidade descreve como recolhemos, utilizamos e protegemos as suas informações pessoais quando visita o nosso website e utiliza os nossos serviços.</p>
+
+            <h2>1. Informações que Recolhemos</h2>
+            <p>Podemos recolher os seguintes tipos de informações:</p>
             <ul>
-                <li><strong>Dados de utilização:</strong> Páginas visitadas, tempo de sessão, cliques (via Clarity e Analytics)</li>
-                <li><strong>Dados técnicos:</strong> Tipo de browser, sistema operativo, resolução do ecrã</li>
-                <li><strong>Interações com chatbot:</strong> Histórico de conversas, perguntas frequentes</li>
+                <li><strong>Dados de Utilização:</strong> Informações sobre como utiliza o nosso website, incluindo o seu endereço IP, tipo de navegador, páginas visitadas e tempo gasto no website.</li>
+                <li><strong>Informações de Dispositivo:</strong> Informações sobre o dispositivo que utiliza para aceder ao nosso website, incluindo o modelo do dispositivo, sistema operativo e identificadores únicos do dispositivo.</li>
+                <li><strong>Dados de Publicidade:</strong> Informações relacionadas com os anúncios que visualizou e com os quais interagiu.</li>
+                <li><strong>Endereços de e-mail:</strong> Recolhemos endereços de e-mail *apenas em alguns serviços* para fins de autenticação de dois fatores (2FA) e segurança da conta.</li>
             </ul>
-            <p>Os cookies utilizados incluem apenas:</p>
+
+            <h2>2. Como Utilizamos as Suas Informações</h2>
+            <p>Utilizamos as informações recolhidas para os seguintes fins:</p>
             <ul>
-                <li>Cookies essenciais de sessão</li>
-                <li>Cookies analíticos do Google Analytics</li>
-                <li>Cookies de desempenho do Microsoft Clarity</li>
-                <li>Cookies funcionais do BotSchool</li>
+                <li>Para fornecer e manter os nossos serviços.</li>
+                <li>Para melhorar e personalizar a sua experiência no nosso website.</li>
+                <li>Para comunicar consigo *apenas se nos contactar diretamente*, incluindo responder a suas perguntas e fornecer suporte ao cliente.</li>
+                <li>Para analisar tendências de utilização e melhorar o nosso website e serviços.</li>
+                <li>Para fins de marketing e publicidade, incluindo a exibição de anúncios personalizados.</li>
+                <li>Para autenticação de dois fatores (2FA) e segurança da conta, *quando aplicável*.</li>
             </ul>
+
+            <h2>3. Partilha de Informações</h2>
+            <p>Podemos partilhar as suas informações com os seguintes tipos de terceiros:</p>
+            <ul>
+                <li><strong>Prestadores de Serviços:</strong> Empresas que nos ajudam a fornecer os nossos serviços, como fornecedores de alojamento web, serviços de análise e, *quando aplicável*, fornecedores de e-mail marketing para 2FA.</li>
+                <li><strong>Parceiros de Publicidade:</strong> Empresas com quem trabalhamos para exibir anúncios no nosso website e noutros websites.</li>
+                <li><strong>Autoridades Legais:</strong> Se formos obrigados a divulgar as suas informações por lei ou em resposta a um pedido válido de uma autoridade legal.</li>
+            </ul>
+
+            <h2>4. Tecnologias de Rastreamento e Segurança</h2>
+            <p>Utilizamos as seguintes tecnologias de rastreamento e segurança:</p>
+            <ul>
+                <li><strong>Cookies:</strong> Pequenos ficheiros de texto que são armazenados no seu dispositivo para rastrear a sua atividade no nosso website.</li>
+                <li><strong>Web Beacons:</strong> Imagens eletrónicas que são utilizadas para rastrear a sua atividade no nosso website e em e-mails.</li>
+                <li><strong>hCaptcha, reCaptcha e Turnstile:</strong> Utilizamos estes serviços para proteger o nosso website contra spam e abuso. Estes serviços analisam o comportamento do utilizador para distinguir entre humanos e bots.</li>
+            </ul>
+            <p>Especificamente, utilizamos os seguintes serviços:</p>
+            <ul>
+                <li><strong>Hotjar:</strong> Para analisar o comportamento do utilizador através de mapas de calor, gravações de sessões e feedback. Pode consultar a política de privacidade do Hotjar em <a href="https://www.hotjar.com/legal/policies/privacy/">https://www.hotjar.com/legal/policies/privacy/</a>.</li>
+                <li><strong>Google Analytics:</strong> Para rastrear e analisar o tráfego do website. Pode consultar a política de privacidade do Google Analytics em <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a>.</li>
+                <li><strong>Google Ads:</strong> Para exibir anúncios personalizados com base no seu comportamento de navegação. Pode consultar a política de privacidade do Google Ads em <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a>.</li>
+                <li><strong>Microsoft Clarity:</strong> Para obter insights sobre como os utilizadores interagem com o nosso website através de gravações de sessões e mapas de calor. Pode consultar a política de privacidade do Microsoft Clarity em <a href="https://privacy.microsoft.com/pt-pt/privacystatement">https://privacy.microsoft.com/pt-pt/privacystatement</a>.</li>
+                <li><strong>Adcash (Em Alguns Sites):</strong> Para exibir anúncios e monetizar alguns dos nossos websites. Pode consultar a política de privacidade do Adcash em <a href="https://www.adcash.com/privacy-policy/">https://www.adcash.com/privacy-policy/</a>.</li>
+                <li><strong>hCaptcha:</strong> Para proteger o website contra spam e abuso. Pode consultar a política de privacidade do hCaptcha em <a href="https://www.hcaptcha.com/privacy">https://www.hcaptcha.com/privacy</a>.</li>
+                <li><strong>reCaptcha:</strong> Para proteger o website contra spam e abuso. Pode consultar a política de privacidade do reCaptcha em <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a> (Google Privacy Policy).</li>
+                <li><strong>Turnstile:</strong> Para proteger o website contra spam e abuso. Pode consultar a política de privacidade do Turnstile em <a href="https://www.cloudflare.com/privacypolicy/">https://www.cloudflare.com/privacypolicy/</a> (Cloudflare Privacy Policy).</li>
+            </ul>
+
+            <h2>5. Os Seus Direitos</h2>
+            <p>Tem os seguintes direitos em relação às suas informações:</p>
+            <ul>
+                <li>O direito de aceder às suas informações.</li>
+                <li>O direito de retificar informações incorretas ou incompletas.</li>
+                <li>O direito de apagar as suas informações.</li>
+                <li>O direito de restringir o processamento das suas informações.</li>
+                <li>O direito de se opor ao processamento das suas informações.</li>
+                <li>O direito à portabilidade das suas informações.</li>
+            </ul>
+            <p>Para exercer estes direitos, entre em contacto connosco através das informações de contacto fornecidas abaixo.</p>
+
+            <h2>6. Segurança das Informações</h2>
+            <p>Tomamos medidas razoáveis para proteger as suas informações contra acesso não autorizado, utilização ou divulgação. No entanto, nenhum método de transmissão pela internet ou método de armazenamento eletrónico é 100% seguro.</p>
+
+            <h2>7. Alterações a Esta Política de Privacidade</h2>
+            <p>Podemos atualizar esta Política de Privacidade periodicamente. Publicaremos a nova Política de Privacidade no nosso website. Recomendamos que reveja esta Política de Privacidade regularmente para quaisquer alterações.</p>
+
+            <h2>8. Contacte-nos</h2>
+            <p>Se tiver alguma questão sobre esta Política de Privacidade, entre em contacto connosco:</p>
+            <p>Por email: <a href="mailto:help.nexusweb@gmail.com">help.nexusweb@gmail.com</a></p>
         </div>
+    </div>
 
-        <div class="section">
-            <h2>3. Finalidade do Tratamento</h2>
-            <p>Utilizamos os dados para as seguintes finalidades:</p>
-            <ul>
-                <li>Analisar padrões de tráfego e uso do website</li>
-                <li>Melhorar a experiência do utilizador</li>
-                <li>Otimizar o desempenho técnico</li>
-                <li>Personalizar interações com o chatbot</li>
-            </ul>
-            <p>O Microsoft Clarity é utilizado para gravações de sessão (heatmaps) com o único propósito de identificar problemas de usabilidade. As gravações são anonimizadas e nunca incluem dados sensíveis.</p>
-        </div>
-
-        <div class="section">
-            <h2>4. Partilha de Dados</h2>
-            <p>Não partilhamos dados pessoais com terceiros exceto nos seguintes casos:</p>
-            <ul>
-                <li>Provedores de serviços essenciais (Google Cloud, Microsoft Azure)</li>
-                <li>Plataforma BotSchool para operação do chatbot</li>
-                <li>Requisitos legais ou regulamentares</li>
-            </ul>
-            <p>Os dados analíticos são partilhados com:</p>
-            <ul>
-                <li>Google Analytics (estatísticas agregadas)</li>
-                <li>Microsoft Clarity (dados de comportamento anonimizados)</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>5. Direitos do Utilizador</h2>
-            <p>De acordo com o RGPD, tem direito a:</p>
-            <ul>
-                <li>Acesso aos dados recolhidos</li>
-                <li>Retificação de informações incorretas</li>
-                <li>Eliminação de dados pessoais</li>
-                <li>Revogar consentimento a qualquer momento</li>
-            </ul>
-            <p>Para exercer estes direitos ou obter mais informações, contacte-nos através do email <a href="mailto:privacidade@nexusweb.pt">privacidade@nexusweb.pt</a>.</p>
-        </div>
-
-        <div class="section">
-            <h2>6. Gestão de Cookies</h2>
-            <p>Pode controlar o uso de cookies através de:</p>
-            <ul>
-                <li>Definições do seu browser:
-                    <ul>
-                        <li><a href="https://support.google.com/chrome/answer/95647">Chrome</a></li>
-                        <li><a href="https://support.mozilla.org/pt-PT/kb/gestao-de-cookies">Firefox</a></li>
-                        <li><a href="https://support.microsoft.com/pt-pt/microsoft-edge/eliminar-cookies-no-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09">Edge</a></li>
-                    </ul>
-                </li>
-                <li>Ferramentas de opt-out específicas:
-                    <ul>
-                        <li><a href="https://tools.google.com/dlpage/gaoptout">Google Analytics Opt-out</a></li>
-                        <li><a href="https://clarity.microsoft.com/opt-out">Microsoft Clarity Opt-out</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <p>Nota: A desativação de cookies pode afetar a funcionalidade do chatbot e algumas características do website.</p>
-        </div>
-    </main>
-
-    <chat-component
-        data-chat-key="d8688ed616a1422a9e6bb863f05893cc"
-        mic="false"
-        assetsURL="https://img.botschool.ai/cdn/chatui/assets/"
-        socket-url="https://api.botschool.ai/">
-    </chat-component>
-
-    <script src="https://img.botschool.ai/cdn/chatui/chat-component.js"></script>
     <script>
-        // Menu Mobile Original
-        const navButton = document.getElementById('nav-btn');
-        const takeoverNav = document.getElementById('takeover-nav');
-
-        navButton.addEventListener('click', () => {
-            navButton.classList.toggle('active');
-            takeoverNav.classList.toggle('shown');
-            
-            // Animação do hamburger
-            if (navButton.classList.contains('active')) {
-                navButton.style.transform = 'rotate(180deg)';
-                document.documentElement.style.overflow = 'hidden';
-            } else {
-                navButton.style.transform = 'rotate(0deg)';
-                document.documentElement.style.overflow = '';
-            }
-        });
-
-        // Fechar menu ao clicar em links
-        document.querySelectorAll('.nav-items a').forEach(link => {
-            link.addEventListener('click', () => {
-                navButton.classList.remove('active');
-                takeoverNav.classList.remove('shown');
-                document.documentElement.style.overflow = '';
-            });
-        });
-
-        // Efeito de scroll no header
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('.sticky-nav');
-            nav.style.backgroundColor = window.scrollY > 50 
-                ? 'rgba(18, 18, 18, 0.95)' 
-                : 'rgba(18, 18, 18, 0.8)';
+        document.getElementById('nav-btn').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.getElementById('takeover-nav').classList.toggle('shown');
         });
     </script>
 </body>
