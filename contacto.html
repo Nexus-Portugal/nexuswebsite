@@ -1,9 +1,19 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-PT">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NexusWeb - Contacto</title>
+    <meta name="description" content="Entre em contacto com a NexusWeb para soluções digitais inovadoras e personalizadas.">
+    <meta name="keywords" content="NexusWeb, contacto, inovação digital, soluções personalizadas">
+    <meta name="author" content="NexusWeb">
+    <link rel="canonical" href="https://nexusweb.netlify.app/contacto">
+    <meta property="og:title" content="NexusWeb - Contacte-nos">
+    <meta property="og:description" content="Entre em contacto connosco para transformar as suas ideias em realidade digital.">
+    <meta property="og:image" content="https://kikalabs-app-server-static.netlify.app/images/site-nxweb/RealNexusWeb.png">
+    <meta property="og:url" content="https://nexusweb.netlify.app/contacto">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <style>
         :root {
             --primary: #00ff00;
@@ -24,7 +34,26 @@
             background-color: var(--dark);
             color: var(--light);
             line-height: 1.6;
-            overflow: hidden;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--primary), var(--secondary));
+            border-radius: 5px;
+            animation: scrollColorChange 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes scrollColorChange {
+            from { background: linear-gradient(var(--primary), var(--secondary)); }
+            to { background: linear-gradient(var(--secondary), var(--primary)); }
         }
 
         .container {
@@ -42,7 +71,7 @@
             z-index: 1000;
             background-color: rgba(18, 18, 18, 0.8);
             backdrop-filter: blur(10px);
-            padding: 20px 0;
+            padding: 10px 0;
             transition: var(--transition);
         }
 
@@ -65,6 +94,7 @@
             transform: scale(1.05);
         }
 
+        /* Menu Hamburguer (Mobile) */
         #nav-btn {
             width: 40px;
             height: 40px;
@@ -83,6 +113,7 @@
             transition: var(--transition);
         }
 
+        /* Takeover Nav (Mobile) */
         #takeover-nav {
             position: fixed;
             width: 100%;
@@ -140,22 +171,71 @@
             left: 0;
         }
 
+        /* Navbar (Desktop) */
+        .navbar {
+            display: none; /* Esconde por padrão, mostra em telas maiores */
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .navbar a:hover {
+            color: var(--primary);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--dark);
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+       .dropdown-content a {
+            padding: 10px;
+            text-decoration: none;
+            display: block;
+            clear: both;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
         .content {
             position: relative;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            padding: 80px 0;
         }
 
         .video-wrap {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             overflow: hidden;
+            z-index: -1;
         }
 
         #video-bg {
@@ -168,12 +248,65 @@
             transform: translate(-50%, -50%);
         }
 
-        iframe {
+        .gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 100vh;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(18, 18, 18, 0.3), rgba(18, 18, 18, 0.8));
+        }
+
+        .contact-form-container {
+            position: relative;
+            z-index: 10;
+            background-color: rgba(18, 18, 18, 0.6); /* Mais transparente */
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            animation: glowingBorder 5s ease-in-out infinite alternate;
+        }
+
+        @keyframes glowingBorder {
+            0% { box-shadow: 0 0 8px rgba(0, 255, 0, 0.5), 0 0 12px rgba(0, 255, 204, 0.4); } /* Cores mais suaves */
+            50% { box-shadow: 0 0 12px rgba(0, 204, 255, 0.4), 0 0 18px rgba(0, 153, 255, 0.3); }
+            100% { box-shadow: 0 0 8px rgba(0, 255, 0, 0.5), 0 0 12px rgba(0, 255, 204, 0.4); }
+        }
+
+        .contact-form-container h2 {
+            color: var(--light); /* Cor mais suave para o texto */
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 2em;
+            font-weight: 500; /* Peso da fonte mais leve */
+        }
+
+        iframe {
+            width: 80%; /* Aumenta a largura */
+            height: 600px; /* Aumenta a altura */
             border: none;
-            transform: scale(1);
-            overflow: hidden;
+            border-radius: 10px; /* Bordas arredondadas */
+        }
+
+        @media (min-width: 769px) {
+            #nav-btn {
+                display: none; /* Esconde o menu hamburguer no desktop */
+            }
+
+            .navbar {
+                display: flex; /* Mostra a navbar no desktop */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-form-container {
+                width: 95%;
+                padding: 20px;
+            }
+            .contact-form-container h2 {
+                font-size: 1.6em;
+            }
         }
     </style>
 </head>
@@ -181,8 +314,27 @@
     <header>
         <nav class="sticky-nav">
             <div class="container nav-content">
-                <div class="logo"></div>
-                <button id="nav-btn">
+                <a href="/" class="logo"></a>
+
+                 <!-- Navbar (Desktop) -->
+                <nav class="navbar">
+                    <ul>
+                        <li class="dropdown">
+                            <a href="#">Serviços</a>
+                            <div class="dropdown-content">
+                                <a href="/servicos/tv">NexusTV</a>
+                                <a href="/servicos/nexuschat">NexusChat</a>
+                                <a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/nexus-browser">NexusBrowser</a>
+                                <a href="https://pets-id-itxs.onrender.com/login">Pets ID</a>
+                            </div>
+                        </li>
+                        <li><a href="mailto:reportesit.cimesis.nexusweb@gmail.com">CIMESIS Nexus</a></li>
+                        <li><a href="/contacto">Contacto</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Menu Hamburguer (Mobile) -->
+                <button id="nav-btn" aria-label="Menu de Navegação">
                     <span class="nav-line"></span>
                     <span class="nav-line"></span>
                     <span class="nav-line"></span>
@@ -190,23 +342,26 @@
             </div>
         </nav>
 
+        <!-- Takeover Nav (Mobile) -->
         <div id="takeover-nav">
             <ul class="nav-items">
-                <li><a href="https://tvnexusweb.netlify.app">TV</a></li>
+                <li><a href="https://tvnexusweb.netlify.app">NexusTV</a></li>
                 <li><a href="https://nexuschat-5h38.onrender.com/login?next=%2F">NexusChat</a></li>
                 <li><a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/nexus-browser">NexusBrowser</a></li>
-                <li><a href="/contacto">Contacto</a></li>
+                <li><a href="/">Início</a></li>
+                 <li><a href="/contacto">Contacto</a></li>
             </ul>
         </div>
     </header>
 
     <div class="content">
         <div class="video-wrap">
-            <video autoplay loop muted playsinline id="video-bg">
-                <source src="https://kikalabs-app-server-static.netlify.app/video/site-nxweb/background.mp4" type="video/mp4">
+            <video autoplay loop muted playsinline id="video-bg" loading="lazy">
+                <source src="https://kikalabs-app-server-static.netlify.app/video/site-nxweb/backtech.mp4" type="video/mp4">
             </video>
+            <div class="gradient-overlay"></div>
         </div>
-        <iframe src="https://www.powr.io/contact-form/i/39120160#page"></iframe>
+        <iframe src="https://www.powr.io/contact-form/i/39120160#page" loading="lazy"></iframe>
     </div>
 
     <script>
@@ -214,15 +369,6 @@
             this.classList.toggle('active');
             document.getElementById('takeover-nav').classList.toggle('shown');
         });
-
-        function adjustIframeHeight() {
-            const iframe = document.querySelector('iframe');
-            const headerHeight = document.querySelector('.sticky-nav').offsetHeight;
-            iframe.style.height = `calc(100vh - ${headerHeight}px)`;
-        }
-
-        window.addEventListener('load', adjustIframeHeight);
-        window.addEventListener('resize', adjustIframeHeight);
     </script>
 </body>
 </html>
