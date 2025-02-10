@@ -1,492 +1,608 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexusChat</title>
-    <meta name="description" content="A NexusChat funciona como uma plataforma de chat fácil e rápida">
-    <meta name="keywords" content="NexusChat, Chat">
-    <meta name="author" content="NexusWeb">
-    <link rel="canonical" href="https://www.nexusweb.pt/tv">
-    <meta property="og:title" content="NexusChat"
-    <meta property="og:description" content="Desfrute de uma variedade de canais nacionais, filmes e rádios com a NexusWeb TV.">
-    <meta property="og:image" content="https://www.nexusweb.pt/images/tv-og-image.jpg">
-    <meta property="og:url" content="https://www.nexusweb.pt/tv">
-    <meta name="twitter:card" content="summary_large_image">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <script type="text/javascript">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NexusChat</title>
+  <meta name="description" content="A NexusChat funciona como uma plataforma de chat fácil e rápida">
+  <meta name="keywords" content="NexusChat, Chat">
+  <meta name="author" content="NexusWeb">
+  <link rel="canonical" href="https://www.nexusweb.pt/tv">
+  <meta property="og:title" content="NexusChat">
+  <meta property="og:description" content="Desfrute de uma variedade de canais nacionais, filmes e rádios com a NexusWeb TV.">
+  <meta property="og:image" content="https://www.nexusweb.pt/images/tv-og-image.jpg">
+  <meta property="og:url" content="https://www.nexusweb.pt/tv">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "q48rygpjz8");
-    </script>
-    <style>
-:root {
-    --primary: #00ccff;
-    --secondary: #0080ff;
-    --dark: #121212;
-    --light: #f8f8f8;
-    --transition: all 0.3s ease-in-out;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--dark);
-    color: var(--light);
-    line-height: 1.6;
-    overflow-x: hidden;
-}
-
-/* Estilos da barra de rolagem */
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--dark);
-}
-
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(var(--primary), var(--secondary));
-    border-radius: 5px;
-    animation: scrollColorChange 3s ease-in-out infinite alternate;
-}
-
-@keyframes scrollColorChange {
-    from {
-        background: linear-gradient(var(--primary), var(--secondary));
+  </script>
+  <style>
+    :root {
+      /* Definimos as cores principais:
+         --primary: verde (menu e Hero)
+         --purple: roxo (seção About)
+         --secondary, --dark, --light e --transition permanecem */
+      --primary:   #00ff00;
+      --secondary: #00ccff;
+      --purple:    #9b59b6;
+      --dark:      #121212;
+      --light:     #f8f8f8;
+      --transition: all 0.3s ease-in-out;
     }
-    to {
-        background: linear-gradient(var(--secondary), var(--primary));
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-}
-
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.sticky-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    background-color: rgba(18, 18, 18, 0.8);
-    backdrop-filter: blur(10px);
-    padding: 20px 0;
-    transition: var(--transition);
-}
-
-.nav-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    width: 180px;
-    height: 40px;
-    background-image: url('https://kikalabs-app-server-static.netlify.app/images/site-nxweb/RealNexusWeb.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    transition: var(--transition);
-}
-
-.logo:hover {
-    transform: scale(1.05);
-}
-
-#nav-btn {
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    background: none;
-    border: none;
-}
-
-.nav-line {
-    width: 100%;
-    height: 3px;
-    background-color: var(--light);
-    transition: var(--transition);
-}
-
-#takeover-nav {
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    right: -100%;
-    top: 0;
-    transition: var(--transition);
-    z-index: 999;
-    background-color: rgba(18, 18, 18, 0.95);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-#takeover-nav.shown {
-    right: 0;
-}
-
-.nav-items {
-    list-style-type: none;
-    text-align: center;
-}
-
-.nav-items li {
-    margin-bottom: 2rem;
-}
-
-.nav-items a {
-    color: var(--light);
-    text-decoration: none;
-    font-size: 2em;
-    font-weight: 700;
-    position: relative;
-    transition: var(--transition);
-}
-
-.nav-items a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 3px;
-    bottom: -5px;
-    left: 50%;
-    background-color: var(--primary);
-    transition: var(--transition);
-}
-
-.nav-items a:hover {
-    color: var(--primary);
-}
-
-.nav-items a:hover::after {
-    width: 100%;
-    left: 0;
-}
-
-.hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-}
-
-.gradient-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(18, 18, 18, 0.3), rgba(18, 18, 18, 0.8));
-}
-
-.hero-content {
-    text-align: center;
-    z-index: 2;
-    max-width: 800px;
-    padding: 0 20px;
-}
-
-.hero-title {
-    font-size: 4.5em;
-    font-weight: 900;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    animation: glowText 3s ease-in-out infinite alternate;
-}
-
-@keyframes glowText {
-    from {
-        text-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary), 0 0 15px var(--primary);
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--dark);
+      color: var(--light);
+      line-height: 1.6;
+      overflow-x: hidden;
     }
-    to {
-        text-shadow: 0 0 10px var(--secondary), 0 0 20px var(--secondary), 0 0 30px var(--secondary);
+    /* Estilos da barra de rolagem */
+    ::-webkit-scrollbar {
+      width: 10px;
     }
-}
-
-.hero-subtitle {
-    font-size: 1.5em;
-    margin-bottom: 40px;
-    opacity: 0.8;
-}
-
-.cta-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.cta-button {
-    padding: 15px 30px;
-    font-size: 1.1em;
-    font-weight: 600;
-    text-transform: uppercase;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: var(--transition);
-    position: relative;
-    overflow: hidden;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.cta-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transition: var(--transition);
-}
-
-.cta-button:hover::before {
-    left: 100%;
-}
-
-.cta-primary {
-    background-color: var(--primary);
-    color: var(--light);
-}
-
-.cta-primary:hover {
-    background-color: var(--secondary);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 204, 255, 0.3);
-}
-
-.about-section {
-    padding: 80px 0;
-    background-color: var(--dark);
-}
-
-.about-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.about-text {
-    flex: 1;
-    padding-right: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.about-text h2 {
-    color: var(--primary);
-    margin-bottom: 20px;
-}
-
-.about-text p {
-    margin-bottom: 15px;
-}
-
-.about-text ul {
-    padding-left: 20px;
-    margin-bottom: 15px;
-}
-
-.about-text ul li {
-    margin-bottom: 10px;
-    position: relative;
-}
-
-.about-text ul li::before {
-    content: '•';
-    color: var(--primary);
-    position: absolute;
-    left: -20px;
-}
-
-.about-text .cta-button {
-    margin-top: 20px;
-    align-self: flex-start;
-}
-
-.about-image {
-    flex: 1;
-    max-width: 500px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.about-image img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 204, 255, 0.2);
-}
-
-footer {
-    background-color: var(--dark);
-    color: var(--light);
-    text-align: center;
-    padding: 20px 0;
-}
-
-@media (max-width: 768px) {
+    ::-webkit-scrollbar-track {
+      background: var(--dark);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(var(--primary), var(--secondary));
+      border-radius: 5px;
+      animation: scrollColorChange 3s ease-in-out infinite alternate;
+    }
+    @keyframes scrollColorChange {
+      from { background: linear-gradient(var(--primary), var(--secondary)); }
+      to { background: linear-gradient(var(--secondary), var(--primary)); }
+    }
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    /* Cabeçalho e Navbar – ESTILO VERDE */
+    .sticky-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background-color: rgba(18, 18, 18, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 10px 0;
+      transition: var(--transition);
+    }
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      width: 180px;
+      height: 40px;
+      background-image: url('https://kikalabs-app-server-static.netlify.app/images/site-nxweb/RealNexusWeb.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      transition: var(--transition);
+    }
+    .logo:hover {
+      transform: scale(1.05);
+    }
+    /* Navbar Desktop */
+    .navbar {
+      display: none;
+    }
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    .navbar a {
+      color: var(--light);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    .navbar a:hover {
+      color: var(--primary);
+    }
+    .dropdown {
+      position: relative;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: var(--dark);
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .dropdown-content a {
+      padding: 10px;
+      text-decoration: none;
+      display: block;
+      color: var(--light);
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    /* Menu Hamburguer (Mobile) */
+    #nav-btn {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      background: none;
+      border: none;
+    }
+    .nav-line {
+      width: 100%;
+      height: 3px;
+      background-color: var(--light);
+      transition: var(--transition);
+    }
+    /* Takeover Nav (Mobile) */
+    #takeover-nav {
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      right: -100%;
+      top: 0;
+      transition: var(--transition);
+      z-index: 999;
+      background-color: rgba(18, 18, 18, 0.95);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    #takeover-nav.shown {
+      right: 0;
+    }
+    .nav-items {
+      list-style-type: none;
+      text-align: center;
+    }
+    .nav-items li {
+      margin-bottom: 2rem;
+    }
+    .nav-items a {
+      color: var(--light);
+      text-decoration: none;
+      font-size: 2em;
+      font-weight: 700;
+      position: relative;
+      transition: var(--transition);
+    }
+    .nav-items a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 3px;
+      bottom: -5px;
+      left: 50%;
+      background-color: var(--primary);
+      transition: var(--transition);
+    }
+    .nav-items a:hover {
+      color: var(--primary);
+    }
+    .nav-items a:hover::after {
+      width: 100%;
+      left: 0;
+    }
+    /* Seção Hero – TEXTOS E BOTÕES EM VERDE */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+    .gradient-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(18, 18, 18, 0.3), rgba(18, 18, 18, 0.8));
+    }
+    .hero-content {
+      text-align: center;
+      z-index: 2;
+      max-width: 800px;
+      padding: 0 20px;
+    }
     .hero-title {
-        font-size: 3em;
+      font-size: 4.5em;
+      font-weight: 900;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      animation: gradientGlow 3s ease-in-out infinite alternate;
     }
-
+    @keyframes gradientGlow {
+      0% { text-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary), 0 0 15px var(--primary); }
+      50% { text-shadow: 0 0 10px var(--secondary), 0 0 20px var(--secondary), 0 0 30px var(--secondary); }
+      100% { text-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary), 0 0 15px var(--primary); }
+    }
     .hero-subtitle {
-        font-size: 1.2em;
+      font-size: 1.5em;
+      margin-bottom: 40px;
+      opacity: 0.8;
     }
-
     .cta-container {
-        flex-direction: column;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
     }
-
     .cta-button {
-        width: 100%;
+      padding: 15px 30px;
+      font-size: 1.1em;
+      font-weight: 600;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      display: inline-block;
     }
-
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: var(--transition);
+    }
+    .cta-button:hover::before {
+      left: 100%;
+    }
+    .cta-primary {
+      background-color: var(--primary);
+      color: var(--dark);
+    }
+    .cta-primary:hover {
+      background-color: var(--secondary);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,204,255,0.3);
+    }
+    /* Seção About – TODA A ESTILIZAÇÃO AQUI SERÁ EM ROXO */
+    .about-section {
+      padding: 80px 0;
+      background-color: var(--dark);
+    }
     .about-content {
-        flex-direction: column;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      flex-direction: row-reverse; /* imagem à direita */
     }
-
-    .about-text, .about-image {
+    .about-text {
+      flex: 1;
+      padding-left: 40px;
+    }
+    .about-text h2 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: var(--purple);
+    }
+    .about-text p {
+      margin-bottom: 15px;
+      opacity: 0.8;
+    }
+    .about-text ul {
+      padding-left: 20px;
+      margin-bottom: 15px;
+    }
+    .about-text ul li {
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .about-text ul li::before {
+      content: '•';
+      color: var(--purple);
+      position: absolute;
+      left: -20px;
+    }
+    /* Botão da About – estilo roxo */
+    .about-text .cta-button {
+      margin-top: 20px;
+      align-self: flex-start;
+      background-color: var(--purple);
+      color: var(--light);
+    }
+    .about-text .cta-button:hover {
+      background-color: #8e44ad;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(155,89,182,0.3);
+    }
+    .about-image {
+      flex: 1;
+      max-width: 500px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .about-image img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(155,89,182,0.3);
+    }
+    /* Footer */
+    footer {
+      background-color: var(--dark);
+      color: var(--light);
+      text-align: center;
+      padding: 20px 0;
+    }
+    /* Media Queries */
+    @media (min-width: 769px) {
+      #nav-btn { display: none; }
+      .navbar { display: flex; }
+    }
+    @media (max-width: 768px) {
+      .hero-title { font-size: 3em; }
+      .hero-subtitle { font-size: 1.2em; }
+      .cta-container { flex-direction: column; }
+      .cta-button { width: 100%; }
+      .about-content { flex-direction: column; }
+      .about-text, .about-image {
         width: 100%;
         padding: 0;
         margin-bottom: 30px;
+      }
+      .about-image { flex: 1; max-width: 500px; }
     }
-}
-
-chat-component {
-    --chat-font-family: 'Segoe UI', 'Inter', 'Roboto', sans-serif;
-    --chat-primary-color: #00ccff;
-    --chat-secondary-color: #0080ff;
-    --chat-background-color: rgba(18, 18, 18, 0.95);
-    --chat-text-color: #f8f8f8;
-}
-
-chat-component::part(chat-container) {
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    line-height: 1.6;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 204, 255, 0.2);
-}
-
-    </style>
+    /* Chat Component Custom Styles */
+    chat-component {
+      --chat-font-family: 'Segoe UI', 'Inter', 'Roboto', sans-serif;
+      --chat-primary-color: #00ff00;
+      --chat-secondary-color: #00ccff;
+      --chat-background-color: rgba(18, 18, 18, 0.95);
+      --chat-text-color: #f8f8f8;
+    }
+    chat-component::part(chat-container) {
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      line-height: 1.6;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,255,0,0.2);
+    }
+    /* Modal (opcional) */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.7);
+      z-index: 1000;
+    }
+    .modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: var(--dark);
+      padding: 30px;
+      border-radius: 15px;
+      width: auto;
+      max-width: 500px;
+      box-shadow: 0 5px 15px rgba(0,255,0,0.3);
+      text-align: center;
+    }
+    .close {
+      color: var(--light);
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.2s ease-in-out;
+    }
+    .close:hover,
+    .close:focus {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .modal-content h2 {
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+    .modal-content ul {
+      list-style: none;
+      padding: 0;
+    }
+    .modal-content li {
+      margin-bottom: 10px;
+    }
+    .modal-content a {
+      color: var(--secondary);
+      text-decoration: none;
+      transition: color 0.2s ease-in-out;
+    }
+    .modal-content a:hover {
+      color: var(--light);
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <nav class="sticky-nav">
-            <div class="container nav-content">
-                <div class="logo"></div>
-                <button id="nav-btn" aria-label="Menu de Navegação">
-                    <span class="nav-line"></span>
-                    <span class="nav-line"></span>
-                    <span class="nav-line"></span>
-                </button>
-            </div>
+  <header>
+    <nav class="sticky-nav">
+      <div class="container nav-content">
+        <div class="logo"></div>
+        <!-- Navbar Desktop -->
+        <nav class="navbar">
+          <ul>
+            <li class="dropdown">
+              <a href="#">Serviços</a>
+              <div class="dropdown-content">
+                <a href="/servicos/tv">NexusTV</a>
+                <a href="/servicos/nexuschat">NexusChat</a>
+                <a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/nexus-browser">NexusBrowser</a>
+                <a href="https://pets-id-itxs.onrender.com/login">Pets ID</a>
+              </div>
+            </li>
+            <li><a href="mailto:reportesit.cimesis.nexusweb@gmail.com">CIMESIS Nexus</a></li>
+            <li><a href="/contacto">Contacto</a></li>
+          </ul>
         </nav>
-        
-        <chat-component
-            data-chat-key="d8688ed616a1422a9e6bb863f05893cc"
-            mic="false" assetsURL="https://img.botschool.ai/cdn/chatui/assets/"
-            socket-url="https://api.botschool.ai/">
-        </chat-component>
-        <script src="https://img.botschool.ai/cdn/chatui/chat-component.js"></script>
-        <link href="https://img.botschool.ai/cdn/chatui/chaticons.css" rel="stylesheet">
-
-        <div id="takeover-nav">
-            <ul class="nav-items">
-                <li><a href="https://tvnexusweb.netlify.app">NexusTV</a></li>
-                <li><a href="/servicos/nexuschat">NexusChat</a></li>
-                <li><a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/nexus-browser">NexusBrowser</a></li>
-                <li><a href="https://pets-id-itxs.onrender.com/login">Pets ID</a></li>
-                <li><a href="mailto:reportesit.cimesis.nexusweb@gmail.com">CIMESIS Nexus</a></li>
-                <li><a href="/contacto">Contacto</a></li>
-            </ul>
-        </div>
-    </header>
-
-    <main>
-        <section class="hero">
-            <img src="https://cdn.create.vista.com/api/media/small/212462542/stock-photo-women-hand-using-smartphone-typing-chatting-conversation-chat-box-icons" alt="Imagem de fundo da NexusChat" class="hero-image">
-            <div class="gradient-overlay"></div>
-            <div class="hero-content">
-                <h1 class="hero-title">NexusChat</h1>
-                <p class="hero-subtitle">O seu site de Chat</p>
-                <div class="cta-container">
-                    <a href="https://nexuschat-5h38.onrender.com/" class="cta-button cta-primary">Aceder ao NexusChat</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="about-section">
-            <div class="container about-content">
-                <div class="about-text">
-                    <h2>Entretenimento Diversificado e em Evolução</h2>
-                    <p>A NexusChatoferece uma experiência de Chat incomparável, com uma vasta gama de funcionalidades para todos os gostos:</p>
-                    <ul>
-                        <li>Diversos Utilizadores</li>
-                        <li>Uma boa segurança</li>
-                        <li>Chat fácil e rápido para todos</li>
-                    </ul>
-                    <p>Estamos em constante evolução, adicionando regularmente novas funcionalidades para melhorar a sua experiência de chat.</p>
-                <a href="https://nexuschat-5h38.onrender.com/" class="cta-button cta-primary">Explorar NexusChat</a>
-            </div>
-            <div class="about-image">
-                <img src="https://i.ibb.co/FL32ynfp/Captura-de-ecr-2025-02-05-144320.png" alt="Interface do NexusChat" loading="lazy">
-            </div>
-        </div>
-    </section>
-</main>
-
-<footer>
-    <div class="container">
-        <p>&copy; 2025 NexusWeb. Todos os direitos reservados.</p>
+        <!-- Menu Hamburguer (Mobile) -->
+        <button id="nav-btn" aria-label="Menu de Navegação">
+          <span class="nav-line"></span>
+          <span class="nav-line"></span>
+          <span class="nav-line"></span>
+        </button>
+      </div>
+    </nav>
+    
+    <!-- Chat Component -->
+    <chat-component
+      data-chat-key="d8688ed616a1422a9e6bb863f05893cc"
+      mic="false"
+      assetsURL="https://img.botschool.ai/cdn/chatui/assets/"
+      socket-url="https://api.botschool.ai/">
+    </chat-component>
+    <script src="https://img.botschool.ai/cdn/chatui/chat-component.js"></script>
+    <link href="https://img.botschool.ai/cdn/chatui/chaticons.css" rel="stylesheet">
+    
+    <!-- Takeover Mobile Nav -->
+    <div id="takeover-nav">
+      <ul class="nav-items">
+        <li><a href="/servicos/tv">NexusTV</a></li>
+        <li><a href="/servicos/nexuschat">NexusChat</a></li>
+        <li><a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/nexus-browser">NexusBrowser</a></li>
+        <li><a href="https://pets-id-itxs.onrender.com/login">Pets ID</a></li>
+        <li><a href="mailto:reportesit.cimesis.nexusweb@gmail.com">CIMESIS Nexus</a></li>
+        <li><a href="/contacto">Contacto</a></li>
+      </ul>
     </div>
-</footer>
-
-<script>
+  </header>
+  
+  <main>
+    <!-- Seção Hero: textos e botão com estilo VERDE -->
+    <section class="hero">
+      <img src="https://cdn.create.vista.com/api/media/small/212462542/stock-photo-women-hand-using-smartphone-typing-chatting-conversation-chat-box-icons" alt="Imagem de fundo da NexusChat" class="hero-image">
+      <div class="gradient-overlay"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">NexusChat</h1>
+        <p class="hero-subtitle">O seu site de Chat</p>
+        <div class="cta-container">
+          <a href="https://nexuschat-5h38.onrender.com/" class="cta-button cta-primary">Aceder ao NexusChat</a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Seção About: textos, lista, botão e imagem com estilo ROXO -->
+    <section class="about-section">
+      <div class="container about-content">
+        <div class="about-text">
+          <h2>Entretenimento Diversificado e em Evolução</h2>
+          <p>A NexusChat oferece uma experiência de chat incomparável, com uma vasta gama de funcionalidades para todos os gostos:</p>
+          <ul>
+            <li>Diversos Utilizadores</li>
+            <li>Uma boa segurança</li>
+            <li>Chat fácil e rápido para todos</li>
+          </ul>
+          <p>Estamos em constante evolução, adicionando regularmente novas funcionalidades para melhorar a sua experiência de chat.</p>
+          <!-- Botão da seção About com estilo roxo -->
+          <a href="https://nexuschat-5h38.onrender.com/" class="cta-button">Explorar NexusChat</a>
+        </div>
+        <div class="about-image">
+          <img src="https://i.ibb.co/FL32ynfp/Captura-de-ecr-2025-02-05-144320.png" alt="Interface do NexusChat" loading="lazy">
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 NexusWeb. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+  
+  <!-- Modal (opcional) -->
+  <div id="servicesModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Os Nossos Serviços</h2>
+      <ul>
+        <li><a href="/servicos/tv">NexusTV</a> - Entretenimento inovador.</li>
+        <li><a href="/servicos/nexuschat">NexusChat</a> - Comunicação inteligente.</li>
+        <li><a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/nexus-browser">NexusBrowser</a> - Navegação otimizada.</li>
+        <li><a href="https://pets-id-itxs.onrender.com/login">Pets ID</a> - ID para animais de estimação.</li>
+      </ul>
+    </div>
+  </div>
+  
+  <script>
+    // Alternar menu mobile
     document.getElementById('nav-btn').addEventListener('click', function() {
-        this.classList.toggle('active');
-        document.getElementById('takeover-nav').classList.toggle('shown');
+      this.classList.toggle('active');
+      document.getElementById('takeover-nav').classList.toggle('shown');
     });
-
+    
+    // Efeito de scroll para a navbar fixa
     window.addEventListener('scroll', function() {
-        const nav = document.querySelector('.sticky-nav');
-        nav.classList.toggle('scrolled', window.scrollY > 0);
+      const nav = document.querySelector('.sticky-nav');
+      nav.classList.toggle('scrolled', window.scrollY > 0);
     });
-</script>
+    
+    // Funcionalidade do modal (opcional)
+    var modal = document.getElementById("servicesModal");
+    var btn = document.getElementById("openModalBtn");
+    var span = document.querySelector(".close");
+    
+    if(btn) {
+      btn.onclick = function() {
+        modal.style.display = "block";
+      }
+    }
+    
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+    
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>
