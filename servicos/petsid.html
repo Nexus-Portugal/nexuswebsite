@@ -3,11 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pets ID - O boletim digital do seu PET</title>
-  <meta name="description" content="O Pets ID ofereçe serviços inovadores para a gestão do seu PET.">
-  <meta name="keywords" content="NexusWeb, Pets, Boletim, ID, Pets ID, Portugal">
+  <title>NexusWeb TV - Entretenimento Digital em Portugal</title>
+  <meta name="description" content="A NexusWeb TV oferece uma variedade de canais nacionais, filmes e rádios, em constante evolução para o seu entretenimento digital.">
+  <meta name="keywords" content="NexusWeb TV, canais nacionais, filmes, rádios, entretenimento digital, Portugal">
   <meta name="author" content="NexusWeb">
-  <link rel="canonical" href="https://nexuswebco.netlify.app/servicos/petsid">
+  <link rel="canonical" href="https://www.nexusweb.pt/tv">
+  <meta property="og:title" content="NexusWeb TV - Entretenimento Digital em Portugal">
+  <meta property="og:description" content="Desfrute de uma variedade de canais nacionais, filmes e rádios com a NexusWeb TV.">
+  <meta property="og:image" content="https://www.nexusweb.pt/images/tv-og-image.jpg">
+  <meta property="og:url" content="https://www.nexusweb.pt/tv">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -20,18 +25,15 @@
     :root {
       --primary: #00ccff;
       --secondary: #0080ff;
-      --purple: #9b59b6; /* Usado na seção About */
       --dark: #121212;
       --light: #f8f8f8;
       --transition: all 0.3s ease-in-out;
     }
-    
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: var(--dark);
@@ -39,35 +41,29 @@
       line-height: 1.6;
       overflow-x: hidden;
     }
-    
     /* Barra de rolagem */
     ::-webkit-scrollbar {
       width: 10px;
     }
-    
     ::-webkit-scrollbar-track {
       background: var(--dark);
     }
-    
     ::-webkit-scrollbar-thumb {
       background: linear-gradient(var(--primary), var(--secondary));
       border-radius: 5px;
       animation: scrollColorChange 3s ease-in-out infinite alternate;
     }
-    
     @keyframes scrollColorChange {
       from { background: linear-gradient(var(--primary), var(--secondary)); }
       to { background: linear-gradient(var(--secondary), var(--primary)); }
     }
-    
     .container {
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 20px;
     }
-    
-    /* Cabeçalho e Menu */
+    /* Cabeçalho e Menu – mesmo menu utilizado no Pets ID */
     .sticky-nav {
       position: fixed;
       top: 0;
@@ -76,16 +72,14 @@
       z-index: 1000;
       background-color: rgba(18, 18, 18, 0.8);
       backdrop-filter: blur(10px);
-      padding: 20px 0;
+      padding: 10px 0;
       transition: var(--transition);
     }
-    
     .nav-content {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    
     .logo {
       width: 180px;
       height: 40px;
@@ -94,33 +88,49 @@
       background-repeat: no-repeat;
       transition: var(--transition);
     }
-    
     .logo:hover {
       transform: scale(1.05);
     }
-    
-    /* Navbar Desktop – menu visível em telas maiores */
+    /* Navbar Desktop – Menu com dropdown “Serviços” */
     .navbar {
       display: none;
     }
-    
     .navbar ul {
       list-style: none;
       display: flex;
       gap: 20px;
     }
-    
     .navbar a {
       color: var(--light);
       text-decoration: none;
       font-weight: 600;
       transition: var(--transition);
     }
-    
     .navbar a:hover {
       color: var(--primary);
     }
-    
+    .dropdown {
+      position: relative;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: var(--dark);
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .dropdown-content a {
+      padding: 10px;
+      text-decoration: none;
+      display: block;
+      color: var(--light);
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
     /* Menu Hamburguer (Mobile) */
     #nav-btn {
       width: 40px;
@@ -132,15 +142,13 @@
       background: none;
       border: none;
     }
-    
     .nav-line {
       width: 100%;
       height: 3px;
       background-color: var(--light);
       transition: var(--transition);
     }
-    
-    /* Takeover Nav – menu mobile */
+    /* Takeover Nav – Menu Mobile */
     #takeover-nav {
       position: fixed;
       width: 100%;
@@ -155,20 +163,16 @@
       justify-content: center;
       align-items: center;
     }
-    
     #takeover-nav.shown {
       right: 0;
     }
-    
     .nav-items {
       list-style-type: none;
       text-align: center;
     }
-    
     .nav-items li {
       margin-bottom: 2rem;
     }
-    
     .nav-items a {
       color: var(--light);
       text-decoration: none;
@@ -177,7 +181,6 @@
       position: relative;
       transition: var(--transition);
     }
-    
     .nav-items a::after {
       content: '';
       position: absolute;
@@ -188,16 +191,13 @@
       background-color: var(--primary);
       transition: var(--transition);
     }
-    
     .nav-items a:hover {
       color: var(--primary);
     }
-    
     .nav-items a:hover::after {
       width: 100%;
       left: 0;
     }
-    
     /* Seção Hero */
     .hero {
       height: 100vh;
@@ -207,7 +207,6 @@
       position: relative;
       overflow: hidden;
     }
-    
     .hero-image {
       position: absolute;
       top: 0;
@@ -217,7 +216,6 @@
       object-fit: cover;
       z-index: -1;
     }
-    
     .gradient-overlay {
       position: absolute;
       top: 0;
@@ -226,14 +224,12 @@
       height: 100%;
       background: linear-gradient(to bottom, rgba(18, 18, 18, 0.3), rgba(18, 18, 18, 0.8));
     }
-    
     .hero-content {
       text-align: center;
       z-index: 2;
       max-width: 800px;
       padding: 0 20px;
     }
-    
     .hero-title {
       font-size: 4.5em;
       font-weight: 900;
@@ -242,7 +238,6 @@
       letter-spacing: 2px;
       animation: glowText 3s ease-in-out infinite alternate;
     }
-    
     @keyframes glowText {
       from {
         text-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary), 0 0 15px var(--primary);
@@ -251,19 +246,16 @@
         text-shadow: 0 0 10px var(--secondary), 0 0 20px var(--secondary), 0 0 30px var(--secondary);
       }
     }
-    
     .hero-subtitle {
       font-size: 1.5em;
       margin-bottom: 40px;
       opacity: 0.8;
     }
-    
     .cta-container {
       display: flex;
       justify-content: center;
       gap: 20px;
     }
-    
     .cta-button {
       padding: 15px 30px;
       font-size: 1.1em;
@@ -278,7 +270,6 @@
       text-decoration: none;
       display: inline-block;
     }
-    
     .cta-button::before {
       content: '';
       position: absolute;
@@ -289,122 +280,92 @@
       background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
       transition: var(--transition);
     }
-    
     .cta-button:hover::before {
       left: 100%;
     }
-    
     .cta-primary {
       background-color: var(--primary);
       color: var(--light);
     }
-    
     .cta-primary:hover {
       background-color: var(--secondary);
       transform: translateY(-3px);
       box-shadow: 0 10px 20px rgba(0, 204, 255, 0.3);
     }
-    
-    /* Seção About – A parte de informações e vacinas com detalhes em roxo */
+    /* Seção About */
     .about-section {
       padding: 80px 0;
       background-color: var(--dark);
     }
-    
     .about-content {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 40px;
+      flex-wrap: wrap;
     }
-    
     .about-text {
       flex: 1;
+      padding-right: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
     }
-    
+    .about-text h2 {
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+    .about-text p {
+      margin-bottom: 15px;
+    }
+    .about-text ul {
+      padding-left: 20px;
+      margin-bottom: 15px;
+    }
+    .about-text ul li {
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .about-text ul li::before {
+      content: '•';
+      color: var(--primary);
+      position: absolute;
+      left: -20px;
+    }
+    .about-text .cta-button {
+      margin-top: 20px;
+      align-self: flex-start;
+    }
     .about-image {
-      flex: 0 0 40%;
-      max-width: 250px;
+      flex: 1;
+      max-width: 500px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    
     .about-image img {
       width: 100%;
       height: auto;
       object-fit: contain;
       border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(155, 89, 182, 0.3);
+      box-shadow: 0 10px 30px rgba(0, 204, 255, 0.2);
     }
-    
-    .about-text h2 {
-      color: var(--purple);
-      margin-bottom: 20px;
-    }
-    
-    .about-text p {
-      margin-bottom: 15px;
-    }
-    
-    .about-text ul {
-      padding-left: 20px;
-      margin-bottom: 15px;
-    }
-    
-    .about-text ul li {
-      margin-bottom: 10px;
-      position: relative;
-    }
-    
-    .about-text ul li::before {
-      content: '•';
-      color: var(--purple);
-      position: absolute;
-      left: -20px;
-    }
-    
-    /* Botão da About em roxo */
-    .about-text .cta-button {
-      margin-top: 20px;
-      display: inline-block;
-      background-color: var(--purple);
-      color: var(--light);
-    }
-    
-    .about-text .cta-button:hover {
-      background-color: #8e44ad;
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(155, 89, 182, 0.3);
-    }
-    
-    /* Chat Component – permanece inalterado */
-    chat-component {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 1000;
-    }
-    
     footer {
       background-color: var(--dark);
       color: var(--light);
       text-align: center;
       padding: 20px 0;
     }
-    
     /* Media Queries */
     @media (min-width: 769px) {
-      /* Exibe a navbar (desktop) e oculta o botão mobile */
       #nav-btn { display: none; }
       .navbar { display: block; }
     }
-    
     @media (max-width: 768px) {
-      /* Oculta a navbar em mobile */
       .navbar { display: none; }
-      
       .hero-title { font-size: 3em; }
       .hero-subtitle { font-size: 1.2em; }
       .cta-container { flex-direction: column; }
       .cta-button { width: 100%; }
-      
       .about-content { flex-direction: column; }
       .about-text, .about-image {
         width: 100%;
@@ -413,7 +374,6 @@
       }
       .about-image { flex: 1; max-width: 500px; }
     }
-    
     /* Chat Component Custom Styles */
     chat-component {
       --chat-font-family: 'Segoe UI', 'Inter', 'Roboto', sans-serif;
@@ -422,7 +382,6 @@
       --chat-background-color: rgba(18, 18, 18, 0.95);
       --chat-text-color: #f8f8f8;
     }
-    
     chat-component::part(chat-container) {
       font-weight: 500;
       letter-spacing: 0.5px;
@@ -437,13 +396,18 @@
     <nav class="sticky-nav">
       <div class="container nav-content">
         <div class="logo"></div>
-        <!-- Navbar Desktop -->
+        <!-- Navbar Desktop com o novo menu -->
         <nav class="navbar">
           <ul>
-            <li><a href="https://tvnexusweb.netlify.app">NexusTV</a></li>
-            <li><a href="/servicos/nexuschat">NexusChat</a></li>
-            <li><a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/nexus-browser">NexusBrowser</a></li>
-            <li><a href="https://pets-id-itxs.onrender.com/login">Pets ID</a></li>
+            <li class="dropdown">
+              <a href="#">Serviços</a>
+              <div class="dropdown-content">
+                <a href="/servicos/tv">NexusTV</a>
+                <a href="/servicos/nexuschat">NexusChat</a>
+                <a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/nexus-browser">NexusBrowser</a>
+                <a href="https://pets-id-itxs.onrender.com/login">Pets ID</a>
+              </div>
+            </li>
             <li><a href="mailto:reportesit.cimesis.nexusweb@gmail.com">CIMESIS Nexus</a></li>
             <li><a href="/contacto">Contacto</a></li>
           </ul>
@@ -457,10 +421,20 @@
       </div>
     </nav>
     
+    <!-- Chat Component -->
+    <chat-component
+      data-chat-key="d8688ed616a1422a9e6bb863f05893cc"
+      mic="false"
+      assetsURL="https://img.botschool.ai/cdn/chatui/assets/"
+      socket-url="https://api.botschool.ai/">
+    </chat-component>
+    <script src="https://img.botschool.ai/cdn/chatui/chat-component.js"></script>
+    <link href="https://img.botschool.ai/cdn/chatui/chaticons.css" rel="stylesheet">
+    
     <!-- Takeover Nav (Mobile) -->
     <div id="takeover-nav">
       <ul class="nav-items">
-        <li><a href="https://tvnexusweb.netlify.app">NexusTV</a></li>
+        <li><a href="/servicos/tv">NexusTV</a></li>
         <li><a href="/servicos/nexuschat">NexusChat</a></li>
         <li><a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/nexus-browser">NexusBrowser</a></li>
         <li><a href="https://pets-id-itxs.onrender.com/login">Pets ID</a></li>
@@ -469,16 +443,16 @@
       </ul>
     </div>
   </header>
-
+  
   <main>
     <section class="hero">
       <img src="https://t3.ftcdn.net/jpg/08/73/78/44/360_F_873784490_h5C3x1NRc2zigMiX6VmeLeeWZXDaEu21.jpg" alt="Imagem de fundo do Pets ID" class="hero-image">
       <div class="gradient-overlay"></div>
       <div class="hero-content">
-        <h1 class="hero-title">Pets ID</h1>
-        <p class="hero-subtitle">Consulta as vacinas do teu Pet!</p>
+        <h1 class="hero-title">NexusWeb TV</h1>
+        <p class="hero-subtitle">O seu portal de entretenimento digital</p>
         <div class="cta-container">
-          <a href="https://tvnexusweb.netlify.app" class="cta-button cta-primary">Aceder ao Pets ID</a>
+          <a href="https://tvnexusweb.netlify.app" class="cta-button cta-primary">Aceder à NexusWeb TV</a>
         </div>
       </div>
     </section>
@@ -487,18 +461,18 @@
       <div class="container">
         <div class="about-content">
           <div class="about-text">
-            <h2>Informações e Vacinas do PET</h2>
-            <p>O Pets ID facilita gerir as vacinas do seu pet e também as informações!</p>
+            <h2>Entretenimento Diversificado e em Evolução</h2>
+            <p>A NexusWeb TV oferece uma experiência de visualização incomparável, com uma vasta gama de conteúdos para todos os gostos:</p>
             <ul>
-              <li>Boletim Online do seu Pet</li>
-              <li>Marcação de Vacinas</li>
-              <li>Informações do seu Pet</li>
+              <li>Diversos canais nacionais</li>
+              <li>Uma extensa biblioteca de filmes</li>
+              <li>Estações de rádio para todos os gostos musicais</li>
             </ul>
             <p>Estamos em constante evolução, adicionando regularmente novos conteúdos e funcionalidades para melhorar a sua experiência de entretenimento.</p>
-            <a href="https://pets-id-itxs.onrender.com/" class="cta-button">Explorar Pets ID</a>
+            <a href="https://tvnexusweb.netlify.app" class="cta-button cta-primary">Explorar NexusWeb TV</a>
           </div>
           <div class="about-image">
-            <img src="https://i.ibb.co/zhT6bX3c/image.png" alt="Interface do Pets ID" loading="lazy">
+            <img src="https://i.ibb.co/qMcZWhfx/image.png" alt="Interface da NexusWeb TV" loading="lazy">
           </div>
         </div>
       </div>
@@ -513,13 +487,13 @@
     <script src="https://img.botschool.ai/cdn/chatui/chat-component.js"></script>
     <link href="https://img.botschool.ai/cdn/chatui/chaticons.css" rel="stylesheet">
   </main>
-
+  
   <footer>
     <div class="container">
       <p>&copy; 2025 NexusWeb. Todos os direitos reservados.</p>
     </div>
   </footer>
-
+  
   <script>
     document.getElementById('nav-btn').addEventListener('click', function() {
       this.classList.toggle('active');
