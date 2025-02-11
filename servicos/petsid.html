@@ -3,16 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NexusWeb TV - Entretenimento Digital em Portugal</title>
-  <meta name="description" content="A NexusWeb TV oferece uma variedade de canais nacionais, filmes e rádios, em constante evolução para o seu entretenimento digital.">
-  <meta name="keywords" content="NexusWeb TV, canais nacionais, filmes, rádios, entretenimento digital, Portugal">
+  <title>Pets ID - O boletim digital do seu PET</title>
+  <meta name="description" content="O Pets ID ofereçe serviços inovadores para a gestão do seu PET.">
+  <meta name="keywords" content="NexusWeb, Pets, Boletim, ID, Pets ID, Portugal">
   <meta name="author" content="NexusWeb">
-  <link rel="canonical" href="https://www.nexusweb.pt/tv">
-  <meta property="og:title" content="NexusWeb TV - Entretenimento Digital em Portugal">
-  <meta property="og:description" content="Desfrute de uma variedade de canais nacionais, filmes e rádios com a NexusWeb TV.">
-  <meta property="og:image" content="https://www.nexusweb.pt/images/tv-og-image.jpg">
-  <meta property="og:url" content="https://www.nexusweb.pt/tv">
-  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://nexuswebco.netlify.app/servicos/petsid">
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -23,17 +18,20 @@
   </script>
   <style>
     :root {
-      --primary: #00ccff;
+      /* Utilizamos apenas as cores azul e fundo escuro – sem roxo */
+      --primary:   #00ccff;  /* Azul primário */
       --secondary: #0080ff;
-      --dark: #121212;
-      --light: #f8f8f8;
+      --dark:      #121212;
+      --light:     #f8f8f8;
       --transition: all 0.3s ease-in-out;
     }
+    
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+    
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: var(--dark);
@@ -41,29 +39,35 @@
       line-height: 1.6;
       overflow-x: hidden;
     }
+    
     /* Barra de rolagem */
     ::-webkit-scrollbar {
       width: 10px;
     }
+    
     ::-webkit-scrollbar-track {
       background: var(--dark);
     }
+    
     ::-webkit-scrollbar-thumb {
       background: linear-gradient(var(--primary), var(--secondary));
       border-radius: 5px;
       animation: scrollColorChange 3s ease-in-out infinite alternate;
     }
+    
     @keyframes scrollColorChange {
       from { background: linear-gradient(var(--primary), var(--secondary)); }
       to { background: linear-gradient(var(--secondary), var(--primary)); }
     }
+    
     .container {
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 20px;
     }
-    /* Cabeçalho e Menu – mesmo menu utilizado no Pets ID */
+    
+    /* Cabeçalho e Menu – mesmo estilo do NexusChat */
     .sticky-nav {
       position: fixed;
       top: 0;
@@ -75,11 +79,13 @@
       padding: 10px 0;
       transition: var(--transition);
     }
+    
     .nav-content {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
+    
     .logo {
       width: 180px;
       height: 40px;
@@ -88,30 +94,38 @@
       background-repeat: no-repeat;
       transition: var(--transition);
     }
+    
     .logo:hover {
       transform: scale(1.05);
     }
+    
     /* Navbar Desktop – Menu com dropdown “Serviços” */
     .navbar {
       display: none;
     }
+    
     .navbar ul {
       list-style: none;
       display: flex;
       gap: 20px;
     }
+    
     .navbar a {
       color: var(--light);
       text-decoration: none;
       font-weight: 600;
       transition: var(--transition);
+      padding: 5px 10px;
     }
+    
     .navbar a:hover {
       color: var(--primary);
     }
+    
     .dropdown {
       position: relative;
     }
+    
     .dropdown-content {
       display: none;
       position: absolute;
@@ -122,15 +136,18 @@
       padding: 10px;
       border-radius: 5px;
     }
+    
     .dropdown-content a {
       padding: 10px;
       text-decoration: none;
       display: block;
       color: var(--light);
     }
+    
     .dropdown:hover .dropdown-content {
       display: block;
     }
+    
     /* Menu Hamburguer (Mobile) */
     #nav-btn {
       width: 40px;
@@ -142,12 +159,14 @@
       background: none;
       border: none;
     }
+    
     .nav-line {
       width: 100%;
       height: 3px;
       background-color: var(--light);
       transition: var(--transition);
     }
+    
     /* Takeover Nav – Menu Mobile */
     #takeover-nav {
       position: fixed;
@@ -163,16 +182,20 @@
       justify-content: center;
       align-items: center;
     }
+    
     #takeover-nav.shown {
       right: 0;
     }
+    
     .nav-items {
       list-style-type: none;
       text-align: center;
     }
+    
     .nav-items li {
       margin-bottom: 2rem;
     }
+    
     .nav-items a {
       color: var(--light);
       text-decoration: none;
@@ -181,6 +204,7 @@
       position: relative;
       transition: var(--transition);
     }
+    
     .nav-items a::after {
       content: '';
       position: absolute;
@@ -191,22 +215,26 @@
       background-color: var(--primary);
       transition: var(--transition);
     }
+    
     .nav-items a:hover {
       color: var(--primary);
     }
+    
     .nav-items a:hover::after {
       width: 100%;
       left: 0;
     }
-    /* Seção Hero */
+    
+    /* Seção Hero – Conteúdo do Pets ID */
     .hero {
-      height: 100vh;
+      height: 60vh; /* Altura reduzida para 60vh */
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
       overflow: hidden;
     }
+    
     .hero-image {
       position: absolute;
       top: 0;
@@ -216,6 +244,7 @@
       object-fit: cover;
       z-index: -1;
     }
+    
     .gradient-overlay {
       position: absolute;
       top: 0;
@@ -224,12 +253,14 @@
       height: 100%;
       background: linear-gradient(to bottom, rgba(18, 18, 18, 0.3), rgba(18, 18, 18, 0.8));
     }
+    
     .hero-content {
       text-align: center;
       z-index: 2;
       max-width: 800px;
       padding: 0 20px;
     }
+    
     .hero-title {
       font-size: 4.5em;
       font-weight: 900;
@@ -238,24 +269,24 @@
       letter-spacing: 2px;
       animation: glowText 3s ease-in-out infinite alternate;
     }
+    
     @keyframes glowText {
-      from {
-        text-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary), 0 0 15px var(--primary);
-      }
-      to {
-        text-shadow: 0 0 10px var(--secondary), 0 0 20px var(--secondary), 0 0 30px var(--secondary);
-      }
+      from { text-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary), 0 0 15px var(--primary); }
+      to   { text-shadow: 0 0 10px var(--secondary), 0 0 20px var(--secondary), 0 0 30px var(--secondary); }
     }
+    
     .hero-subtitle {
       font-size: 1.5em;
       margin-bottom: 40px;
       opacity: 0.8;
     }
+    
     .cta-container {
       display: flex;
       justify-content: center;
       gap: 20px;
     }
+    
     .cta-button {
       padding: 15px 30px;
       font-size: 1.1em;
@@ -270,6 +301,7 @@
       text-decoration: none;
       display: inline-block;
     }
+    
     .cta-button::before {
       content: '';
       position: absolute;
@@ -280,29 +312,35 @@
       background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
       transition: var(--transition);
     }
+    
     .cta-button:hover::before {
       left: 100%;
     }
+    
     .cta-primary {
       background-color: var(--primary);
       color: var(--light);
     }
+    
     .cta-primary:hover {
       background-color: var(--secondary);
       transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(0, 204, 255, 0.3);
+      box-shadow: 0 10px 20px rgba(0,204,255,0.3);
     }
-    /* Seção About */
+    
+    /* Seção About – Conteúdo do Pets ID */
     .about-section {
       padding: 80px 0;
       background-color: var(--dark);
     }
+    
     .about-content {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      gap: 40px;
       flex-wrap: wrap;
     }
+    
     .about-text {
       flex: 1;
       padding-right: 40px;
@@ -310,56 +348,84 @@
       flex-direction: column;
       align-items: flex-start;
     }
+    
     .about-text h2 {
       color: var(--primary);
       margin-bottom: 20px;
     }
+    
     .about-text p {
       margin-bottom: 15px;
     }
+    
     .about-text ul {
       padding-left: 20px;
       margin-bottom: 15px;
     }
+    
     .about-text ul li {
       margin-bottom: 10px;
       position: relative;
     }
+    
     .about-text ul li::before {
       content: '•';
       color: var(--primary);
       position: absolute;
       left: -20px;
     }
+    
     .about-text .cta-button {
       margin-top: 20px;
       align-self: flex-start;
+      background-color: var(--primary);
+      color: var(--light);
+      border-radius: 50px;
+      padding: 15px 30px;
+      text-transform: uppercase;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      display: inline-block;
     }
+    
+    .about-text .cta-button:hover {
+      background-color: var(--secondary);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,204,255,0.3);
+    }
+    
     .about-image {
       flex: 1;
-      max-width: 500px;
+      max-width: 350px;  /* Forçado a 350px para alinhar com o texto */
       display: flex;
       justify-content: center;
       align-items: center;
     }
+    
     .about-image img {
       width: 100%;
       height: auto;
       object-fit: contain;
       border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0, 204, 255, 0.2);
+      box-shadow: 0 10px 30px rgba(0,204,255,0.2);
     }
+    
     footer {
       background-color: var(--dark);
       color: var(--light);
       text-align: center;
       padding: 20px 0;
     }
+    
     /* Media Queries */
     @media (min-width: 769px) {
       #nav-btn { display: none; }
-      .navbar { display: block; }
+      .navbar { display: flex; }
     }
+    
     @media (max-width: 768px) {
       .navbar { display: none; }
       .hero-title { font-size: 3em; }
@@ -372,8 +438,9 @@
         padding: 0;
         margin-bottom: 30px;
       }
-      .about-image { flex: 1; max-width: 500px; }
+      .about-image { flex: 1; max-width: 350px; }
     }
+    
     /* Chat Component Custom Styles */
     chat-component {
       --chat-font-family: 'Segoe UI', 'Inter', 'Roboto', sans-serif;
@@ -382,12 +449,13 @@
       --chat-background-color: rgba(18, 18, 18, 0.95);
       --chat-text-color: #f8f8f8;
     }
+    
     chat-component::part(chat-container) {
       font-weight: 500;
       letter-spacing: 0.5px;
       line-height: 1.6;
       border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0, 204, 255, 0.2);
+      box-shadow: 0 10px 30px rgba(0,204,255,0.2);
     }
   </style>
 </head>
@@ -405,7 +473,7 @@
                 <a href="/servicos/tv">NexusTV</a>
                 <a href="/servicos/nexuschat">NexusChat</a>
                 <a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/nexus-browser">NexusBrowser</a>
-                <a href="/servicos/petsid">Pets ID</a>
+                <a href="https://pets-id-itxs.onrender.com/login">Pets ID</a>
               </div>
             </li>
             <li><a href="mailto:reportesit.cimesis.nexusweb@gmail.com">CIMESIS Nexus</a></li>
@@ -437,7 +505,7 @@
         <li><a href="/servicos/tv">NexusTV</a></li>
         <li><a href="/servicos/nexuschat">NexusChat</a></li>
         <li><a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/nexus-browser">NexusBrowser</a></li>
-        <li><a href="/servicos/petsid">Pets ID</a></li>
+        <li><a href="https://pets-id-itxs.onrender.com/login">Pets ID</a></li>
         <li><a href="mailto:reportesit.cimesis.nexusweb@gmail.com">CIMESIS Nexus</a></li>
         <li><a href="/contacto">Contacto</a></li>
       </ul>
@@ -445,39 +513,41 @@
   </header>
   
   <main>
+    <!-- Seção Hero com conteúdo do Pets ID -->
     <section class="hero">
       <img src="https://t3.ftcdn.net/jpg/08/73/78/44/360_F_873784490_h5C3x1NRc2zigMiX6VmeLeeWZXDaEu21.jpg" alt="Imagem de fundo do Pets ID" class="hero-image">
       <div class="gradient-overlay"></div>
       <div class="hero-content">
-        <h1 class="hero-title">NexusWeb TV</h1>
-        <p class="hero-subtitle">O seu portal de entretenimento digital</p>
+        <h1 class="hero-title">Pets ID</h1>
+        <p class="hero-subtitle">Consulta as vacinas do teu Pet!</p>
         <div class="cta-container">
-          <a href="https://tvnexusweb.netlify.app" class="cta-button cta-primary">Aceder à NexusWeb TV</a>
+          <a href="https://pets-id-itxs.onrender.com/" class="cta-button cta-primary">Aceder ao Pets ID</a>
         </div>
       </div>
     </section>
-
+    
+    <!-- Seção About com conteúdo do Pets ID -->
     <section class="about-section">
       <div class="container">
         <div class="about-content">
           <div class="about-text">
-            <h2>Entretenimento Diversificado e em Evolução</h2>
-            <p>A NexusWeb TV oferece uma experiência de visualização incomparável, com uma vasta gama de conteúdos para todos os gostos:</p>
+            <h2>Informações e Vacinas do PET</h2>
+            <p>O Pets ID facilita gerir as vacinas do seu pet e também as informações!</p>
             <ul>
-              <li>Diversos canais nacionais</li>
-              <li>Uma extensa biblioteca de filmes</li>
-              <li>Estações de rádio para todos os gostos musicais</li>
+              <li>Boletim Online do seu Pet</li>
+              <li>Marcação de Vacinas</li>
+              <li>Informações do seu Pet</li>
             </ul>
             <p>Estamos em constante evolução, adicionando regularmente novos conteúdos e funcionalidades para melhorar a sua experiência de entretenimento.</p>
-            <a href="https://tvnexusweb.netlify.app" class="cta-button cta-primary">Explorar NexusWeb TV</a>
+            <a href="https://pets-id-itxs.onrender.com/" class="cta-button">Explorar Pets ID</a>
           </div>
           <div class="about-image">
-            <img src="https://i.ibb.co/qMcZWhfx/image.png" alt="Interface da NexusWeb TV" loading="lazy">
+            <img src="https://i.ibb.co/zhT6bX3c/image.png" alt="Interface do Pets ID" loading="lazy">
           </div>
         </div>
       </div>
     </section>
-
+    
     <chat-component
       data-chat-key="d8688ed616a1422a9e6bb863f05893cc"
       mic="false" 
@@ -499,7 +569,7 @@
       this.classList.toggle('active');
       document.getElementById('takeover-nav').classList.toggle('shown');
     });
-
+    
     window.addEventListener('scroll', function() {
       const nav = document.querySelector('.sticky-nav');
       nav.classList.toggle('scrolled', window.scrollY > 0);
