@@ -65,7 +65,7 @@
       margin: 0 auto;
       padding: 0 20px;
     }
-    /* Cabeçalho e Navbar – ESTILO VERDE (mesmo do NexusChat) */
+    /* Cabeçalho e Navbar – ESTILO VERDE (serão carregados via JS) */
     .sticky-nav {
       position: fixed;
       top: 0;
@@ -291,7 +291,7 @@
       transform: translateY(-3px);
       box-shadow: 0 10px 20px rgba(0,204,255,0.3);
     }
-    /* Seção About – conteúdo inalterado (mantém o fundo escuro) */
+    /* Seção About – Conteúdo do Pets ID */
     .about-section {
       padding: 80px 0;
       background-color: var(--dark);
@@ -391,57 +391,8 @@
   </style>
 </head>
 <body>
-  <header>
-    <nav class="sticky-nav">
-      <div class="container nav-content">
-        <div class="logo"></div>
-        <!-- Navbar Desktop -->
-        <nav class="navbar">
-          <ul>
-            <li class="dropdown">
-              <a href="#">Serviços</a>
-              <div class="dropdown-content">
-                <a href="/servicos/tv">NexusTV</a>
-                <a href="/servicos/nexuschat">NexusChat</a>
-                <a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/nexus-browser">NexusBrowser</a>
-                <a href="/servicos/petsid">Pets ID</a>
-              </div>
-            </li>
-            <li><a href="mailto:reportesit.cimesis.nexusweb@gmail.com">CIMESIS Nexus</a></li>
-            <li><a href="/contacto">Contacto</a></li>
-          </ul>
-        </nav>
-        <!-- Menu Hamburguer (Mobile) -->
-        <button id="nav-btn" aria-label="Menu de Navegação">
-          <span class="nav-line"></span>
-          <span class="nav-line"></span>
-          <span class="nav-line"></span>
-        </button>
-      </div>
-    </nav>
-    
-    <!-- Chat Component (permanece inalterado) -->
-    <chat-component
-      data-chat-key="d8688ed616a1422a9e6bb863f05893cc"
-      mic="false"
-      assetsURL="https://img.botschool.ai/cdn/chatui/assets/"
-      socket-url="https://api.botschool.ai/">
-    </chat-component>
-    <script src="https://img.botschool.ai/cdn/chatui/chat-component.js"></script>
-    <link href="https://img.botschool.ai/cdn/chatui/chaticons.css" rel="stylesheet">
-    
-    <!-- Takeover Nav (Mobile) -->
-    <div id="takeover-nav">
-      <ul class="nav-items">
-        <li><a href="/servicos/tv">NexusTV</a></li>
-        <li><a href="/servicos/nexuschat">NexusChat</a></li>
-        <li><a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/nexus-browser">NexusBrowser</a></li>
-        <li><a href="/servicos/petsid">Pets ID</a></li>
-        <li><a href="mailto:reportesit.cimesis.nexusweb@gmail.com">CIMESIS Nexus</a></li>
-        <li><a href="/contacto">Contacto</a></li>
-      </ul>
-    </div>
-  </header>
+  <!-- O menu será carregado dinamicamente via JS -->
+  <header></header>
   
   <main>
     <section class="hero">
@@ -491,14 +442,12 @@
     </div>
   </footer>
   
+  <!-- Carrega o menu dinamicamente via JS -->
+  <script src="https://kikalabs-app-server-static.netlify.app/js/site-nxweb/menu.js"></script>
+  
   <script>
-    // Toggle do menu mobile
-    document.getElementById('nav-btn').addEventListener('click', function() {
-      this.classList.toggle('active');
-      document.getElementById('takeover-nav').classList.toggle('shown');
-    });
-    
-    // Efeito de scroll para a navbar fixa (opcional)
+    // Se desejar, a lógica para alternar o menu mobile já está implementada no arquivo de menu.js
+    // Aqui mantemos, caso seja necessário um fallback para algum evento extra:
     window.addEventListener('scroll', function() {
       const nav = document.querySelector('.sticky-nav');
       nav.classList.toggle('scrolled', window.scrollY > 0);
