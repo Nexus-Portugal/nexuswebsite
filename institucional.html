@@ -13,14 +13,13 @@
   <meta property="og:image" content="https://kikalabs-app-server-static.netlify.app/images/site-nxweb/RealNexusWeb.png">
   <meta property="og:url" content="https://nexusweb.netlify.app">
   <meta name="twitter:card" content="summary_large_image">
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7772613538554309"
-     crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7772613538554309" crossorigin="anonymous"></script>
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "q48rygpjz8");
   </script>
   <style>
@@ -67,140 +66,6 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 20px;
-    }
-    .sticky-nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      background-color: rgba(18, 18, 18, 0.8);
-      backdrop-filter: blur(10px);
-      padding: 10px 0;
-      transition: var(--transition);
-    }
-    .nav-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo {
-      width: 180px;
-      height: 40px;
-      background-image: url('https://kikalabs-app-server-static.netlify.app/images/site-nxweb/RealNexusWeb.png');
-      background-size: contain;
-      background-repeat: no-repeat;
-      transition: var(--transition);
-    }
-    .logo:hover {
-      transform: scale(1.05);
-    }
-    /* Menu Hamburguer (Mobile) */
-    #nav-btn {
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      background: none;
-      border: none;
-    }
-    .nav-line {
-      width: 100%;
-      height: 3px;
-      background-color: var(--light);
-      transition: var(--transition);
-    }
-    /* Takeover Nav (Mobile) */
-    #takeover-nav {
-      position: fixed;
-      width: 100%;
-      height: 100vh;
-      right: -100%;
-      top: 0;
-      transition: var(--transition);
-      z-index: 999;
-      background-color: rgba(18, 18, 18, 0.95);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-    #takeover-nav.shown {
-      right: 0;
-    }
-    .nav-items {
-      list-style-type: none;
-      text-align: center;
-    }
-    .nav-items li {
-      margin-bottom: 2rem;
-    }
-    .nav-items a {
-      color: var(--light);
-      text-decoration: none;
-      font-size: 2em;
-      font-weight: 700;
-      position: relative;
-      transition: var(--transition);
-    }
-    .nav-items a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 3px;
-      bottom: -5px;
-      left: 50%;
-      background-color: var(--primary);
-      transition: var(--transition);
-    }
-    .nav-items a:hover {
-      color: var(--primary);
-    }
-    .nav-items a:hover::after {
-      width: 100%;
-      left: 0;
-    }
-    /* Navbar (Desktop) */
-    .navbar {
-      display: none; /* Esconde por padrão, mostra em telas maiores */
-    }
-    .navbar ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-    }
-    .navbar a {
-      color: var(--light);
-      text-decoration: none;
-      font-weight: 600;
-      transition: var(--transition);
-    }
-    .navbar a:hover {
-      color: var(--primary);
-    }
-    .dropdown {
-      position: relative;
-    }
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: var(--dark);
-      min-width: 160px;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-      z-index: 1;
-      padding: 10px;
-      border-radius: 5px;
-    }
-    .dropdown-content a {
-      padding: 10px;
-      text-decoration: none;
-      display: block;
-      clear: both;
-    }
-    .dropdown:hover .dropdown-content {
-      display: block;
     }
     /* Hero Section */
     .hero {
@@ -323,7 +188,6 @@
       align-items: center;
       flex-wrap: wrap;
     }
-    /* A Evolução da Marca - Layout em duas colunas */
     .evolucao {
       display: flex;
       flex-direction: row;
@@ -352,7 +216,7 @@
     .about-image img {
       width: 100%;
       border-radius: 10px;
-      box-shadow: none; /* Glow removido */
+      box-shadow: none;
     }
     .evolucao-logo {
       max-width: 300px;
@@ -481,54 +345,8 @@
 </head>
 <body>
 
-  <header>
-    <nav class="sticky-nav">
-      <div class="container nav-content">
-        <div class="logo"></div>
-        <!-- Navbar (Desktop) -->
-        <nav class="navbar">
-          <ul>
-            <li class="dropdown">
-              <a href="#">Serviços</a>
-              <div class="dropdown-content">
-                <a href="/servicos/tv">NexusTV</a>
-                <a href="/servicos/nexuschat">NexusChat</a>
-                <a href="https://mega.nz/file/umZxQJJa#TPhOyeCYCpt_iyLWzmJz3IHXuYVfQ2C0Jeg-lSAFS8o">NexusBrowser Download</a>
-                <a href="/servicos/petsid">Pets ID</a>
-              </div>
-            </li>
-            <li><a href="mailto:reportesit.cimesis.nexusweb@gmail.com">CIMESIS Nexus</a></li>
-            <li><a href="/contacto">Contacto</a></li>
-          </ul>
-        </nav>
-        <!-- Menu Hamburguer (Mobile) -->
-        <button id="nav-btn" aria-label="Menu de Navegação">
-          <span class="nav-line"></span>
-          <span class="nav-line"></span>
-          <span class="nav-line"></span>
-        </button>
-      </div>
-    </nav>
-
-    <chat-component
-      data-chat-key="d8688ed616a1422a9e6bb863f05893cc"
-      mic="false" assetsURL="https://img.botschool.ai/cdn/chatui/assets/"
-      socket-url="https://api.botschool.ai/"></chat-component>
-    <script src="https://img.botschool.ai/cdn/chatui/chat-component.js"></script>
-    <link href="https://img.botschool.ai/cdn/chatui/chaticons.css" rel="stylesheet">
-
-    <!-- Takeover Nav (Mobile) -->
-    <div id="takeover-nav">
-      <ul class="nav-items">
-        <li><a href="/servicos/tv">NexusTV</a></li>
-        <li><a href="/servicos/nexuschat">NexusChat</a></li>
-        <li><a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/nexus-browser">NexusBrowser</a></li>
-        <li><a href="/servicos/petsid">Pets ID</a></li>
-        <li><a href="mailto:reportesit.cimesis.nexusweb@gmail.com">CIMESIS Nexus</a></li>
-        <li><a href="/contacto">Contacto</a></li>
-      </ul>
-    </div>
-  </header>
+  <!-- Header: O menu será carregado via JS -->
+  <header></header>
 
   <main>
     <!-- Hero Section -->
@@ -549,7 +367,7 @@
       </div>
     </section>
 
-    <!-- A Evolução da Marca (Texto e Novo Logotipo lado a lado) -->
+    <!-- A Evolução da Marca -->
     <section class="about-section">
       <div class="container about-content evolucao">
         <div class="about-text">
@@ -567,7 +385,7 @@
       </div>
     </section>
 
-    <!-- Inovação &amp; Sustentabilidade -->
+    <!-- Inovação & Sustentabilidade -->
     <section class="about-section">
       <div class="container about-content" style="flex-direction: row;">
         <div class="about-text">
@@ -613,9 +431,7 @@
           </p>
         </div>
         <div class="about-image">
-          <img src="https://clickpetroleoegas.com.br/wp-content/uploads/2024/08/Quer-estudar-tecnologia-garantir-um-emprego-e-ainda-ganhar-750-euros-em-Portugal.jpg" 
-               alt="Compromisso com Portugal" 
-               loading="lazy">
+          <img src="https://clickpetroleoegas.com.br/wp-content/uploads/2024/08/Quer-estudar-tecnologia-garantir-um-emprego-e-ainda-ganhar-750-euros-em-Portugal.jpg" alt="Compromisso com Portugal" loading="lazy">
         </div>
       </div>
     </section>
@@ -633,10 +449,7 @@
           </p>
         </div>
         <div class="about-image">
-          <img src="https://c02.purpledshub.com/uploads/sites/41/2018/08/22-ideas-606ea9b.jpg?w=1029&webp=1" 
-               alt="Visão para o Futuro" 
-               style="max-width: 600px;"
-               loading="lazy">
+          <img src="https://c02.purpledshub.com/uploads/sites/41/2018/08/22-ideas-606ea9b.jpg?w=1029&webp=1" alt="Visão para o Futuro" style="max-width: 600px;" loading="lazy">
         </div>
       </div>
     </section>
@@ -648,7 +461,7 @@
     </div>
   </footer>
 
-  <!-- The Modal -->
+  <!-- Modal dos Serviços -->
   <div id="servicesModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
@@ -662,17 +475,10 @@
     </div>
   </div>
 
+  <!-- Carrega o menu dinamicamente via JS -->
+  <script src="https://kikalabs-app-server-static.netlify.app/js/site-nxweb/menu.js"></script>
+
   <script>
-    document.getElementById('nav-btn').addEventListener('click', function() {
-      this.classList.toggle('active');
-      document.getElementById('takeover-nav').classList.toggle('shown');
-    });
-
-    window.addEventListener('scroll', function() {
-      const nav = document.querySelector('.sticky-nav');
-      nav.classList.toggle('scrolled', window.scrollY > 0);
-    });
-
     // Modal Functionality
     var modal = document.getElementById("servicesModal");
     var btn = document.getElementById("openModalBtn");
