@@ -23,10 +23,6 @@
   </script>
   <style>
     :root {
-      /* Definimos as cores principais:
-         --primary: verde (menu e Hero)
-         --purple: roxo (seção About)
-         --secondary, --dark, --light e --transition permanecem */
       --primary:   #00ff00;
       --secondary: #00ccff;
       --purple:    #9b59b6;
@@ -294,7 +290,7 @@
       transform: translateY(-3px);
       box-shadow: 0 10px 20px rgba(0,204,255,0.3);
     }
-    /* Seção About – TODA A ESTILIZAÇÃO AQUI SERÁ EM ROXO */
+    /* Seção About – estilo ROXO */
     .about-section {
       padding: 80px 0;
       background-color: var(--dark);
@@ -304,7 +300,7 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      flex-direction: row-reverse; /* imagem à direita */
+      flex-direction: row-reverse;
     }
     .about-text {
       flex: 1;
@@ -333,7 +329,6 @@
       position: absolute;
       left: -20px;
     }
-    /* Botão da About – estilo roxo */
     .about-text .cta-button {
       margin-top: 20px;
       align-self: flex-start;
@@ -462,60 +457,11 @@
   </style>
 </head>
 <body>
-  <header>
-    <nav class="sticky-nav">
-      <div class="container nav-content">
-        <div class="logo"></div>
-        <!-- Navbar Desktop -->
-        <nav class="navbar">
-          <ul>
-            <li class="dropdown">
-              <a href="#">Serviços</a>
-              <div class="dropdown-content">
-                <a href="/servicos/tv">NexusTV</a>
-                <a href="/servicos/nexuschat">NexusChat</a>
-                <a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/nexus-browser">NexusBrowser</a>
-                <a href="/servicos/petsid">Pets ID</a>
-              </div>
-            </li>
-            <li><a href="mailto:reportesit.cimesis.nexusweb@gmail.com">CIMESIS Nexus</a></li>
-            <li><a href="/contacto">Contacto</a></li>
-          </ul>
-        </nav>
-        <!-- Menu Hamburguer (Mobile) -->
-        <button id="nav-btn" aria-label="Menu de Navegação">
-          <span class="nav-line"></span>
-          <span class="nav-line"></span>
-          <span class="nav-line"></span>
-        </button>
-      </div>
-    </nav>
-    
-    <!-- Chat Component -->
-    <chat-component
-      data-chat-key="d8688ed616a1422a9e6bb863f05893cc"
-      mic="false"
-      assetsURL="https://img.botschool.ai/cdn/chatui/assets/"
-      socket-url="https://api.botschool.ai/">
-    </chat-component>
-    <script src="https://img.botschool.ai/cdn/chatui/chat-component.js"></script>
-    <link href="https://img.botschool.ai/cdn/chatui/chaticons.css" rel="stylesheet">
-    
-    <!-- Takeover Mobile Nav -->
-    <div id="takeover-nav">
-      <ul class="nav-items">
-        <li><a href="/servicos/tv">NexusTV</a></li>
-        <li><a href="/servicos/nexuschat">NexusChat</a></li>
-        <li><a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/nexus-browser">NexusBrowser</a></li>
-        <li><a href="/servicos/petsid">Pets ID</a></li>
-        <li><a href="mailto:reportesit.cimesis.nexusweb@gmail.com">CIMESIS Nexus</a></li>
-        <li><a href="/contacto">Contacto</a></li>
-      </ul>
-    </div>
-  </header>
+  <!-- O menu será carregado dinamicamente via JS -->
+  <header></header>
   
   <main>
-    <!-- Seção Hero: textos e botão com estilo VERDE -->
+    <!-- Seção Hero -->
     <section class="hero">
       <img src="https://cdn.create.vista.com/api/media/small/212462542/stock-photo-women-hand-using-smartphone-typing-chatting-conversation-chat-box-icons" alt="Imagem de fundo da NexusChat" class="hero-image">
       <div class="gradient-overlay"></div>
@@ -528,7 +474,7 @@
       </div>
     </section>
     
-    <!-- Seção About: textos, lista, botão e imagem com estilo ROXO -->
+    <!-- Seção About -->
     <section class="about-section">
       <div class="container about-content">
         <div class="about-text">
@@ -540,7 +486,6 @@
             <li>Chat fácil e rápido para todos</li>
           </ul>
           <p>Estamos em constante evolução, adicionando regularmente novas funcionalidades para melhorar a sua experiência de chat.</p>
-          <!-- Botão da seção About com estilo roxo -->
           <a href="https://nexuschat-5h38.onrender.com/" class="cta-button">Explorar NexusChat</a>
         </div>
         <div class="about-image">
@@ -569,6 +514,9 @@
       </ul>
     </div>
   </div>
+  
+  <!-- Carrega o menu dinamicamente via JS -->
+  <script src="https://kikalabs-app-server-static.netlify.app/js/site-nxweb/menu.js"></script>
   
   <script>
     // Alternar menu mobile
