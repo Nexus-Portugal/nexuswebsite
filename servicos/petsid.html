@@ -67,7 +67,7 @@
       padding: 0 20px;
     }
     
-    /* Cabeçalho e Menu – mesmo estilo do NexusChat */
+    /* Cabeçalho e Menu – serão carregados via JS */
     .sticky-nav {
       position: fixed;
       top: 0;
@@ -227,7 +227,7 @@
     
     /* Seção Hero – Conteúdo do Pets ID */
     .hero {
-      height: 60vh; /* Altura reduzida para 60vh */
+      height: 60vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -272,7 +272,7 @@
     
     @keyframes glowText {
       from { text-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary), 0 0 15px var(--primary); }
-      to   { text-shadow: 0 0 10px var(--secondary), 0 0 20px var(--secondary), 0 0 30px var(--secondary); }
+      to { text-shadow: 0 0 10px var(--secondary), 0 0 20px var(--secondary), 0 0 30px var(--secondary); }
     }
     
     .hero-subtitle {
@@ -399,7 +399,7 @@
     
     .about-image {
       flex: 1;
-      max-width: 350px;  /* Forçado a 350px para alinhar com o texto */
+      max-width: 350px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -457,63 +457,83 @@
       border-radius: 12px;
       box-shadow: 0 10px 30px rgba(0,204,255,0.2);
     }
+    
+    /* Modal (opcional) */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.7);
+      z-index: 1000;
+    }
+    
+    .modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: var(--dark);
+      padding: 30px;
+      border-radius: 15px;
+      width: auto;
+      max-width: 500px;
+      box-shadow: 0 5px 15px rgba(0,204,255,0.3);
+      text-align: center;
+    }
+    
+    .close {
+      color: var(--light);
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.2s ease-in-out;
+    }
+    
+    .close:hover,
+    .close:focus {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    
+    .modal-content h2 {
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+    
+    .modal-content ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .modal-content li {
+      margin-bottom: 10px;
+    }
+    
+    .modal-content a {
+      color: var(--secondary);
+      text-decoration: none;
+      transition: color 0.2s ease-in-out;
+    }
+    
+    .modal-content a:hover {
+      color: var(--light);
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
-  <header>
-    <nav class="sticky-nav">
-      <div class="container nav-content">
-        <div class="logo"></div>
-        <!-- Navbar Desktop com o novo menu -->
-        <nav class="navbar">
-          <ul>
-            <li class="dropdown">
-              <a href="#">Serviços</a>
-              <div class="dropdown-content">
-                <a href="/servicos/tv">NexusTV</a>
-                <a href="/servicos/nexuschat">NexusChat</a>
-                <a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/nexus-browser">NexusBrowser</a>
-                <a href="https://pets-id-itxs.onrender.com/login">Pets ID</a>
-              </div>
-            </li>
-            <li><a href="mailto:reportesit.cimesis.nexusweb@gmail.com">CIMESIS Nexus</a></li>
-            <li><a href="/contacto">Contacto</a></li>
-          </ul>
-        </nav>
-        <!-- Botão Menu Hamburguer (Mobile) -->
-        <button id="nav-btn" aria-label="Menu de Navegação">
-          <span class="nav-line"></span>
-          <span class="nav-line"></span>
-          <span class="nav-line"></span>
-        </button>
-      </div>
-    </nav>
-    
-    <!-- Chat Component -->
-    <chat-component
-      data-chat-key="d8688ed616a1422a9e6bb863f05893cc"
-      mic="false"
-      assetsURL="https://img.botschool.ai/cdn/chatui/assets/"
-      socket-url="https://api.botschool.ai/">
-    </chat-component>
-    <script src="https://img.botschool.ai/cdn/chatui/chat-component.js"></script>
-    <link href="https://img.botschool.ai/cdn/chatui/chaticons.css" rel="stylesheet">
-    
-    <!-- Takeover Nav (Mobile) -->
-    <div id="takeover-nav">
-      <ul class="nav-items">
-        <li><a href="/servicos/tv">NexusTV</a></li>
-        <li><a href="/servicos/nexuschat">NexusChat</a></li>
-        <li><a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/nexus-browser">NexusBrowser</a></li>
-        <li><a href="https://pets-id-itxs.onrender.com/login">Pets ID</a></li>
-        <li><a href="mailto:reportesit.cimesis.nexusweb@gmail.com">CIMESIS Nexus</a></li>
-        <li><a href="/contacto">Contacto</a></li>
-      </ul>
-    </div>
-  </header>
+  <!-- O menu será carregado dinamicamente via JS -->
+  <header></header>
   
   <main>
-    <!-- Seção Hero com conteúdo do Pets ID -->
+    <!-- Seção Hero -->
     <section class="hero">
       <img src="https://t3.ftcdn.net/jpg/08/73/78/44/360_F_873784490_h5C3x1NRc2zigMiX6VmeLeeWZXDaEu21.jpg" alt="Imagem de fundo do Pets ID" class="hero-image">
       <div class="gradient-overlay"></div>
@@ -526,7 +546,7 @@
       </div>
     </section>
     
-    <!-- Seção About com conteúdo do Pets ID -->
+    <!-- Seção About -->
     <section class="about-section">
       <div class="container">
         <div class="about-content">
@@ -548,6 +568,7 @@
       </div>
     </section>
     
+    <!-- Chat Component -->
     <chat-component
       data-chat-key="d8688ed616a1422a9e6bb863f05893cc"
       mic="false" 
@@ -564,12 +585,17 @@
     </div>
   </footer>
   
+  <!-- Carrega o menu dinamicamente via JS -->
+  <script src="https://kikalabs-app-server-static.netlify.app/js/site-nxweb/menu.js"></script>
+  
   <script>
+    // Alternar menu mobile
     document.getElementById('nav-btn').addEventListener('click', function() {
       this.classList.toggle('active');
       document.getElementById('takeover-nav').classList.toggle('shown');
     });
     
+    // Efeito de scroll para a navbar fixa
     window.addEventListener('scroll', function() {
       const nav = document.querySelector('.sticky-nav');
       nav.classList.toggle('scrolled', window.scrollY > 0);
