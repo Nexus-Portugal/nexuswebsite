@@ -63,171 +63,7 @@
             padding: 0 20px;
         }
 
-        .sticky-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background-color: rgba(18, 18, 18, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 10px 0;
-            transition: var(--transition);
-        }
-
-        .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            width: 180px;
-            height: 40px;
-            background-image: url('https://kikalabs-app-server-static.netlify.app/images/site-nxweb/RealNexusWeb.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            transition: var(--transition);
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-        }
-
-        /* Menu Hamburguer (Mobile) */
-        #nav-btn {
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            background: none;
-            border: none;
-        }
-
-        .nav-line {
-            width: 100%;
-            height: 3px;
-            background-color: var(--light);
-            transition: var(--transition);
-        }
-
-        /* Takeover Nav (Mobile) */
-        #takeover-nav {
-            position: fixed;
-            width: 100%;
-            height: 100vh;
-            right: -100%;
-            top: 0;
-            transition: var(--transition);
-            z-index: 999;
-            background-color: rgba(18, 18, 18, 0.95);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        #takeover-nav.shown {
-            right: 0;
-        }
-
-        .nav-items {
-            list-style-type: none;
-            text-align: center;
-        }
-
-        .nav-items li {
-            margin-bottom: 2rem;
-        }
-
-        .nav-items a {
-            color: var(--light);
-            text-decoration: none;
-            font-size: 2em;
-            font-weight: 700;
-            position: relative;
-            transition: var(--transition);
-        }
-
-        .nav-items a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 3px;
-            bottom: -5px;
-            left: 50%;
-            background-color: var(--primary);
-            transition: var(--transition);
-        }
-
-        .nav-items a:hover {
-            color: var(--primary);
-        }
-
-        .nav-items a:hover::after {
-            width: 100%;
-            left: 0;
-        }
-
-        /* Navbar (Desktop) */
-        .navbar {
-            display: none; /* Esconde por padrão, mostra em telas maiores */
-        }
-
-        .navbar ul {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
-
-        .navbar a {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .navbar a:hover {
-            color: var(--primary);
-        }
-
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: var(--dark);
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-            padding: 10px;
-            border-radius: 5px;
-        }
-
-       .dropdown-content a {
-            padding: 10px;
-            text-decoration: none;
-            display: block;
-            clear: both;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .content {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 80px 0;
-        }
-
+        /* Estilos para o background (vídeo e overlay) */
         .video-wrap {
             position: fixed;
             top: 0;
@@ -257,55 +93,14 @@
             background: linear-gradient(to bottom, rgba(18, 18, 18, 0.3), rgba(18, 18, 18, 0.8));
         }
 
-        .contact-form-container {
+        /* Estilos para o conteúdo da política */
+        .content {
             position: relative;
-            z-index: 10;
-            background-color: rgba(18, 18, 18, 0.6); /* Mais transparente */
-            padding: 30px;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 600px;
-            animation: glowingBorder 5s ease-in-out infinite alternate;
-        }
-
-        @keyframes glowingBorder {
-            0% { box-shadow: 0 0 8px rgba(0, 255, 0, 0.5), 0 0 12px rgba(0, 255, 204, 0.4); } /* Cores mais suaves */
-            50% { box-shadow: 0 0 12px rgba(0, 204, 255, 0.4), 0 0 18px rgba(0, 153, 255, 0.3); }
-            100% { box-shadow: 0 0 8px rgba(0, 255, 0, 0.5), 0 0 12px rgba(0, 255, 204, 0.4); }
-        }
-
-        .contact-form-container h2 {
-            color: var(--light); /* Cor mais suave para o texto */
-            margin-bottom: 20px;
-            text-align: center;
-            font-size: 2em;
-            font-weight: 500; /* Peso da fonte mais leve */
-        }
-        iframe {
-            width: 80%; /* Aumenta a largura */
-            height: 600px; /* Aumenta a altura */
-            border: none;
-            border-radius: 10px; /* Bordas arredondadas */
-        }
-
-        @media (min-width: 769px) {
-            #nav-btn {
-                display: none; /* Esconde o menu hamburguer no desktop */
-            }
-
-            .navbar {
-                display: flex; /* Mostra a navbar no desktop */
-            }
-        }
-
-        @media (max-width: 768px) {
-            .contact-form-container {
-                width: 95%;
-                padding: 20px;
-            }
-            .contact-form-container h2 {
-                font-size: 1.6em;
-            }
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 0;
         }
 
         .privacy-policy-container {
@@ -364,53 +159,11 @@
             text-decoration: underline;
             color: var(--primary);
         }
-
     </style>
 </head>
 <body>
-    <header>
-        <nav class="sticky-nav">
-            <div class="container nav-content">
-                <a href="/" class="logo"></a>
-
-                 <!-- Navbar (Desktop) -->
-                <nav class="navbar">
-                    <ul>
-                        <li class="dropdown">
-                            <a href="#">Serviços</a>
-                            <div class="dropdown-content">
-                                <a href="/servicos/tv">NexusTV</a>
-                                <a href="/servicos/nexuschat">NexusChat</a>
-                                <a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/nexus-browser">NexusBrowser</a>
-                                <a href="/servicos/petsid">Pets ID</a>
-                            </div>
-                        </li>
-                        <li><a href="mailto:reportesit.cimesis.nexusweb@gmail.com">CIMESIS Nexus</a></li>
-                        <li><a href="/contacto">Contacto</a></li>
-                    </ul>
-                </nav>
-
-                <!-- Menu Hamburguer (Mobile) -->
-                <button id="nav-btn" aria-label="Menu de Navegação">
-                    <span class="nav-line"></span>
-                    <span class="nav-line"></span>
-                    <span class="nav-line"></span>
-                </button>
-            </div>
-        </nav>
-
-        <!-- Takeover Nav (Mobile) -->
-        <div id="takeover-nav">
-            <ul class="nav-items">
-                <li><a href="/servicos/tv">NexusTV</a></li>
-                <li><a href="/servicos/nexuschat">NexusChat</a></li>
-                <li><a href="https://sites.google.com/view/nexuswebdevelopment/servi%C3%A7os/nexus-browser">NexusBrowser</a></li>
-                <li><a href="/servicos/petsid">Pets ID</a></li>
-                <li><a href="mailto:reportesit.cimesis.nexusweb@gmail.com">CIMESIS Nexus</a></li>
-                <li><a href="/contacto">Contacto</a></li>
-            </ul>
-        </div>
-    </header>
+    <!-- O menu será carregado dinamicamente via JS -->
+    <header></header>
 
     <div class="content">
         <div class="video-wrap">
@@ -421,37 +174,32 @@
         </div>
         <div class="privacy-policy-container">
             <h1>Política de Privacidade</h1>
-
             <p>A NexusWeb ("nós", "nosso/a/s"), está empenhada em proteger a sua privacidade. Esta Política de Privacidade descreve como recolhemos, utilizamos e protegemos as suas informações pessoais quando visita o nosso website e utiliza os nossos serviços.</p>
-
             <h2>1. Informações que Recolhemos</h2>
             <p>Podemos recolher os seguintes tipos de informações:</p>
             <ul>
                 <li><strong>Dados de Utilização:</strong> Informações sobre como utiliza o nosso website, incluindo o seu endereço IP, tipo de navegador, páginas visitadas e tempo gasto no website.</li>
                 <li><strong>Informações de Dispositivo:</strong> Informações sobre o dispositivo que utiliza para aceder ao nosso website, incluindo o modelo do dispositivo, sistema operativo e identificadores únicos do dispositivo.</li>
                 <li><strong>Dados de Publicidade:</strong> Informações relacionadas com os anúncios que visualizou e com os quais interagiu.</li>
-                <li><strong>Endereços de e-mail:</strong> Recolhemos endereços de e-mail *apenas em alguns serviços* para fins de autenticação de dois fatores (2FA) e segurança da conta.</li>
+                <li><strong>Endereços de e-mail:</strong> Recolhemos endereços de e-mail <em>apenas em alguns serviços</em> para fins de autenticação de dois fatores (2FA) e segurança da conta.</li>
             </ul>
-
             <h2>2. Como Utilizamos as Suas Informações</h2>
             <p>Utilizamos as informações recolhidas para os seguintes fins:</p>
             <ul>
                 <li>Para fornecer e manter os nossos serviços.</li>
                 <li>Para melhorar e personalizar a sua experiência no nosso website.</li>
-                <li>Para comunicar consigo *apenas se nos contactar diretamente*, incluindo responder a suas perguntas e fornecer suporte ao cliente.</li>
+                <li>Para comunicar consigo <em>apenas se nos contactar diretamente</em>, incluindo responder a suas perguntas e fornecer suporte ao cliente.</li>
                 <li>Para analisar tendências de utilização e melhorar o nosso website e serviços.</li>
                 <li>Para fins de marketing e publicidade, incluindo a exibição de anúncios personalizados.</li>
-                <li>Para autenticação de dois fatores (2FA) e segurança da conta, *quando aplicável*.</li>
+                <li>Para autenticação de dois fatores (2FA) e segurança da conta, <em>quando aplicável</em>.</li>
             </ul>
-
             <h2>3. Partilha de Informações</h2>
             <p>Podemos partilhar as suas informações com os seguintes tipos de terceiros:</p>
             <ul>
-                <li><strong>Prestadores de Serviços:</strong> Empresas que nos ajudam a fornecer os nossos serviços, como fornecedores de alojamento web, serviços de análise e, *quando aplicável*, fornecedores de e-mail marketing para 2FA.</li>
+                <li><strong>Prestadores de Serviços:</strong> Empresas que nos ajudam a fornecer os nossos serviços, como fornecedores de alojamento web, serviços de análise e, <em>quando aplicável</em>, fornecedores de e-mail marketing para 2FA.</li>
                 <li><strong>Parceiros de Publicidade:</strong> Empresas com quem trabalhamos para exibir anúncios no nosso website e noutros websites.</li>
                 <li><strong>Autoridades Legais:</strong> Se formos obrigados a divulgar as suas informações por lei ou em resposta a um pedido válido de uma autoridade legal.</li>
             </ul>
-
             <h2>4. Tecnologias de Rastreamento e Segurança</h2>
             <p>Utilizamos as seguintes tecnologias de rastreamento e segurança:</p>
             <ul>
@@ -470,7 +218,6 @@
                 <li><strong>reCaptcha:</strong> Para proteger o website contra spam e abuso. Pode consultar a política de privacidade do reCaptcha em <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a> (Google Privacy Policy).</li>
                 <li><strong>Turnstile:</strong> Para proteger o website contra spam e abuso. Pode consultar a política de privacidade do Turnstile em <a href="https://www.cloudflare.com/privacypolicy/">https://www.cloudflare.com/privacypolicy/</a> (Cloudflare Privacy Policy).</li>
             </ul>
-
             <h2>5. Os Seus Direitos</h2>
             <p>Tem os seguintes direitos em relação às suas informações:</p>
             <ul>
@@ -482,24 +229,17 @@
                 <li>O direito à portabilidade das suas informações.</li>
             </ul>
             <p>Para exercer estes direitos, entre em contacto connosco através das informações de contacto fornecidas abaixo.</p>
-
             <h2>6. Segurança das Informações</h2>
             <p>Tomamos medidas razoáveis para proteger as suas informações contra acesso não autorizado, utilização ou divulgação. No entanto, nenhum método de transmissão pela internet ou método de armazenamento eletrónico é 100% seguro.</p>
-
             <h2>7. Alterações a Esta Política de Privacidade</h2>
             <p>Podemos atualizar esta Política de Privacidade periodicamente. Publicaremos a nova Política de Privacidade no nosso website. Recomendamos que reveja esta Política de Privacidade regularmente para quaisquer alterações.</p>
-
             <h2>8. Contacte-nos</h2>
             <p>Se tiver alguma questão sobre esta Política de Privacidade, entre em contacto connosco:</p>
             <p>Por email: <a href="mailto:help.nexusweb@gmail.com">help.nexusweb@gmail.com</a></p>
         </div>
     </div>
 
-    <script>
-        document.getElementById('nav-btn').addEventListener('click', function() {
-            this.classList.toggle('active');
-            document.getElementById('takeover-nav').classList.toggle('shown');
-        });
-    </script>
+    <!-- Carrega o menu dinamicamente via JS -->
+    <script src="https://kikalabs-app-server-static.netlify.app/js/site-nxweb/menu.js"></script>
 </body>
 </html>
