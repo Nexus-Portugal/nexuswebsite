@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nexus - Soluções Inteligentes</title>
   <!-- SEO Meta Tags -->
-  <meta name="description" content="Nexus Solutions - Soluções tecnológicas inteligentes para residências e empresas. Descubra soluções inovadoras em desenvolvimento de software, streaming, chat e muito mais.">
-  <meta name="keywords" content="Nexus Solutions, tecnologia, inovação, software, streaming, chat, desenvolvimento, soluções para empresas, soluções para residências">
+  <meta name="description" content="Nexus Web - Soluções tecnológicas inteligentes para residências e empresas. Descubra soluções inovadoras em desenvolvimento de software, streaming, chat e muito mais.">
+  <meta name="keywords" content="Nexus Web, tecnologia, inovação, software, streaming, chat, desenvolvimento, soluções para empresas, soluções para residências, nexuschat, nexustv, petsid, nexuspt, nexuspt.eu">
   <meta name="robots" content="index, follow">
   <meta name="author" content="Nexus Solutions">
-  <link rel="canonical" href="https://www.nexussolutions.com/">
+  <link rel="canonical" href="https://www.nexuspt.eu/">
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="Nexus - Soluções Inteligentes">
   <meta property="og:description" content="Soluções tecnológicas inovadoras para residências e empresas. Descubra nossos serviços em software, streaming, chat e muito mais.">
-  <meta property="og:url" content="https://www.nexussolutions.com/">
+  <meta property="og:url" content="https://www.nexuspt.eu/">
   <meta property="og:type" content="website">
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
@@ -161,7 +161,6 @@
       max-width: 600px;
       margin-bottom: 2.5rem;
     }
-    /* Seção de Boas-Vindas */
     .welcome {
       text-align: center;
       padding: 4rem 2rem;
@@ -178,7 +177,6 @@
       margin: 0 auto 2rem;
       color: var(--light);
     }
-   /* Valores da Nexus - Versão Atualizada */
     .values-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -237,37 +235,7 @@
             aspect-ratio: 2/1;
         }
     }
-    /* Seção de Clientes - Marquee */
-    .clients {
-      padding: 4rem 2rem;
-      background: rgba(255,255,255,0.03);
-      text-align: center;
-      overflow: hidden;
-    }
-    .clients-carousel {
-      position: relative;
-      overflow: hidden;
-    }
-    .clients-logos {
-      display: flex;
-      animation: marquee 20s linear infinite;
-    }
-    /* Duplicamos os logos para um efeito contínuo */
-    .clients-logos img {
-      flex: 0 0 auto;
-      margin: 0 1rem;
-      max-width: 150px;
-      opacity: 0.8;
-      transition: opacity 0.3s ease;
-    }
-    .clients-logos img:hover {
-      opacity: 1;
-    }
-    @keyframes marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    /* Seção de Serviços */
+
     .services-section {
       padding: 6rem 2rem;
       background: rgba(255,255,255,0.03);
@@ -401,6 +369,52 @@
         width: 40px;
       }
     }
+/* Seção Clientes - Loop Infinito Correto */
+.clients {
+  padding: 5rem 1rem;
+  background: var(--dark);
+  position: relative;
+  overflow: hidden;
+}
+
+.clients-title {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 3rem;
+  color: var(--primary);
+}
+
+.clients-track {
+  display: flex;
+  width: fit-content;
+  animation: marquee 20s linear infinite;
+  will-change: transform;
+}
+
+.client-logo {
+  height: 60px;
+  margin: 0 5rem;
+  flex-shrink: 0;
+  opacity: 0.8;
+  transition: var(--transition);
+}
+
+.client-logo:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Duplica os logos na renderização */
+@media (prefers-reduced-motion: no-preference) {
+  .clients-track {
+    animation: marquee 40s linear infinite;
+  }
+}
   </style>
 </head>
 <body>
@@ -409,8 +423,8 @@
          alt="Nexus" 
          class="logo">
   </header>
+  <script src="https://kikalabs-server.nexuspt.eu/js/site-nxweb/menu.js"></script>
   <main>
-    <!-- Hero com Carrossel -->
     <section class="hero">
       <div class="carousel">
         <div class="carousel-inner">
@@ -453,7 +467,6 @@
       </div>
     </section>
     
-<!-- Seção de Valores (Atualizada) -->
 <section class="welcome">
     <h2 class="welcome-title">Bem Vindo à Nexus</h2>
     <p class="welcome-text">
@@ -483,9 +496,32 @@
         </div>
     </div>
 </section>
-    
-    
-    <!-- Seção Serviços Domésticos -->
+
+
+<section class="clients">
+  <h3 class="clients-title">Eles <span>confiam</span> na Nexus:</h3>
+  <div class="clients-marquee">
+    <div class="clients-track">
+      <img src="https://kikalabs-server.nexuspt.eu/images/site-vilajaponesa/vilajaponesalogo.png" class="client-logo" alt="Client 1">
+      <img src="https://kikalabs-server.nexuspt.eu/images/site-vilaportuguesa/vilapt.png" class="client-logo" alt="Client 2">
+      <img src="https://kikalabs-server.nexuspt.eu/images/site-vilajaponesa/vilajaponesalogo.png" class="client-logo" alt="Client 3">
+      <img src="https://kikalabs-server.nexuspt.eu/images/site-vilaportuguesa/vilapt.png" class="client-logo" alt="Client 4">
+      
+      
+      
+      <img src="https://kikalabs-server.nexuspt.eu/images/site-vilajaponesa/vilajaponesalogo.png" class="client-logo" alt="Client 1">
+      <img src="https://kikalabs-server.nexuspt.eu/images/site-vilaportuguesa/vilapt.png" class="client-logo" alt="Client 2">
+      <img src="https://kikalabs-server.nexuspt.eu/images/site-vilajaponesa/vilajaponesalogo.png" class="client-logo" alt="Client 3">
+      <img src="https://kikalabs-server.nexuspt.eu/images/site-vilaportuguesa/vilapt.png" class="client-logo" alt="Client 4">
+            <img src="https://kikalabs-server.nexuspt.eu/images/site-vilajaponesa/vilajaponesalogo.png" class="client-logo" alt="Client 5">
+      <img src="https://kikalabs-server.nexuspt.eu/images/site-vilaportuguesa/vilapt.png" class="client-logo" alt="Client 6">
+      <img src="https://kikalabs-server.nexuspt.eu/images/site-vilajaponesa/vilajaponesalogo.png" class="client-logo" alt="Client 7">
+      <img src="https://kikalabs-server.nexuspt.eu/images/site-vilaportuguesa/vilapt.png" class="client-logo" alt="Client 4">
+    </div>
+  </div>
+</section>    
+
+
     <section id="domestic" class="services-section">
       <h2 class="section-title">Para Casa</h2>
       <div class="services-grid">
@@ -548,7 +584,6 @@
       </div>
     </section>
     
-    <!-- Seção Serviços Corporativos -->
     <section id="corporate" class="services-section" style="background: rgba(255,255,255,0.05)">
       <h2 class="section-title">Para Empresas</h2>
       <div class="services-grid">
@@ -603,7 +638,6 @@
   </main>
   
   <script>
-    // Controle do Carrossel do Hero
     let currentSlide = 0;
     const slides = document.querySelectorAll('.carousel-item');
     const dots = document.querySelectorAll('.carousel-dot');
@@ -628,7 +662,6 @@
       });
     });
     
-    // Scroll Suave
     function scrollToSection(sectionId) {
       const section = document.getElementById(sectionId);
       const headerOffset = 70;
@@ -640,7 +673,6 @@
       });
     }
     
-    // Animação dos Cards
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
