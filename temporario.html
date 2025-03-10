@@ -24,406 +24,42 @@
   <link rel="preload" as="image" href="https://images.unsplash.com/photo-1522071820081-009f0129c71c">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <style>
-    :root {
-      --primary: #19d9dc;
-      --secondary: #00ea63;
-      --dark: #0a0e16;
-      --light: #f8f9fa;
-      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--dark);
-      color: var(--light);
-      scroll-behavior: smooth;
-      line-height: 1.6;
-    }
-    /* Scrollbar Custom */
-    ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: var(--dark);
-    }
-    ::-webkit-scrollbar-thumb {
-      background: var(--primary);
-      border: 2px solid var(--dark);
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #16c2c5;
-    }
-    html {
-      scrollbar-color: var(--primary) var(--dark);
-      scrollbar-width: thin;
-    }
-    .header {
-      padding: 1rem 0;
-      background: rgba(10, 14, 22, 0.98);
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 1000;
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo {
-      height: 45px;
-      margin-left: 2rem;
-    }
-    /* Hero e Carrossel */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      position: relative;
-      margin-top: 70px;
-      overflow: hidden;
-    }
-    .carousel {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-    }
-    .carousel-inner {
-      height: 100%;
-      display: flex;
-      transition: transform 1s ease-in-out;
-    }
-    .carousel-item {
-      flex: 0 0 100%;
-      height: 100%;
-      position: relative;
-      overflow: hidden;
-    }
-    .carousel-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: brightness(0.3);
-      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-      transition: clip-path 0.6s ease;
-    }
-    .carousel-controls {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 1rem;
-      z-index: 3;
-    }
-    .carousel-dot {
-      width: 40px;
-      height: 4px;
-      background: rgba(255,255,255,0.3);
-      border: none;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    .carousel-dot.active {
-      background: var(--primary);
-      width: 60px;
-    }
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem;
-      text-align: center;
-    }
-    .hero-title {
-      font-size: 3.2rem;
-      margin-bottom: 1.5rem;
-      line-height: 1.1;
-      max-width: 800px;
-    }
-    .hero-title span {
-      color: var(--primary);
-      display: block;
-      font-size: 2.5rem;
-      margin-top: 0.5rem;
-    }
-    .hero-subtitle {
-      font-size: 1.2rem;
-      color: rgba(255,255,255,0.9);
-      max-width: 600px;
-      margin-bottom: 2.5rem;
-    }
-    .welcome {
-      text-align: center;
-      padding: 4rem 2rem;
-      background: var(--dark);
-    }
-    .welcome-title {
-      font-size: 3.5rem;
-      color: var(--primary);
-      margin-bottom: 1rem;
-    }
-    .welcome-text {
-      font-size: 1.2rem;
-      max-width: 800px;
-      margin: 0 auto 2rem;
-      color: var(--light);
-    }
-    .values-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-        max-width: 1200px;
-        margin: 2rem auto;
-        padding: 0 1rem;
-    }
-
-    .value-item {
-        aspect-ratio: 1/1;
-        border-radius: 16px;
-        overflow: hidden;
-        position: relative;
-        transition: var(--transition);
-        cursor: pointer;
-        border: 2px solid rgba(25, 217, 220, 0.3);
-    }
-
-    .value-item:hover {
-        transform: scale(1.05);
-        border-color: var(--primary);
-        box-shadow: 0 0 30px rgba(25, 217, 220, 0.2);
-    }
-
-    .value-item img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        filter: grayscale(0.3) brightness(0.7);
-        transition: var(--transition);
-    }
-
-    .value-item:hover img {
-        filter: grayscale(0) brightness(1);
-    }
-
-    .value-item h4 {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        padding: 1rem;
-        background: linear-gradient(transparent, rgba(0,0,0,0.8));
-        color: white;
-        text-align: center;
-        margin: 0;
-        font-size: 1.2rem;
-    }
-
-    @media (max-width: 768px) {
-        .values-grid {
-            grid-template-columns: 1fr;
-        }
-        
-        .value-item {
-            aspect-ratio: 2/1;
-        }
-    }
-
-    .services-section {
-      padding: 6rem 2rem;
-      background: rgba(255,255,255,0.03);
-    }
-    .section-title {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      padding-bottom: 1rem;
-      border-bottom: 2px solid var(--primary);
-      display: inline-block;
-    }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .service-card {
-      padding: 2rem;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      position: relative;
-      overflow: hidden;
-      transition: var(--transition);
-      min-height: 300px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .service-card:hover {
-      border-color: var(--primary);
-      transform: translateY(-5px);
-    }
-    .service-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(25, 217, 220, 0.1), transparent);
-      transition: var(--transition);
-    }
-    .service-card:hover::before {
-      left: 100%;
-    }
-    .service-icon {
-      font-size: 2.5rem;
-      color: var(--primary);
-      margin-bottom: 1.5rem;
-    }
-    .feature-list {
-      list-style: none;
-      margin-top: 1rem;
-    }
-    .feature-list li {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin: 0.5rem 0;
-      color: rgba(255,255,255,0.8);
-    }
-    /* Footer */
-    .footer {
-      background: rgba(10, 14, 22, 0.98);
-      padding: 4rem 2rem;
-      margin-top: 0;
-      border-top: 3px solid var(--primary);
-    }
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 3rem;
-    }
-    .footer-section h3 {
-      position: relative;
-      padding-bottom: 1rem;
-      margin-bottom: 2rem;
-    }
-    .footer-section h3::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 40px;
-      height: 2px;
-      background: var(--primary);
-    }
-    .footer-section p {
-      color: rgba(255,255,255,0.8);
-      line-height: 1.8;
-      font-size: 0.95rem;
-    }
-    .footer-links {
-      list-style: none;
-    }
-    .footer-links li {
-      margin-bottom: 0.8rem;
-    }
-    .footer-links a {
-      color: rgba(255,255,255,0.8);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-    .footer-links a:hover {
-      color: var(--primary);
-    }
-    @media (max-width: 768px) {
-      .hero-title {
-        font-size: 2.2rem;
-      }
-      .welcome-title {
-        font-size: 2.8rem;
-      }
-      .values-grid {
-        flex-direction: column;
-        gap: 1rem;
-      }
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-      .carousel-dot {
-        width: 30px;
-        height: 3px;
-      }
-      .carousel-dot.active {
-        width: 40px;
-      }
-    }
-/* Seção Clientes - Loop Infinito Correto */
-.clients {
-  padding: 5rem 1rem;
-  background: var(--dark);
-  position: relative;
-  overflow: hidden;
-}
-
-.clients-title {
-  text-align: center;
-  font-size: 2.2rem;
-  margin-bottom: 3rem;
-  color: var(--primary);
-}
-
-.clients-track {
-  display: flex;
-  width: fit-content;
-  animation: marquee 20s linear infinite;
-  will-change: transform;
-}
-
-.client-logo {
-  height: 60px;
-  margin: 0 5rem;
-  flex-shrink: 0;
-  opacity: 0.8;
-  transition: var(--transition);
-}
-
-.client-logo:hover {
-  opacity: 1;
-  transform: scale(1.1);
-}
-
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-/* Duplica os logos na renderização */
-@media (prefers-reduced-motion: no-preference) {
-  .clients-track {
-    animation: marquee 40s linear infinite;
-  }
-}
-  </style>
+  <link rel="stylesheet" href="https://kikalabs-server.nexuspt.eu/css/site-nxweb/index.css">
 </head>
 <body>
   <header class="header">
-    <img src="https://kikalabs-app-server-static.netlify.app/images/site-nxweb/RealNexusWeb.png" 
-         alt="Nexus" 
-         class="logo">
+    <a href="/" class="logo-link">
+        <img src="https://kikalabs-server.nexuspt.eu/images/site-nxweb/RealNexusWeb.png" 
+             alt="Nexus" 
+             class="logo">
+    </a>
+    
+    <nav class="nav-menu">
+        <button class="hamburger" aria-label="Menu">
+            <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+            </span>
+        </button>
+        
+        <ul class="nav-list">
+            <li class="dropdown">
+                <a href="#servicos">Serviços <i class="fas fa-chevron-down"></i></a>
+                <ul class="submenu">
+                    <li><a href="/servicos/nexuschat">NexusChat</a></li>
+                    <li><a href="/servicos/tv">NexusTV</a></li>
+                    <li><a href="/servicos/petsid">Pets ID</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#parcerias">Parcerias <i class="fas fa-chevron-down"></i></a>
+                <ul class="submenu">
+                    <li><a href="/parcerias/vilajaponesa">Vila Japonesa</a></li>
+                </ul>
+            </li>
+            <li><a href="/contacto">Contacto</a></li>
+        </ul>
+    </nav>
   </header>
-  <script src="https://kikalabs-server.nexuspt.eu/js/site-nxweb/menu.js"></script>
   <main>
     <section class="hero">
       <div class="carousel">
@@ -614,8 +250,8 @@
       <div class="footer-content">
         <div class="footer-section">
           <h3>Sobre Nós</h3>
-          <p>Nexus Technology Solutions</p>
-          <p>Porto, Portugal</p>
+          <p>NexusPT, conhecida</p>
+          <p>também como NexusWeb</p>
         </div>
         <div class="footer-section">
           <h3>Links Úteis</h3>
@@ -636,57 +272,6 @@
       </div>
     </footer>
   </main>
-  
-  <script>
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.carousel-item');
-    const dots = document.querySelectorAll('.carousel-dot');
-    const carouselInner = document.querySelector('.carousel-inner');
-    
-    function updateCarousel() {
-      carouselInner.style.transform = `translateX(-${currentSlide * 100}%)`;
-      dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentSlide);
-      });
-    }
-    
-    setInterval(() => {
-      currentSlide = (currentSlide + 1) % slides.length;
-      updateCarousel();
-    }, 7000);
-    
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        currentSlide = index;
-        updateCarousel();
-      });
-    });
-    
-    function scrollToSection(sectionId) {
-      const section = document.getElementById(sectionId);
-      const headerOffset = 70;
-      const elementPosition = section.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = 1;
-          entry.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, { threshold: 0.1 });
-    
-    document.querySelectorAll('.service-card').forEach(card => {
-      card.style.opacity = 0;
-      card.style.transform = 'translateY(30px)';
-      observer.observe(card);
-    });
-  </script>
+<script src="https://kikalabs-server.nexuspt.eu/js/site-nxweb/index.js"></script>
 </body>
 </html>
