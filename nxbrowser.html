@@ -1,148 +1,390 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-PT">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baixe o NexusBrowser - Rápido, seguro e privativo</title>
-    <link rel="icon" href="https://nexuspt.eu/favicon.ico" type="image/x-icon">
+    <title>NexusBrowser - Navegador Rápido e Seguro</title>
+    <link rel="icon" href="https://nexuspt.eu/favicon.ico">
     <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --text-color: #333;
+            --light-gray: #f3f4f6;
+            --medium-gray: #e5e7eb;
+            --dark-gray: #6b7280;
+        }
+        
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             margin: 0;
             padding: 0;
-            color: #333;
+            color: var(--text-color);
             line-height: 1.6;
-            text-align: center;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
         
         header {
-            padding: 20px 0;
-            border-bottom: 1px solid #eee;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
         }
         
         .logo {
-            height: 70px;
-            margin-bottom: 10px;
+            height: 40px;
         }
         
-        h1 {
-            font-size: 28px;
-            font-weight: 400;
-            margin-bottom: 30px;
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
         }
         
-        .download-container {
-            max-width: 600px;
-            margin: 40px auto;
-            padding: 20px;
+        nav li {
+            margin-left: 25px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--primary-color);
+        }
+        
+        .hero {
+            background-color: var(--light-gray);
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: var(--dark-gray);
         }
         
         .download-btn {
-            background-color: #4285f4;
+            background-color: var(--primary-color);
             color: white;
-            border: none;
-            padding: 12px 24px;
-            font-size: 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin: 20px 0;
-            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
             text-decoration: none;
+            display: inline-block;
             transition: background-color 0.3s;
         }
         
         .download-btn:hover {
-            background-color: #3367d6;
-        }
-        
-        .version-info {
-            font-size: 14px;
-            color: #666;
-            margin-top: 30px;
-        }
-        
-        .platform-options {
-            margin: 30px 0;
-        }
-        
-        .platform-link {
-            color: #4285f4;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-        
-        .platform-link:hover {
-            text-decoration: underline;
-        }
-        
-        footer {
-            margin-top: 50px;
-            padding: 20px;
-            font-size: 12px;
-            color: #999;
-            border-top: 1px solid #eee;
+            background-color: var(--secondary-color);
         }
         
         .features {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 50px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        .download-section {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .download-section h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+        
+        .platforms {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            margin: 40px 0;
+            gap: 15px;
+            margin-bottom: 30px;
         }
         
-        .feature {
-            width: 200px;
-            margin: 15px;
-            padding: 20px;
-            border-radius: 8px;
-            background-color: #f9f9f9;
+        .platform-btn {
+            background-color: white;
+            color: var(--primary-color);
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .platform-btn:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .version-info {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .legal-notice {
+            margin: 20px 0;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        footer {
+            background-color: var(--text-color);
+            color: white;
+            padding: 40px 0;
+            font-size: 0.9rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #4b5563;
+            color: #9ca3af;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+            }
+            
+            nav li {
+                margin: 0 10px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <img src="https://nexuspt.eu/favicon.ico" alt="NexusBrowser" class="logo">
+        <div class="container header-content">
+            <img src="https://nexuspt.eu/favicon.ico" alt="NexusBrowser" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="#">Início</a></li>
+                    <li><a href="#features">Funcionalidades</a></li>
+                    <li><a href="#download">Download</a></li>
+                    <li><a href="#">Suporte</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
     
-    <div class="download-container">
-        <h1>Baixe o NexusBrowser</h1>
-        <p>Um navegador rápido, seguro e focado na sua privacidade.</p>
-        
-        <div class="platform-options">
-            <a href="https://mega.nz/file/umZxQJJa#TPhOyeCYCpt_iyLWzmJz3IHXuYVfQ2C0Jeg-lSAFS8o" class="platform-link">Windows 10/11</a>
-            <a href="#" class="platform-link">macOS</a>
-            <a href="#" class="platform-link">Linux</a>
-            <a href="#" class="platform-link">Android</a>
-            <a href="#" class="platform-link">iOS</a>
+    <section class="hero">
+        <div class="container">
+            <h1>NexusBrowser</h1>
+            <p>O navegador rápido, seguro e privativo desenvolvido para oferecer a melhor experiência na web sem comprometer sua privacidade.</p>
+            <a href="https://mega.nz/file/umZxQJJa#TPhOyeCYCpt_iyLWzmJz3IHXuYVfQ2C0Jeg-lSAFS8o" class="download-btn">Download Gratuito</a>
         </div>
-        
-        <a href="https://mega.nz/file/umZxQJJa#TPhOyeCYCpt_iyLWzmJz3IHXuYVfQ2C0Jeg-lSAFS8o" class="download-btn">Baixar para Windows (64-bit)</a>
-        
-        <div class="version-info">
-            Versão 3.2.1 - Atualizado em 24/03/2025<br>
-            Tamanho do arquivo: 85 MB
+    </section>
+    
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Porquê escolher o NexusBrowser</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Velocidade Extrema</h3>
+                    <p>Motor de renderização otimizado que carrega páginas em tempo recorde, mesmo com múltiplos tabs abertos.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Segurança Robustecida</h3>
+                    <p>Proteção avançada contra malware, phishing e ataques na web, mantendo seus dados sempre seguros.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Privacidade Garantida</h3>
+                    <p>Bloqueio automático de rastreadores e anúncios intrusivos, sem coletar seus dados de navegação.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧩</div>
+                    <h3>Extensões Compatíveis</h3>
+                    <p>Suporte às principais extensões do Chrome Web Store para personalizar sua experiência.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💾</div>
+                    <h3>Pouco Uso de Memória</h3>
+                    <p>Arquitetura eficiente que consome menos recursos do seu sistema comparado a outros navegadores.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Sincronização Multiplataforma</h3>
+                    <p>Acesse seus favoritos, histórico e configurações em todos os seus dispositivos de forma segura.</p>
+                </div>
+            </div>
         </div>
-        
-        <div class="features">
-            <div class="feature">
-                <h3>Rápido</h3>
-                <p>Carregamento ultrarrápido de páginas com o motor Quantum</p>
+    </section>
+    
+    <section id="download" class="download-section">
+        <div class="container">
+            <h2>Baixe o NexusBrowser Agora</h2>
+            <p>Disponível para todas as principais plataformas</p>
+            
+            <div class="platforms">
+                <a href="https://mega.nz/file/umZxQJJa#TPhOyeCYCpt_iyLWzmJz3IHXuYVfQ2C0Jeg-lSAFS8o" class="platform-btn">Windows</a>
+                <a href="#" class="platform-btn">macOS</a>
+                <a href="#" class="platform-btn">Linux</a>
+                <a href="#" class="platform-btn">Android</a>
+                <a href="#" class="platform-btn">iOS</a>
             </div>
-            <div class="feature">
-                <h3>Seguro</h3>
-                <p>Proteção contra malware e phishing integrada</p>
+            
+            <div class="version-info">
+                Versão atual: 3.2.1 | Tamanho: 85MB | Atualizado em: 24/03/2025
             </div>
-            <div class="feature">
-                <h3>Privativo</h3>
-                <p>Bloqueio de rastreadores e anúncios intrusivos</p>
+            
+            <div class="legal-notice">
+                Ao baixar e usar o NexusBrowser, você concorda com os <a href="https://nexuspt.eu/termos" style="color: white; text-decoration: underline;">Termos de Serviço</a> e <a href="https://nexuspt.eu/privacidade" style="color: white; text-decoration: underline;">Política de Privacidade</a>.
             </div>
         </div>
-        
-        <p>Ao baixar e instalar o NexusBrowser, você concorda com os <a href="#" style="color: #4285f4;">Termos de Serviço</a> e a <a href="#" style="color: #4285f4;">Política de Privacidade</a>.</p>
-    </div>
+    </section>
     
     <footer>
-        © 2025 NexusBrowser Technologies. Todos os direitos reservados.
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>NexusBrowser</h3>
+                    <ul>
+                        <li><a href="#">Sobre</a></li>
+                        <li><a href="#features">Funcionalidades</a></li>
+                        <li><a href="#">Tecnologia</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Ajuda</h3>
+                    <ul>
+                        <li><a href="#">Centro de Ajuda</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Comunidade</a></li>
+                        <li><a href="#">Contactar Suporte</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="https://nexuspt.eu/termos">Termos de Serviço</a></li>
+                        <li><a href="https://nexuspt.eu/privacidade">Política de Privacidade</a></li>
+                        <li><a href="#">Cookies</a></li>
+                        <li><a href="#">Licenças</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Desenvolvedores</h3>
+                    <ul>
+                        <li><a href="#">Documentação</a></li>
+                        <li><a href="#">API</a></li>
+                        <li><a href="#">Contribuir</a></li>
+                        <li><a href="#">Extensões</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                © 2025 NexusBrowser. Todos os direitos reservados. NexusBrowser é uma marca registrada da NexusPT.
+            </div>
+        </div>
     </footer>
 </body>
 </html>
