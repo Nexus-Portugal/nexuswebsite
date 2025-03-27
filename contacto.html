@@ -3,102 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexusWeb - Contacto</title>
-    <meta name="description" content="Entre em contacto com a NexusWeb para soluções digitais inovadoras e personalizadas.">
-    <meta name="keywords" content="NexusWeb, contacto, inovação digital, soluções personalizadas">
-    <meta name="author" content="NexusWeb">
-    <link rel="canonical" href="https://nexusweb.netlify.app/contacto">
-    <meta property="og:title" content="NexusWeb - Contacte-nos">
-    <meta property="og:description" content="Entre em contacto connosco para transformar as suas ideias em realidade digital.">
-    <meta property="og:image" content="https://kikalabs-server.nexuspt.eu/images/site-nxweb/RealNexusWeb.png">
-    <meta property="og:url" content="https://nexusweb.netlify.app/contacto">
-    <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
-    <script src="https://kikalabs-server.nexuspt.eu/js/site-nxweb/ads.js"></script>
+    <title>Nexus - Contacto</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Entre em contacto com a Nexus para soluções digitais inovadoras">
+    <meta name="keywords" content="Nexus, contacto, suporte, ajuda, tecnologia">
+    <meta name="author" content="Nexus Solutions">
+    <link rel="canonical" href="https://www.nexuspt.eu/contacto">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Nexus - Contacte-nos">
+    <meta property="og:description" content="Transforme suas ideias em realidade com a Nexus">
+    <meta property="og:url" content="https://www.nexuspt.eu/contacto">
+    <meta property="og:type" content="website">
+    <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <script src="https://kikalabs-server.nexuspt.eu/js/site-nxweb/ads.js"></script>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7772613538554309"
-     crossorigin="anonymous"></script>
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <meta name="twitter:title" content="Nexus - Contacte-nos">
+    <meta name="twitter:description" content="Transforme suas ideias em realidade com a Nexus">
+    <!-- Fontes e CSS Externo -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://kikalabs-server.nexuspt.eu/css/site-nxweb/index.css">
     <style>
         :root {
-            --primary: #00ff00;
-            --secondary: #00ccff;
+            --primary: #19D9DC;  /* Azul NexusChat */
+            --secondary: #0066CC;
             --dark: #121212;
             --light: #f8f8f8;
             --transition: all 0.3s ease-in-out;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--dark);
-            color: var(--light);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--dark);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(var(--primary), var(--secondary));
-            border-radius: 5px;
-            animation: scrollColorChange 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes scrollColorChange {
-            from { background: linear-gradient(var(--primary), var(--secondary)); }
-            to { background: linear-gradient(var(--secondary), var(--primary)); }
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .sticky-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background-color: rgba(18, 18, 18, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 10px 0;
-            transition: var(--transition);
-        }
-
-        .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            width: 180px;
-            height: 40px;
-            background-image: url('https://kikalabs-server.nexuspt.eu/images/site-nxweb/RealNexusWeb.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            transition: var(--transition);
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-        }
-
 
         .content {
             position: relative;
@@ -106,7 +37,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 80px 0;
+            padding: 100px 0 50px;
         }
 
         .video-wrap {
@@ -135,81 +66,130 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(18, 18, 18, 0.3), rgba(18, 18, 18, 0.8));
+            background: linear-gradient(to bottom, 
+                rgba(18, 18, 18, 0.9), 
+                rgba(18, 18, 18, 0.7));
         }
 
         .contact-form-container {
             position: relative;
             z-index: 10;
-            background-color: rgba(18, 18, 18, 0.6); /* Mais transparente */
-            padding: 30px;
-            border-radius: 15px;
+            background: rgba(18, 18, 18, 0.8);
+            padding: 2.5rem;
+            border-radius: 16px;
             width: 90%;
             max-width: 600px;
-            animation: glowingBorder 5s ease-in-out infinite alternate;
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 30px rgba(25,217,220,0.2);
+            animation: glowPulse 3s ease-in-out infinite;
         }
 
-        @keyframes glowingBorder {
-            0% { box-shadow: 0 0 8px rgba(0, 255, 0, 0.5), 0 0 12px rgba(0, 255, 204, 0.4); } /* Cores mais suaves */
-            50% { box-shadow: 0 0 12px rgba(0, 204, 255, 0.4), 0 0 18px rgba(0, 153, 255, 0.3); }
-            100% { box-shadow: 0 0 8px rgba(0, 255, 0, 0.5), 0 0 12px rgba(0, 255, 204, 0.4); }
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 15px rgba(25,217,220,0.3); }
+            50% { box-shadow: 0 0 30px rgba(25,217,220,0.5); }
         }
 
         .contact-form-container h2 {
-            color: var(--light); /* Cor mais suave para o texto */
-            margin-bottom: 20px;
+            color: var(--primary);
             text-align: center;
-            font-size: 2em;
-            font-weight: 500; /* Peso da fonte mais leve */
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            font-weight: 600;
         }
 
         iframe {
-            width: 80%; /* Aumenta a largura */
-            height: 600px; /* Aumenta a altura */
+            width: 100%;
+            height: 600px;
             border: none;
-            border-radius: 10px; /* Bordas arredondadas */
-        }
-
-        @media (min-width: 769px) {
-            #nav-btn {
-                display: none; /* Esconde o menu hamburguer no desktop */
-            }
-
-            .navbar {
-                display: flex; /* Mostra a navbar no desktop */
-            }
+            border-radius: 8px;
+            background: transparent;
         }
 
         @media (max-width: 768px) {
             .contact-form-container {
-                width: 95%;
-                padding: 20px;
+                padding: 1.5rem;
+                margin-top: 70px;
             }
-            .contact-form-container h2 {
-                font-size: 1.6em;
+            
+            iframe {
+                height: 500px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- O menu será carregado dinamicamente via JS -->
-    <header></header>
-        <script src="https://kikalabs-server.nexuspt.eu/js/site-nxweb/menu.js"></script>
-    <div class="content">
+    <!-- Header -->
+    <header class="header">
+        <a href="/" class="logo-link">
+            <img src="https://kikalabs-server.nexuspt.eu/images/site-nxweb/RealNexusWeb.png" alt="Nexus" class="logo">
+        </a>
+        <nav class="nav-menu">
+            <button class="hamburger" aria-label="Menu">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </button>
+            <ul class="nav-list">
+                <li class="dropdown">
+                    <a href="#servicos">Serviços <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="/servicos/nexuschat">NexusChat</a></li>
+                        <li><a href="/servicos/tv">NexusTV</a></li>
+                        <li><a href="/servicos/petsid">Pets ID</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#parcerias">Parcerias <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="/parcerias/vilajaponesa">Vila Japonesa</a></li>
+                    </ul>
+                </li>
+                <li><a href="/contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="content">
         <div class="video-wrap">
-            <video autoplay loop muted playsinline id="video-bg" loading="lazy">
+            <video autoplay loop muted playsinline id="video-bg">
                 <source src="https://kikalabs-server.nexuspt.eu/video/site-nxweb/backtech.mp4" type="video/mp4">
             </video>
             <div class="gradient-overlay"></div>
         </div>
-        <div class="powr-contact-form" id="e14e2712_1737487454"></div><script src="https://www.powr.io/powr.js?platform=html"></script>
-    </div>
+        
+        <div class="contact-form-container">
+            <h2>Fale Connosco</h2>
+            <div class="powr-contact-form" id="e14e2712_1737487454"></div>
+        </div>
+    </main>
 
-    <script>
-        document.getElementById('nav-btn').addEventListener('click', function() {
-            this.classList.toggle('active');
-            document.getElementById('takeover-nav').classList.toggle('shown');
-        });
-    </script>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sobre Nós</h3>
+                <p>NexusPT - Transformando ideias em realidade digital</p>
+            </div>
+            <div class="footer-section">
+                <h3>Links Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="/servicos/nexuschat">NexusChat</a></li>
+                    <li><a href="/servicos/tv">NexusTV</a></li>
+                    <li><a href="/servicos/petsid">Pets ID</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul class="footer-links">
+                    <li><a href="/termos">Termos de Serviço</a></li>
+                    <li><a href="/privacidade">Privacidade</a></li>
+                    <li><a href="/contacto">Suporte</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://www.powr.io/powr.js?platform=html"></script>
+    <script src="https://kikalabs-server.nexuspt.eu/js/site-nxweb/index.js"></script>
 </body>
 </html>
