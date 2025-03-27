@@ -3,594 +3,255 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pets ID - O boletim digital do seu PET</title>
-  <meta name="description" content="O Pets ID ofereçe serviços inovadores para a gestão do seu PET.">
-  <meta name="keywords" content="NexusWeb, Pets, Boletim, ID, Pets ID, Portugal">
-  <meta name="author" content="NexusWeb">
-  <link rel="canonical" href="https://nexuswebco.netlify.app/servicos/petsid">
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
-  <script src="https://kikalabs-server.nexuspt.eu/js/site-nxweb/ads.js"></script>
-  <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "q48rygpjz8");
-  </script>
+  <title>Pets ID - Nexus Solutions</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Gerencie as informações e vacinas do seu pet com o Pets ID">
+  <meta name="keywords" content="Pets ID, animais de estimação, vacinas, saúde animal, Nexus">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Nexus Solutions">
+  <link rel="canonical" href="https://www.nexuspt.eu/servicos/petsid">
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Pets ID - Nexus Solutions">
+  <meta property="og:description" content="O boletim digital completo para o seu animal de estimação">
+  <meta property="og:url" content="https://www.nexuspt.eu/servicos/petsid">
+  <meta property="og:type" content="website">
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pets ID - Nexus Solutions">
+  <meta name="twitter:description" content="O boletim digital completo para o seu animal de estimação">
+  <!-- Fontes e CSS Externo -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://kikalabs-server.nexuspt.eu/css/site-nxweb/index.css">
+  <!-- Estilos Customizados -->
   <style>
-    :root {
-      /* Utilizamos apenas as cores azul e fundo escuro – sem roxo */
-      --primary:   #00ccff;  /* Azul primário */
-      --secondary: #0080ff;
-      --dark:      #121212;
-      --light:     #f8f8f8;
-      --transition: all 0.3s ease-in-out;
-    }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--dark);
-      color: var(--light);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-    
-    /* Barra de rolagem */
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-    
-    ::-webkit-scrollbar-track {
-      background: var(--dark);
-    }
-    
-    ::-webkit-scrollbar-thumb {
-      background: linear-gradient(var(--primary), var(--secondary));
-      border-radius: 5px;
-      animation: scrollColorChange 3s ease-in-out infinite alternate;
-    }
-    
-    @keyframes scrollColorChange {
-      from { background: linear-gradient(var(--primary), var(--secondary)); }
-      to { background: linear-gradient(var(--secondary), var(--primary)); }
-    }
-    
-    .container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    
-    /* Cabeçalho e Menu – serão carregados via JS */
-    .sticky-nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      background-color: rgba(18, 18, 18, 0.8);
-      backdrop-filter: blur(10px);
-      padding: 10px 0;
-      transition: var(--transition);
-    }
-    
-    .nav-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    
-    .logo {
-      width: 180px;
-      height: 40px;
-      background-image: url('https://kikalabs-server.nexuspt.eu/images/site-nxweb/RealNexusWeb.png');
-      background-size: contain;
-      background-repeat: no-repeat;
-      transition: var(--transition);
-    }
-    
-    .logo:hover {
-      transform: scale(1.05);
-    }
-    
-    /* Navbar Desktop – Menu com dropdown “Serviços” */
-    .navbar {
-      display: none;
-    }
-    
-    .navbar ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-    }
-    
-    .navbar a {
-      color: var(--light);
+    /* Estilos do Botão CTA */
+    .cta-button {
+      background: var(--primary);
+      color: var(--dark);
+      padding: 15px 30px;
+      border-radius: 50px;
       text-decoration: none;
       font-weight: 600;
       transition: var(--transition);
-      padding: 5px 10px;
+      display: inline-block;
+      border: 2px solid transparent;
+      margin-top: 1rem;
     }
-    
-    .navbar a:hover {
-      color: var(--primary);
+
+    .cta-button:hover {
+      background: var(--secondary);
+      color: var(--dark);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(25,217,220,0.3);
     }
-    
-    .dropdown {
-      position: relative;
-    }
-    
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: var(--dark);
-      min-width: 160px;
-      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-      z-index: 1;
-      padding: 10px;
-      border-radius: 5px;
-    }
-    
-    .dropdown-content a {
-      padding: 10px;
-      text-decoration: none;
-      display: block;
-      color: var(--light);
-    }
-    
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-    
-    /* Menu Hamburguer (Mobile) */
-    #nav-btn {
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      background: none;
-      border: none;
-    }
-    
-    .nav-line {
-      width: 100%;
-      height: 3px;
-      background-color: var(--light);
-      transition: var(--transition);
-    }
-    
-    /* Takeover Nav – Menu Mobile */
-    #takeover-nav {
-      position: fixed;
-      width: 100%;
-      height: 100vh;
-      right: -100%;
-      top: 0;
-      transition: var(--transition);
-      z-index: 999;
-      background-color: rgba(18, 18, 18, 0.95);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-    
-    #takeover-nav.shown {
-      right: 0;
-    }
-    
-    .nav-items {
-      list-style-type: none;
-      text-align: center;
-    }
-    
-    .nav-items li {
-      margin-bottom: 2rem;
-    }
-    
-    .nav-items a {
-      color: var(--light);
-      text-decoration: none;
-      font-size: 2em;
-      font-weight: 700;
-      position: relative;
-      transition: var(--transition);
-    }
-    
-    .nav-items a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 3px;
-      bottom: -5px;
-      left: 50%;
-      background-color: var(--primary);
-      transition: var(--transition);
-    }
-    
-    .nav-items a:hover {
-      color: var(--primary);
-    }
-    
-    .nav-items a:hover::after {
-      width: 100%;
-      left: 0;
-    }
-    
-    /* Seção Hero – Conteúdo do Pets ID */
+
+    /* Hero Section */
     .hero {
-      height: 60vh;
+      position: relative;
+      min-height: 60vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
+      margin-top: 70px;
       overflow: hidden;
     }
-    
-    .hero-image {
+
+    .hero img {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      z-index: -1;
+      filter: brightness(0.3);
+      z-index: 1;
     }
-    
-    .gradient-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to bottom, rgba(18, 18, 18, 0.3), rgba(18, 18, 18, 0.8));
-    }
-    
+
     .hero-content {
-      text-align: center;
+      position: relative;
       z-index: 2;
-      max-width: 800px;
-      padding: 0 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      text-align: center;
     }
-    
+
     .hero-title {
-      font-size: 4.5em;
-      font-weight: 900;
-      margin-bottom: 20px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      animation: glowText 3s ease-in-out infinite alternate;
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
     }
-    
-    @keyframes glowText {
-      from { text-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary), 0 0 15px var(--primary); }
-      to { text-shadow: 0 0 10px var(--secondary), 0 0 20px var(--secondary), 0 0 30px var(--secondary); }
-    }
-    
+
     .hero-subtitle {
-      font-size: 1.5em;
-      margin-bottom: 40px;
-      opacity: 0.8;
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.9);
+      max-width: 600px;
+      margin: 0 auto 2rem;
     }
-    
-    .cta-container {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
-    
-    .cta-button {
-      padding: 15px 30px;
-      font-size: 1.1em;
-      font-weight: 600;
-      text-transform: uppercase;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-      text-decoration: none;
-      display: inline-block;
-    }
-    
-    .cta-button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
-      transition: var(--transition);
-    }
-    
-    .cta-button:hover::before {
-      left: 100%;
-    }
-    
-    .cta-primary {
-      background-color: var(--primary);
-      color: var(--light);
-    }
-    
-    .cta-primary:hover {
-      background-color: var(--secondary);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(0,204,255,0.3);
-    }
-    
-    /* Seção About – Conteúdo do Pets ID */
+
+    /* About Section */
     .about-section {
-      padding: 80px 0;
-      background-color: var(--dark);
+      padding: 4rem 2rem;
+      background: var(--dark);
+      text-align: center;
     }
-    
-    .about-content {
-      display: flex;
-      align-items: center;
-      gap: 40px;
-      flex-wrap: wrap;
-    }
-    
-    .about-text {
-      flex: 1;
-      padding-right: 40px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    
-    .about-text h2 {
-      color: var(--primary);
-      margin-bottom: 20px;
-    }
-    
-    .about-text p {
-      margin-bottom: 15px;
-    }
-    
-    .about-text ul {
-      padding-left: 20px;
-      margin-bottom: 15px;
-    }
-    
-    .about-text ul li {
-      margin-bottom: 10px;
-      position: relative;
-    }
-    
-    .about-text ul li::before {
-      content: '•';
-      color: var(--primary);
-      position: absolute;
-      left: -20px;
-    }
-    
-    .about-text .cta-button {
-      margin-top: 20px;
-      align-self: flex-start;
-      background-color: var(--primary);
-      color: var(--light);
-      border-radius: 50px;
-      padding: 15px 30px;
-      text-transform: uppercase;
-      font-weight: 600;
-      border: none;
-      cursor: pointer;
-      transition: var(--transition);
-      text-decoration: none;
-      display: inline-block;
-    }
-    
-    .about-text .cta-button:hover {
-      background-color: var(--secondary);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(0,204,255,0.3);
-    }
-    
-    .about-image {
-      flex: 1;
-      max-width: 350px;
-      display: flex;
-      justify-content: center;
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 2rem auto;
       align-items: center;
     }
-    
+
     .about-image img {
       width: 100%;
-      height: auto;
-      object-fit: contain;
-      border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0,204,255,0.2);
-    }
-    
-    footer {
-      background-color: var(--dark);
-      color: var(--light);
-      text-align: center;
-      padding: 20px 0;
-    }
-    
-    /* Media Queries */
-    @media (min-width: 769px) {
-      #nav-btn { display: none; }
-      .navbar { display: flex; }
-    }
-    
-    @media (max-width: 768px) {
-      .navbar { display: none; }
-      .hero-title { font-size: 3em; }
-      .hero-subtitle { font-size: 1.2em; }
-      .cta-container { flex-direction: column; }
-      .cta-button { width: 100%; }
-      .about-content { flex-direction: column; }
-      .about-text, .about-image {
-        width: 100%;
-        padding: 0;
-        margin-bottom: 30px;
-      }
-      .about-image { flex: 1; max-width: 350px; }
-    }
-    
-    /* Chat Component Custom Styles */
-    chat-component {
-      --chat-font-family: 'Segoe UI', 'Inter', 'Roboto', sans-serif;
-      --chat-primary-color: #00ccff;
-      --chat-secondary-color: #0080ff;
-      --chat-background-color: rgba(18, 18, 18, 0.95);
-      --chat-text-color: #f8f8f8;
-    }
-    
-    chat-component::part(chat-container) {
-      font-weight: 500;
-      letter-spacing: 0.5px;
-      line-height: 1.6;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,204,255,0.2);
-    }
-    
-    /* Modal (opcional) */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.7);
-      z-index: 1000;
-    }
-    
-    .modal-content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: var(--dark);
-      padding: 30px;
-      border-radius: 15px;
-      width: auto;
       max-width: 500px;
-      box-shadow: 0 5px 15px rgba(0,204,255,0.3);
-      text-align: center;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(25,217,220,0.2);
     }
-    
-    .close {
-      color: var(--light);
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 24px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: color 0.2s ease-in-out;
+
+    .about-features {
+      text-align: left;
     }
-    
-    .close:hover,
-    .close:focus {
-      color: var(--primary);
-      text-decoration: none;
-    }
-    
-    .modal-content h2 {
-      color: var(--primary);
-      margin-bottom: 20px;
-    }
-    
-    .modal-content ul {
+
+    .feature-list {
       list-style: none;
       padding: 0;
     }
-    
-    .modal-content li {
-      margin-bottom: 10px;
+
+    .feature-list li {
+      margin-bottom: 1.5rem;
+      padding-left: 2.5rem;
+      position: relative;
+      font-size: 1.1rem;
     }
-    
-    .modal-content a {
-      color: var(--secondary);
-      text-decoration: none;
-      transition: color 0.2s ease-in-out;
+
+    .feature-list li::before {
+      content: "\f138";
+      font-family: "Font Awesome 6 Free";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: 900;
+      font-size: 1.4rem;
+      top: 50%;
+      transform: translateY(-50%);
     }
-    
-    .modal-content a:hover {
-      color: var(--light);
-      text-decoration: underline;
+
+    @media (max-width: 768px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .feature-list li {
+        font-size: 1rem;
+        padding-left: 2rem;
+      }
+
+      .feature-list li::before {
+        font-size: 1.2rem;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- O menu será carregado dinamicamente via JS -->
-  <header></header>
-  
+  <!-- Header -->
+  <header class="header">
+    <a href="/" class="logo-link">
+      <img src="https://kikalabs-server.nexuspt.eu/images/site-nxweb/RealNexusWeb.png" alt="Nexus" class="logo">
+    </a>
+    <nav class="nav-menu">
+      <button class="hamburger" aria-label="Menu">
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button>
+      <ul class="nav-list">
+        <li class="dropdown">
+          <a href="#servicos">Serviços <i class="fas fa-chevron-down"></i></a>
+          <ul class="submenu">
+            <li><a href="/servicos/nexuschat">NexusChat</a></li>
+            <li><a href="/servicos/tv">NexusTV</a></li>
+            <li><a href="/servicos/petsid">Pets ID</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#parcerias">Parcerias <i class="fas fa-chevron-down"></i></a>
+          <ul class="submenu">
+            <li><a href="/parcerias/vilajaponesa">Vila Japonesa</a></li>
+          </ul>
+        </li>
+        <li><a href="/contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
   <main>
-    <!-- Seção Hero -->
+    <!-- Hero Section -->
     <section class="hero">
-      <img src="https://t3.ftcdn.net/jpg/08/73/78/44/360_F_873784490_h5C3x1NRc2zigMiX6VmeLeeWZXDaEu21.jpg" alt="Imagem de fundo do Pets ID" class="hero-image">
-      <div class="gradient-overlay"></div>
+      <img src="https://t3.ftcdn.net/jpg/08/73/78/44/360_F_873784490_h5C3x1NRc2zigMiX6VmeLeeWZXDaEu21.jpg" alt="Cachorro feliz">
       <div class="hero-content">
         <h1 class="hero-title">Pets ID</h1>
-        <p class="hero-subtitle">Consulta as vacinas do teu Pet!</p>
-        <div class="cta-container">
-          <a href="https://pets-id-itxs.onrender.com/" class="cta-button cta-primary">Aceder ao Pets ID</a>
-        </div>
+        <p class="hero-subtitle">O boletim digital completo para o seu animal de estimação</p>
+        <a href="https://pets-id-itxs.onrender.com/" class="cta-button">Acessar Plataforma</a>
       </div>
     </section>
-    
-    <!-- Seção About -->
+
+    <!-- About Section -->
     <section class="about-section">
       <div class="container">
-        <div class="about-content">
-          <div class="about-text">
-            <h2>Informações e Vacinas do PET</h2>
-            <p>O Pets ID facilita gerir as vacinas do seu pet e também as informações!</p>
-            <ul>
-              <li>Boletim Online do seu Pet</li>
-              <li>Marcação de Vacinas</li>
-              <li>Informações do seu Pet</li>
-            </ul>
-            <p>Estamos em constante evolução, adicionando regularmente novos conteúdos e funcionalidades para melhorar a sua experiência de entretenimento.</p>
-            <a href="https://pets-id-itxs.onrender.com/" class="cta-button">Explorar Pets ID</a>
-          </div>
+        <h2>Gerencie a saúde do seu pet</h2>
+        <div class="about-grid">
           <div class="about-image">
-            <img src="https://i.ibb.co/zhT6bX3c/image.png" alt="Interface do Pets ID" loading="lazy">
+            <img src="https://i.ibb.co/zhT6bX3c/image.png" alt="Interface do Pets ID">
+          </div>
+          <div class="about-features">
+            <ul class="feature-list">
+              <li>Registro digital de vacinas e tratamentos</li>
+              <li>Lembretes para próximas vacinações</li>
+              <li>Perfil completo do animal</li>
+              <li>Acesso veterinário compartilhado</li>
+              <li>Histórico médico completo</li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
-  
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 NexusWeb. Todos os direitos reservados.</p>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Sobre Nós</h3>
+        <p>NexusPT - Inovação em soluções digitais para animais de estimação</p>
+      </div>
+      <div class="footer-section">
+        <h3>Links Úteis</h3>
+        <ul class="footer-links">
+          <li><a href="/servicos/nexuschat">NexusChat</a></li>
+          <li><a href="/servicos/tv">NexusTV</a></li>
+          <li><a href="/servicos/petsid">Pets ID</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Legal</h3>
+        <ul class="footer-links">
+          <li><a href="/termos">Termos de Serviço</a></li>
+          <li><a href="/privacidade">Política de Privacidade</a></li>
+          <li><a href="/contacto">Suporte</a></li>
+        </ul>
+      </div>
     </div>
   </footer>
-  
-  <!-- Carrega o menu dinamicamente via JS -->
-  <script src="https://kikalabs-server.nexuspt.eu/js/site-nxweb/menu.js"></script>
-  
-  <script>
-    // Alternar menu mobile
-    document.getElementById('nav-btn').addEventListener('click', function() {
-      this.classList.toggle('active');
-      document.getElementById('takeover-nav').classList.toggle('shown');
-    });
-    
-    // Efeito de scroll para a navbar fixa
-    window.addEventListener('scroll', function() {
-      const nav = document.querySelector('.sticky-nav');
-      nav.classList.toggle('scrolled', window.scrollY > 0);
-    });
-  </script>
+
+  <script src="https://kikalabs-server.nexuspt.eu/js/site-nxweb/index.js"></script>
 </body>
 </html>
