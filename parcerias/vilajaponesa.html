@@ -3,442 +3,530 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Parcerias - Vila Japonesa</title>
-  <meta name="description" content="Conheça a nossa parceria com a Vila Japonesa: um servidor de Minecraft único, perfeito para explorar, jogar e se divertir!">
-  <meta name="keywords" content="parcerias, Vila Japonesa, Minecraft, roleplay, minigames">
-  <meta name="author" content="NexusWeb">
-  <link rel="canonical" href="https://nexusweb.netlify.app/parcerias/vilajaponesa">
-  <meta property="og:title" content="Parcerias - Vila Japonesa">
-  <meta property="og:description" content="Entre na nossa parceria com a Vila Japonesa e descubra um servidor de Minecraft com roleplay imersivo e minigames divertidos.">
-  <meta property="og:image" content="https://exemplo.com/imagem-vila-japonesa.jpg">
-  <meta property="og:url" content="https://nexusweb.netlify.app/parcerias/vilajaponesa">
+  <title>Parcerias - Vila Japonesa | Nexus Solutions</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Conheça nossa parceria com a Vila Japonesa - um servidor de Minecraft único com roleplay imersivo, minigames e comunidade ativa.">
+  <meta name="keywords" content="Vila Japonesa, Minecraft, servidor Minecraft, roleplay, minigames, Nexus parcerias">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Nexus Solutions">
+  <link rel="canonical" href="https://www.nexuspt.eu/parcerias/vilajaponesa">
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Parcerias - Vila Japonesa | Nexus Solutions">
+  <meta property="og:description" content="Conheça nossa parceria com a Vila Japonesa - um servidor de Minecraft único com roleplay imersivo e minigames.">
+  <meta property="og:url" content="https://www.nexuspt.eu/parcerias/vilajaponesa">
+  <meta property="og:type" content="website">
+  <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7772613538554309" crossorigin="anonymous"></script>
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
-  <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
-  <script src="https://kikalabs-server.nexuspt.eu/js/site-nxweb/ads.js"></script>
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "q48rygpjz8");
-  </script>
+  <meta name="twitter:title" content="Parcerias - Vila Japonesa | Nexus Solutions">
+  <meta name="twitter:description" content="Conheça nossa parceria com a Vila Japonesa - um servidor de Minecraft único com roleplay imersivo e minigames.">
+  <!-- Preconnect & Preload -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preload" as="image" href="https://kikalabs-server.nexuspt.eu/images/site-vilajaponesa/vilajaponesalogo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://kikalabs-server.nexuspt.eu/css/site-nxweb/index.css">
   <style>
+    /* Cores baseadas no tema dark original */
     :root {
-      --primary: #00ff00;
-      --secondary: #00ccff;
-      --dark: #121212;
-      --light: #f8f8f8;
-      --transition: all 0.3s ease-in-out;
+      --dark-bg: #121212;
+      --darker-bg: #0a0a0a;
+      --card-bg: #1e1e1e;
+      --primary-text: #ffffff;
+      --secondary-text: rgba(255, 255, 255, 0.8);
+      --accent-color: #5865F2; /* Cor do Discord que você gostou */
+      --accent-hover: #4752c4;
+      --highlight: #00ccff;
     }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--dark);
-      color: var(--light);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-    ::-webkit-scrollbar-track {
-      background: var(--dark);
-    }
-    ::-webkit-scrollbar-thumb {
-      background: linear-gradient(var(--primary), var(--secondary));
-      border-radius: 5px;
-      animation: scrollColorChange 3s ease-in-out infinite alternate;
-    }
-    @keyframes scrollColorChange {
-      from {
-        background: linear-gradient(var(--primary), var(--secondary));
-      }
-      to {
-        background: linear-gradient(var(--secondary), var(--primary));
-      }
-    }
-    .container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    /* Estilos do Hero */
-    .hero {
-      height: 100vh;
+    
+    /* Estilos específicos para a página de parceria */
+    .partnership-hero {
+      position: relative;
+      height: 70vh;
+      min-height: 500px;
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
       overflow: hidden;
+      background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
     }
-    .video-wrap {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-    }
-    /* Mantendo os atributos originais do vídeo */
-    #video-bg {
-      preload: auto;
-      autoplay: true;
-      loop: true;
-      muted: true;
-      playsinline: true;
-      min-width: 100%;
-      min-height: 100%;
-      object-fit: cover;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    .gradient-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to bottom, rgba(18,18,18,0.3), rgba(18,18,18,0.8));
-    }
-    .hero-content {
-      text-align: center;
-      z-index: 2;
-      max-width: 800px;
-      padding: 0 20px;
-    }
-    .hero-title {
-      font-size: 4.5em;
-      font-weight: 900;
-      margin-bottom: 20px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      animation: gradientGlow 3s ease-in-out infinite alternate;
-    }
-    @keyframes gradientGlow {
-      from {
-        text-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary), 0 0 15px var(--primary);
-      }
-      to {
-        text-shadow: 0 0 10px var(--secondary), 0 0 20px var(--secondary), 0 0 30px var(--secondary);
-      }
-    }
-    .hero-subtitle {
-      font-size: 1.5em;
-      margin-bottom: 40px;
-      opacity: 0.8;
-    }
-    .cta-container {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-    .cta-button {
-      padding: 15px 30px;
-      font-size: 1.1em;
-      font-weight: 600;
-      text-transform: uppercase;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-      text-decoration: none;
-      display: inline-block;
-    }
-    .cta-button::before {
+    
+    .partnership-hero::before {
       content: '';
       position: absolute;
       top: 0;
-      left: -100%;
+      left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
-      transition: var(--transition);
+      background: url('https://kikalabs-server.nexuspt.eu/images/site-nxweb/tech-pattern.png');
+      opacity: 0.05;
+      z-index: 1;
     }
-    .cta-button:hover::before {
-      left: 100%;
-    }
-    /* Botão de entrar mais bonito com um gradiente */
-    .cta-primary {
-      background: linear-gradient(45deg, var(--primary), var(--secondary));
-      color: var(--dark);
-    }
-    .cta-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(0,204,255,0.3);
-    }
-    .cta-secondary {
-      background-color: transparent;
-      color: var(--light);
-      border: 2px solid var(--light);
-    }
-    .cta-secondary:hover {
-      background-color: var(--light);
-      color: var(--dark);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(248,248,248,0.3);
-    }
-    /* Seção de Parceria */
-    .parceria-section {
-      padding: 80px 0;
-      background-color: var(--dark);
-    }
-    .parceria-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .parceria-text {
-      flex: 1;
-      padding: 40px;
-    }
-    .parceria-text h2 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
-    }
-    .parceria-text p {
-      margin-bottom: 15px;
-      opacity: 0.8;
-    }
-    .parceria-text ul {
-      list-style: none;
-      padding: 0;
-      margin-bottom: 20px;
-    }
-    .parceria-text ul li {
-      margin-bottom: 10px;
-      padding-left: 20px;
+    
+    .partnership-hero-content {
       position: relative;
-    }
-    .parceria-text ul li::before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      color: var(--primary);
-    }
-    blockquote {
-      border-left: 4px solid var(--primary);
-      margin: 30px 0;
-      padding-left: 15px;
-    }
-    /* Footer */
-    footer {
-      background-color: var(--dark);
-      color: var(--light);
+      z-index: 2;
       text-align: center;
-      padding: 20px 0;
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
     }
-    footer a {
-      color: var(--primary);
-      text-decoration: none;
+    
+    .partnership-hero-title {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary-text);
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      background: linear-gradient(90deg, var(--highlight), var(--accent-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    footer a:hover {
-      text-decoration: underline;
+    
+    .partnership-hero-subtitle {
+      font-size: 1.5rem;
+      color: var(--secondary-text);
+      margin-bottom: 2rem;
     }
-    /* Responsividade */
-    @media (max-width: 768px) {
-      .hero-title {
-        font-size: 3em;
-      }
-      .hero-subtitle {
-        font-size: 1.2em;
-      }
-      .cta-container {
-        flex-direction: column;
-      }
-      .cta-button {
-        width: 100%;
-      }
-      .parceria-content {
-        flex-direction: column;
-      }
-      .parceria-text {
-        padding: 20px;
-      }
+    
+    .partnership-logo {
+      max-width: 200px;
+      margin-bottom: 2rem;
+      filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
     }
-    /* Modal dos Serviços */
-    .modal {
-      display: none;
-      position: fixed;
+    
+    .partnership-section {
+      padding: 5rem 0;
+      background-color: var(--dark-bg);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .partnership-section::before {
+      content: '';
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.7);
-      z-index: 1000;
+      background: url('https://kikalabs-server.nexuspt.eu/images/site-nxweb/dot-pattern.png');
+      opacity: 0.03;
+      pointer-events: none;
     }
-    .modal-content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: var(--dark);
-      padding: 30px;
-      border-radius: 15px;
-      width: auto;
-      max-width: 500px;
-      box-shadow: 0 5px 15px rgba(0,255,0,0.3);
-      text-align: center;
+    
+    .partnership-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 2;
     }
-    .close {
-      color: var(--light);
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 24px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: color 0.2s ease-in-out;
+    
+    .partnership-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
     }
-    .close:hover,
-    .close:focus {
-      color: var(--primary);
-      text-decoration: none;
+    
+    .partnership-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
     }
-    .modal-content h2 {
-      color: var(--primary);
-      margin-bottom: 20px;
+    
+    .partnership-feature {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.05);
     }
-    .modal-content ul {
+    
+    .partnership-feature:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      border-color: rgba(88, 101, 242, 0.3);
+    }
+    
+    .partnership-feature-icon {
+      font-size: 2.5rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+    }
+    
+    .partnership-feature-title {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      color: var(--primary-text);
+    }
+    
+    .partnership-feature-desc {
+      color: var(--secondary-text);
+      line-height: 1.6;
+    }
+    
+    .partnership-content {
+      padding: 2rem;
+    }
+    
+    .partnership-content h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary-text);
+    }
+    
+    .partnership-content p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--secondary-text);
+      margin-bottom: 1.5rem;
+    }
+    
+    .feature-list {
       list-style: none;
       padding: 0;
+      margin: 2rem 0;
     }
-    .modal-content li {
-      margin-bottom: 10px;
+    
+    .feature-list li {
+      margin-bottom: 1rem;
+      padding-left: 2rem;
+      position: relative;
+      color: var(--secondary-text);
     }
-    .modal-content a {
-      color: var(--secondary);
+    
+    .feature-list li i {
+      position: absolute;
+      left: 0;
+      top: 0.2rem;
+      color: var(--accent-color);
+    }
+    
+    .partnership-cta {
+      text-align: center;
+      padding: 4rem 0;
+      background: linear-gradient(135deg, var(--darker-bg) 0%, #1a1a3a 100%);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .partnership-cta::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(88,101,242,0.1) 0%, transparent 70%);
+      animation: rotate 20s linear infinite;
+    }
+    
+    .partnership-cta-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .partnership-cta-title {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary-text);
+    }
+    
+    .partnership-cta-subtitle {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      color: var(--secondary-text);
+    }
+    
+    .btn-discord {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-color);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
       text-decoration: none;
-      transition: color 0.2s ease-in-out;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(88, 101, 242, 0.3);
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+      position: relative;
+      overflow: hidden;
     }
-    .modal-content a:hover {
-      color: var(--light);
-      text-decoration: underline;
+    
+    .btn-discord:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(88, 101, 242, 0.4);
+      background: var(--accent-hover);
+    }
+    
+    .btn-discord i {
+      margin-right: 10px;
+      font-size: 1.2rem;
+    }
+    
+    @media (max-width: 992px) {
+      .partnership-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .partnership-features {
+        grid-template-columns: 1fr;
+      }
+      
+      .partnership-hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .partnership-hero-subtitle {
+        font-size: 1.2rem;
+      }
+    }
+    
+    /* Animations */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    .floating {
+      animation: float 4s ease-in-out infinite;
+    }
+    
+    /* Efeito de partículas no hero */
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+    }
+    
+    .particle {
+      position: absolute;
+      background: rgba(88, 101, 242, 0.5);
+      border-radius: 50%;
+      pointer-events: none;
     }
   </style>
 </head>
 <body>
-  <header>
-    <!-- O menu será injetado dinamicamente via JS -->
+  <header class="header">
+    <a href="/" class="logo-link">
+      <img src="https://kikalabs-server.nexuspt.eu/images/site-nxweb/RealNexusWeb.png" alt="Nexus" class="logo">
+    </a>
+    <nav class="nav-menu">
+      <button class="hamburger" aria-label="Menu">
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button>
+      <ul class="nav-list">
+        <li class="dropdown">
+          <a href="#servicos">Serviços <i class="fas fa-chevron-down"></i></a>
+          <ul class="submenu">
+            <li><a href="/servicos/nexuschat">NexusChat</a></li>
+            <li><a href="/servicos/tv">NexusTV</a></li>
+            <li><a href="/servicos/petsid">Pets ID</a></li>
+            <li><a href="/servicos/nexusia">NexusIA</a></li>
+            <li><a href="/servicos/drippi">Drippi</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#parcerias">Parcerias <i class="fas fa-chevron-down"></i></a>
+          <ul class="submenu">
+            <li><a href="/parcerias/vilajaponesa">Vila Japonesa</a></li>
+          </ul>
+        </li>
+        <li><a href="/equipa">Equipa</a></li>
+        <li><a href="/contacto">Contacto</a></li>
+      </ul>
+    </nav>
   </header>
-
-  <!-- Chat Component -->
-  <chat-component
-    data-chat-key="d8688ed616a1422a9e6bb863f05893cc"
-    mic="false" 
-    assetsURL="https://img.botschool.ai/cdn/chatui/assets/"
-    socket-url="https://api.botschool.ai/"
-    trigger="olá">
-  </chat-component>
-  <script src="https://img.botschool.ai/cdn/chatui/chat-component.js"></script>
-  <link href="https://img.botschool.ai/cdn/chatui/chaticons.css" rel="stylesheet">
-
+  
   <main>
-    <!-- Hero com fundo em vídeo -->
-    <section class="hero">
-      <div class="video-wrap">
-        <video preload="auto" autoplay loop muted playsinline id="video-bg">
-          <source src="https://kikalabs-server.nexuspt.eu/video/site-nxweb/backtech.mp4" type="video/mp4">
-        </video>
+    <!-- Hero Section -->
+    <section class="partnership-hero">
+      <div class="particles" id="particles-js"></div>
+      <div class="partnership-hero-content">
+        <img src="https://kikalabs-server.nexuspt.eu/images/site-vilajaponesa/vilajaponesalogo.png" 
+             alt="Vila Japonesa" 
+             class="partnership-logo floating">
+        <h1 class="partnership-hero-title">Parceria Nexus & Vila Japonesa</h1>
+        <p class="partnership-hero-subtitle">Um servidor de Minecraft único para explorar, jogar e se divertir</p>
+        <a href="https://discord.gg/a5jaYcDQfq" class="btn-discord">
+          <i class="fab fa-discord"></i> Entrar no Discord
+        </a>
       </div>
-      <div class="gradient-overlay"></div>
-      <div class="hero-content">
-        <h1 class="hero-title">Parcerias</h1>
-        <p class="hero-subtitle">Vila Japonesa</p>
-        <div class="cta-container">
-          <button class="cta-button cta-primary" id="openModalBtn">Entrar</button>
+    </section>
+    
+    <!-- Partnership Details -->
+    <section class="partnership-section">
+      <div class="partnership-container">
+        <div class="partnership-grid">
+          <div class="partnership-content">
+            <h2>🌸 Sobre a Vila Japonesa</h2>
+            <p>A Vila Japonesa é um servidor de Minecraft que oferece uma experiência única de roleplay imersivo combinada com minigames emocionantes. Nossa parceria traz integração tecnológica e soluções inovadoras para a comunidade de jogadores.</p>
+            <p>Com suporte para Java e Bedrock (1.16-1.21.4), o servidor está sempre atualizado com novidades e eventos especiais para manter a comunidade engajada e entretida.</p>
+            
+            <h3>🎮 O que a torna especial?</h3>
+            <ul class="feature-list">
+              <li><i class="fas fa-users"></i> Comunidade ativa e acolhedora</li>
+              <li><i class="fas fa-sync-alt"></i> Atualizações frequentes</li>
+              <li><i class="fas fa-trophy"></i> Eventos e competições regulares</li>
+              <li><i class="fas fa-gamepad"></i> Minigames diversificados</li>
+              <li><i class="fas fa-theater-masks"></i> Roleplay imersivo</li>
+              <li><i class="fas fa-gem"></i> Sistema de economia próprio</li>
+              <li><i class="fas fa-home"></i> Construções inspiradas na cultura japonesa</li>
+            </ul>
+          </div>
+          
+          <div class="partnership-features">
+            <div class="partnership-feature">
+              <div class="partnership-feature-icon">
+                <i class="fas fa-map-marked-alt"></i>
+              </div>
+              <h3 class="partnership-feature-title">Mundo Expansivo</h3>
+              <p class="partnership-feature-desc">Explore um mapa vasto com diferentes biomas e construções impressionantes inspiradas na cultura japonesa.</p>
+            </div>
+            
+            <div class="partnership-feature">
+              <div class="partnership-feature-icon">
+                <i class="fas fa-users-between-lines"></i>
+              </div>
+              <h3 class="partnership-feature-title">Roleplay Imersivo</h3>
+              <p class="partnership-feature-desc">Crie sua própria história com sistemas de economia, profissões e interações sociais avançadas.</p>
+            </div>
+            
+            <div class="partnership-feature">
+              <div class="partnership-feature-icon">
+                <i class="fas fa-chess-queen"></i>
+              </div>
+              <h3 class="partnership-feature-title">Minigames Diversos</h3>
+              <p class="partnership-feature-desc">De batalhas PvP a puzzles cooperativos, sempre há algo novo para experimentar.</p>
+            </div>
+            
+            <div class="partnership-feature">
+              <div class="partnership-feature-icon">
+                <i class="fas fa-gift"></i>
+              </div>
+              <h3 class="partnership-feature-title">Eventos Especiais</h3>
+              <p class="partnership-feature-desc">Festivais sazonais, competições com prêmios e atividades exclusivas para membros.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
-
-    <!-- Seção de Parceria -->
-    <section class="parceria-section">
-      <div class="container parceria-content">
-        <div class="parceria-text">
-          <h2>🌸 Vila Japonesa 🌸</h2>
-          <p>🎮 Um servidor de Minecraft único, perfeito para você explorar, jogar e se divertir!</p>
-          <h3>🌟 O que oferecemos?</h3>
-          <ul>
-            <li>🎭 Roleplay Imersivo: Crie sua história em um mundo cheio de possibilidades!</li>
-            <li>🕹️ Minigames Diversificados: Compita com seus amigos em desafios emocionantes!</li>
-            <li>🖥️ Java e Bedrock (1.21.4 → 1.16): Jogue na sua plataforma favorita!</li>
-            <li>🔄 Atualizações Diárias: Sempre com novidades fresquinhas!</li>
-            <li>🎉 Eventos no Discord: Participe de sorteios, jogos e muito mais!</li>
-            <li>🗣️ Jogos e Atividades no Discord: Diversão que se estende além do Minecraft!</li>
-          </ul>
-          <blockquote>
-            <h3>🌸 Por que escolher a Vila Japonesa?</h3>
-            <ul>
-              <li>👥 Comunidade Amigável e Ativa</li>
-              <li>🎁 Prêmios e Eventos Especiais</li>
-              <li>🔧 Servidor bem otimizado e sempre atualizado</li>
-            </ul>
-          </blockquote>
-          <p style="text-align: center;"><strong>Conecte-se já:</strong></p>
-          <p style="text-align: center;">
-            <a href="https://discord.gg/a5jaYcDQfq" class="cta">Entre no Discord</a>
-          </p>
-          <p style="font-weight: bold; text-align: center; margin-top: 30px;">🌟 A Vila Japonesa espera por você! 🌟</p>
-        </div>
+    
+    <!-- CTA Section -->
+    <section class="partnership-cta">
+      <div class="partnership-container partnership-cta-content">
+        <h2 class="partnership-cta-title">Junte-se à Comunidade</h2>
+        <p class="partnership-cta-subtitle">Conecte-se com jogadores de todo o mundo e comece sua aventura hoje mesmo!</p>
+        <a href="https://discord.gg/a5jaYcDQfq" class="btn-discord">
+          <i class="fab fa-discord"></i> Entrar no Servidor
+        </a>
       </div>
     </section>
   </main>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 NexusWeb. Todos os direitos reservados. <a href="/privacidade">Política de Privacidade</a></p>
+  
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Sobre Nós</h3>
+        <p>NexusPT - Revolucionando o entretenimento digital</p>
+      </div>
+      <div class="footer-section">
+        <h3>Links Úteis</h3>
+        <ul class="footer-links">
+          <li><a href="/servicos/nexuschat">NexusChat</a></li>
+          <li><a href="/servicos/tv">NexusTV</a></li>
+          <li><a href="/servicos/nexusia">NexusIA</a></li>
+          <li><a href="/servicos/petsid">Pets ID</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Legal</h3>
+        <ul class="footer-links">
+          <li><a href="/termos">Termos de Serviço</a></li>
+          <li><a href="/privacidade">Política de Privacidade</a></li>
+          <li><a href="/contacto">Suporte</a></li>
+        </ul>
+      </div>
     </div>
   </footer>
 
-  <!-- Modal dos Serviços -->
-  <div id="servicesModal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2>Informações do Servidor</h2>
-      <ul>
-        <li>Roleplay Imersivo</li>
-        <li>Minigames Diversificados</li>
-        <li>Atualizações Diárias</li>
-        <li>Eventos e Atividades no Discord</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Inicia o menu via JS -->
-  <script src="https://kikalabs-server.nexuspt.eu/js/site-nxweb/menu.js"></script>
-
-  <!-- Script do Modal -->
+  <script src="https://kikalabs-server.nexuspt.eu/js/site-nxweb/index.js"></script>
   <script>
-    var modal = document.getElementById("servicesModal");
-    var btn = document.getElementById("openModalBtn");
-    var span = document.querySelector(".close");
+    // Animação suave ao rolar para seções
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+    
+    // Efeito de hover nos cards de features
+    const features = document.querySelectorAll('.partnership-feature');
+    features.forEach(feature => {
+      feature.addEventListener('mouseenter', () => {
+        const icon = feature.querySelector('.partnership-feature-icon i');
+        icon.style.transform = 'scale(1.1) rotate(5deg)';
+        icon.style.transition = 'transform 0.3s ease';
+      });
+      
+      feature.addEventListener('mouseleave', () => {
+        const icon = feature.querySelector('.partnership-feature-icon i');
+        icon.style.transform = 'scale(1) rotate(0)';
+      });
+    });
 
-    btn.onclick = function() {
-      modal.style.display = "block";
-    }
-
-    span.onclick = function() {
-      modal.style.display = "none";
-    }
-
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
+    // Criar partículas no hero
+    function createParticles() {
+      const container = document.getElementById('particles-js');
+      const particleCount = 30;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Tamanho aleatório entre 2px e 5px
+        const size = Math.random() * 3 + 2;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        
+        // Posição aleatória
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        
+        // Opacidade aleatória
+        particle.style.opacity = Math.random() * 0.5 + 0.1;
+        
+        // Animação
+        const duration = Math.random() * 20 + 10;
+        const delay = Math.random() * -20;
+        particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+        
+        container.appendChild(particle);
       }
     }
+    
+    // Iniciar quando a página carregar
+    window.addEventListener('load', createParticles);
   </script>
 </body>
 </html>
