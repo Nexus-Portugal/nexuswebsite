@@ -1,0 +1,335 @@
+/* Vila Japonesa Page Styles */
+
+/* Cores baseadas no tema dark original */
+:root {
+  --dark-bg: #0a0e16;
+  --darker-bg: #070b13;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --primary-text: #ffffff;
+  --secondary-text: #ffffff;
+  --accent-color: #5865f2;
+  --highlight: #7289da;
+}
+
+/* Estilos específicos para a página de parceria */
+.partnership-hero {
+  height: 500px;
+  background: var(--darker-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  margin-top: 70px;
+}
+
+.partnership-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('https://kikalabs-server.nexuspt.eu/images/site-vilajaponesa/hero-bg.jpg') center/cover no-repeat;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.partnership-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.partnership-hero-title {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary-text);
+}
+
+.partnership-hero-subtitle {
+  font-size: 1.5rem;
+  color: var(--secondary-text);
+  margin-bottom: 2rem;
+}
+
+.partnership-logo {
+  max-width: 200px;
+  margin-bottom: 2rem;
+}
+
+.partnership-section {
+  padding: 5rem 0;
+  background-color: var(--dark-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.partnership-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://kikalabs-server.nexuspt.eu/images/site-nxweb/dot-pattern.png');
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+.partnership-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.partnership-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.partnership-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.partnership-feature {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.partnership-feature:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  border-color: rgba(88, 101, 242, 0.3);
+}
+
+.partnership-feature-icon {
+  font-size: 2.5rem;
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+}
+
+.partnership-feature-title {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: var(--primary-text);
+}
+
+.partnership-feature-desc {
+  color: var(--secondary-text);
+  line-height: 1.6;
+}
+
+.partnership-content {
+  padding: 2rem;
+}
+
+.partnership-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary-text);
+}
+
+.partnership-content h3 {
+  font-size: 1.5rem;
+  margin: 2rem 0 1rem;
+  color: var(--primary-text);
+}
+
+.partnership-content p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--secondary-text);
+  margin-bottom: 1.5rem;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+}
+
+.feature-list li {
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+  position: relative;
+  color: var(--secondary-text);
+}
+
+.feature-list li i {
+  position: absolute;
+  left: 0;
+  top: 0.2rem;
+  color: var(--accent-color);
+}
+
+.partnership-cta {
+  text-align: center;
+  padding: 4rem 0;
+  background: var(--darker-bg);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.partnership-cta-content {
+  position: relative;
+  z-index: 2;
+}
+
+.partnership-cta-title {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary-text);
+}
+
+.partnership-cta-subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  color: var(--secondary-text);
+}
+
+.btn-discord {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-color);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(88, 101, 242, 0.3);
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-discord:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(88, 101, 242, 0.5);
+}
+
+.btn-discord i {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+@media (max-width: 992px) {
+  .partnership-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .partnership-features {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .partnership-hero-title {
+    font-size: 3rem;
+  }
+  
+  .partnership-hero-subtitle {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .partnership-hero {
+    height: 400px;
+    padding: 0 1rem;
+  }
+  
+  .partnership-hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .partnership-hero-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .partnership-logo {
+    max-width: 150px;
+  }
+  
+  .partnership-content h2 {
+    font-size: 2rem;
+  }
+  
+  .partnership-content h3 {
+    font-size: 1.3rem;
+  }
+  
+  .partnership-cta-title {
+    font-size: 2rem;
+  }
+  
+  .partnership-cta-subtitle {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .partnership-hero {
+    height: 350px;
+    padding: 0 1rem;
+  }
+  
+  .partnership-hero-title {
+    font-size: 2rem;
+  }
+  
+  .partnership-hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .partnership-logo {
+    max-width: 120px;
+  }
+  
+  .partnership-content {
+    padding: 1rem;
+  }
+  
+  .partnership-feature {
+    padding: 1.5rem;
+  }
+  
+  .btn-discord {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+} 

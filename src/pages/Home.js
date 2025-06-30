@@ -1,0 +1,389 @@
+import React, { useState, useRef, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { 
+  faPaw, faGlobe, faTv, faComments, faFilm, faRobot, 
+  faGraduationCap, faDroplet, faTint, faCube,
+  faSyringe, faInfoCircle, faShieldAlt, faRocket,
+  faHeadphones, faTabletAlt, faComment, faClock,
+  faVideo, faLaptop, faKeyboard, faPalette, faCommentDots,
+  faUtensils, faEnvelope, faWallet, faCameraRetro, faRetweet,
+  faTachometerAlt, faExclamationTriangle, faFileInvoice,
+  faLaptopCode, faChartBar, faCogs
+} from '@fortawesome/free-solid-svg-icons';
+import Marquee from 'react-fast-marquee';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination, EffectFade } from 'swiper/modules';
+import { motion } from 'framer-motion';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-fade';
+import './Home.css';
+
+const Home = () => {
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const carouselRef = useRef(null);
+
+  const carouselImages = [
+    "https://images.unsplash.com/photo-1522071820081-009f0129c71c",
+    "https://images.unsplash.com/photo-1629904853716-f0bc54eea481",
+    "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d"
+  ];
+
+  const clientLogos = [
+    "https://kikalabs-server.nexuspt.eu/images/site-vilajaponesa/vilajaponesalogo.png",
+    "https://kikalabs-server.nexuspt.eu/images/site-vilaportuguesa/vilapt.png",
+    "https://kikalabs-server.nexuspt.eu/images/site-vilajaponesa/vilajaponesalogo.png",
+    "https://kikalabs-server.nexuspt.eu/images/site-vilaportuguesa/vilapt.png"
+  ];
+
+  const domesticServices = [
+    {
+      icon: faPaw,
+      title: "Pets ID",
+      description: "Registo digital do seu animal",
+      features: [
+        { icon: faSyringe, text: "Lembrete de vacinas" },
+        { icon: faInfoCircle, text: "Dados do pet" }
+      ]
+    },
+    {
+      icon: faGlobe,
+      title: "NexusBrowser",
+      description: "Navegação simplificada",
+      features: [
+        { icon: faShieldAlt, text: "Proteção básica" },
+        { icon: faRocket, text: "Rápido e leve" }
+      ]
+    },
+    {
+      icon: faTv,
+      title: "NexusTV",
+      description: "Acesso a conteúdos TV",
+      features: [
+        { icon: faHeadphones, text: "Canais de rádio" },
+        { icon: faTv, text: "Canais em direto" },
+        { icon: faTabletAlt, text: "Multiplataforma" }
+      ]
+    },
+    {
+      icon: faComments,
+      title: "NexusChat",
+      description: "Mensagens instantâneas",
+      features: [
+        { icon: faComment, text: "Chat privado" },
+        { icon: faClock, text: "Histórico de conversas" }
+      ]
+    },
+    {
+      icon: faFilm,
+      title: "NexusFilms",
+      description: "Plataforma de streaming",
+      features: [
+        { icon: faVideo, text: "Catálogo diversificado" },
+        { icon: faLaptop, text: "Acesso multiplataforma" }
+      ]
+    },
+    {
+      icon: faRobot,
+      title: "NexusAI",
+      description: "Assistente de texto e imagem",
+      features: [
+        { icon: faKeyboard, text: "Geração de texto" },
+        { icon: faPalette, text: "Criação de imagens" },
+        { icon: faCommentDots, text: "Interface conversacional" }
+      ]
+    },
+    {
+      icon: faGraduationCap,
+      title: "Giae by Nexus",
+      description: "Plataforma gestão escolar",
+      features: [
+        { icon: faClock, text: "Consultar Horário" },
+        { icon: faUtensils, text: "Aquisição de senha" },
+        { icon: faEnvelope, text: "Notificações" },
+        { icon: faWallet, text: "Consultar Saldo" }
+      ]
+    },
+    {
+      icon: faDroplet,
+      title: "Drippi",
+      description: "Plataforma de rede social",
+      features: [
+        { icon: faCameraRetro, text: "Stories" },
+        { icon: faComments, text: "Threads" },
+        { icon: faRetweet, text: "ReDripp" },
+        { icon: faFilm, text: "Drippies" }
+      ]
+    }
+  ];
+
+  const corporateServices = [
+    {
+      icon: faTint,
+      title: "NexusWR",
+      description: "Gestão de leituras de água",
+      features: [
+        { icon: faTachometerAlt, text: "Registo de consumos" },
+        { icon: faExclamationTriangle, text: "Reporte de anomalias" },
+        { icon: faFileInvoice, text: "Verificação de faturas" }
+      ]
+    },
+    {
+      icon: faCube,
+      title: "Soluções Custom",
+      description: "Desenvolvimento à medida",
+      features: [
+        { icon: faLaptopCode, text: "Aplicações web" },
+        { icon: faChartBar, text: "Dashboards analíticos" },
+        { icon: faCogs, text: "Integrações API" }
+      ]
+    }
+  ];
+
+  // Variante de animação para os elementos do hero
+  const heroContentVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.8,
+        ease: "easeOut",
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.5 }
+    }
+  };
+
+  // Efeito para aplicar a classe transitioning durante a transição
+  useEffect(() => {
+    if (carouselRef.current) {
+      const handleSlideChangeStart = () => {
+        setIsTransitioning(true);
+      };
+
+      const handleSlideChangeEnd = () => {
+        setTimeout(() => {
+          setIsTransitioning(false);
+        }, 500);
+      };
+
+      const swiperInstance = carouselRef.current.swiper;
+      if (swiperInstance) {
+        swiperInstance.on('slideChangeTransitionStart', handleSlideChangeStart);
+        swiperInstance.on('slideChangeTransitionEnd', handleSlideChangeEnd);
+      }
+
+      return () => {
+        if (swiperInstance) {
+          swiperInstance.off('slideChangeTransitionStart', handleSlideChangeStart);
+          swiperInstance.off('slideChangeTransitionEnd', handleSlideChangeEnd);
+        }
+      };
+    }
+  }, []);
+
+  return (
+    <>
+      {/* Hero Section */}
+      <section className="hero">
+        <div className={`carousel ${isTransitioning ? 'transitioning' : ''}`}>
+          <Swiper
+            ref={carouselRef}
+            modules={[Autoplay, Pagination, EffectFade]}
+            spaceBetween={0}
+            slidesPerView={1}
+            autoplay={{
+              delay: 5000,
+              disableOnInteraction: false,
+            }}
+            pagination={{
+              clickable: true,
+              el: '.swiper-pagination',
+              bulletClass: 'swiper-pagination-bullet',
+              bulletActiveClass: 'swiper-pagination-bullet-active',
+              renderBullet: function (index, className) {
+                return '<span class="' + className + '"></span>';
+              }
+            }}
+            loop={true}
+            effect="fade"
+            fadeEffect={{
+              crossFade: true
+            }}
+            speed={1000}
+            onSlideChange={(s) => setActiveSlide(s.realIndex)}
+          >
+            {carouselImages.map((image, index) => (
+              <SwiperSlide key={index}>
+                <img 
+                  src={image} 
+                  className="carousel-image" 
+                  alt={index === 0 ? "Equipa de Desenvolvimento" : 
+                       index === 1 ? "Desenvolvimento de Software" : "Serviços de TI"} 
+                  loading={index === 0 ? "eager" : "lazy"}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+        
+        <motion.div 
+          className="hero-content"
+          initial="hidden"
+          animate="visible"
+          variants={heroContentVariants}
+        >
+          <motion.h1 className="hero-title" variants={itemVariants}>
+            Nexus Solutions
+            <motion.span variants={itemVariants}>Inovação Tecnológica</motion.span>
+          </motion.h1>
+          <motion.p className="hero-subtitle" variants={itemVariants}>
+            Soluções personalizadas para residências e empresas
+          </motion.p>
+        </motion.div>
+        
+        <div className="swiper-controls-wrapper">
+          <div className="swiper-pagination"></div>
+        </div>
+      </section>
+
+      {/* Welcome Section */}
+      <section className="welcome">
+        <motion.h2 
+          className="welcome-title"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          Bem Vindo à Nexus
+        </motion.h2>
+        <motion.p 
+          className="welcome-text"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          Somos uma empresa comprometida com a inovação e a excelência em soluções tecnológicas. 
+          Transformamos ideias em realidade para criar ambientes inteligentes e conectados.
+        </motion.p>
+        
+        <div className="values">
+          <div className="values-grid">
+            <div className="value-item">
+              <img 
+                src="http://kikalabs-server.nexuspt.eu/images/site-nxweb/pessoas.png" 
+                alt="Pessoas"
+                loading="lazy"
+              />
+              <h4>Pessoas no Centro</h4>
+            </div>
+            <div className="value-item">
+              <img 
+                src="http://kikalabs-server.nexuspt.eu/images/site-nxweb/sustentabilidade.png" 
+                alt="Sustentabilidade"
+                loading="lazy"
+              />
+              <h4>Sustentabilidade Digital</h4>
+            </div>
+            <div className="value-item">
+              <img 
+                src="http://kikalabs-server.nexuspt.eu/images/site-nxweb/inovacao.png" 
+                alt="Inovação"
+                loading="lazy"
+              />
+              <h4>Inovação Contínua</h4>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Clients Section */}
+      <section className="clients">
+        <h3 className="clients-title">Eles <span>confiam</span> na Nexus:</h3>
+        <div className="clients-marquee">
+          <Marquee 
+            speed={40}
+            gradient={false}
+            pauseOnHover={true}
+            className="clients-track"
+          >
+            {clientLogos.map((logo, index) => (
+              <img 
+                key={index}
+                src={logo} 
+                alt={`Client ${index + 1}`}
+                className="client-logo"
+              />
+            ))}
+            {clientLogos.map((logo, index) => (
+              <img 
+                key={`repeat-${index}`}
+                src={logo} 
+                alt={`Client ${index + 1}`}
+                className="client-logo"
+              />
+            ))}
+          </Marquee>
+        </div>
+      </section>
+
+      {/* Domestic Services Section */}
+      <section id="domestic" className="services-section">
+        <h2 className="section-title">Para Casa</h2>
+        <div className="services-grid">
+          {domesticServices.map((service, index) => (
+            <div key={index} className="service-card">
+              <FontAwesomeIcon icon={service.icon} className="service-icon" />
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
+              <ul className="feature-list">
+                {service.features.map((feature, featureIndex) => (
+                  <li key={featureIndex}>
+                    <FontAwesomeIcon icon={feature.icon} />
+                    {' ' + feature.text}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Corporate Services Section */}
+      <section id="corporate" className="services-section">
+        <h2 className="section-title">Soluções Corporativas</h2>
+        <div className="services-grid">
+          {corporateServices.map((service, index) => (
+            <div key={index} className="service-card">
+              <FontAwesomeIcon icon={service.icon} className="service-icon" />
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
+              <ul className="feature-list">
+                {service.features.map((feature, featureIndex) => (
+                  <li key={featureIndex}>
+                    <FontAwesomeIcon icon={feature.icon} />
+                    {' ' + feature.text}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+    </>
+  );
+};
+
+export default Home; 
