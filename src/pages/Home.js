@@ -23,11 +23,24 @@ const Home = () => {
   const [activeSlide, setActiveSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const carouselRef = useRef(null);
+  const [carouselSlides, setCarouselSlides] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const carouselImages = [
-    "https://images.unsplash.com/photo-1522071820081-009f0129c71c",
-    "https://images.unsplash.com/photo-1629904853716-f0bc54eea481",
-    "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d"
+  // Slides padrão para mostrar se não houver slides do JSON ou ocorrer um erro
+  const defaultSlides = [
+    {
+      image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c",
+      isDefault: true
+    },
+    {
+      image: "https://images.unsplash.com/photo-1629904853716-f0bc54eea481",
+      isDefault: true
+    },
+    {
+      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
+      isDefault: true
+    }
   ];
 
   const clientLogos = [
@@ -164,6 +177,60 @@ const Home = () => {
     }
   };
 
+  // Efeito para buscar os slides do JSON
+  useEffect(() => {
+    const fetchCarouselSlides = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch('https://kikalabs-server.nexuspt.eu/json/site-nxweb/menuconf.json');
+        
+        if (!response.ok) {
+          throw new Error(`Erro ao buscar slides: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        // Verifica se há slides no JSON e se são válidos
+        if (data && data.carousel && Array.isArray(data.carousel.slides) && data.carousel.slides.length > 0) {
+          // Processa os slides do JSON
+          const jsonSlides = data.carousel.slides.map(slide => ({
+            image: slide.image,
+            title: slide.title || '',
+            subtitle: slide.subtitle || '',
+            link: slide.link || null,
+            buttonText: slide.buttonText || 'Saber Mais',
+            isDefault: false
+          }));
+          
+          let finalSlides = [];
+          
+          // Verifica se deve combinar os slides padrão com os do JSON
+          if (data.carousel.includeDefaultSlides === true) {
+            // Usa os slides padrão e adiciona os do JSON
+            finalSlides = [...defaultSlides, ...jsonSlides];
+          } else {
+            // Usa apenas os slides do JSON, se houver, ou os padrão se não houver
+            finalSlides = jsonSlides.length > 0 ? jsonSlides : defaultSlides;
+          }
+          
+          setCarouselSlides(finalSlides);
+        } else {
+          // Se não houver slides válidos no JSON, usa os padrão
+          setCarouselSlides(defaultSlides);
+        }
+      } catch (err) {
+        console.error("Erro ao buscar slides do carousel:", err);
+        setError(err.message);
+        // Em caso de erro, usa os slides padrão
+        setCarouselSlides(defaultSlides);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    fetchCarouselSlides();
+  }, []);
+
   // Efeito para aplicar a classe transitioning durante a transição
   useEffect(() => {
     if (carouselRef.current) {
@@ -223,17 +290,26 @@ const Home = () => {
             speed={1000}
             onSlideChange={(s) => setActiveSlide(s.realIndex)}
           >
-            {carouselImages.map((image, index) => (
-              <SwiperSlide key={index}>
-                <img 
-                  src={image} 
-                  className="carousel-image" 
-                  alt={index === 0 ? "Equipa de Desenvolvimento" : 
-                       index === 1 ? "Desenvolvimento de Software" : "Serviços de TI"} 
-                  loading={index === 0 ? "eager" : "lazy"}
-                />
+            {isLoading ? (
+              // Mostrar slides de carregamento
+              <SwiperSlide>
+                <div className="loading-slide">
+                  <div className="loading-spinner"></div>
+                </div>
               </SwiperSlide>
-            ))}
+            ) : (
+              // Mostrar slides do carousel
+              carouselSlides.map((slide, index) => (
+                <SwiperSlide key={index}>
+                  <img 
+                    src={slide.image} 
+                    className="carousel-image" 
+                    alt={slide.title || `Slide ${index + 1}`} 
+                    loading={index === 0 ? "eager" : "lazy"}
+                  />
+                </SwiperSlide>
+              ))
+            )}
           </Swiper>
         </div>
         
@@ -243,13 +319,46 @@ const Home = () => {
           animate="visible"
           variants={heroContentVariants}
         >
-          <motion.h1 className="hero-title" variants={itemVariants}>
-            Nexus Solutions
-            <motion.span variants={itemVariants}>Inovação Tecnológica</motion.span>
-          </motion.h1>
-          <motion.p className="hero-subtitle" variants={itemVariants}>
-            Soluções personalizadas para residências e empresas
-          </motion.p>
+          {!isLoading && carouselSlides.length > 0 && (
+            <>
+              {/* Verifica se é um slide padrão ou personalizado */}
+              {carouselSlides[activeSlide]?.isDefault ? (
+                // Conteúdo original para slides padrão
+                <>
+                  <motion.h1 className="hero-title" variants={itemVariants}>
+                    Nexus Solutions
+                    <motion.span variants={itemVariants}>Inovação Tecnológica</motion.span>
+                  </motion.h1>
+                  <motion.p className="hero-subtitle" variants={itemVariants}>
+                    Soluções personalizadas para residências e empresas
+                  </motion.p>
+                </>
+              ) : (
+                // Conteúdo dinâmico para slides do JSON
+                <>
+                  <motion.h1 className="hero-title" variants={itemVariants}>
+                    {carouselSlides[activeSlide]?.title || ""}
+                    <motion.span variants={itemVariants}>
+                      {carouselSlides[activeSlide]?.subtitle || ""}
+                    </motion.span>
+                  </motion.h1>
+                  
+                  {carouselSlides[activeSlide]?.link && (
+                    <motion.div variants={itemVariants} className="hero-cta">
+                      <a 
+                        href={carouselSlides[activeSlide].link} 
+                        className="cta-button"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {carouselSlides[activeSlide].buttonText || "Saber Mais"}
+                      </a>
+                    </motion.div>
+                  )}
+                </>
+              )}
+            </>
+          )}
         </motion.div>
         
         <div className="swiper-controls-wrapper">
