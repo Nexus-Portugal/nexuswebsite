@@ -256,10 +256,6 @@ const Header = () => {
         </AnimatePresence>
       </nav>
       
-      <LoginModal 
-        isOpen={isLoginModalOpen} 
-        onClose={closeLoginModal} 
-      />
     </header>
   );
 };
