@@ -32,10 +32,12 @@ function App() {
 
   const openLoginModal = () => {
     setIsLoginModalOpen(true);
+    console.log("Modal aberto"); // Debug
   };
 
   const closeLoginModal = () => {
     setIsLoginModalOpen(false);
+    console.log("Modal fechado"); // Debug
   };
 
   return (
