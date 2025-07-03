@@ -15,27 +15,37 @@
   width: 100%;
   height: 100%;
   z-index: 1;
+  background: var(--dark);
 }
 
 /* Swiper Styles */
 .swiper {
   width: 100%;
   height: 100%;
+  background: var(--dark);
 }
 
 .swiper-slide {
   width: 100%;
   height: 100%;
+  background: var(--dark);
 }
 
 /* Swiper Fade Effect */
 .swiper-fade .swiper-slide {
   pointer-events: none;
   transition-property: opacity;
+  opacity: 0;
 }
 
 .swiper-fade .swiper-slide-active {
   pointer-events: auto;
+  opacity: 1;
+}
+
+.swiper-fade .swiper-slide-prev,
+.swiper-fade .swiper-slide-next {
+  opacity: 0;
 }
 
 .carousel-image {
@@ -45,10 +55,17 @@
   filter: brightness(0.3);
   transition: all 1.5s ease;
   transform: scale(1.05);
+  opacity: 1;
 }
 
 .swiper-slide-active .carousel-image {
   transform: scale(1);
+  opacity: 1;
+}
+
+.swiper-slide-prev .carousel-image,
+.swiper-slide-next .carousel-image {
+  opacity: 0;
 }
 
 .hero-content {
@@ -84,6 +101,36 @@
   margin-bottom: 2.5rem;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* Hero CTA Button */
+.hero-cta {
+  margin-top: 2rem;
+}
+
+/* Loading Spinner */
+.loading-slide {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--dark);
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--primary);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Swiper Controls */
@@ -147,12 +194,14 @@
   filter: brightness(0.3) blur(5px);
   transform: scale(1);
   transition: all 1.5s ease;
+  opacity: 0;
 }
 
 .swiper-slide-active .carousel-image {
   filter: brightness(0.3);
   transform: scale(1);
   transition: all 1.5s ease, filter 0.8s ease-out;
+  opacity: 1;
 }
 
 /* Efeito de blur glass no container */
