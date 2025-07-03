@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 
 // Componentes
 import Header from './components/Header';
 import Footer from './components/Footer';
+import LoginModal from './components/LoginModal';
 
 // Páginas
 import Home from './pages/Home';
@@ -27,10 +28,20 @@ import Drippi from './pages/servicos/Drippi';
 import VilaJaponesa from './pages/parcerias/VilaJaponesa';
 
 function App() {
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+
+  const openLoginModal = () => {
+    setIsLoginModalOpen(true);
+  };
+
+  const closeLoginModal = () => {
+    setIsLoginModalOpen(false);
+  };
+
   return (
     <Router>
       <div className="App">
-        <Header />
+        <Header onLoginClick={openLoginModal} />
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -54,6 +65,11 @@ function App() {
           </Routes>
         </main>
         <Footer />
+        
+        <LoginModal 
+          isOpen={isLoginModalOpen} 
+          onClose={closeLoginModal} 
+        />
       </div>
     </Router>
   );
