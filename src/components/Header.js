@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faChevronUp, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faChevronUp, faUser } from '@fortawesome/free-solid-svg-icons';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Header = ({ onLoginClick }) => {
@@ -241,7 +241,7 @@ const Header = ({ onLoginClick }) => {
                   className="login-button"
                   onClick={openLoginModal}
                 >
-                  <FontAwesomeIcon icon={faSignInAlt} />
+                  <FontAwesomeIcon icon={faUser} />
                   <span>MyNEXUS</span>
                 </button>
               </motion.li>
