@@ -162,7 +162,7 @@ main {
 
 .login-modal {
   background: var(--dark);
-  border: 2px solid var(--primary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 15px;
   padding: 2rem;
   max-width: 500px;
@@ -199,7 +199,7 @@ main {
 
 .modal-close:hover {
   background: rgba(255, 255, 255, 0.1);
-  color: var(--primary);
+  color: var(--light);
 }
 
 .modal-content {
@@ -207,7 +207,7 @@ main {
 }
 
 .modal-header h2 {
-  color: var(--primary);
+  color: var(--light);
   font-size: 2rem;
   margin-bottom: 0.5rem;
   font-weight: 700;
@@ -230,7 +230,7 @@ main {
 }
 
 .coming-soon h3 {
-  color: var(--primary);
+  color: var(--light);
   font-size: 1.8rem;
   margin-bottom: 1rem;
   font-weight: 600;
