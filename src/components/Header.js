@@ -1,17 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faChevronUp, faUser } from '@fortawesome/free-solid-svg-icons';
 import { motion, AnimatePresence } from 'framer-motion';
+import LoginModal from './LoginModal';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const openLoginModal = () => {
+    setIsLoginModalOpen(true);
+    setIsMenuOpen(false); // Fechar menu mobile se estiver aberto
+  };
+
+  const closeLoginModal = () => {
+    setIsLoginModalOpen(false);
   };
 
   // Add scroll event listener
@@ -226,10 +237,29 @@ const Header = () => {
               >
                 <Link to="/contacto" onClick={() => setIsMenuOpen(false)}>Contacto</Link>
               </motion.li>
+              
+              <motion.li 
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                className="login-button-container"
+              >
+                <button 
+                  className="login-button"
+                  onClick={openLoginModal}
+                >
+                  <FontAwesomeIcon icon={faUser} />
+                  <span>MyNEXUS</span>
+                </button>
+              </motion.li>
             </motion.ul>
           )}
         </AnimatePresence>
       </nav>
+      
+      <LoginModal 
+        isOpen={isLoginModalOpen} 
+        onClose={closeLoginModal} 
+      />
     </header>
   );
 };
