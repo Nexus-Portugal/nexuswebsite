@@ -1,28 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faChevronUp, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faChevronUp, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { motion, AnimatePresence } from 'framer-motion';
-import LoginModal from './LoginModal';
 
-const Header = () => {
+const Header = ({ onLoginClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [activeDropdown, setActiveDropdown] = useState(null);
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   const openLoginModal = () => {
-    setIsLoginModalOpen(true);
+    onLoginClick();
     setIsMenuOpen(false); // Fechar menu mobile se estiver aberto
-  };
-
-  const closeLoginModal = () => {
-    setIsLoginModalOpen(false);
   };
 
   // Add scroll event listener
@@ -247,7 +241,7 @@ const Header = () => {
                   className="login-button"
                   onClick={openLoginModal}
                 >
-                  <FontAwesomeIcon icon={faUser} />
+                  <FontAwesomeIcon icon={faSignInAlt} />
                   <span>MyNEXUS</span>
                 </button>
               </motion.li>
