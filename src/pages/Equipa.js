@@ -1,4 +1,5 @@
 import React from 'react';
+import './Equipa.css';
 
 const Equipa = () => {
   const leadership = [
@@ -6,7 +7,11 @@ const Equipa = () => {
       name: "Gabriel V",
       role: "Fundador e Programador Full Stack",
       image: "https://drippi.nexuspt.eu/static/uploads/3334978e08c749ff8071e30371fd8ebd.png",
-      education: "CursoPYTHON INITIATION - SummerCamp"
+      education: {
+        course: "Curso Python Initiation",
+        institution: "Sharkcoders",
+        duration: "15h"
+      }
     },
     {
       name: "Gabriel C.",
@@ -35,7 +40,11 @@ const Equipa = () => {
       name: "BielGamerYT",
       role: "Influencer",
       image: "https://res.cloudinary.com/dczslxnsu/image/upload/v1745424846/lfof2eyopicoz6p0dm4q.jpg",
-      education: "Curso PYTHON INITIATION - SummerCamp"
+      education: {
+        course: "Curso Python Initiation",
+        institution: "Sharkcoders",
+        duration: "15h"
+      }
     },
     {
       name: "Noah",
@@ -62,9 +71,19 @@ const Equipa = () => {
                 <h3>{member.name}</h3>
                 <p>{member.role}</p>
                 {member.education && (
-                  <p className="member-education">
-                    <span className="education-icon">🎓</span> {member.education}
-                  </p>
+                  <div className="member-education">
+                    <div className="education-info">
+                      <img 
+                        src="https://cdn.creazilla.com/icons/3254252/python-icon-sm.png" 
+                        alt="Python" 
+                        className="python-icon"
+                      />
+                      <span className="education-course">{member.education.course}</span>
+                    </div>
+                    <p className="education-details">
+                      {member.education.institution} • {member.education.duration}
+                    </p>
+                  </div>
                 )}
               </div>
             ))}
@@ -87,9 +106,19 @@ const Equipa = () => {
                 <h3>{member.name}</h3>
                 <p>{member.role}</p>
                 {member.education && (
-                  <p className="member-education">
-                    <span className="education-icon">🎓</span> {member.education}
-                  </p>
+                  <div className="member-education">
+                    <div className="education-info">
+                      <img 
+                        src="https://cdn.creazilla.com/icons/3254252/python-icon-sm.png" 
+                        alt="Python" 
+                        className="python-icon"
+                      />
+                      <span className="education-course">{member.education.course}</span>
+                    </div>
+                    <p className="education-details">
+                      {member.education.institution} • {member.education.duration}
+                    </p>
+                  </div>
                 )}
               </div>
             ))}
