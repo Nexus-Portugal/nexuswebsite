@@ -5,7 +5,8 @@ const Equipa = () => {
     {
       name: "Gabriel V",
       role: "Fundador e Programador Full Stack",
-      image: "https://drippi.nexuspt.eu/static/uploads/3334978e08c749ff8071e30371fd8ebd.png"
+      image: "https://drippi.nexuspt.eu/static/uploads/3334978e08c749ff8071e30371fd8ebd.png",
+      education: "PYTHON INITIATION - SummerCamp"
     },
     {
       name: "Gabriel C.",
@@ -32,13 +33,9 @@ const Equipa = () => {
     },
     {
       name: "BielGamerYT",
-      role: "Influencer | PYTHON INICIATIONS - SummerCamp",
-      image: "https://res.cloudinary.com/dczslxnsu/image/upload/v1745424846/lfof2eyopicoz6p0dm4q.jpg"
-    },
-    {
-      name: "G4briel_P",
-      role: "Desenvolvedor Junior | PYTHON INICIATIONS - SummerCamp",
-      image: "https://via.placeholder.com/200x200?text=G4briel_P"
+      role: "Influencer",
+      image: "https://res.cloudinary.com/dczslxnsu/image/upload/v1745424846/lfof2eyopicoz6p0dm4q.jpg",
+      education: "PYTHON INITIATION - SummerCamp"
     },
     {
       name: "Noah",
@@ -64,6 +61,11 @@ const Equipa = () => {
                 />
                 <h3>{member.name}</h3>
                 <p>{member.role}</p>
+                {member.education && (
+                  <p className="member-education">
+                    <span className="education-icon">🎓</span> {member.education}
+                  </p>
+                )}
               </div>
             ))}
             {/* Espaços vazios para manter o grid */}
@@ -84,6 +86,11 @@ const Equipa = () => {
                 />
                 <h3>{member.name}</h3>
                 <p>{member.role}</p>
+                {member.education && (
+                  <p className="member-education">
+                    <span className="education-icon">🎓</span> {member.education}
+                  </p>
+                )}
               </div>
             ))}
           </div>
