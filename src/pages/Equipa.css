@@ -1,0 +1,35 @@
+.team-member-card .member-education {
+  margin-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 6px;
+  text-align: center;
+}
+
+.team-member-card .education-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.team-member-card .python-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.team-member-card .education-course {
+  font-weight: 500;
+  font-size: 0.85em;
+  line-height: 1.2;
+}
+
+.team-member-card .education-details {
+  color: #a0a0a0;
+  font-size: 0.75em;
+  margin: 0;
+  line-height: 1.2;
+  text-align: center;
+} 
