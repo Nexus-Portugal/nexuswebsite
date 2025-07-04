@@ -6,7 +6,7 @@ const Equipa = () => {
       name: "Gabriel V",
       role: "Fundador e Programador Full Stack",
       image: "https://drippi.nexuspt.eu/static/uploads/3334978e08c749ff8071e30371fd8ebd.png",
-      education: "PYTHON INITIATION - SummerCamp"
+      education: "CursoPYTHON INITIATION - SummerCamp"
     },
     {
       name: "Gabriel C.",
@@ -35,7 +35,7 @@ const Equipa = () => {
       name: "BielGamerYT",
       role: "Influencer",
       image: "https://res.cloudinary.com/dczslxnsu/image/upload/v1745424846/lfof2eyopicoz6p0dm4q.jpg",
-      education: "PYTHON INITIATION - SummerCamp"
+      education: "Curso PYTHON INITIATION - SummerCamp"
     },
     {
       name: "Noah",
