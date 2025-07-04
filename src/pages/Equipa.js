@@ -6,7 +6,7 @@ const Equipa = () => {
     {
       name: "Gabriel V",
       role: "Fundador e Programador Full Stack",
-      image: "https://drippi.nexuspt.eu/static/uploads/3334978e08c749ff8071e30371fd8ebd.png",
+      image: "/__images/equipa/gabrielv.webp",
       education: {
         course: "Curso Python Initiation",
         institution: "Sharkcoders",
@@ -16,7 +16,7 @@ const Equipa = () => {
     {
       name: "Gabriel C.",
       role: "Co-Fundador e Programador Full Stack",
-      image: "https://res.cloudinary.com/dczslxnsu/image/upload/v1745388923/fs65f6o1rfij2ve9gg77.png"
+      image: "/__images/equipa/gabrielc.webp"
     }
   ];
 
@@ -41,7 +41,7 @@ const Equipa = () => {
       role: "Influencer",
       image: "https://res.cloudinary.com/dczslxnsu/image/upload/v1745424846/lfof2eyopicoz6p0dm4q.jpg",
       education: {
-        course: "Curso Python Initiation",
+        course: "CursoPython Initiation",
         institution: "Sharkcoders",
         duration: "15h"
       }
@@ -74,7 +74,7 @@ const Equipa = () => {
                   <div className="member-education">
                     <div className="education-info">
                       <img 
-                        src="https://cdn.creazilla.com/icons/3254252/python-icon-sm.png" 
+                        src="/__images/python.webp" 
                         alt="Python" 
                         className="python-icon"
                       />
@@ -109,7 +109,7 @@ const Equipa = () => {
                   <div className="member-education">
                     <div className="education-info">
                       <img 
-                        src="https://cdn.creazilla.com/icons/3254252/python-icon-sm.png" 
+                        src="/__images/python.webp" 
                         alt="Python" 
                         className="python-icon"
                       />
