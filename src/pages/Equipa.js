@@ -130,3 +130,4 @@ const Equipa = () => {
 };
 
 export default Equipa;
+//forcar commit
