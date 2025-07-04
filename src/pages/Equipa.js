@@ -32,8 +32,13 @@ const Equipa = () => {
     },
     {
       name: "BielGamerYT",
-      role: "Influencer",
+      role: "Influencer | PYTHON INICIATIONS - SummerCamp",
       image: "https://res.cloudinary.com/dczslxnsu/image/upload/v1745424846/lfof2eyopicoz6p0dm4q.jpg"
+    },
+    {
+      name: "G4briel_P",
+      role: "Desenvolvedor Junior | PYTHON INICIATIONS - SummerCamp",
+      image: "https://via.placeholder.com/200x200?text=G4briel_P"
     },
     {
       name: "Noah",
