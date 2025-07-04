@@ -129,4 +129,4 @@ const Equipa = () => {
   );
 };
 
-export default Equipa; 
+export default Equipa;
