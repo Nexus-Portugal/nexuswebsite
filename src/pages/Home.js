@@ -30,15 +30,15 @@ const Home = () => {
   // Slides padrão para mostrar se não houver slides do JSON ou ocorrer um erro
   const defaultSlides = [
     {
-      image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c",
+      image: "/__images/slider/slide1.webp",
       isDefault: true
     },
     {
-      image: "https://images.unsplash.com/photo-1629904853716-f0bc54eea481",
+      image: "/__images/slider/slide2.webp",
       isDefault: true
     },
     {
-      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
+      image: "/__images/slider/slide3.webp",
       isDefault: true
     }
   ];
