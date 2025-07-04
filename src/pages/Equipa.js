@@ -129,5 +129,4 @@ const Equipa = () => {
   );
 };
 
-export default Equipa;
-//forcar commit
+export default Equipa; 
