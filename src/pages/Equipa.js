@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCertificate } from '@fortawesome/free-solid-svg-icons';
+import CertificateModal from '../components/CertificateModal';
 import './Equipa.css';
 
 const Equipa = () => {
+  const [certificateModal, setCertificateModal] = useState({
+    isOpen: false,
+    certificateUrl: '',
+    memberName: ''
+  });
+
   const leadership = [
     {
       name: "Gabriel V",
@@ -10,7 +19,8 @@ const Equipa = () => {
       education: {
         course: "Curso Python Initiation",
         institution: "Sharkcoders",
-        duration: "15h"
+        duration: "15h",
+        certificateUrl: "https://kikalabs-server.nexuspt.eu/images/site-nxweb/cert/gabrielvcertsharkcoders.jpeg"
       }
     },
     {
@@ -53,6 +63,22 @@ const Equipa = () => {
     }
   ];
 
+  const openCertificateModal = (certificateUrl, memberName) => {
+    setCertificateModal({
+      isOpen: true,
+      certificateUrl,
+      memberName
+    });
+  };
+
+  const closeCertificateModal = () => {
+    setCertificateModal({
+      isOpen: false,
+      certificateUrl: '',
+      memberName: ''
+    });
+  };
+
   return (
     <main className="team-main">
       <section className="team-section">
@@ -79,6 +105,15 @@ const Equipa = () => {
                         className="python-icon"
                       />
                       <span className="education-course">{member.education.course}</span>
+                      {member.education.certificateUrl && (
+                        <button
+                          className="certificate-icon-btn"
+                          onClick={() => openCertificateModal(member.education.certificateUrl, member.name)}
+                          title="Ver certificado"
+                        >
+                          <FontAwesomeIcon icon={faCertificate} />
+                        </button>
+                      )}
                     </div>
                     <p className="education-details">
                       {member.education.institution} • {member.education.duration}
@@ -114,6 +149,15 @@ const Equipa = () => {
                         className="python-icon"
                       />
                       <span className="education-course">{member.education.course}</span>
+                      {member.education.certificateUrl && (
+                        <button
+                          className="certificate-icon-btn"
+                          onClick={() => openCertificateModal(member.education.certificateUrl, member.name)}
+                          title="Ver certificado"
+                        >
+                          <FontAwesomeIcon icon={faCertificate} />
+                        </button>
+                      )}
                     </div>
                     <p className="education-details">
                       {member.education.institution} • {member.education.duration}
@@ -125,6 +169,13 @@ const Equipa = () => {
           </div>
         </article>
       </section>
+
+      <CertificateModal
+        isOpen={certificateModal.isOpen}
+        onClose={closeCertificateModal}
+        certificateUrl={certificateModal.certificateUrl}
+        memberName={certificateModal.memberName}
+      />
     </main>
   );
 };
