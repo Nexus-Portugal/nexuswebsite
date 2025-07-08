@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp, faUser } from '@fortawesome/free-solid-svg-icons';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const Header = ({ onLoginClick }) => {
+const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -14,8 +14,8 @@ const Header = ({ onLoginClick }) => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const openLoginModal = () => {
-    onLoginClick();
+  const openMyNexus = () => {
+    window.open('https://my.nexuspt.eu', '_blank');
     setIsMenuOpen(false); // Fechar menu mobile se estiver aberto
   };
 
@@ -239,7 +239,7 @@ const Header = ({ onLoginClick }) => {
               >
                 <button 
                   className="login-button"
-                  onClick={openLoginModal}
+                  onClick={openMyNexus}
                 >
                   <FontAwesomeIcon icon={faUser} />
                   <span>MyNEXUS</span>
