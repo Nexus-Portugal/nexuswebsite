@@ -32,4 +32,30 @@
   margin: 0;
   line-height: 1.2;
   text-align: center;
+}
+
+.certificate-icon-btn {
+  background: none;
+  border: none;
+  color: #4a9eff;
+  cursor: pointer;
+  padding: 2px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+.certificate-icon-btn:hover {
+  background-color: rgba(74, 158, 255, 0.1);
+  color: #66b3ff;
+  transform: scale(1.1);
+}
+
+.certificate-icon-btn:active {
+  transform: scale(0.95);
 } 
