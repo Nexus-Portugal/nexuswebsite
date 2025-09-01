@@ -25,6 +25,7 @@ import Drippi from './pages/servicos/Drippi';
 
 // Páginas de Parcerias
 import VilaJaponesa from './pages/parcerias/VilaJaponesa';
+import Historia from './pages/Historia';
 
 function App() {
 
@@ -42,6 +43,7 @@ function App() {
             <Route path="/privacidade" element={<Privacidade />} />
             <Route path="/cookies" element={<Cookies />} />
             <Route path="/nxbrowser" element={<NxBrowser />} />
+            <Route path="/historia" element={<Historia />} />
             
             {/* Rotas de Serviços */}
             <Route path="/servicos/nexuschat" element={<NexusChat />} />
