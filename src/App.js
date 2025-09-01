@@ -22,6 +22,7 @@ import NexusTV from './pages/servicos/NexusTV';
 import PetsID from './pages/servicos/PetsID';
 import NexusIA from './pages/servicos/NexusIA';
 import Drippi from './pages/servicos/Drippi';
+import NexusIOT from './pages/servicos/NexusIOT';
 
 // Páginas de Parcerias
 import VilaJaponesa from './pages/parcerias/VilaJaponesa';
@@ -51,6 +52,7 @@ function App() {
             <Route path="/servicos/petsid" element={<PetsID />} />
             <Route path="/servicos/nexusia" element={<NexusIA />} />
             <Route path="/servicos/drippi" element={<Drippi />} />
+            <Route path="/servicos/nexusiot" element={<NexusIOT />} />
             
             {/* Rotas de Parcerias */}
             <Route path="/parcerias/vilajaponesa" element={<VilaJaponesa />} />
