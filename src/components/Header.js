@@ -229,6 +229,13 @@ const Header = () => {
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
+                <Link to="/historia" onClick={() => setIsMenuOpen(false)}>História</Link>
+              </motion.li>
+              
+              <motion.li 
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
                 <Link to="/contacto" onClick={() => setIsMenuOpen(false)}>Contacto</Link>
               </motion.li>
               
