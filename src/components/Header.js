@@ -212,6 +212,7 @@ const Header = () => {
                 <li><Link to="/servicos/petsid" onClick={() => setIsMenuOpen(false)}>Pets ID</Link></li>
                 <li><Link to="/servicos/nexusia" onClick={() => setIsMenuOpen(false)}>NexusIA</Link></li>
                 <li><Link to="/servicos/drippi" onClick={() => setIsMenuOpen(false)}>Drippi</Link></li>
+                <li><Link to="/servicos/nexusiot" onClick={() => setIsMenuOpen(false)}>NexusIOT</Link></li>
               </DropdownMenu>
               
               <DropdownMenu title="Parcerias" name="parcerias">
