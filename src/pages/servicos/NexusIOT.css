@@ -1,0 +1,124 @@
+.iot-hero .iot-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.65) 60%, rgba(0,0,0,0.85) 100%);
+  z-index: 1;
+}
+
+.iot-section {
+  padding: 4rem 2rem;
+  background: var(--dark);
+}
+
+.iot-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.iot-section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--light);
+}
+
+.iot-features-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+
+.iot-card {
+  background: #0d1323;
+  border: 1px solid #1f2a44;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(25,217,220,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.iot-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--primary);
+  box-shadow: 0 14px 45px rgba(25,217,220,0.18);
+}
+
+.iot-card-media {
+  height: 140px;
+  background: #0a0f1d;
+  overflow: hidden;
+}
+
+.iot-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.iot-card-body {
+  padding: 1rem;
+  text-align: center;
+}
+
+.iot-card-body h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #e6e8ef;
+}
+
+.iot-brands-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.iot-brand-card {
+  background: #0d1323;
+  border: 1px solid #1f2a44;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.iot-brand-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--primary);
+  box-shadow: 0 14px 45px rgba(25,217,220,0.18);
+}
+
+.iot-brand-card img {
+  max-width: 70%;
+  max-height: 70px;
+  object-fit: contain;
+}
+
+.iot-cta {
+  background: linear-gradient(180deg, #0a0e16, #0d1323);
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.iot-cta h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.6rem;
+  color: #ffffff;
+}
+
+.iot-cta p {
+  margin: 0 0 1.5rem 0;
+  color: #cbd5e1;
+}
+
+@media (max-width: 1024px) {
+  .iot-features-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .iot-features-grid { grid-template-columns: repeat(2, 1fr); }
+  .iot-brands-grid { grid-template-columns: 1fr; }
+}
+
+
