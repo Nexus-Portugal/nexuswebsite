@@ -5,6 +5,8 @@ import './App.css';
 // Componentes
 import Header from './components/Header';
 import Footer from './components/Footer';
+import MouseGlow from './components/MouseGlow';
+import FloatingParticles from './components/FloatingParticles';
 
 // Páginas
 import Home from './pages/Home';
@@ -33,6 +35,8 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <MouseGlow />
+        <FloatingParticles />
         <Header />
         <main>
           <Routes>
