@@ -59,69 +59,111 @@
     <noscript>
       <style>
         /* Estilos mínimos para versão sem JavaScript */
-        #nojs { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color: #e6e8ef; background: #0a0e16; padding: 24px; line-height: 1.6; }
+        #nojs { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color: #e6e8ef; background: #0a0e16; padding: 24px; line-height: 1.6; max-width: 900px; margin: 0 auto; }
         #nojs a { color: #7dc4ff; text-decoration: none; }
         #nojs a:hover { text-decoration: underline; }
         #nojs .nojs-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
         #nojs .nojs-logo { height: 32px; width: auto; }
         #nojs h1 { font-size: 20px; margin: 0 0 8px 0; color: #ffffff; }
+        #nojs h2 { font-size: 16px; margin: 16px 0 8px 0; color: #19d9dc; }
         #nojs p { margin: 8px 0; }
         #nojs .nojs-nav { margin: 16px 0; }
         #nojs .nojs-nav ul { list-style: none; padding: 0; margin: 8px 0; display: grid; gap: 6px; }
         #nojs .nojs-badges { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
         #nojs .nojs-badge { background: #121827; border: 1px solid #1f2937; padding: 6px 10px; border-radius: 6px; font-size: 12px; color: #cbd5e1; }
-        #nojs .nojs-section { margin-top: 16px; }
+        #nojs .nojs-section { margin-top: 16px; padding-top: 16px; border-top: 1px solid #1f2937; }
         #nojs .nojs-small { color: #94a3b8; font-size: 12px; margin-top: 12px; }
+        #nojs .nojs-service { background: #121827; padding: 12px; border-radius: 6px; margin-bottom: 8px; }
+        #nojs .nojs-service strong { color: #19d9dc; }
       </style>
       <div id="nojs">
         <div class="nojs-header">
           <img class="nojs-logo" src="https://kikalabs-server.nexuspt.eu/images/site-nxweb/RealNexusWeb.png" alt="Nexus" />
-          <strong>Nexus Solutions</strong>
+          <strong>Nexus PT</strong>
         </div>
-        <h1>Soluções tecnológicas inteligentes</h1>
+        <h1>Soluções tecnológicas inteligentes para residências e empresas, Startup</h1>
         <p>
-          Esta é uma versão simplificada para navegadores sem JavaScript. Para a experiência completa
-          (animações, navegação SPA e conteúdos dinâmicos), ative o JavaScript.
+          Bem-vindo ao site da Nexus PT, uma "mini-startup" portuguesa de desenvolvimento tecnológico. 
+          Esta é uma versão simplificada para navegadores sem JavaScript. Para a experiência completa 
+          (animações, efeitos visuais, navegação SPA dinâmica e interatividade total), ative o JavaScript.
         </p>
 
+        <div class="nojs-section">
+          <h2>Serviços Principais</h2>
+          <div class="nojs-service">
+            <strong>NexusChat</strong> - Plataforma de chat, estilo discord em chat.nexuspt.eu
+          </div>
+          <div class="nojs-service">
+            <strong>NexusTV</strong> - Serviço de TV com canais e rádios nacionais (Portugal) em tv.nexuspt.eu
+          </div>
+          <div class="nojs-service">
+            <strong>NexusIA</strong> - Chatbot I.A estilo ChatGPT com vários modelos LLMS em ia.nexuspt.eu
+          </div>
+          <div class="nojs-service">
+            <strong>Drippi</strong> - Rede social inovadora para jovens, com Stories, Threads e Vídeos curtos, Mapa com localização (se o user aceitar partilhar) em drippi.nexuspt.eu
+          </div>
+          <div class="nojs-service">
+            <strong>PetsID</strong> - Sistema de identificação do animal de estimação com lembrete de vacinas
+          </div>
+          <div class="nojs-service">
+            <strong>NexusIOT</strong> - Soluções IoT para automatização inteligente, dispositivos inteligentes TAPO, Shelly, Tuya e futuramente serviço de alarme futuramente em iot.nexuspt.eu
+          </div>
+        </div>
+
         <div class="nojs-badges">
-          <span class="nojs-badge">NexusAI</span>
-          <span class="nojs-badge">NexusTV</span>
-          <span class="nojs-badge">NexusChat</span>
-          <span class="nojs-badge">Pets ID</span>
-          <span class="nojs-badge">Giae by Nexus</span>
-          <span class="nojs-badge">Soluções Custom</span>
+          <span class="nojs-badge">React 19</span>
+          <span class="nojs-badge">Framer Motion</span>
+          <span class="nojs-badge">Design Moderno</span>
+          <span class="nojs-badge">PWA Ready</span>
+          <span class="nojs-badge">SEO Otimizado</span>
         </div>
 
         <div class="nojs-section">
-          <strong>Links rápidos</strong>
+          <h2>Links de Navegação</h2>
           <nav class="nojs-nav" aria-label="Links principais">
             <ul>
-              <li><a href="/">Início</a></li>
-              <li><a href="/contacto">Contacto</a></li>
-              <li><a href="/equipa">Equipa</a></li>
-              <li><a href="/historia">História</a></li>
-              <li><a href="/privacidade">Privacidade</a></li>
-              <li><a href="/termos">Termos</a></li>
-              <li><a href="/cookies">Cookies</a></li>
-              <li><a href="/servicos/nexusia">NexusAI</a></li>
-              <li><a href="/servicos/tv">NexusTV</a></li>
-              <li><a href="/servicos/nexuschat">NexusChat</a></li>
-              <li><a href="/servicos/petsid">Pets ID</a></li>
-              <li><a href="/servicos/drippi">Drippi</a></li>
-              <li><a href="/servicos/nexusiot">NexusIOT</a></li>
-              <li><a href="/parcerias/vilajaponesa">Vila Japonesa</a></li>
-              <li><a href="https://my.nexuspt.eu" target="_blank" rel="noopener noreferrer">MyNEXUS (externo)</a></li>
+              <li><a href="/">🏠 Página Inicial</a></li>
+              <li><a href="/equipa">👥 Equipa</a></li>
+              <li><a href="/historia">📖 História</a></li>
+              <li><a href="/contacto">📧 Contacto</a></li>
+              <li><a href="/servicos/nexuschat">💬 NexusChat</a></li>
+              <li><a href="/servicos/tv">📺 NexusTV</a></li>
+              <li><a href="/servicos/nexusia">🤖 NexusIA</a></li>
+              <li><a href="/servicos/drippi">🎬 Drippi</a></li>
+              <li><a href="/servicos/petsid">🐾 PetsID</a></li>
+              <li><a href="/servicos/nexusiot">🔌 NexusIOT</a></li>
+              <li><a href="/parcerias/vilajaponesa">🏯 Parceria Vila Japonesa Minecraft</a></li>
+              <li><a href="/privacidade">🔒 Política de Privacidade</a></li>
+              <li><a href="/termos">⚖️ Termos e Condições</a></li>
+              <li><a href="/cookies">🍪 Política de Cookies</a></li>
+              <li><a href="https://my.nexuspt.eu" target="_blank" rel="noopener noreferrer">🔗 MyNEXUS (Portal Externo)</a></li>
             </ul>
           </nav>
         </div>
 
         <div class="nojs-section">
-          <strong>Sobre</strong>
-          <p>Desenvolvemos soluções para residências e empresas: apps web, integrações API, streaming, chat e IoT.</p>
+          <h2>Sobre a Nexus Solutions</h2>
+          <p>
+            A Nexus PT é uma empresa portuguesa de tecnologia focada em desenvolver soluções inovadoras para residências e empresas. 
+            Especializamo-nos em:
+          </p>
+          <ul>
+            <li>Desenvolvimento Web (React, Full Stack)</li>
+            <li>Aplicações Móveis e PWA</li>
+            <li>Serviços em Nuvem e API Integrações</li>
+            <li>Redes Sociais e Plataformas de Comunidade</li>
+            <li>Soluções IoT e Automação</li>
+            <li>Inteligência Artificial e Machine Learning</li>
+          </ul>
+          <p>
+            Para mais informações ou contactar-nos, visite a seção de <a href="/contacto">Contacto</a>.
+          </p>
         </div>
 
-        <p class="nojs-small">Se é um crawler/IA, este bloco contém um resumo textual das áreas principais do site.</p>
+        <p class="nojs-small">
+          <strong>Nota para Crawlers e IA:</strong> Este bloco contém informação textual completa sobre os serviços, 
+          tecnologias e estrutura do site Nexus PT, permitindo uma compreensão adequada do conteúdo e propósito da plataforma.
+        </p>
       </div>
     </noscript>
     <div id="root"></div>
