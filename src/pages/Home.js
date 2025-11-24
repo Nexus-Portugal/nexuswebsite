@@ -44,10 +44,156 @@ const Home = () => {
   ];
 
   const clientLogos = [
-    "https://kikalabs-server.nexuspt.eu/images/site-vilajaponesa/vilajaponesalogo.png",
-    "https://kikalabs-server.nexuspt.eu/images/site-vilaportuguesa/vilapt.png",
-    "https://kikalabs-server.nexuspt.eu/images/site-vilajaponesa/vilajaponesalogo.png",
-    "https://kikalabs-server.nexuspt.eu/images/site-vilaportuguesa/vilapt.png"
+    {
+      image: "https://kikalabs-server.nexuspt.eu/images/site-vilajaponesa/vilajaponesalogo.png",
+      link: "https://vilajaponesa.pt",
+      alt: "Vila Japonesa"
+    },
+    {
+      image: "https://kikalabs-server.nexuspt.eu/images/site-vilaportuguesa/vilapt.png",
+      link: "#",
+      alt: "Vila Portuguesa"
+    },
+    {
+      image: "https://kikalabs-server.nexuspt.eu/images/site-nxweb/ggstudios.webp",
+      link: "https://ggs.studios.nexuspt.eu",
+      alt: "GgStudios"
+    },
+    {
+      image: "https://kikalabs-server.nexuspt.eu/images/site-minerustico/logo.png",
+      link: "https://minerustico.nexuspt.eu/",
+      alt: "Minerustico"
+    },
+    {
+      image: "https://i.ibb.co/JWfBC0HW/image.png",
+      link: "#",
+      alt: "Dogge"
+    },
+    {
+      image: "https://i.ibb.co/d0p2G68n/image.png",
+      link: "https://aehs.edu.pt",
+      alt: "AEHS"
+    },
+    {
+      image: "https://kikalabs-server.nexuspt.eu/images/site-vilajaponesa/vilajaponesalogo.png",
+      link: "https://vilajaponesa.pt",
+      alt: "Vila Japonesa"
+    },
+    {
+      image: "https://kikalabs-server.nexuspt.eu/images/site-vilaportuguesa/vilapt.png",
+      link: "#",
+      alt: "Vila Portuguesa"
+    },
+    {
+      image: "https://kikalabs-server.nexuspt.eu/images/site-nxweb/ggstudios.webp",
+      link: "https://ggs.studios.nexuspt.eu",
+      alt: "GgStudios"
+    },
+    {
+      image: "https://kikalabs-server.nexuspt.eu/images/site-minerustico/logo.png",
+      link: "https://minerustico.nexuspt.eu/",
+      alt: "Minerustico"
+    },
+    {
+      image: "https://i.ibb.co/JWfBC0HW/image.png",
+      link: "#",
+      alt: "Dogge"
+    },
+    {
+      image: "https://i.ibb.co/d0p2G68n/image.png",
+      link: "https://aehs.edu.pt",
+      alt: "AEHS"
+    },
+    {
+      image: "https://kikalabs-server.nexuspt.eu/images/site-vilajaponesa/vilajaponesalogo.png",
+      link: "https://vilajaponesa.pt",
+      alt: "Vila Japonesa"
+    },
+    {
+      image: "https://kikalabs-server.nexuspt.eu/images/site-vilaportuguesa/vilapt.png",
+      link: "#",
+      alt: "Vila Portuguesa"
+    },
+    {
+      image: "https://kikalabs-server.nexuspt.eu/images/site-nxweb/ggstudios.webp",
+      link: "https://ggs.studios.nexuspt.eu",
+      alt: "GgStudios"
+    },
+    {
+      image: "https://kikalabs-server.nexuspt.eu/images/site-minerustico/logo.png",
+      link: "https://minerustico.nexuspt.eu/",
+      alt: "Minerustico"
+    },
+    {
+      image: "https://i.ibb.co/JWfBC0HW/image.png",
+      link: "#",
+      alt: "Dogge"
+    },
+    {
+      image: "https://i.ibb.co/d0p2G68n/image.png",
+      link: "https://aehs.edu.pt",
+      alt: "AEHS"
+    },
+    {
+      image: "https://kikalabs-server.nexuspt.eu/images/site-vilajaponesa/vilajaponesalogo.png",
+      link: "https://vilajaponesa.pt",
+      alt: "Vila Japonesa"
+    },
+    {
+      image: "https://kikalabs-server.nexuspt.eu/images/site-vilaportuguesa/vilapt.png",
+      link: "#",
+      alt: "Vila Portuguesa"
+    },
+    {
+      image: "https://kikalabs-server.nexuspt.eu/images/site-nxweb/ggstudios.webp",
+      link: "https://ggs.studios.nexuspt.eu",
+      alt: "GgStudios"
+    },
+    {
+      image: "https://kikalabs-server.nexuspt.eu/images/site-minerustico/logo.png",
+      link: "https://minerustico.nexuspt.eu/",
+      alt: "Minerustico"
+    },
+    {
+      image: "https://i.ibb.co/JWfBC0HW/image.png",
+      link: "#",
+      alt: "Dogge"
+    },
+    {
+      image: "https://i.ibb.co/d0p2G68n/image.png",
+      link: "https://aehs.edu.pt",
+      alt: "AEHS"
+    },
+    {
+      image: "https://kikalabs-server.nexuspt.eu/images/site-vilajaponesa/vilajaponesalogo.png",
+      link: "https://vilajaponesa.pt",
+      alt: "Vila Japonesa"
+    },
+    {
+      image: "https://kikalabs-server.nexuspt.eu/images/site-vilaportuguesa/vilapt.png",
+      link: "#",
+      alt: "Vila Portuguesa"
+    },
+    {
+      image: "https://kikalabs-server.nexuspt.eu/images/site-nxweb/ggstudios.webp",
+      link: "https://ggs.studios.nexuspt.eu",
+      alt: "GgStudios"
+    },
+    {
+      image: "https://kikalabs-server.nexuspt.eu/images/site-minerustico/logo.png",
+      link: "https://minerustico.nexuspt.eu/",
+      alt: "Minerustico"
+    },
+    {
+      image: "https://i.ibb.co/JWfBC0HW/image.png",
+      link: "#",
+      alt: "Dogge"
+    },
+    {
+      image: "https://i.ibb.co/d0p2G68n/image.png",
+      link: "https://aehs.edu.pt",
+      alt: "AEHS"
+    }
   ];
 
   const domesticServices = [
@@ -58,6 +204,15 @@ const Home = () => {
       features: [
         { icon: faSyringe, text: "Lembrete de vacinas" },
         { icon: faInfoCircle, text: "Dados do pet" }
+      ]
+    },
+    {
+      icon: faRobot,
+      title: "NexusIOT",
+      description: "Alarme sem custos mensais",
+      features: [
+        { icon: faShieldAlt, text: "Sirene dissuasora" },
+        { icon: faTabletAlt, text: "Painel touch" }
       ]
     },
     {
@@ -428,21 +583,21 @@ const Home = () => {
             pauseOnHover={true}
             className="clients-track"
           >
-            {clientLogos.map((logo, index) => (
-              <img 
+            {clientLogos.map((client, index) => (
+              <a
                 key={index}
-                src={logo} 
-                alt={`Client ${index + 1}`}
-                className="client-logo"
-              />
-            ))}
-            {clientLogos.map((logo, index) => (
-              <img 
-                key={`repeat-${index}`}
-                src={logo} 
-                alt={`Client ${index + 1}`}
-                className="client-logo"
-              />
+                href={client.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="client-logo-link"
+                title={client.alt}
+              >
+                <img 
+                  src={client.image} 
+                  alt={client.alt}
+                  className="client-logo"
+                />
+              </a>
             ))}
           </Marquee>
         </div>
