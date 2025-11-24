@@ -4,6 +4,7 @@ import {
   faCameraRetro, faComments, faShareNodes, faFilm, 
   faCommentDots, faLocationDot 
 } from '@fortawesome/free-solid-svg-icons';
+import ScrollGifPlayer from '../../components/ScrollGifPlayer';
 import './Drippi.css';
 
 const Drippi = () => {
@@ -59,6 +60,15 @@ const Drippi = () => {
       <section className="welcome">
         <h2 className="welcome-title">Compartilha os teus momentos no Drippi</h2>
         <p className="welcome-text">Captura, conversa e conecta-te de formas inovadoras com a tua comunidade.</p>
+        
+        {/* GIF com Scroll Interativo */}
+        <div style={{ marginBottom: '4rem', marginTop: '2rem' }}>
+          <ScrollGifPlayer 
+            gifUrl="https://i.ibb.co/C3ZwkMWC/Grava-o-2025-08-15-051321-unscreen.gif" 
+            videoUrl="https://kikalabs-server.nexuspt.eu/video/site-nxweb/drippivid.mp4"
+            alt="Drippi Demo" 
+          />
+        </div>
         
         <div className="values-grid drippi-grid">
           {features.map((feature, index) => (
