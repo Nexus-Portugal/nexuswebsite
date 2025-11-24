@@ -17,10 +17,36 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background: var(--dark);
+  background: linear-gradient(135deg, var(--dark) 0%, #1a2332 100%);
   color: var(--light);
   scroll-behavior: smooth;
   line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(25, 217, 220, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(0, 234, 99, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+  animation: bgFloat 20s ease-in-out infinite;
+}
+
+@keyframes bgFloat {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
 }
 
 /* Garantir que todos os textos são brancos */
@@ -64,6 +90,8 @@ html {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow: hidden;
 }
 
 main {
@@ -74,17 +102,18 @@ main {
 /* Header */
 .header {
   padding: 1rem 0;
-  background: rgba(10, 14, 22, 0.98);
+  background: linear-gradient(90deg, rgba(10, 14, 22, 0.98) 0%, rgba(26, 35, 50, 0.95) 100%);
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 1000;
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(25, 217, 220, 0.15);
   display: flex;
   justify-content: space-between;
   align-items: center;
   transition: var(--transition);
+  box-shadow: 0 10px 30px rgba(25, 217, 220, 0.05);
 }
 
 /* Login Button */
@@ -193,6 +222,21 @@ main {
   gap: 0.3rem;
   transition: var(--transition);
   cursor: pointer;
+}
+
+.menu-link::after, .nav-list > li > a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  transition: width 0.3s ease;
+}
+
+.menu-link:hover::after, .nav-list > li > a:hover::after {
+  width: 100%;
 }
 
 .menu-link svg, .nav-list > li > a > svg {
@@ -306,10 +350,13 @@ main {
 
 /* Footer */
 .footer {
-  background: rgba(10, 14, 22, 0.98);
+  background: linear-gradient(135deg, rgba(10, 14, 22, 0.98) 0%, rgba(15, 22, 32, 0.95) 100%);
   padding: 4rem 2rem;
   margin-top: 0;
-  border-top: 3px solid var(--primary);
+  border-top: 2px solid rgba(25, 217, 220, 0.2);
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 -10px 40px rgba(25, 217, 220, 0.08);
 }
 
 .footer-content {
@@ -524,10 +571,12 @@ main {
   max-width: 1200px;
   margin: 0 auto;
   margin-top: 70px;
+  /* Estilos específicos em Equipa.css */
 }
 
 .team-section {
   margin-bottom: 5rem;
+  /* Estilos específicos em Equipa.css */
 }
 
 .team-category {
@@ -560,44 +609,7 @@ main {
   gap: 2rem;
 }
 
-.team-member-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.1);
-  overflow: hidden;
-  transition: var(--transition);
-  text-align: center;
-  border-radius: 10px;
-}
-
-.team-member-card:hover {
-  border-color: var(--primary);
-  transform: translateY(-5px);
-}
-
-.team-member-card img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  filter: grayscale(50%);
-  transition: var(--transition);
-}
-
-.team-member-card:hover img {
-  filter: grayscale(0%);
-}
-
-.team-member-card h3 {
-  color: var(--light);
-  font-size: 1.5rem;
-  margin: 1.5rem 0 0.5rem;
-}
-
-.team-member-card p {
-  color: var(--primary);
-  margin-bottom: 1.5rem;
-  font-size: 1rem;
-}
+/* Estilos dos cards de equipa são definidos em Equipa.css para melhor manutenção */
 
 .cta-button {
   display: inline-block;
