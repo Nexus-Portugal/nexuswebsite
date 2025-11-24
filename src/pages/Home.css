@@ -356,6 +356,13 @@
   filter: grayscale(0%) brightness(1);
 }
 
+.client-logo-link {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
 /* Services Section */
 .services-section {
   padding: 6rem 25px;
