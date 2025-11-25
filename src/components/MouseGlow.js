@@ -3,6 +3,37 @@ import { motion } from 'framer-motion';
 
 const MouseGlow = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isLowEnd, setIsLowEnd] = useState(false);
+
+  // Detectar capacidade do dispositivo
+  useEffect(() => {
+    const detectLowEndDevice = () => {
+      // Verificar RAM disponível (se disponível via deviceMemory API)
+      if (navigator.deviceMemory && navigator.deviceMemory <= 4) {
+        setIsLowEnd(true);
+        return;
+      }
+
+      // Verificar taxa de refresh de tela
+      if (navigator.maxTouchPoints !== undefined && navigator.maxTouchPoints > 0) {
+        // Dispositivo mobile/tablet pode ser low-end
+        const cores = navigator.hardwareConcurrency || 1;
+        if (cores <= 2) {
+          setIsLowEnd(true);
+          return;
+        }
+      }
+
+      // Verificar se há reduceMotion ativado (modo economia de energia)
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReducedMotion) {
+        setIsLowEnd(true);
+        return;
+      }
+    };
+
+    detectLowEndDevice();
+  }, []);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -12,13 +43,21 @@ const MouseGlow = () => {
       });
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+    // Apenas adiciona listener se não for low-end
+    if (!isLowEnd) {
+      window.addEventListener('mousemove', handleMouseMove);
+      return () => window.removeEventListener('mousemove', handleMouseMove);
+    }
+  }, [isLowEnd]);
+
+  // Se for dispositivo low-end, não renderiza o glow
+  if (isLowEnd) {
+    return null;
+  }
 
   return (
     <>
-      {/* Glow principal que segue o rato */}
+      {/* Glow principal que segue o rato - reduzido em brilho */}
       <motion.div
         className="mouse-glow"
         animate={{
@@ -32,7 +71,7 @@ const MouseGlow = () => {
           width: 400,
           height: 400,
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(25, 217, 220, 0.4) 0%, rgba(25, 217, 220, 0.1) 50%, transparent 100%)',
+          background: 'radial-gradient(circle, rgba(25, 217, 220, 0.2) 0%, rgba(25, 217, 220, 0.05) 50%, transparent 100%)',
           filter: 'blur(60px)',
           zIndex: 5,
           mixBlendMode: 'screen',
@@ -41,7 +80,7 @@ const MouseGlow = () => {
         }}
       />
 
-      {/* Glow secundário mais suave */}
+      {/* Glow secundário mais suave - reduzido em brilho */}
       <motion.div
         className="mouse-glow-secondary"
         animate={{
@@ -55,7 +94,7 @@ const MouseGlow = () => {
           width: 600,
           height: 600,
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(0, 234, 99, 0.25) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(0, 234, 99, 0.12) 0%, transparent 70%)',
           filter: 'blur(100px)',
           zIndex: 4,
           mixBlendMode: 'screen',
