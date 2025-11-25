@@ -180,6 +180,7 @@ const Header = () => {
         initial="initial"
         whileHover="hover"
         variants={logoVariants}
+        style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}
       >
         <Link to="/" className="logo-link">
           <img 
@@ -188,6 +189,9 @@ const Header = () => {
             className="logo"
           />
         </Link>
+        {!isMobile && (
+          <span className="logo-text">NexusPT</span>
+        )}
       </motion.div>
       
       <nav className="nav-menu">
