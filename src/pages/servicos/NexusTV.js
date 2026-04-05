@@ -1,6 +1,7 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import LazyServicePage from '../../components/LazyServicePage';
 import './Services.css';
 
 const NexusTV = () => {
@@ -13,17 +14,20 @@ const NexusTV = () => {
   ];
 
   return (
-    <>
+    <LazyServicePage>
       {/* Hero Section */}
       <section className="hero">
-        <img 
-          src="https://t4.ftcdn.net/jpg/10/11/85/53/360_F_1011855320_RQwxR76hHxsE9hHUp7FEaDx41M1i5k2T.jpg" 
-          alt="Plataforma de streaming"
-        />
+        <div className="carousel-container">
+          <img 
+            src="https://t4.ftcdn.net/jpg/10/11/85/53/360_F_1011855320_RQwxR76hHxsE9hHUp7FEaDx41M1i5k2T.jpg" 
+            alt="Plataforma de streaming"
+            className="carousel-image"
+          />
+        </div>
         <div className="hero-content">
           <h1 className="hero-title">NexusTV</h1>
-          <p className="hero-subtitle">Sua plataforma completa de entretenimento digital</p>
-          <a href="https://tv.nexuspt.eu" className="cta-button">Acessar NexusTV</a>
+          <p className="hero-subtitle">A tua plataforma recheada de entretenimento digital nacional</p>
+          <button className="cta-button" disabled>Aceder Plataforma (Brevemente)</button>
         </div>
       </section>
 
@@ -33,7 +37,7 @@ const NexusTV = () => {
           <h2>Conteúdo Diversificado</h2>
           <div className="about-grid">
             <div className="about-image">
-              <img src="https://i.ibb.co/qMcZWhfx/image.png" alt="Interface NexusTV" />
+              <img src="https://i.ibb.co/Xrd0YqZr/image.png" alt="Interface NexusTV" style={{width: '100%', height: 'auto', display: 'block'}} />
             </div>
             <div className="about-features">
               <ul className="feature-list">
@@ -46,8 +50,8 @@ const NexusTV = () => {
           </div>
         </div>
       </section>
-    </>
+    </LazyServicePage>
   );
 };
 
-export default NexusTV; 
+export default NexusTV;
