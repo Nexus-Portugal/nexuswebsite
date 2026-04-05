@@ -1,29 +1,43 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useMemo } from 'react';
 
 const ShineEffect = () => {
+  // Não renderizar se prefers-reduced-motion estiver ativado
+  const shouldRender = useMemo(() => {
+    return !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }, []);
+
+  if (!shouldRender) {
+    return null;
+  }
+
   return (
-    <motion.div
+    <div
       style={{
         position: 'fixed',
         top: 0,
         left: '-100%',
-        width: '200%',
+        width: '50%',
         height: '100vh',
-        background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%)',
+        background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.03) 50%, transparent 100%)',
         pointerEvents: 'none',
         zIndex: 2,
-        filter: 'blur(20px)'
+        filter: 'blur(30px)',
+        animation: 'shine 8s ease-in-out infinite',
+        willChange: 'transform'
       }}
-      animate={{
-        left: ['-100%', '100%']
-      }}
-      transition={{
-        duration: 6,
-        repeat: Infinity,
-        ease: 'easeInOut'
-      }}
-    />
+      aria-hidden="true"
+    >
+      <style>{`
+        @keyframes shine {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(400vw);
+          }
+        }
+      `}</style>
+    </div>
   );
 };
 

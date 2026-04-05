@@ -5,6 +5,19 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#0a0e16" />
+    <meta name="monetag" content="029b67e660343e5efc550a9bc5cae5ff">
+    
+    <!-- Preconnect hints for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://kikalabs-server.nexuspt.eu">
+    <link rel="preconnect" href="https://cdn-icons-png.flaticon.com">
+    
+    <!-- DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="//kikalabs-server.nexuspt.eu">
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="Nexus Web - Soluções tecnológicas inteligentes para residências e empresas. Descubra soluções inovadoras em desenvolvimento de software, streaming, chat e muito mais." />
@@ -29,8 +42,14 @@
     
     <!-- Preconnect & Preload -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
-    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1522071820081-009f0129c71c" />
+    <link rel="preload" as="image" href="/__images/slider/slide1.webp" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <style>
+      /* Optimize font loading for LCP */
+      body {
+        font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      }
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     
     <!-- Structured Data for better machine readability -->
@@ -52,13 +71,7 @@
         }
       }
     </script>
-    <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "q48rygpjz8");
-    </script>
+    
     <title>Nexus - Soluções Inteligentes</title>
   </head>
   <body>
@@ -85,11 +98,11 @@
       <div id="nojs">
         <div class="nojs-header">
           <img class="nojs-logo" src="https://kikalabs-server.nexuspt.eu/images/site-nxweb/RealNexusWeb.png" alt="Nexus" />
-          <strong>Nexus PT</strong>
+          <strong>Nexus Solutions</strong>
         </div>
-        <h1>Soluções tecnológicas inteligentes para residências e empresas, Startup</h1>
+        <h1>Soluções tecnológicas inteligentes para residências e empresas</h1>
         <p>
-          Bem-vindo ao site da Nexus PT, uma "mini-startup" portuguesa de desenvolvimento tecnológico. 
+          Bem-vindo ao site da Nexus PT, uma empresa portuguesa de desenvolvimento tecnológico. 
           Esta é uma versão simplificada para navegadores sem JavaScript. Para a experiência completa 
           (animações, efeitos visuais, navegação SPA dinâmica e interatividade total), ative o JavaScript.
         </p>
@@ -97,22 +110,22 @@
         <div class="nojs-section">
           <h2>Serviços Principais</h2>
           <div class="nojs-service">
-            <strong>NexusChat</strong> - Plataforma de chat, estilo discord em chat.nexuspt.eu
+            <strong>NexusChat</strong> - Plataforma de comunicação instantânea com chat em tempo real
           </div>
           <div class="nojs-service">
-            <strong>NexusTV</strong> - Serviço de TV com canais e rádios nacionais (Portugal) em tv.nexuspt.eu
+            <strong>NexusTV</strong> - Serviço de streaming de vídeo e conteúdo multimédia
           </div>
           <div class="nojs-service">
-            <strong>NexusIA</strong> - Chatbot I.A estilo ChatGPT com vários modelos LLMS em ia.nexuspt.eu
+            <strong>NexusIA</strong> - Soluções de inteligência artificial para automação
           </div>
           <div class="nojs-service">
-            <strong>Drippi</strong> - Rede social inovadora para jovens, com Stories, Threads e Vídeos curtos, Mapa com localização (se o user aceitar partilhar) em drippi.nexuspt.eu
+            <strong>Drippi</strong> - Rede social inovadora para jovens, com Stories, Threads e vídeos curtos
           </div>
           <div class="nojs-service">
-            <strong>PetsID</strong> - Sistema de identificação do animal de estimação com lembrete de vacinas
+            <strong>PetsID</strong> - Sistema de identificação e rastreamento de animais de estimação
           </div>
           <div class="nojs-service">
-            <strong>NexusIOT</strong> - Soluções IoT para automatização inteligente, dispositivos inteligentes TAPO, Shelly, Tuya e futuramente serviço de alarme futuramente em iot.nexuspt.eu
+            <strong>NexusIOT</strong> - Soluções IoT para automatização inteligente
           </div>
         </div>
 
@@ -138,7 +151,7 @@
               <li><a href="/servicos/drippi">🎬 Drippi</a></li>
               <li><a href="/servicos/petsid">🐾 PetsID</a></li>
               <li><a href="/servicos/nexusiot">🔌 NexusIOT</a></li>
-              <li><a href="/parcerias/vilajaponesa">🏯 Parceria Vila Japonesa Minecraft</a></li>
+              <li><a href="/parcerias/vilajaponesa">🏯 Vila Japonesa</a></li>
               <li><a href="/privacidade">🔒 Política de Privacidade</a></li>
               <li><a href="/termos">⚖️ Termos e Condições</a></li>
               <li><a href="/cookies">🍪 Política de Cookies</a></li>
@@ -168,7 +181,7 @@
 
         <p class="nojs-small">
           <strong>Nota para Crawlers e IA:</strong> Este bloco contém informação textual completa sobre os serviços, 
-          tecnologias e estrutura do site Nexus PT, permitindo uma compreensão adequada do conteúdo e propósito da plataforma.
+          tecnologias e estrutura do site Nexus Solutions, permitindo uma compreensão adequada do conteúdo e propósito da plataforma.
         </p>
       </div>
     </noscript>

@@ -8,7 +8,7 @@ const NxBrowser = () => {
         <div className="container">
           <h1>NexusBrowser</h1>
           <p>O navegador rápido, seguro e privativo desenvolvido para oferecer a melhor experiência na web sem comprometer sua privacidade.</p>
-          <a href="https://drive.google.com/file/d/1sdy1BHZ314diszckPk4jchtORxQHgLlG/view?usp=drive_link" className="download-btn">Download Gratuito</a>
+          <a href="https://drive.google.com/file/d/1sdy1BHZ314diszckPk4jchtORxQHgLlG/view?usp=drive_link" target="_blank" rel="noopener noreferrer" className="download-btn">Download Gratuito</a>
         </div>
       </section>
       
@@ -56,11 +56,11 @@ const NxBrowser = () => {
           <p>Disponível para todas as principais plataformas</p>
           
           <div className="platforms">
-            <a href="https://drive.google.com/file/d/1sdy1BHZ314diszckPk4jchtORxQHgLlG/view?usp=drive_link" className="platform-btn">Windows</a>
-            <a href="#" className="platform-btn">macOS</a>
-            <a href="#" className="platform-btn">Linux</a>
-            <a href="#" className="platform-btn">Android</a>
-            <a href="#" className="platform-btn">iOS</a>
+            <a href="https://drive.google.com/file/d/1sdy1BHZ314diszckPk4jchtORxQHgLlG/view?usp=drive_link" target="_blank" rel="noopener noreferrer" className="platform-btn">Windows</a>
+            <span className="platform-btn disabled">macOS (Brevemente)</span>
+            <span className="platform-btn disabled">Linux (Brevemente)</span>
+            <span className="platform-btn disabled">Android (Brevemente)</span>
+            <span className="platform-btn disabled">iOS (Brevemente)</span>
           </div>
           
           <div className="version-info">

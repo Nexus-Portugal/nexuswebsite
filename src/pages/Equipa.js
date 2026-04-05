@@ -108,7 +108,7 @@ const Equipa = () => {
       }
     },
     {
-      name: "gambriel182",
+      name: "Gabriel C.",
       role: "Co-Fundador e Programador Full Stack",
       image: "/__images/equipa/gabrielc.webp"
     }
@@ -251,4 +251,3 @@ const Equipa = () => {
 };
 
 export default Equipa;
-

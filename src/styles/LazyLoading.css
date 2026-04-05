@@ -1,0 +1,101 @@
+/* Lazy Loading Styles */
+
+/* Skeleton loading animation */
+.lazy-load-wrapper {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Blur effect transition */
+.lazy-load-image-blur {
+  transition: filter 0.3s ease-in-out;
+}
+
+.lazy-load-image-loaded {
+  filter: blur(0);
+}
+
+/* Lazy wrapper fade-in */
+.lazy-wrapper-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.lazy-wrapper-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Performance optimizations */
+.lazy-image {
+  contain: layout style paint;
+  will-change: opacity;
+}
+
+/* Reduce paint complexity during lazy loading */
+.lazy-loading * {
+  contain: layout style paint;
+}
+
+/* Smooth placeholder transitions */
+.lazy-placeholder {
+  background: rgba(25, 217, 220, 0.1);
+  border-radius: 8px;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Global Layout Shift Prevention */
+* {
+  box-sizing: border-box;
+}
+
+/* Prevent layout shifts in pseudo-elements */
+::before,
+::after {
+  contain: layout style paint;
+  will-change: auto;
+}
+
+/* Optimize animated elements */
+[class*="transition"],
+[class*="animate"],
+[class*="motion"] {
+  contain: layout style paint;
+}
+
+/* Prevent layout shifts in flex/grid containers */
+.services-grid,
+.clients-track,
+.swiper-pagination {
+  contain: layout style paint;
+}
+
+/* Fix for service cards hover effects */
+.service-card::before,
+.login-button::before {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  contain: layout style paint;
+}

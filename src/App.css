@@ -3,6 +3,43 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  content-visibility: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.loading-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #0a0a0a;
+}
+
+.loader {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(25, 217, 220, 0.1);
+  border-radius: 50%;
+  border-top-color: #19d9dc;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
 :root {
@@ -102,18 +139,17 @@ main {
 /* Header */
 .header {
   padding: 1rem 3rem;
-  background: rgba(10, 14, 22, 0.6);
+  background: #0a0e16; /* Fundo sólido em vez de transparente com blur */
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 1000;
-  backdrop-filter: blur(30px) saturate(180%);
   border-bottom: 1px solid rgba(25, 217, 220, 0.12);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 32px rgba(25, 217, 220, 0.08);
+  transition: padding 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 .header::before {
@@ -133,6 +169,8 @@ main {
   height: 1px;
   background: linear-gradient(90deg, transparent 0%, rgba(25, 217, 220, 0.4) 50%, transparent 100%);
   opacity: 0.6;
+  contain: layout style paint;
+  pointer-events: none;
 }
 
 /* Login Button */
@@ -143,22 +181,26 @@ main {
 }
 
 .login-button {
-  background: linear-gradient(135deg, #19d9dc 0%, #00ea63 100%);
-  color: #0a0e16;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: var(--dark);
   border: none;
-  padding: 0.7rem 1.6rem;
-  border-radius: 24px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 30px;
   font-weight: 700;
-  font-size: 0.84rem;
-  letter-spacing: 0.3px;
+  font-size: 0.9rem;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: var(--transition);
   box-shadow: 0 12px 32px rgba(25, 217, 220, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.4);
   position: relative;
   overflow: hidden;
+  contain: layout style paint;
+  will-change: transform;
+  min-width: 140px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .login-button::before {
@@ -170,6 +212,9 @@ main {
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
   transition: left 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: left;
+  contain: layout style paint;
+  z-index: 0;
 }
 
 .login-button:hover::before {
@@ -195,9 +240,7 @@ main {
 
 .header.scrolled {
   padding: 0.75rem 3rem;
-  background: rgba(10, 14, 22, 0.85);
-  box-shadow: 0 12px 48px rgba(25, 217, 220, 0.12);
-  border-bottom: 1px solid rgba(25, 217, 220, 0.2);
+  background: #05070a;
 }
 
 .logo-link {
@@ -208,9 +251,11 @@ main {
 }
 
 .logo {
-  height: 45px;
+  height: 40px;
+  width: auto;
   transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   filter: drop-shadow(0 4px 12px rgba(25, 217, 220, 0.15));
+  object-fit: contain;
 }
 
 .logo-text {
@@ -223,6 +268,8 @@ main {
   background-clip: text;
   transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   white-space: nowrap;
+  display: inline-block;
+  min-width: 80px; /* Prevenir shift reservando espaço */
 }
 
 .logo-link:hover .logo {
@@ -450,6 +497,8 @@ main {
   position: relative;
   z-index: 10;
   box-shadow: 0 -10px 40px rgba(25, 217, 220, 0.08);
+  contain: layout; /* Prevenir shifts externos */
+  min-height: 300px; /* Reservar espaço mínimo */
 }
 
 .footer-content {

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faChevronUp, faUser } from '@fortawesome/free-solid-svg-icons';
 import { motion, AnimatePresence } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import OptimizedImage from './OptimizedImage';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  const [activeDropdown, setActiveDropdown] = useState(null);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -183,10 +183,11 @@ const Header = () => {
         style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}
       >
         <Link to="/" className="logo-link">
-          <img 
+          <OptimizedImage 
             src="https://kikalabs-server.nexuspt.eu/images/site-nxweb/RealNexusWeb.png" 
             alt="Nexus" 
             className="logo"
+            height={40}
           />
         </Link>
         {!isMobile && (
@@ -247,13 +248,17 @@ const Header = () => {
               <motion.li 
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                className="login-button-container"
               >
                 <button 
                   className="login-button"
                   onClick={openMyNexus}
                 >
-                  <FontAwesomeIcon icon={faUser} />
+                  <img 
+                    src="https://cdn-icons-png.flaticon.com/20/5494/5494944.png" 
+                    alt="MyNEXUS" 
+                    style={{ width: '20px', height: '20px' }}
+                    loading="lazy"
+                  />
                   <span>MyNEXUS</span>
                 </button>
               </motion.li>
@@ -261,9 +266,8 @@ const Header = () => {
           )}
         </AnimatePresence>
       </nav>
-      
     </header>
   );
 };
 
-export default Header; 
+export default Header;
