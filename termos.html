@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termos e Condições | NexusPT</title>
+    <meta name="description" content="Termos e Condições de uso dos serviços NexusPT. Leia nossos termos de serviço para Drippi, Nexum e GIAE.">
+    <meta name="keywords" content="termos, condições, contrato, serviço, nexuspt, legal">
+    <meta name="author" content="NexusPT Solutions">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Termos e Condições | NexusPT">
+    <meta property="og:description" content="Termos de uso dos serviços NexusPT">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nexuspt.eu/termos">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #0a0e16;
+            --secondary-color: #19d9dc;
+            --accent-color: #7dc4ff;
+            --text-primary: #e6e8ef;
+            --text-secondary: #94a3b8;
+            --bg-dark: #0a0e16;
+            --bg-card: #121827;
+            --bg-hover: #1f2937;
+            --border-color: #1f2937;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #0f172a 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        /* Header */
+        header {
+            background: rgba(10, 14, 22, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .logo:hover {
+            color: var(--secondary-color);
+        }
+        
+        .logo i {
+            color: var(--secondary-color);
+            font-size: 2rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary-color);
+            background: rgba(25, 217, 220, 0.1);
+        }
+        
+        .mynexus-btn {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            color: var(--bg-dark) !important;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem !important;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(25, 217, 220, 0.3);
+        }
+        
+        .mynexus-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(25, 217, 220, 0.4);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+            padding: 2rem 0;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Header Section */
+        .page-header {
+            text-align: center;
+            padding: 3rem 0;
+            margin-bottom: 3rem;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .page-header p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Terms Content */
+        .terms-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .terms-section {
+            margin-bottom: 3rem;
+        }
+        
+        .terms-section:last-child {
+            margin-bottom:
+ 0;
+        }
+        
+        .terms-section h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .terms-section h2 i {
+            color: var(--secondary-color);
+            font-size: 1.25rem;
+        }
+        
+        .terms-section h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 2rem 0 1rem 0;
+        }
+        
+        .terms-section h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 1.5rem 0 0.75rem 0;
+        }
+        
+        .terms-section p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+        
+        .terms-section ul {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+        
+        .terms-section li {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            line-height: 1.8;
+        }
+        
+        .terms-section a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .terms-section a:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+        
+        /* Highlight Box */
+        .highlight-box {
+            background: rgba(25, 217, 220, 0.1);
+            border: 1px solid var(--secondary-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .highlight-box h4 {
+            color: var(--secondary-color);
+            margin-bottom: 0.75rem;
+        }
+        
+        .highlight-box p {
+            color: var(--text-primary);
+            margin-bottom: 0;
+        }
+        
+        /* Contact Info */
+        .contact-info {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-info p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-info a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-info a:hover {
+            color: var(--accent-color);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--bg-dark);
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 2rem 1rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--bg-dark);
+                flex-direction: column;
+                padding: 1rem;
+                border-top: 1px solid var(--border-color);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .terms-content {
+                padding: 2rem 1.5rem;
+            }
+            
+            .terms-section h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <i class="fas fa-cube"></i>
+                NexusPT
+            </a>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="equipa.html">Equipa</a></li>
+                <li><a href="drippi.html">Drippi</a></li>
+                <li><a href="nexum.html">Nexum</a></li>
+                <li><a href="giae.html">GIAE</a></li>
+                <li><a href="termos.html">Termos</a></li>
+                <li><a href="privacidade.html">Privacidade</a></li>
+                <li><a href="https://my.nexuspt.eu" target="_blank" class="mynexus-btn">
+                    <i class="fas fa-user-circle"></i> MyNexus
+                </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="page-header">
+                <h1>Termos e Condições</h1>
+                <p>Leia atentamente nossos termos de uso antes de utilizar os serviços NexusPT</p>
+            </div>
+
+            <div class="terms-content">
+                <div class="terms-section">
+                    <h2><i class="fas fa-info-circle"></i> Informações Gerais</h2>
+                    <p><strong>Última atualização:</strong> 21 de março de 2024</p>
+                    <p>Bem-vindo aos Termos e Condições de Uso da NexusPT. Estes termos regem o uso de nossos serviços, incluindo Drippi, Nexum e GIAE by NexusPT. Ao acessar ou utilizar nossos serviços, você concorda com estes termos.</p>
+                    
+                    <div class="highlight-box">
+                        <h4>Importante</h4>
+                        <p>Estes termos constituem um contrato legalmente vinculativo entre você (usuário) e a NexusPT. Leia-os cuidadosamente antes de utilizar nossos serviços.</p>
+                    </div>
+                </div>
+
+                <div class="terms-section">
+                    <h2><i class="fas fa-user"></i> Definições</h2>
+                    <h3>1. Serviços NexusPT</h3>
+                    <p>Refere-se a todas as plataformas e aplicações oferecidas pela NexusPT, incluindo:</p>
+                    <ul>
+                        <li><strong>Drippi:</strong> Plataforma de rede social para jovens</li>
+                        <li><strong>Nexum:</strong> Sistema de gestão empresarial integrada</li>
+                        <li><strong>GIAE by NexusPT:</strong> Sistema de gestão escolar integrada</li>
+                    </ul>
+
+                    <h3>2. Usuário</h3>
+                    <p>Pessoa física ou jurídica que se cadastra e utiliza os serviços NexusPT, sujeita a estes termos e políticas aplicáveis.</p>
+
+                    <h3>3. Conta</h3>
+                    <p>Acesso personalizado aos serviços, criado mediante cadastro com informações verídicas e mantido sob responsabilidade do usuário.</p>
+                </div>
+
+                <div class="terms-section">
+                    <h2><i class="fas fa-check-circle"></i> Aceitação dos Termos</h2>
+                    <p>Ao acessar, registrar-se ou utilizar qualquer serviço NexusPT, você:</p>
+                    <ul>
+                        <li>Declara ter idade mínima de 16 anos (ou consentimento dos responsáveis)</li>
+                        <li>Concorda integralmente com estes termos e políticas</li>
+                        <li>Compromete-se a cumprir todas as obrigações aqui estabelecidas</li>
+                        <li>Reconhece que estes termos prevalecem sobre quaisquer acordos anteriores</li>
+                    </ul>
+
+                    <p>Caso não concorde com qualquer parte destes termos, você não deve utilizar nossos serviços.</p>
+                </div>
+
+                <div class="terms-section">
+                    <h2><i class="fas fa-shield-alt"></i> Responsabilidades do Usuário</h2>
+                    <h3>1. Informações Verídicas</h3>
+                    <p>O usuário compromete-se a fornecer informações completas, verídicas e atualizadas durante o cadastro e uso dos serviços.</p>
+
+                    <h3>2. Segurança da Conta</h3>
+                    <p>O usuário é responsável por:</p>
+                    <ul>
+                        <li>Mantener a confidencialidade de suas credenciais de acesso</li>
+                        <li>Notificar imediatamente qualquer uso não autorizado</li>
+                        <li>Assumir responsabilidade por atividades realizadas sob sua conta</li>
+                    </ul>
+
+                    <h3>3. Uso Adequado</h3>
+                    <p>É proibido utilizar os serviços para:</p>
+                    <ul>
+                        <li>Atividades ilegais ou fraudulentas</li>
+                        <li>Violação de direitos de terceiros</li>
+                        <li>Distribuição de malware ou conteúdo malicioso</li>
+                        <li>Spam, abuso ou assédio</li>
+                        <li>Violação destes termos ou políticas aplicáveis</li>
+                    </ul>
+                </div>
+
+                <div class="terms-section">
+                    <h2><i class="fas fa-gavel"></i> Propriedade Intelectual</h2>
+                    <p>Todo o conteúdo, funcionalidades e tecnologias dos serviços NexusPT são propriedade intelectual da NexusPT ou de seus licenciadores, protegidos por leis de direitos autorais, marcas registradas e outras legislações aplicáveis.</p>
+
+                    <h3>Direitos Concedidos</h3>
+                    <p>A NexusPT concede ao usuário uma licença limitada, não exclusiva e intransferível para utilizar os serviços conforme estes termos.</p>
+
+                    <h3>Conteúdo do Usuário</h3>
+                    <p>O usuário mantém direitos sobre seu conteúdo, mas concede à NexusPT licença para:</p>
+                    <ul>
+                        <li>Armazenar e processar o conteúdo para fornecer os serviços</li>
+                        <li>Realizar cópias de segurança e segurança</li>
+                        <li>Utilizar dados anonimizados para melhoria dos serviços</li>
+                    </ul>
+                </div>
+
+                <div class="terms-section">
+                    <h2><i class="fas fa-dollar-sign"></i> Planos e Pagamentos</h2>
+                    <h3>1. Planos Gratuitos</h3>
+                    <p>Alguns serviços oferecem planos gratuitos com funcionalidades limitadas, sujeitos a termos específicos de cada plataforma.</p>
+
+                    <h3>2. Planos Pagos</h3>
+                    <p>Para planos pagos:</p>
+                    <ul>
+                        <li>Os preços estão disponíveis na plataforma</li>
+                        <li>Pagamentos são processados através de métodos seguros</li>
+                        <li>Reembolsos seguem política específica de cada serviço</li>
+                        <li>Cancelamentos podem ser feitos a qualquer momento</li>
+                    </ul>
+
+                    <h3>3. Alterações de Preços</h3>
+                    <p>A NexusPT pode alterar preços com aviso prévio de 30 dias, não afetando planos já contratados.</p>
+                </div>
+
+                <div class="terms-section">
+                    <h2><i class="fas fa-lock"></i> Privacidade e Dados</h2>
+                    <p>A coleta e tratamento de dados pessoais seguem nossa <a href="privacidade.html">Política de Privacidade</a>, que complementa estes termos.</p>
+
+                    <h3>Principais Pontos:</h3>
+                    <ul>
+                        <li>Coleta apenas de dados necessários para os serviços</li>
+                        <li>Uso exclusivo para finalidades informadas</li>
+                        <li>Implementação de medidas de segurança adequadas</li>
+                        <li>Respeito aos direitos dos titulares de dados</li>
+                        <li>Conformidade com LGPD e legislação aplicável</li>
+                    </ul>
+                </div>
+
+                <div class="terms-section">
+                    <h2><i class="fas fa-ban"></i> Limitação de Responsabilidade</h2>
+                    <p>Na máxima extensão permitida por lei:</p>
+                    <ul>
+                        <li>Os serviços são fornecidos "como estão" e "conforme disponíveis"</li>
+                        <li>A NexusPT não garante disponibilidade ininterrupta ou livre de erros</li>
+                        <li>A responsabilidade da NexusPT limita-se ao valor pago pelo serviço</li>
+                        <li>Excluem-se danos indiretos, consequenciais ou punitivos</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <h4>Força Maior</h4>
+                        <p>A NexusPT não é responsável por falhas ou atrasos decorrentes de casos fortuitos ou força maior.</p>
+                    </div>
+                </div>
+
+                <div class="terms-section">
+                    <h2><i class="fas fa-sync-alt"></i> Suspensão e Término</h2>
+                    <h3>1. Pelo Usuário</h3>
+                    <p>O usuário pode encerrar sua conta a qualquer momento através das configurações do serviço ou solicitando via suporte.</p>
+
+                    <h3>2. Pela NexusPT</h3>
+                    <p>A NexusPT pode suspender ou encerrar contas em caso de:</p>
+                    <ul>
+                        <li>Violação destes termos ou políticas</li>
+                        <li>Uso indevido ou fraudulento dos serviços</li>
+                        <li>Inatividade prolongada (após aviso)</li>
+                        <li>Requisitos legais ou ordens judiciais</li>
+                    </ul>
+
+                    <h3>3. Efeitos do Término</h3>
+                    <p>Após o término:</p>
+                    <ul>
+                        <li>Acesso aos serviços será imediatamente revogado</li>
+                        <li>Conteúdo pode ser removido após período de carência</li>
+                        <li>Obrigações financeiras pendentes permanecem</li>
+                    </ul>
+                </div>
+
+                <div class="terms-section">
+                    <h2><i class="fas fa-file-contract"></i> Disposições Gerais</h2>
+                    <h3>1. Alterações dos Termos</h3>
+                    <p>A NexusPT pode atualizar estes termos a qualquer momento, com aviso prévio de 15 dias para alterações significativas.</p>
+
+                    <h3>2. Comunicações</h3>
+                    <p>As comunicações entre as partes serão realizadas através dos canais oficiais dos serviços ou e-mails cadastrados.</p>
+
+                    <h3>3. Lei Aplicável</h3>
+                    <p>Estes termos são regidos pelas leis de Portugal, e quaisquer disputas serão resolvidas nos tribunais competentes.</p>
+
+                    <h3>4. Separabilidade</h3>
+                    <p>Se qualquer cláusula for considerada inválida, as demais permanecem em pleno vigor e efeito.</p>
+
+                    <h3>5. Idioma</h3>
+                    <p>Estes termos estão disponíveis em português de Portugal, sendo esta a versão oficial para todos os fins.</p>
+                </div>
+
+                <div class="terms-section">
+                    <h2><i class="fas fa-headset"></i> Contato e Suporte</h2>
+                    <p>Para dúvidas, esclarecimentos ou reclamações sobre estes termos:</p>
+                    <ul>
+                        <li><strong>E-mail:</strong> <a href="mailto:legal@nexuspt.eu">legal@nexuspt.eu</a></li>
+                    </ul>
+
+                    <p>Responderemos sua solicitação em até 15 dias corridos, conforme legislação aplicável.</p>
+                </div>
+            </div>
+
+            <div class="contact-info">
+                <h3>Precisa de Ajuda?</h3>
+                <p>Se você tiver dúvidas sobre estes termos ou precisar de assistência, nossa equipe está disponível para ajudar.</p>
+                <p><a href="mailto:geral@nexuspt.eu">geral@nexuspt.eu</a> | <a href="https://my.nexuspt.eu" target="_blank">MyNexus</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Serviços</h3>
+                <ul>
+                    <li><a href="drippi.html">Drippi - Rede Social</a></li>
+                    <li><a href="nexum.html">Nexum - Gestão Empresarial</a></li>
+                    <li><a href="giae.html">GIAE - Gestão Escolar</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Empresa</h3>
+                <ul>
+                    <li><a href="index.html">Sobre Nós</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="https://my.nexuspt.eu" target="_blank">MyNexus</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="termos.html">Termos e Condições</a></li>
+                    <li><a href="privacidade.html">Política de Privacidade</a></li>                  <li><a href="cookies.html">Política de Cookies</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <ul>
+                    <li><a href="mailto:geral@nexuspt.eu">geral@nexuspt.eu</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 NexusPT. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(10, 14, 22, 0.98)';
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.3)';
+            } else {
+                header.style.background = 'rgba(10, 14, 22, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | NexusPT</title>
+    <meta name="description" content="Contacte-nos por email. Encontre o departamento adequado para o seu contacto: Geral, Privacidade, Phishing, CIMESIS, Sugestões, Developers IoT.">
+    <meta name="keywords" content="contacto, email, nexuspt, suporte, geral, privacidade, phishing, cimesis, developers">
+    <meta name="author" content="NexusPT Solutions">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Contacto | NexusPT">
+    <meta property="og:description" content="Contacte-nos por email. Encontre o departamento adequado para o seu contacto.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nexuspt.eu/contacto">
+    <meta property="og:image" content="https://nexuspt.eu/images/contacto.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #00D9FF;
+            --secondary-color: #FF6B6B;
+            --accent-color: #FFE66D;
+            --text-primary: #ffffff;
+            --text-secondary: #b4b4b4;
+            --bg-dark: #0a0a0a;
+            --bg-card: #1a1a1a;
+            --border-color: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        nav {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .logo:hover {
+            color: var(--primary-color);
+        }
+        
+        .logo i {
+            background: url('https://kikalabs-server.nexuspt.eu/images/site-nxweb/RealNexusWeb.png') no-repeat center;
+            background-size: contain;
+            width: 40px;
+            height: 40px;
+            color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+            background: rgba(0, 217, 255, 0.1);
+        }
+        
+        .mynexus-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white !important;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem !important;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 217, 255, 0.3);
+        }
+        
+        .mynexus-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 217, 255, 0.4);
+        }
+        
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin-top: 0.5rem;
+        }
+        
+        .dropdown:hover .dropdown-menu,
+        .dropdown.active .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-menu li {
+            margin: 0;
+            list-style: none;
+        }
+        
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-radius: 0;
+            font-size: 0.95rem;
+        }
+        
+        .dropdown-menu a:hover {
+            color: var(--primary-color);
+            background: rgba(0, 217, 255, 0.1);
+            padding-left: 1.5rem;
+        }
+        
+        .dropdown-menu a:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .dropdown-menu a:last-child {
+            border-radius: 0 0 8px 8px;
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(255, 107, 107, 0.1));
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -25%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -25%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 107, 107, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 4rem 2rem;
+            background: var(--bg-card);
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .contact-card {
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 40px rgba(0, 217, 255, 0.2);
+        }
+        
+        .contact-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--bg-dark);
+        }
+        
+        .contact-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        
+        .contact-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .contact-email {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-email:hover {
+            color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+        
+        .contact-email i {
+            font-size: 1.1rem;
+        }
+        
+        /* Info Section */
+        .info {
+            padding: 4rem 2rem;
+            background: var(--bg-dark);
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+        
+        .info-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .info h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+        
+        .info p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+        
+        .info-box {
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .info-box h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-20px) scale(1.05);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--bg-dark);
+                flex-direction: column;
+                padding: 1rem;
+                border-top: 1px solid var(--border-color);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .dropdown {
+                width: 100%;
+            }
+            
+            .dropdown-toggle {
+                justify-content: space-between;
+                padding: 0.75rem 1rem;
+                background: rgba(0, 217, 255, 0.05);
+                border-radius: 8px;
+                margin: 0.25rem 0;
+            }
+            
+            .dropdown-toggle:hover {
+                background: rgba(0, 217, 255, 0.1);
+            }
+            
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                border: none;
+                background: rgba(0, 217, 255, 0.03);
+                margin: 0.5rem 0;
+                border-radius: 8px;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+            
+            .dropdown.active .dropdown-menu {
+                max-height: 300px;
+            }
+            
+            .dropdown-menu a {
+                padding: 0.75rem 1.5rem;
+                border-left: 3px solid transparent;
+                font-size: 0.9rem;
+            }
+            
+            .dropdown-menu a:hover {
+                border-left-color: var(--primary-color);
+                padding-left: 1.5rem;
+                background: rgba(0, 217, 255, 0.1);
+            }
+            
+            .nav-links > li:not(.dropdown):not(:last-child) > a {
+                padding: 0.75rem 1rem;
+                margin: 0.25rem 0;
+                background: rgba(0, 217, 255, 0.05);
+                border-radius: 8px;
+            }
+            
+            .nav-links > li:not(.dropdown):not(:last-child) > a:hover {
+                background: rgba(0, 217, 255, 0.1);
+            }
+            
+            .mynexus-btn {
+                margin-top: 1rem;
+                text-align: center;
+                justify-content: center;
+                width: 100%;
+                display: flex;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <a href="index.html" class="logo">
+                    <i></i>
+                    NexusPT
+                </a>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html">Início</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)">
+                            Serviços <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="drippi.html">Drippi</a></li>
+                            <li><a href="nexum.html">Nexum</a></li>
+                            <li><a href="giae.html">GIAE</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)">
+                            Parcerias <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="parceria-vila-japonesa.html">
+                                <i class="fas fa-gamepad"></i> Vila Japonesa
+                            </a></li>
+                        </ul>
+                    </li>
+                    <li><a href="equipa.html">Equipa</a></li>
+                    <li><a href="https://my.nexuspt.eu" target="_blank" class="mynexus-btn">
+                        <i class="fas fa-user-circle"></i> MyNexus
+                    </a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Contacte-nos</h1>
+                <p>Estamos aqui para ajudar. Escolha o departamento adequado para o seu contacto.</p>
+            </div>
+        </section>
+
+        <section class="contact">
+            <div class="container">
+                <h2 class="section-title">Contacte-nos por E-mail</h2>
+                <p class="section-subtitle">Selecione o departamento adequado para o seu contacto.</p>
+                
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Geral</h3>
+                        <p>Para informações gerais, dúvidas sobre nossos serviços e outras questões não específicas.</p>
+                        <a href="mailto:geral@nexuspt.eu" class="contact-email">
+                            <i class="fas fa-paper-plane"></i>
+                            geral@nexuspt.eu
+                        </a>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Privacidade</h3>
+                        <p>Para questões relacionadas com privacidade de dados, LGPD e políticas de privacidade.</p>
+                        <a href="mailto:dados@nexuspt.eu" class="contact-email">
+                            <i class="fas fa-paper-plane"></i>
+                            dados@nexuspt.eu
+                        </a>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h3>Phishing</h3>
+                        <p>Para reportar tentativas de phishing, emails suspeitos e questões de segurança.</p>
+                        <a href="mailto:phishing@nexuspt.eu" class="contact-email">
+                            <i class="fas fa-paper-plane"></i>
+                            phishing@nexuspt.eu
+                        </a>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h3>CIMESIS (Segurança)</h3>
+                        <p>Para reportes de segurança, vulnerabilidades e questões técnicas do CIMESIS.</p>
+                        <a href="mailto:reportesit.cimesis@nexuspt.eu" class="contact-email">
+                            <i class="fas fa-paper-plane"></i>
+                            reportesit.cimesis@nexuspt.eu
+                        </a>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                        <h3>Sugestões e Reclamações</h3>
+                        <p>Para enviar sugestões, reclamações, feedback e melhorias para nossos serviços.</p>
+                        <a href="mailto:sugestoes@nexuspt.eu" class="contact-email">
+                            <i class="fas fa-paper-plane"></i>
+                            sugestoes@nexuspt.eu
+                        </a>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <h3>Developers IoT</h3>
+                        <p>Para desenvolvedores, questões técnicas de IoT, APIs e integrações.</p>
+                        <a href="mailto:developers.iot@nexuspt.eu" class="contact-email">
+                            <i class="fas fa-paper-plane"></i>
+                            developers.iot@nexuspt.eu
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="info">
+            <div class="info-content">
+                <h2>Informações Importantes</h2>
+                <p>Responderemos ao seu contacto o mais rápido possível. Durante horário comercial, o tempo de resposta é geralmente de 24 a 48 horas.</p>
+                
+                <div class="info-box">
+                    <h4><i class="fas fa-info-circle"></i> Tempo de Resposta</h4>
+                    <p>Dias úteis: 24-48 horas | Urgências: Assinalar no assunto do email</p>
+                </div>
+                
+                <div class="info-box">
+                    <h4><i class="fas fa-clock"></i> Horário de Atendimento</h4>
+                    <p>Segunda a Sexta: 9h00 - 18h00 | Sábado e Domingo: Encerrado</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container" style="text-align: center; padding: 2rem; border-top: 1px solid var(--border-color);">
+            <p>&copy; 2026 NexusPT. Todos os direitos reservados.</p>
+            <p style="margin-top: 1rem; color: var(--text-secondary);">
+                <a href="termos.html" style="color: var(--text-secondary); text-decoration: none;">Termos e Condições</a> | 
+                <a href="privacidade.html" style="color: var(--text-secondary); text-decoration: none;">Política de Privacidade</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu and dropdown functionality
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const isActive = navLinks.classList.contains('active');
+            
+            // Close all dropdowns when closing mobile menu
+            if (isActive) {
+                document.querySelectorAll('.dropdown').forEach(d => {
+                    d.classList.remove('active');
+                });
+            }
+            
+            navLinks.classList.toggle('active');
+        }
+        
+        function toggleDropdown(event) {
+            event.preventDefault();
+            const dropdown = event.target.closest('.dropdown');
+            
+            // Close other dropdowns
+            document.querySelectorAll('.dropdown').forEach(d => {
+                if (d !== dropdown) d.classList.remove('active');
+            });
+            
+            dropdown.classList.toggle('active');
+        }
+        
+        // Close dropdowns when clicking outside (desktop only)
+        document.addEventListener('click', function(event) {
+            if (window.innerWidth > 768) {
+                if (!event.target.closest('.dropdown')) {
+                    document.querySelectorAll('.dropdown').forEach(d => {
+                        d.classList.remove('active');
+                    });
+                }
+            }
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navLinks = document.getElementById('navLinks');
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (!navLinks.contains(event.target) && !mobileToggle.contains(event.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
