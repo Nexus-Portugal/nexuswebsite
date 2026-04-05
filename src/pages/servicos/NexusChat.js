@@ -29,13 +29,19 @@ const NexusChat = () => {
     <>
       {/* Hero Section */}
       <section className="hero">
-        <img 
-          src="https://cdn.create.vista.com/api/media/small/212462542/stock-photo-women-hand-using-smartphone-typing-chatting-conversation-chat-box-icons" 
-          alt="Fundo NexusChat"
-        />
+        <div className="carousel-container">
+          <img 
+            src="https://cdn.create.vista.com/api/media/small/212462542/stock-photo-women-hand-using-smartphone-typing-chatting-conversation-chat-box-icons" 
+            alt="Fundo NexusChat"
+            className="carousel-image"
+          />
+        </div>
         <div className="hero-content">
           <h1 className="hero-title">NexusChat</h1>
-          <p className="hero-subtitle">O seu chat inteligente, rápido e seguro</p>
+          <p className="hero-subtitle" style={{color: '#ff6b6b', fontWeight: 'bold', marginBottom: '1rem'}}>
+            Serviço descontinuado. Estamos a trabalhar numa nova alternativa.
+          </p>
+          <p className="hero-subtitle">O teu chat inteligente, rápido e seguro</p>
           <a href="https://chat.nexuspt.eu" className="cta-button">Explorar NexusChat</a>
         </div>
       </section>
@@ -44,7 +50,7 @@ const NexusChat = () => {
       <section className="welcome">
         <h2 className="welcome-title">Experimente a NexusChat</h2>
         <p className="welcome-text">
-          Comunicação instantânea e segura para todas as suas necessidades.
+          Comunicação instantânea e segura para todas as tuas necessidades.
         </p>
         
         <div className="values-grid">
