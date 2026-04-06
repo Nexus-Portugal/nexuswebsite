@@ -122,7 +122,7 @@ const Equipa = () => {
     },
     {
       name: "Lazure",
-      role: "Testador de produtos",
+      role: "Supervisor",
       image: "https://res.cloudinary.com/dczslxnsu/image/upload/v1745390608/hrjdrqu1v0eutx8qpzju.png"
     },
     {

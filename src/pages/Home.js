@@ -462,6 +462,17 @@ const Home = () => {
                     <motion.p className="hero-subtitle" variants={itemVariants}>
                       {carouselSlides[activeSlide]?.description || ""}
                     </motion.p>
+                    {carouselSlides[activeSlide]?.link && (
+                      <motion.a 
+                        href={carouselSlides[activeSlide].link}
+                        className="cta-button"
+                        variants={itemVariants}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {carouselSlides[activeSlide]?.buttonText || 'Saber Mais'}
+                      </motion.a>
+                    )}
                   </>
                 )}
               </>

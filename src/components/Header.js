@@ -248,19 +248,24 @@ const Header = () => {
               <motion.li 
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                style={{ display: 'flex', alignItems: 'center' }}
               >
-                <button 
-                  className="login-button"
+                <span 
                   onClick={openMyNexus}
+                  style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}
                 >
                   <img 
-                    src="https://cdn-icons-png.flaticon.com/20/5494/5494944.png" 
-                    alt="MyNEXUS" 
-                    style={{ width: '20px', height: '20px' }}
+                    src="https://cdn-icons-png.flaticon.com/128/5494/5494944.png" 
+                    alt="MyNEXUS"
+                    style={{ 
+                      width: '32px', 
+                      height: '32px', 
+                      borderRadius: '8px',
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.3)'
+                    }}
                     loading="lazy"
                   />
-                  <span>MyNEXUS</span>
-                </button>
+                </span>
               </motion.li>
             </motion.ul>
           )}

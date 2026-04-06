@@ -94,7 +94,7 @@
 
 .drippi-card:hover {
   transform: translateY(-10px) scale(1.03);
-  box-shadow: 0 15px 30px rgba(25, 217, 220, 0.25);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   border-color: rgba(25, 217, 220, 0.5);
 }
 
@@ -111,14 +111,14 @@
   transition: 0.8s;
 }
 
-.drippi-card:hover::after {
-  animation: cardGlow 1.5s;
-}
+/*.drippi-card:hover::after {
+  animation: none;
+}*/
 
-@keyframes cardGlow {
+/*@keyframes cardGlow {
   0% { top: -50%; left: -50%; }
   100% { top: 150%; left: 150%; }
-}
+}*/
 
 .card-icon {
   margin-bottom: 1.5rem;

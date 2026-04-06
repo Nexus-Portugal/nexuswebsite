@@ -113,7 +113,6 @@
   text-align: center;
   position: relative;
   z-index: 2;
-  text-shadow: 0 4px 20px rgba(25, 217, 220, 0.2);
 }
 
 /* Cards da equipa com hover interativo */
@@ -264,20 +263,16 @@
   background-clip: text;
   text-align: center;
   margin-bottom: 3rem;
-  filter: drop-shadow(0 0 30px rgba(25, 217, 220, 0.3));
+  filter: none;
   letter-spacing: -1px;
 }
 
-/* Cards com brilho animado */
 .team-member-card::before {
-  background: linear-gradient(135deg, rgba(25, 217, 220, 0.3) 0%, rgba(0, 234, 99, 0.2) 100%);
+  background: transparent;
 }
 
-/* Efeito de glow quando hover */
+/* Subtle hover effect */
 .team-member-card:hover {
-  box-shadow: 
-    0 25px 50px rgba(25, 217, 220, 0.4),
-    0 0 40px rgba(0, 234, 99, 0.2),
-    inset 0 0 30px rgba(25, 217, 220, 0.1);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
   border-color: #19d9dc;
 }
