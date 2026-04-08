@@ -80,7 +80,7 @@ const TeamMemberCard = ({ member, onCertificateClick }) => {
             )}
           </div>
           <p className="education-details">
-            {member.education.institution} • {member.education.duration}
+            {member.education.institution} ��� {member.education.duration}
           </p>
         </div>
       )}
@@ -127,8 +127,8 @@ const Equipa = () => {
     },
     {
       name: "Gonçalo",
-      role: "Gestor da Comunidade",
-      image: "https://res.cloudinary.com/dczslxnsu/image/upload/v1746023247/skcit31c3gyulvsprhvv.webp"
+      role: "Testador de Produtos",
+      image: "/__images/equipa/goncaloc.webp"
     },
     {
       name: "BielGamerYT",
@@ -144,6 +144,11 @@ const Equipa = () => {
       name: "Noah",
       role: "Designer",
       image: "https://tribe-s3-production.imgix.net/WnTZCpUa3oCFMnMdLXfiX?fit=max&w=200&auto=compress,format"
+    },
+    {
+      name: "vxnisshhh",
+      role: "Staff Geral",
+      image: "/__images/equipa/vanish.png"
     }
   ];
 
