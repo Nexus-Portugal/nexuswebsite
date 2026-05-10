@@ -1,0 +1,890 @@
+<!doctype html>
+<html lang="pt-pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NexusPT | Soluções Tecnológicas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #141414;
+  --bg-tertiary: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --accent-gradient: linear-gradient(135deg, #00f43c 0%, #00c9ff 100%);
+  --border-subtle: rgba(255,255,255,0.08);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --container: 1280px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+body{
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar{width: 8px}
+::-webkit-scrollbar-track{background: var(--bg-primary)}
+::-webkit-scrollbar-thumb{
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+  border: 2px solid var(--bg-primary);
+}
+::-webkit-scrollbar-thumb:hover{background: #2a2a2a}
+
+.wrap{max-width: var(--container); margin: auto; padding: 0 24px}
+
+/* ===== HEADER ===== */
+.header{
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  padding: 20px 0;
+  transition: all 0.4s var(--ease-smooth);
+}
+.header.scrolled{
+  padding: 12px 0;
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.header .wrap{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo img{height: 42px}
+
+.nav{display: flex; gap: 8px}
+.nav a{
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  transition: all 0.3s var(--ease-smooth);
+}
+.nav a:hover,
+.nav a.active{
+  color: var(--text-primary);
+  background: rgba(255,255,255,0.08);
+}
+
+/* Mobile Menu */
+.menu-toggle{
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.menu-toggle span{
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--text-primary);
+  position: relative;
+}
+.menu-toggle span::before,
+.menu-toggle span::after{
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background: var(--text-primary);
+  left: 0;
+}
+.menu-toggle span::before{top: -6px}
+.menu-toggle span::after{top: 6px}
+.menu-toggle.active span{background: transparent}
+.menu-toggle.active span::before{transform: rotate(45deg); top: 0}
+.menu-toggle.active span::after{transform: rotate(-45deg); top: 0}
+
+.mobile-nav{
+  display: none;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 80%;
+  max-width: 320px;
+  height: 100vh;
+  background: var(--bg-secondary);
+  padding: 100px 32px 32px;
+  transition: right 0.4s var(--ease-smooth);
+  z-index: 999;
+  border-left: 1px solid var(--border-subtle);
+}
+.mobile-nav.active{right: 0}
+.mobile-nav a{
+  display: block;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 18px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.mobile-nav a.active{color: var(--text-primary)}
+.mobile-overlay{
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-smooth);
+  z-index: 998;
+}
+.mobile-overlay.active{opacity: 1}
+
+/* ===== HERO SLIDER ===== */
+.hero-slider{
+  position: relative;
+  height: 100vh;
+  min-height: 700px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+}
+.hero-slider:active{cursor: grabbing}
+.slide{
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.6s var(--ease-smooth);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.slide.active{opacity: 1; z-index: 2; pointer-events: auto}
+.slide::before{
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.7) 50%, rgba(10,10,10,0.95) 100%);
+  z-index: 1;
+}
+.slide img{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease-smooth);
+}
+.slide.active img{transform: scale(1.03)}
+.slide-content{
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  max-width: 800px;
+  padding: 0 24px;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.5s var(--ease-smooth);
+}
+.slide.active .slide-content{
+  transform: translateY(0);
+  opacity: 1;
+  transition-delay: 0.15s;
+}
+.slide-content h1{
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+.slide-content h1 span{
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.slide-content p{
+  font-size: clamp(16px, 2vw, 20px);
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+  max-width: 600px;
+  margin: 0 auto 32px;
+}
+
+.slider-controls{
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+.slider-arrow{
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.06);
+  color: var(--text-primary);
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s var(--ease-smooth);
+  backdrop-filter: blur(10px);
+}
+.slider-arrow:hover{
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.5);
+}
+
+.btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 32px;
+  background: var(--accent-gradient);
+  color: #0a0a0a;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s var(--ease-smooth);
+}
+.btn:hover{transform: translateY(-2px)}
+
+/* ===== SECTIONS ===== */
+.section{padding: 120px 0}
+.section-title{
+  text-align: center;
+  margin-bottom: 60px;
+}
+.section-title h2{
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.section-title p{
+  color: var(--text-secondary);
+  font-size: 18px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ===== SERVICES GRID ===== */
+.services-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+}
+.service-card{
+  background: var(--bg-secondary);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  transition: all 0.4s var(--ease-smooth);
+}
+.service-card:hover{
+  transform: translateY(-8px);
+  border-color: rgba(0, 244, 60, 0.2);
+}
+.service-image{
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+.service-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-smooth);
+}
+.service-card:hover .service-image img{transform: scale(1.08)}
+.service-image::after{
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(10,10,10,0.9) 100%);
+}
+.service-content{padding: 32px}
+.service-content h3{
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.service-content p{
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.service-features{list-style: none; padding: 0}
+.service-features li{
+  padding: 8px 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.service-features li::before{
+  content: '→';
+  color: #00f43c;
+  font-weight: bold;
+}
+
+/* ===== PRODUCTS GRID ===== */
+.products-section{
+  background: var(--bg-secondary);
+}
+.products-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+.product-card{
+  position: relative;
+  background: var(--bg-tertiary);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  transition: all 0.4s var(--ease-smooth);
+  text-decoration: none;
+}
+.product-card:hover{
+  transform: translateY(-8px);
+  border-color: rgba(0, 244, 60, 0.2);
+}
+.product-card.disabled{
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.product-image{
+  height: 220px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.product-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-smooth);
+}
+.product-card:hover .product-image img{transform: scale(1.05)}
+.product-content{padding: 28px}
+.product-content h3{
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--text-primary);
+}
+.product-content p{
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+.product-link{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(0, 244, 60, 0.85) !important;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none !important;
+  transition: gap 0.3s var(--ease-smooth);
+}
+.product-card:hover .product-link{gap: 10px}
+.product-card.disabled .product-link{
+  color: rgba(255, 193, 7, 0.85);
+  cursor: not-allowed;
+}
+
+/* ===== CLIENTS GRID ===== */
+.clients-grid{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px 60px;
+  margin-top: 40px;
+}
+.client-logo{
+  height: 55px;
+  opacity: 0.45;
+  filter: grayscale(100%) brightness(1.2);
+  transition: all 0.3s var(--ease-smooth);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.client-logo img{
+  max-height: 100%;
+  max-width: 160px;
+  object-fit: contain;
+}
+.client-logo:hover{
+  opacity: 1;
+  filter: grayscale(0%) brightness(1);
+  transform: scale(1.08);
+}
+.client-logo.clickable{
+  cursor: pointer;
+}
+
+/* ===== MODAL ===== */
+.modal{
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(8px);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal.active{display: flex}
+.modal-content{
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 40px;
+  max-width: 500px;
+  width: 100%;
+  position: relative;
+  animation: modalIn 0.3s var(--ease-smooth);
+}
+@keyframes modalIn{
+  from{
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  to{
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+.modal-close{
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  color: var(--text-secondary);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s var(--ease-smooth);
+}
+.modal-close:hover{
+  background: rgba(255,255,255,0.15);
+  color: var(--text-primary);
+}
+.modal-content h3{
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+.modal-content p{
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+/* ===== CTA ===== */
+.cta{
+  position: relative;
+  padding: 140px 0;
+  text-align: center;
+  overflow: hidden;
+}
+.cta::before{
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-tertiary) 100%);
+  z-index: 1;
+}
+.cta::after{
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0,244,60,0.06) 0%, transparent 60%);
+  animation: pulse 8s ease-in-out infinite;
+  z-index: 1;
+}
+@keyframes pulse{
+  0%, 100% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.1); opacity: 0.6; }
+}
+.cta-content{
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.cta h2{
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.cta p{
+  color: var(--text-secondary);
+  font-size: 18px;
+  margin-bottom: 32px;
+}
+
+/* ===== FOOTER ===== */
+.footer{
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-subtle);
+  padding: 60px 0 30px;
+  text-align: center;
+}
+.footer-links{
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+.footer-links a{
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+}
+.footer-links a:hover{color: var(--text-primary)}
+.footer p{color: var(--text-secondary); font-size: 14px}
+
+/* ===== ANIMATIONS ===== */
+.fade-in{
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s var(--ease-smooth);
+}
+.fade-in.show{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== CLIENT AREA ICON ===== */
+.client-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1rem;
+  text-decoration: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.client-area img {
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+.client-area:hover {
+  transform: scale(1.1);
+  opacity: 0.85;
+}
+@media (max-width: 768px) {
+  .client-area { display: none; }
+}
+
+/* ===== SCROLL PROGRESS ===== */
+.scroll-progress{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--accent-gradient);
+  z-index: 1001;
+  transition: width 0.1s linear;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width: 768px){
+  .menu-toggle{display: flex}
+  .mobile-nav{display: block}
+  .mobile-overlay{display: block}
+  .nav{display: none}
+  .slider-controls{bottom: 24px; right: 24px}
+  .slider-arrow{width: 38px; height: 38px; font-size: 16px}
+  .section{padding: 80px 0}
+  .services-grid{grid-template-columns: 1fr}
+  .products-grid{grid-template-columns: 1fr}
+  .cta{padding: 100px 0}
+  .modal-content{padding: 24px}
+  .modal-actions{flex-direction: column}
+  .clients-grid{gap: 30px 40px}
+  .client-logo{height: 40px}
+  .client-logo img{max-width: 120px}
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== HERO SLIDER ===== -->
+<section class="hero-slider" id="heroSlider">
+  <div class="slide active">
+    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80" alt="Tecnologia">
+    <div class="slide-content">
+      <h1>Desenvolvimento & <span>Hospedagem</span></h1>
+      <p>Criamos aplicações web e móveis completas, hospedadas na nossa infraestrutura premium com domínio nexuspt.eu</p>
+      <a href="#servicos" class="btn">Explorar serviços →</a>
+    </div>
+  </div>
+  <div class="slide">
+    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1920&q=80" alt="Servidores">
+    <div class="slide-content">
+      <h1>Infraestrutura <span>Cloud</span></h1>
+      <p>Fornecemos servidores dedicados para as tuas aplicações já existentes. Escalável, seguro e sempre online.</p>
+      <a href="#servicos" class="btn">Saber mais →</a>
+    </div>
+  </div>
+  <div class="slider-controls">
+    <button class="slider-arrow" id="prevSlide">‹</button>
+    <button class="slider-arrow" id="nextSlide">›</button>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="section" id="servicos">
+  <div class="wrap">
+    <div class="section-title fade-in">
+      <h2>Os Nossos Serviços</h2>
+      <p>Soluções tecnológicas completas para o teu negócio</p>
+    </div>
+    
+    <div class="services-grid">
+      <div class="service-card fade-in">
+        <div class="service-image">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Desenvolvimento">
+        </div>
+        <div class="service-content">
+          <h3>Desenvolvimento & Hospedagem</h3>
+          <p>Criamos a tua aplicação do zero e hospedamos na nossa infraestrutura.</p>
+          <ul class="service-features">
+            <li>Web Apps modernas</li>
+            <li>Aplicações móveis iOS e Android</li>
+            <li>Hospedagem nexuspt.eu</li>
+            <li>Domínio e SSL incluídos</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-card fade-in">
+        <div class="service-image">
+          <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="Servidores">
+        </div>
+        <div class="service-content">
+          <h3>Alojamento de Aplicações</h3>
+          <p>Fornecemos o nosso servidor para as tuas aplicações já desenvolvidas.</p>
+          <ul class="service-features">
+            <li>Hospedagem dedicada</li>
+            <li>Performance otimizada</li>
+            <li>Suporte personalizado</li>
+            <li>Monitorização regular</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-card fade-in">
+        <div class="service-image">
+          <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80" alt="Produtos">
+        </div>
+        <div class="service-content">
+          <h3>Produtos Digitais</h3>
+          <p>Desenvolvemos e mantemos os nossos próprios produtos tecnológicos.</p>
+          <ul class="service-features">
+            <li>NexusPT TV</li>
+            <li>Drippi - Rede Social</li>
+            <li>NexusPT Security</li>
+            <li>Inovação contínua</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 60px;">
+      <a href="simulator.html" class="btn">Simulador de Preço - Hospedagem Web</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRODUCTS ===== -->
+<section class="section products-section" id="produtos">
+  <div class="wrap">
+    <div class="section-title fade-in">
+      <h2>Produtos NexusPT</h2>
+      <p>Soluções desenvolvidas por nós, disponíveis para todos</p>
+    </div>
+    
+    <div class="products-grid">
+      <a href="https://tv.nexuspt.eu" target="_blank" rel="noopener noreferrer" class="product-card fade-in">
+        <div class="product-image">
+          <img src="https://kikalabs-server.nexuspt.eu/images/site-nxweb/newwebsite/nxtvpub.png" alt="NexusPT TV">
+        </div>
+        <div class="product-content">
+          <h3>NexusPT TV</h3>
+          <p>Televisão digital com canais nacionais e rádios portuguesas. Qualidade HD, sempre disponível.</p>
+          <span class="product-link">Aceder agora →</span>
+        </div>
+      </a>
+
+      <a href="https://drippi.nexuspt.eu" target="_blank" rel="noopener noreferrer" class="product-card fade-in">
+        <div class="product-image">
+          <img src="https://kikalabs-server.nexuspt.eu/images/site-nxweb/newwebsite/drippipub.png" alt="Drippi">
+        </div>
+        <div class="product-content">
+          <h3>Drippi</h3>
+          <p>Rede social inovadora para partilhar momentos, conectar com amigos e descobrir conteúdo novo.</p>
+          <span class="product-link">Explorar →</span>
+        </div>
+      </a>
+
+      <div class="product-card disabled fade-in">
+        <div class="product-image">
+          <img src="https://kikalabs-server.nexuspt.eu/images/site-nxweb/newwebsite/nexvoidpub.png" alt="NexusPT Security" style="opacity: 0.7;">
+        </div>
+        <div class="product-content">
+          <h3>NexusPT Security</h3>
+          <p>Extensão de navegador para navegação segura. Proteção contra phishing, malware e rastreamento.</p>
+          <span class="product-link">Em desenvolvimento... ⏳</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CLIENTS ===== -->
+<section class="section" id="clientes" style="background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+  <div class="wrap">
+    <div class="section-title fade-in">
+      <h2>Quem Confia em Nós</h2>
+      <p>Parcerias que geram resultados</p>
+    </div>
+    
+    <div class="clients-grid">
+      <div class="client-logo clickable" onclick="openModal('vjModal')" role="button" tabindex="0"><img src="https://kikalabs-server.nexuspt.eu/images/site-vilajaponesa/vilajaponesalogo.png" alt="Vila Japonesa"></div>
+      <div class="client-logo"><img src="https://kikalabs-server.nexuspt.eu/images/site-vilaportuguesa/vilapt.png" alt="Cliente"></div>
+      <div class="client-logo"><img src="https://kikalabs-server.nexuspt.eu/images/site-nxweb/ggstudios.webp" alt="Cliente"></div>
+      <div class="client-logo"><img src="https://i.ibb.co/JWfBC0HW/image.png" alt="Cliente"></div>
+      <div class="client-logo clickable" onclick="openModal('aehsModal')" role="button" tabindex="0"><img src="https://i.ibb.co/d0p2G68n/image.png" alt="AEHS"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MODAL VILA JAPONESA ===== -->
+<div class="modal" id="vjModal" onclick="closeModal(event, 'vjModal')">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal(null, 'vjModal')">&times;</button>
+    <div style="text-align: center; margin-bottom: 20px;">
+      <img src="https://kikalabs-server.nexuspt.eu/images/site-vilajaponesa/vilajaponesalogo.png" alt="Vila Japonesa" style="max-height: 60px; max-width: 200px; opacity: 0.9;">
+    </div>
+    <h3 style="text-align: center;">Vila Japonesa</h3>
+    <p>A Vila Japonesa é um servidor dedicado ao entretenimento de videojogos (Minecraft). Desenvolvemos um site para os jogadores, e um painel para a gestão do mesmo.</p>
+  </div>
+</div>
+
+<!-- ===== MODAL AEHS ===== -->
+<div class="modal" id="aehsModal" onclick="closeModal(event, 'aehsModal')">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal(null, 'aehsModal')">&times;</button>
+    <div style="text-align: center; margin-bottom: 20px;">
+      <img src="https://i.ibb.co/d0p2G68n/image.png" alt="AEHS" style="max-height: 60px; max-width: 200px; opacity: 0.9;">
+    </div>
+    <h3 style="text-align: center;">AEHS</h3>
+    <p>A AEHS é um agrupamento de escolas públicas. Desenvolvemos o <strong>CMSTIS</strong> (Custom Made School Technological Inventory System) — uma plataforma completa para registo e gestão eficiente de todos os equipamentos tecnológicos das escolas.</p>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<script src="https://kikalabs-server.nexuspt.eu/js/site-nxweb/fh.js"></script>
+<script>
+/* ===== HERO SLIDER ===== */
+class Slider {
+  constructor(el, prev, next) {
+    this.el = el;
+    this.slides = [...el.querySelectorAll('.slide')];
+    this.idx = 0;
+    this.auto = setInterval(() => this.go(1), 6000);
+    prev.onclick = () => this.go(-1);
+    next.onclick = () => this.go(1);
+    el.addEventListener('mousedown', e => this.dragStart(e));
+    window.addEventListener('mousemove', e => this.dragMove(e));
+    window.addEventListener('mouseup', () => this.dragEnd());
+  }
+  go(dir) {
+    this.slides[this.idx].classList.remove('active');
+    this.idx = (this.idx + dir + this.slides.length) % this.slides.length;
+    this.slides[this.idx].classList.add('active');
+    clearInterval(this.auto);
+    this.auto = setInterval(() => this.go(1), 6000);
+  }
+  dragStart(e) { if(e.target.closest('a')) return; this.sx = e.clientX; this.el.style.cursor = 'grabbing'; }
+  dragMove(e) { if(!this.sx) return; const d = e.clientX - this.sx; if(Math.abs(d) > 10) this.dragged = true; }
+  dragEnd() {
+    if(this.dragged) {
+      const diff = event.clientX - this.sx;
+      if(Math.abs(diff) > 80) this.go(diff > 0 ? -1 : 1);
+    }
+    this.sx = null; this.dragged = false; this.el.style.cursor = 'grab';
+  }
+}
+new Slider(document.getElementById('heroSlider'), document.getElementById('prevSlide'), document.getElementById('nextSlide'));
+
+/* ===== MODAL FUNCTIONS ===== */
+function openModal(modalId){
+  document.getElementById(modalId).classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(event, modalId){
+  if(!event || event.target === document.getElementById(modalId)){
+    document.getElementById(modalId).classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape'){
+    document.querySelectorAll('.modal.active').forEach(modal => {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+  }
+});
+</script>
+
+</body>
+</html>

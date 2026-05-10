@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="pt-pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>História | NexusPT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #141414;
+  --bg-tertiary: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --accent-gradient: linear-gradient(135deg, #00f43c 0%, #00c9ff 100%);
+  --border-subtle: rgba(255,255,255,0.08);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --container: 1280px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+body{
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.wrap{max-width: var(--container); margin: auto; padding: 0 24px}
+
+/* ===== HEADER ===== */
+.header{
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  padding: 20px 0;
+  transition: all 0.4s var(--ease-smooth);
+}
+.header.scrolled{
+  padding: 12px 0;
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.header .wrap{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo img{height: 42px}
+
+.nav{display: flex; gap: 8px}
+.nav a{
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  transition: all 0.3s var(--ease-smooth);
+}
+.nav a:hover,
+.nav a.active{
+  color: var(--text-primary);
+  background: rgba(255,255,255,0.08);
+}
+
+/* Mobile Menu */
+.menu-toggle{
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.menu-toggle span{
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--text-primary);
+  position: relative;
+}
+.menu-toggle span::before,
+.menu-toggle span::after{
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background: var(--text-primary);
+  left: 0;
+}
+.menu-toggle span::before{top: -6px}
+.menu-toggle span::after{top: 6px}
+.menu-toggle.active span{background: transparent}
+.menu-toggle.active span::before{transform: rotate(45deg); top: 0}
+.menu-toggle.active span::after{transform: rotate(-45deg); top: 0}
+
+.mobile-nav{
+  display: none;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 80%;
+  max-width: 320px;
+  height: 100vh;
+  background: var(--bg-secondary);
+  padding: 100px 32px 32px;
+  transition: right 0.4s var(--ease-smooth);
+  z-index: 999;
+  border-left: 1px solid var(--border-subtle);
+}
+.mobile-nav.active{right: 0}
+.mobile-nav a{
+  display: block;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 18px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.mobile-nav a.active{color: var(--text-primary)}
+.mobile-overlay{
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-smooth);
+  z-index: 998;
+}
+.mobile-overlay.active{opacity: 1}
+
+/* ===== PAGE HEADER ===== */
+.page-header{
+  padding-top: 140px;
+  padding-bottom: 60px;
+  text-align: center;
+  background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.page-header h1{
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 600;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+.page-header p{
+  color: var(--text-secondary);
+  font-size: 18px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ===== HISTORY - SIMPLIFIED TIMELINE ===== */
+.history-section{padding: 120px 0}
+.section-title{
+  text-align: center;
+  margin-bottom: 60px;
+}
+.section-title h2{
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.section-title p{
+  color: var(--text-secondary);
+  font-size: 18px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.timeline{
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+/* Simple left line */
+.timeline::before{
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 0;
+  width: 1px;
+  background: var(--border-subtle);
+}
+
+.timeline-item{
+  position: relative;
+  padding-left: 48px;
+  padding-bottom: 48px;
+}
+.timeline-item:last-child{padding-bottom: 0}
+
+/* Minimal dot marker */
+.timeline-item::before{
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: 4px;
+  width: 11px;
+  height: 11px;
+  background: var(--bg-primary);
+  border: 2px solid #00f43c;
+  border-radius: 50%;
+}
+
+.timeline-year{
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #00f43c;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.timeline-title{
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.timeline-image{
+  width: 100%;
+  height: 140px;
+  background: var(--bg-tertiary);
+  border-radius: 12px;
+  margin: 16px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+.timeline-image img{
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.timeline-description{
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ===== FOOTER ===== */
+.footer{
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-subtle);
+  padding: 60px 0 30px;
+  text-align: center;
+}
+.footer-links{
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+.footer-links a{
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+}
+.footer-links a:hover{color: var(--text-primary)}
+.footer p{color: var(--text-secondary); font-size: 14px}
+
+/* ===== ANIMATIONS ===== */
+.fade-in{
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s var(--ease-smooth);
+}
+.fade-in.show{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== SCROLL PROGRESS ===== */
+.scroll-progress{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--accent-gradient);
+  z-index: 1001;
+  transition: width 0.1s linear;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width: 768px){
+  .menu-toggle{display: flex}
+  .mobile-nav{display: block}
+  .mobile-overlay{display: block}
+  .nav{display: none}
+  .page-header{padding-top: 100px; padding-bottom: 40px}
+  .history-section{padding: 80px 0}
+  .timeline-item{padding-left: 40px; padding-bottom: 40px}
+  .timeline-image{height: 120px}
+}
+        /* Ícone da Área do Cliente */
+        .client-area {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 1rem;
+            text-decoration: none;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .client-area img {
+            width: 32px;
+            height: 32px;
+            display: block;
+        }
+
+        .client-area:hover {
+            transform: scale(1.1);
+            opacity: 0.85;
+        }
+
+        /* Em mobile, esconder o ícone no header porque já existe no menu */
+        @media (max-width: 768px) {
+          .client-area {
+            display: none;
+          }
+        }
+        .history-section{text-align: left}
+        .timeline-description{text-align: left}
+</style>
+</head>
+
+<body>
+
+<section class="page-header">
+  <div class="wrap">
+    <h1>A Nossa História</h1>
+    <p>Uma cronologia dos marcos que moldaram a Nexus.</p>
+  </div>
+</section>
+
+<section class="history-section">
+  <div class="wrap">
+    <div class="timeline">
+      
+      <article class="timeline-item fade-in">
+        <span class="timeline-year">2020</span>
+        <h3 class="timeline-title">GamesStudios</h3>
+        <div class="timeline-image">
+          <img src="https://i.ibb.co/PvFQgFr4/Games-Studio.png" alt="GamesStudios">
+        </div>
+        <p class="timeline-description">Foi aqui que tudo começou, originalmente com o nome GameStudios. Era um estúdio simples de criação de mods para FNF com o nosso co‑fundador Diogo; também desenvolvemos alguns jogos no Roblox.</p>
+      </article>
+
+      <article class="timeline-item fade-in">
+        <span class="timeline-year">2021</span>
+        <h3 class="timeline-title">Flux Labs</h3>
+        <div class="timeline-image">
+          <img src="https://i.ibb.co/nMNt18YM/Flux-LABS-2021-completed-logo.png" alt="Flux Labs">
+        </div>
+        <p class="timeline-description">Foi aqui que redefinimos o nosso rumo, ainda focados principalmente no Roblox, mas já com alguns projetos orientados para a tecnologia.</p>
+      </article>
+
+      <article class="timeline-item fade-in">
+        <span class="timeline-year">2021</span>
+        <h3 class="timeline-title">Flux (novo logótipo)</h3>
+        <div class="timeline-image">
+          <img src="https://i.ibb.co/mnkL7Z4/Flux-LOGOV3.png" alt="Flux">
+        </div>
+        <p class="timeline-description">Alterámos a nossa identidade visual mais uma vez, para refletir de forma crescente a tecnologia e as soluções que, à data, ainda eram básicas, relacionadas com tecnologia e sites personalizados.</p>
+      </article>
+
+      <article class="timeline-item fade-in">
+        <span class="timeline-year">2022</span>
+        <h3 class="timeline-title">TAMTW</h3>
+        <div class="timeline-image">
+          <img src="https://i.ibb.co/PzgNKKmf/image.png" alt="TAMTW">
+        </div>
+        <p class="timeline-description">Decidimos renovar a marca mais uma vez; esta foi a que teve menos resultados, devido a uma co‑liderança frágil.</p>
+      </article>
+
+      <article class="timeline-item fade-in">
+        <span class="timeline-year">2023</span>
+        <h3 class="timeline-title">NexusWeb</h3>
+        <div class="timeline-image">
+          <img src="https://i.ibb.co/FGWrbWj/Only-Logo-Zoom.png" alt="NexusWeb">
+        </div>
+        <p class="timeline-description">Realizámos um rebranding completo, com o aparecimento de várias novas tecnologias e sites personalizados. Queríamos pôr fim às inconsistências nos nossos nomes anteriores e conduzir a atual NexusPT para um caminho cada vez mais tecnológico e inovador.</p>
+      </article>
+
+      <article class="timeline-item fade-in">
+        <span class="timeline-year">2024</span>
+        <h3 class="timeline-title">NexusPT</h3>
+        <div class="timeline-image">
+          <img src="https://i.ibb.co/yBMfPBtC/Nexus-Afastado.png" alt="NexusPT">
+        </div>
+        <p class="timeline-description">Este foi o nosso último rebranding, reforçando a consistência no nome e no logótipo, refletindo os nossos valores tecnológicos e inovadores, com soluções utilizadas por muitas pessoas e com o objetivo de alcançar novas parcerias, estratégias, desenvolvimento e uma boa liderança.</p>
+      </article>
+
+      <article class="timeline-item fade-in">
+        <span class="timeline-year">Abr. 2025</span>
+        <h3 class="timeline-title">Drippi</h3>
+        <div class="timeline-image">
+          <img src="https://i.ibb.co/Kj3pHchp/file-0000000088a0624685cfc856e9a6951c-removebg-preview.png" alt="Drippi">
+        </div>
+        <p class="timeline-description">Desenvolvemos a nossa primeira rede social, com tecnologias recentes e através de uma escuta ativa às críticas e sugestões da comunidade, resolvendo proativamente quaisquer bugs. Consideramo‑nos inovadores neste marco.</p>
+      </article>
+
+      <article class="timeline-item fade-in">
+        <span class="timeline-year">Jun. 2025</span>
+        <h3 class="timeline-title">NexusIOT</h3>
+        <div class="timeline-image">
+          <img src="https://i.ibb.co/YGFSNsL/IoTnEXUS.png" alt="NexusIOT">
+        </div>
+        <p class="timeline-description">Começámos o desenvolvimento do NexusIOT, uma plataforma de IoT e, posteriormente, de alarmes, para tornar a casa dos nossos clientes mais inteligente. Uma casa "inteligente" em que é necessário ter duas ou três apps não é realmente inteligente; foi esse o propósito do NexusIOT, para além da proteção com alarmes anti‑intrusão inovadores, com equipamentos físicos e fiáveis.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<script src="https://kikalabs-server.nexuspt.eu/js/site-nxweb/fh.js"></script>
+<script>
+const fadeElements = document.querySelectorAll('.fade-in');
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+      fadeObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+fadeElements.forEach(el => fadeObserver.observe(el));
+</script>
+
+</body>
+</html>

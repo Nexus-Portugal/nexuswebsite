@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="pt-pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Contacto | NexusPT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #141414;
+  --bg-tertiary: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --accent-gradient: linear-gradient(135deg, #00f43c 0%, #00c9ff 100%);
+  --border-subtle: rgba(255,255,255,0.08);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --container: 1280px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+body{
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.wrap{max-width: var(--container); margin: auto; padding: 0 24px}
+
+/* ===== HEADER ===== */
+.header{
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  padding: 20px 0;
+  transition: all 0.4s var(--ease-smooth);
+}
+.header.scrolled{
+  padding: 12px 0;
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.header .wrap{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo img{height: 42px}
+
+.nav{display: flex; gap: 8px}
+.nav a{
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  transition: all 0.3s var(--ease-smooth);
+}
+.nav a:hover,
+.nav a.active{
+  color: var(--text-primary);
+  background: rgba(255,255,255,0.08);
+}
+
+/* Mobile Menu */
+.menu-toggle{
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.menu-toggle span{
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--text-primary);
+  position: relative;
+}
+.menu-toggle span::before,
+.menu-toggle span::after{
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background: var(--text-primary);
+  left: 0;
+}
+.menu-toggle span::before{top: -6px}
+.menu-toggle span::after{top: 6px}
+.menu-toggle.active span{background: transparent}
+.menu-toggle.active span::before{transform: rotate(45deg); top: 0}
+.menu-toggle.active span::after{transform: rotate(-45deg); top: 0}
+
+.mobile-nav{
+  display: none;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 80%;
+  max-width: 320px;
+  height: 100vh;
+  background: var(--bg-secondary);
+  padding: 100px 32px 32px;
+  transition: right 0.4s var(--ease-smooth);
+  z-index: 999;
+  border-left: 1px solid var(--border-subtle);
+}
+.mobile-nav.active{right: 0}
+.mobile-nav a{
+  display: block;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 18px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.mobile-nav a.active{color: var(--text-primary)}
+.mobile-overlay{
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-smooth);
+  z-index: 998;
+}
+.mobile-overlay.active{opacity: 1}
+
+/* ===== PAGE HEADER ===== */
+.page-header{
+  padding-top: 140px;
+  padding-bottom: 60px;
+  text-align: center;
+  background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.page-header h1{
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 600;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+.page-header p{
+  color: var(--text-secondary);
+  font-size: 18px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ===== CONTACT SECTION ===== */
+.contact-section{padding: 120px 0}
+.section-title{
+  text-align: center;
+  margin-bottom: 40px;
+}
+.section-title h2{
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.section-title p{
+  color: var(--text-secondary);
+  font-size: 18px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.contact-container{max-width: 900px; margin: 0 auto}
+.contact-form{height: 900px}
+.contact-form iframe{
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  border-radius: 20px;
+}
+
+/* ===== FOOTER ===== */
+.footer{
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-subtle);
+  padding: 60px 0 30px;
+  text-align: center;
+}
+.footer-links{
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+.footer-links a{
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+}
+.footer-links a:hover{color: var(--text-primary)}
+.footer p{color: var(--text-secondary); font-size: 14px}
+
+/* ===== ANIMATIONS ===== */
+.fade-in{
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s var(--ease-smooth);
+}
+.fade-in.show{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== SCROLL PROGRESS ===== */
+.scroll-progress{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--accent-gradient);
+  z-index: 1001;
+  transition: width 0.1s linear;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width: 768px){
+  .menu-toggle{display: flex}
+  .mobile-nav{display: block}
+  .mobile-overlay{display: block}
+  .nav{display: none}
+  .page-header{padding-top: 100px; padding-bottom: 40px}
+  .contact-section{padding: 80px 0}
+  .contact-form{height: 600px}
+}
+        /* Ícone da Área do Cliente */
+        .client-area {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 1rem;
+            text-decoration: none;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .client-area img {
+            width: 32px;
+            height: 32px;
+            display: block;
+        }
+
+        .client-area:hover {
+            transform: scale(1.1);
+            opacity: 0.85;
+        }
+
+        /* Em mobile, esconder o ícone no header porque já existe no menu */
+        @media (max-width: 768px) {
+          .client-area {
+            display: none;
+          }
+        }
+        .contact-section{text-align: left}
+        .section-title h2, .section-title p{text-align: left}
+</style>
+</head>
+
+<body>
+
+<section class="page-header">
+  <div class="wrap">
+    <h1>Contacta-nos</h1>
+    <p>Estamos aqui para responder a todas as tuas dúvidas e ajudar no teu projeto.</p>
+  </div>
+</section>
+
+<section class="contact-section">
+  <div class="wrap">
+    <div class="contact-container">
+      <div class="section-title fade-in">
+        <h2>Enviar Mensagem</h2>
+        <p>Preenche o formulário abaixo e entraremos em contacto em breve</p>
+      </div>
+      <div class="contact-form fade-in">
+        <iframe src="https://www.powr.io/contact-form/u/e14e2712_1737487454#platform=html&url=https%3A%2F%2Fnexuspt.eu%2Fcontacto" title="Formulário de Contacto"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://kikalabs-server.nexuspt.eu/js/site-nxweb/fh.js"></script>
+<script>
+const fadeElements = document.querySelectorAll('.fade-in');
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+      fadeObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+fadeElements.forEach(el => fadeObserver.observe(el));
+</script>
+
+</body>
+</html>
