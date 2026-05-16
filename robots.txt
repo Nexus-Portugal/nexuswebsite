@@ -1,0 +1,8 @@
+# Nexus Portugal v1 robots by Gabriel V.
+
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://nexuspt.eu/sitemap.xml
