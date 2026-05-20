@@ -1,0 +1,11 @@
+/* TEAM */
+
+Founder / Developer: Gabriel V. (G4briel_PT)
+  Site: github.com/G4brielPT
+  From: Portugal
+  Note: Grandfather of most of this site.
+
+Co-founder / Developer: Gabriel C. (gambriel182)
+  Site: github.com/gambriel182
+  From: Portugal
+  Note: Helping with the projects and development alongside Gabriel V.
