@@ -283,7 +283,23 @@ body{
   cursor: pointer;
   transition: transform 0.3s var(--ease-smooth);
 }
-.btn:hover{transform: translateY(-2px)}
+.btn-sm{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  background: var(--accent-gradient);
+  color: #0a0a0a;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s var(--ease-smooth);
+  margin-top: auto;
+}
+.btn-sm:hover{transform: translateY(-2px)}
 
 /* ===== SECTIONS ===== */
 .section{padding: 120px 0}
@@ -315,6 +331,8 @@ body{
   overflow: hidden;
   border: 1px solid var(--border-subtle);
   transition: all 0.4s var(--ease-smooth);
+  display: flex;
+  flex-direction: column;
 }
 .service-card:hover{
   transform: translateY(-8px);
@@ -338,7 +356,7 @@ body{
   inset: 0;
   background: linear-gradient(180deg, transparent 40%, rgba(10,10,10,0.9) 100%);
 }
-.service-content{padding: 32px}
+.service-content{padding: 32px; display: flex; flex-direction: column; flex: 1}
 .service-content h3{
   font-size: 22px;
   font-weight: 600;
@@ -709,14 +727,15 @@ body{
         <div class="service-content">
           <h3>Desenvolvimento & Hospedagem</h3>
           <p>Criamos a tua aplicação do zero e hospedamos na nossa infraestrutura.</p>
-          <ul class="service-features">
-            <li>Web Apps modernas</li>
-            <li>Aplicações móveis iOS e Android</li>
-            <li>Hospedagem nexuspt.eu</li>
-            <li>Domínio e SSL incluídos</li>
-          </ul>
+            <ul class="service-features">
+              <li>Web Apps modernas</li>
+              <li>Aplicações móveis iOS e Android</li>
+              <li>Hospedagem nexuspt.eu</li>
+              <li>Domínio e SSL incluídos</li>
+            </ul>
+            <a href="contact.html" class="btn-sm">Aderir →</a>
+          </div>
         </div>
-      </div>
 
       <div class="service-card fade-in">
         <div class="service-image">
@@ -731,28 +750,26 @@ body{
             <li>Suporte personalizado</li>
             <li>Monitorização regular</li>
           </ul>
+          <a href="simulator.html" class="btn-sm">Simular e Aderir →</a>
         </div>
       </div>
 
       <div class="service-card fade-in">
         <div class="service-image">
-          <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80" alt="Produtos">
+          <img src="https://www.truesec.com/wp-content/uploads/2024/05/Truesec-Managed-Detection-and-response-16.jpg" alt="SOC">
         </div>
         <div class="service-content">
-          <h3>Produtos Digitais</h3>
-          <p>Desenvolvemos e mantemos os nossos próprios produtos tecnológicos.</p>
+          <h3>Security Operations Center (SOC)</h3>
+          <p>Monitorizamos todos os teus logs e identificamos possíveis problemas em tempo real.</p>
           <ul class="service-features">
-            <li>NexusPT TV</li>
-            <li>Drippi - Rede Social</li>
-            <li>NexusPT Security</li>
-            <li>Inovação contínua</li>
+            <li>Monitorização 24/7 de eventos e alertas</li>
+            <li>Análise de logs em tempo real</li>
+            <li>Identificação e resposta a incidentes</li>
+            <li>Relatórios detalhados de segurança</li>
           </ul>
+          <a href="contact.html" class="btn-sm">Aderir →</a>
         </div>
       </div>
-    </div>
-
-    <div style="text-align: center; margin-top: 60px;">
-      <a href="simulator.html" class="btn">Simulador de Preço - Hospedagem Web</a>
     </div>
   </div>
 </section>
@@ -898,6 +915,17 @@ document.addEventListener('keydown', (e) => {
     });
   }
 });
+
+// Override footer links
+(function() {
+  const footerLinks = document.querySelectorAll('.footer-links a');
+  if (footerLinks.length >= 4) {
+    footerLinks[0].href = 'cookies.html';
+    footerLinks[1].href = 'privacidade.html';
+    footerLinks[2].href = 'termos.html';
+    footerLinks[3].href = '#';
+  }
+})();
 </script>
 
 </body>
