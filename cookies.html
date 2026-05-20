@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="pt-pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Política de Cookies | NexusPT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #141414;
+  --bg-tertiary: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --accent-gradient: linear-gradient(135deg, #00f43c 0%, #00c9ff 100%);
+  --border-subtle: rgba(255,255,255,0.08);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --container: 1280px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+.wrap{max-width: var(--container); margin: auto; padding: 0 24px}
+
+/* ===== HEADER ===== */
+.header{
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  padding: 20px 0;
+  transition: all 0.4s var(--ease-smooth);
+}
+.header.scrolled{
+  padding: 12px 0;
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.header .wrap{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo img{height: 42px}
+.nav{display: flex; gap: 8px}
+.nav a{
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  transition: all 0.3s var(--ease-smooth);
+}
+.nav a:hover,.nav a.active{
+  color: var(--text-primary);
+  background: rgba(255,255,255,0.08);
+}
+
+/* ===== PAGE HEADER ===== */
+.page-header{
+  padding-top: 140px;
+  padding-bottom: 60px;
+  text-align: center;
+  background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.page-header h1{
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 600;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+.page-header p{
+  color: var(--text-secondary);
+  font-size: 18px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ===== CONTENT ===== */
+.privacy-section{padding: 80px 0; max-width: 900px; margin: 0 auto}
+.privacy-section h2{
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 600;
+  margin-bottom: 24px;
+  margin-top: 48px;
+  color: var(--text-primary);
+}
+.privacy-section h3{
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 32px;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+.privacy-section p{
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 12px;
+}
+.privacy-section ul{
+  margin: 8px 0 16px 20px;
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.8;
+}
+.privacy-section ul li{margin-bottom: 6px}
+.privacy-section strong{color: var(--text-primary)}
+.privacy-section a{
+  color: #00f43c;
+  text-decoration: underline;
+}
+
+/* ===== FOOTER ===== */
+.footer{
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-subtle);
+  padding: 60px 0 30px;
+  text-align: center;
+}
+.footer-links{display: flex; justify-content: center; gap: 32px; margin-bottom: 30px; flex-wrap: wrap}
+.footer-links a{
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+}
+.footer-links a:hover{color: var(--text-primary)}
+.footer p{color: var(--text-secondary); font-size: 14px}
+
+/* ===== ANIMATIONS ===== */
+.fade-in{
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s var(--ease-smooth);
+}
+.fade-in.show{opacity: 1; transform: translateY(0)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width: 768px){
+  .privacy-section{padding: 60px 24px}
+  .page-header{padding-top: 100px; padding-bottom: 40px}
+}
+</style>
+</head>
+
+<body>
+
+<section class="page-header">
+  <div class="wrap">
+    <h1>Política de Cookies</h1>
+    <p>Saiba mais sobre como utilizamos cookies e tecnologias semelhantes.</p>
+  </div>
+</section>
+
+<section class="privacy-section">
+  <div class="wrap">
+
+    <h2>1. O que são Cookies?</h2>
+    <p>Os cookies são pequenos ficheiros de texto que são armazenados no seu dispositivo quando visita um website. Os cookies são amplamente utilizados para fazer os websites funcionarem com mais eficiência, bem como para fornecer informações aos proprietários do site.</p>
+
+    <h2>2. Como Utilizamos os Cookies</h2>
+    <p>A NexusPT utiliza cookies e tecnologias semelhantes para melhorar a sua experiência de navegação, analisar o tráfego do nosso site e personalizar conteúdo e anúncios. Utilizamos estes cookies de acordo com a nossa Política de Privacidade e com as obrigações legais aplicáveis.</p>
+
+    <h2>3. Tipos de Cookies que Utilizamos</h2>
+    <h3>Cookies Essenciais</h3>
+    <p>Estes cookies são necessários para o funcionamento do website e não podem ser desativados nos nossos sistemas. Normalmente são definidos em resposta a ações realizadas por si, tais como definir as suas preferências de privacidade, iniciar sessão ou preencher formulários.</p>
+
+    <h3>Cookies de Desempenho e Analítica</h3>
+    <p>Estes cookies permitem-nos contar visitas e fontes de tráfego para que possamos medir e melhorar o desempenho do nosso site. Ajudam-nos a saber quais são as páginas mais e menos visitadas, e a ver como os visitantes navegam pelo website.</p>
+    <ul>
+      <li><strong>Google Analytics</strong> — recolha de estatísticas de utilização</li>
+      <li><strong>Microsoft Clarity</strong> — análise de comportamento de utilizadores</li>
+      <li><strong>Hotjar</strong> — inquéritos e feedback de utilizadores (apenas em tv.nexuspt.eu)</li>
+    </ul>
+
+    <h3>Cookies de Publicidade</h3>
+    <p>Estes cookies podem ser definidos no nosso site pelos nossos parceiros de publicidade. Podem ser usados por essas empresas para construir um perfil dos seus interesses e mostrar anúncios relevantes noutros websites.</p>
+    <ul>
+      <li><strong>AdCash</strong> — publicidade personalizada em alguns dos nossos sites</li>
+    </ul>
+
+    <h3>Cookies de Funcionalidade</h3>
+    <p>Estes cookies permitem que o website forneça funcionalidades e personalização melhoradas. Podem ser definidos por nós ou por terceiros cujos serviços adicionámos às nossas páginas.</p>
+
+    <h2>4. Cookies de Terceiros</h2>
+    <p>Alguns cookies são definidos por serviços de terceiros que aparecem nas nossas páginas. Não temos controlo sobre estes cookies. Para mais informações sobre como esses serviços utilizam os seus dados, recomendamos a consulta das suas políticas de privacidade:</p>
+    <ul>
+      <li><strong>Cloudflare</strong> — DNS, segurança e entrega de conteúdo</li>
+      <li><strong>AdCash</strong> — publicidade</li>
+      <li><strong>Microsoft Clarity</strong> — análise do comportamento do utilizador</li>
+      <li><strong>Hotjar</strong> — inquéritos de utilizadores (apenas em tv.nexuspt.eu)</li>
+      <li><strong>hCaptcha</strong> — verificação de utilizadores humanos</li>
+      <li><strong>Google reCAPTCHA</strong> — verificação de utilizadores e proteção contra spam</li>
+      <li><strong>Google Analytics</strong> — estatísticas de utilização</li>
+    </ul>
+
+    <h2>5. Como Gerir os Cookies</h2>
+    <p>Pode gerir as suas preferências de cookies a qualquer momento através das definições do seu navegador. A maioria dos navegadores permite que:</p>
+    <ul>
+      <li>Veja os cookies armazenados no seu dispositivo e apague-os individualmente.</li>
+      <li>Bloqueie cookies de terceiros.</li>
+      <li>Bloqueie cookies de todos os sites.</li>
+      <li>Exclua todos os cookies quando fechar o navegador.</li>
+    </ul>
+    <p>Tenha em atenção que a desativação de certos cookies pode afetar a funcionalidade do nosso site e a sua experiência de navegação.</p>
+
+    <h2>6. Cookies que Utilizamos</h2>
+    <p>Esta tabela descreve os cookies que utilizamos atualmente no nosso site:</p>
+    <ul>
+      <li><strong>Cookies Essenciais:</strong> Necessários para o funcionamento do site (não podem ser desativados).</li>
+      <li><strong>Cookies Analíticos:</strong> Google Analytics, Microsoft Clarity, Hotjar — recolhem estatísticas anónimas.</li>
+      <li><strong>Cookies de Publicidade:</strong> AdCash — utilizados para mostrar anúncios relevantes.</li>
+      <li><strong>Cookies de Segurança:</strong> Cloudflare, hCaptcha, reCAPTCHA — protegem o site contra abusos.</li>
+    </ul>
+
+    <h2>7. Atualizações a Esta Política</h2>
+    <p>Podemos atualizar esta Política de Cookies periodicamente para refletir alterações nas tecnologias que utilizamos ou em conformidade com as obrigações legais. Recomendamos que consulte esta página regularmente para se manter informado.</p>
+
+    <h2>8. Contacto</h2>
+    <p>Se tiver dúvidas sobre a nossa utilização de cookies, entre em contacto connosco:</p>
+    <ul>
+      <li><strong>Email:</strong> dados@nexuspt.eu</li>
+      <li><strong>Última atualização:</strong> 20 de maio de 2026</li>
+    </ul>
+  </div>
+</section>
+
+<script src="https://kikalabs-server.nexuspt.eu/js/site-nxweb/fh.js"></script>
+<script>
+const fadeElements = document.querySelectorAll('.fade-in');
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+      fadeObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+fadeElements.forEach(el => fadeObserver.observe(el));
+
+// Override footer links
+(function() {
+  const footerLinks = document.querySelectorAll('.footer-links a');
+  if (footerLinks.length >= 4) {
+    footerLinks[0].href = 'cookies.html';
+    footerLinks[1].href = 'privacidade.html';
+    footerLinks[2].href = 'termos.html';
+    footerLinks[3].href = '#';
+  }
+})();
+</script>
+
+</body>
+</html>
