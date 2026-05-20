@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="pt-pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Divulgação Responsável de Vulnerabilidades | NexusPT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #141414;
+  --bg-tertiary: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --accent-gradient: linear-gradient(135deg, #00f43c 0%, #00c9ff 100%);
+  --border-subtle: rgba(255,255,255,0.08);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --container: 1280px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+.wrap{max-width: var(--container); margin: auto; padding: 0 24px}
+
+/* ===== HEADER ===== */
+.header{
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  padding: 20px 0;
+  transition: all 0.4s var(--ease-smooth);
+}
+.header.scrolled{
+  padding: 12px 0;
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.header .wrap{display: flex; justify-content: space-between; align-items: center}
+.logo img{height: 42px}
+.nav{display: flex; gap: 8px}
+.nav a{
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  transition: all 0.3s var(--ease-smooth);
+}
+.nav a:hover,.nav a.active{color: var(--text-primary); background: rgba(255,255,255,0.08)}
+
+/* Mobile Menu */
+.menu-toggle{
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.menu-toggle span{
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--text-primary);
+  position: relative;
+}
+.menu-toggle span::before,
+.menu-toggle span::after{
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background: var(--text-primary);
+  left: 0;
+}
+.menu-toggle span::before{top: -6px}
+.menu-toggle span::after{top: 6px}
+.menu-toggle.active span{background: transparent}
+.menu-toggle.active span::before{transform: rotate(45deg); top: 0}
+.menu-toggle.active span::after{transform: rotate(-45deg); top: 0}
+
+.mobile-nav{
+  display: none;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 80%;
+  max-width: 320px;
+  height: 100vh;
+  background: var(--bg-secondary);
+  padding: 100px 32px 32px;
+  transition: right 0.4s var(--ease-smooth);
+  z-index: 999;
+  border-left: 1px solid var(--border-subtle);
+}
+.mobile-nav.active{right: 0}
+.mobile-nav a{
+  display: block;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 18px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.mobile-nav a.active{color: var(--text-primary)}
+.mobile-overlay{
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-smooth);
+  z-index: 998;
+}
+.mobile-overlay.active{opacity: 1}
+
+/* ===== PAGE HEADER ===== */
+.page-header{
+  padding-top: 140px;
+  padding-bottom: 60px;
+  text-align: center;
+  background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.page-header h1{
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 600;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+.page-header h1 span{
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.page-header p{
+  color: var(--text-secondary);
+  font-size: 18px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ===== CONTENT ===== */
+.policy-section{padding: 80px 0; max-width: 900px; margin: 0 auto}
+.policy-section h2{
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 600;
+  margin-bottom: 24px;
+  margin-top: 48px;
+  color: var(--text-primary);
+}
+.policy-section h2:first-child{margin-top: 0}
+.policy-section h3{
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 32px;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+.policy-section p{
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 12px;
+}
+.policy-section ul{
+  margin: 8px 0 16px 20px;
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.8;
+}
+.policy-section ul li{margin-bottom: 6px}
+.policy-section strong{color: var(--text-primary)}
+.policy-section code{
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-size: 14px;
+  color: #00f43c;
+  font-family: 'Courier New', monospace;
+}
+.policy-section .email-box{
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 24px 32px;
+  margin: 24px 0 32px;
+  text-align: center;
+}
+.policy-section .email-box p{
+  color: var(--text-primary);
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.policy-section .email-box .email-sub{
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+/* ===== FOOTER ===== */
+.footer{
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-subtle);
+  padding: 60px 0 30px;
+  text-align: center;
+}
+.footer-links{display: flex; justify-content: center; gap: 32px; margin-bottom: 30px; flex-wrap: wrap}
+.footer-links a{
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+}
+.footer-links a:hover{color: var(--text-primary)}
+  .footer p{color: var(--text-secondary); font-size: 14px}
+
+/* ===== CLIENT AREA ICON ===== */
+.client-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1rem;
+  text-decoration: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.client-area img {
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+.client-area:hover {
+  transform: scale(1.1);
+  opacity: 0.85;
+}
+
+/* ===== ANIMATIONS ===== */
+.fade-in{
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s var(--ease-smooth);
+}
+.fade-in.show{opacity: 1; transform: translateY(0)}
+
+/* ===== SCROLL PROGRESS ===== */
+.scroll-progress{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--accent-gradient);
+  z-index: 1001;
+  transition: width 0.1s linear;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width: 768px){
+  .menu-toggle{display: flex}
+  .mobile-nav{display: block}
+  .mobile-overlay{display: block}
+  .nav{display: none}
+  .page-header{padding-top: 100px; padding-bottom: 40px}
+  .policy-section{padding: 60px 24px}
+  .client-area { display: none; }
+}
+</style>
+</head>
+
+<body>
+
+<section class="page-header">
+  <div class="wrap">
+    <h1>Divulgação Responsável de <span>Vulnerabilidades</span></h1>
+    <p>Ajuda-nos a manter os nossos serviços seguros reportando vulnerabilidades de forma responsável.</p>
+  </div>
+</section>
+
+<section class="policy-section">
+  <div class="wrap">
+
+    <h2>1. Compromisso de Segurança</h2>
+    <p>A NexusPT valoriza a segurança dos seus serviços e a proteção dos seus utilizadores. Acreditamos que a colaboração responsável com investigadores de segurança, programadores e membros da comunidade é essencial para manter os nossos sistemas seguros.</p>
+
+    <h2>2. Âmbito</h2>
+    <p>Esta política de divulgação responsável aplica-se a todos os domínios, aplicações e serviços operados pela NexusPT, incluindo mas não limitado a:</p>
+    <ul>
+      <li><strong>nexuspt.eu</strong> — Website principal e plataforma</li>
+      <li><strong>tv.nexuspt.eu</strong> — Serviço de televisão digital</li>
+      <li><strong>drippi.nexuspt.eu</strong> — Rede social Drippi</li>
+      <li><strong>my.nexuspt.eu</strong> — Área do cliente</li>
+      <li><strong>Qualquer subdomínio</strong> associado aos serviços da NexusPT</li>
+    </ul>
+
+    <h2>3. Como Reportar uma Vulnerabilidade</h2>
+    <p>Ao descobrires uma potencial vulnerabilidade de segurança, pedimos que a reports exclusivamente por e-mail para o nosso endereço dedicado:</p>
+    <div class="email-box fade-in">
+      <p>rvd@nexuspt.eu</p>
+      <p class="email-sub">Este endereço é exclusivo para relatórios de vulnerabilidades.</p>
+    </div>
+    <p>No teu relatório, inclui o máximo de informação possível para nos ajudar a entender e reproduzir o problema:</p>
+    <ul>
+      <li><strong>Descrição da vulnerabilidade</strong> — explica o que descobriste e o seu impacto potencial.</li>
+      <li><strong>Passos para reproduzir</strong> — passos detalhados para replicar o problema.</li>
+      <li><strong>Solicitação HTTP e resposta</strong> — informações relevantes de pedidos e respostas da rede.</li>
+      <li><strong>Prova de conceito</strong> — screenshots, vídeos ou código de exploração (se aplicável).</li>
+      <li><strong>Informação do dispositivo/navegador</strong> — sistema operativo, navegador, versão.</li>
+    </ul>
+
+    <h2>4. O que Não Deves Fazer</h2>
+    <ul>
+      <li>Não explores a vulnerabilidade além do necessário para demonstrá-la.</li>
+      <li>Não acedas, modifiques ou apagues dados de outros utilizadores.</li>
+      <li>Não réalizes ataques de negação de serviço (DoS/DDoS) ou outras ações que possam afetar a disponibilidade dos serviços.</li>
+      <li>Não partilhes informações detalhadas da vulnerabilidade com terceiros antes de obteres a nossa resposta.</li>
+      <li>Não utilizes ferramentas de teste automáticas em massa nos nossos serviços.</li>
+    </ul>
+
+    <h2>5. Compromisso da NexusPT</h2>
+    <p>Ao reportares uma vulnerabilidade de acordo com esta política, comprometemo-nos a:</p>
+    <ul>
+      <li>Confirmar a receção do teu relatório dentro de <strong>3 dias úteis</strong>.</li>
+      <li>Manter-te atualizado sobre o progresso da investigação.</li>
+      <li>Informar-te quando a vulnerabilidade for corrigida ou quando uma decisão for tomada.</li>
+      <li>Reconhecer a tua contribuição na resolução responsável de forma pública (se desejares).</li>
+      <li>Não intentar ações legais contra ti se seguires os termos desta política.</li>
+    </ul>
+
+    <h2>6. Critérios de Aceitação</h2>
+    <p>A NexusPT aceitará relatórios de vulnerabilidades que cumpram os seguintes critérios:</p>
+    <ul>
+      <li>A vulnerabilidade afete um domínio, aplicação ou serviço dentro do âmbito definido acima.</li>
+      <li>A vulnerabilidade seja nova e ainda não tenha sido reportada por outro investigador.</li>
+      <li>O relatório seja enviado de boa fé e de acordo com os termos desta política.</li>
+      <li>A exploração não envolva danos ou acesso a dados sensíveis de terceiros.</li>
+    </ul>
+
+    <h2>7. Divulgação Pública</h2>
+    <p>Acreditamos na divulgação responsável. Assim que uma vulnerabilidade for corrigida, podemos divulgar publicamente o problema e o impacto. Recomendamos um período de div</p><p>ulgação coordenada de modo a dar tempo para que os utilizadores apliquem as atualizações.</p>
+
+    <h2>8. Exclusões</h2>
+    <p>As seguintes questões encontram-se fora do âmbito desta política:</p>
+    <ul>
+      <li>Vulnerabilidades em tecnologias ou sistemas de terceiros não operados pela NexusPT.</li>
+      <li>Vulnerabilidades já conhecidas e divulgadas publicamente.</li>
+      <li>Questões de spam, phishing ou conteúdos abusivos gerados por utilizadores (reporte via <a href="contact.html">contact.html</a>).</li>
+      <li>Denúncia de má conduta de funcionários ou problemas de gestão.</li>
+    </ul>
+
+    <h2>9. Contacto</h2>
+    <p>Para questões gerais sobre esta Política de Divulgação Responsável de Vulnerabilidades:</p>
+    <ul>
+      <li><strong>Email de reporte de vulnerabilidades:</strong> rvd@nexuspt.eu</li>
+      <li><strong>Última atualização:</strong> 20 de maio de 2026</li>
+    </ul>
+
+  </div>
+</section>
+
+<script src="https://kikalabs-server.nexuspt.eu/js/site-nxweb/fh.js"></script>
+<script>
+const fadeElements = document.querySelectorAll('.fade-in');
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+      fadeObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+fadeElements.forEach(el => fadeObserver.observe(el));
+
+// Override footer links — no extra link (vulnerability page)
+(function() {
+  const footerLinks = document.querySelectorAll('.footer-links a');
+  if (footerLinks.length >= 4) {
+    footerLinks[0].href = 'privacidade.html';
+    footerLinks[1].href = 'termos.html';
+    footerLinks[2].href = 'cookies.html';
+    footerLinks[3].href = '#';
+  }
+})();
+</script>
+
+</body>
+</html>
