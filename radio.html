@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rádio NexusPT</title>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg:     #0a0a0a;
+    --panel:  #141414;
+    --border: rgba(255,255,255,0.08);
+    --text:   #ffffff;
+    --dim:    #b0b0b0;
+    --faint:  rgba(255,255,255,0.35);
+    --accent: #00f43c;
+    --cyan:   #00c9ff;
+    --green:  #00f43c;
+    --red:    #e04040;
+    --yellow: #c8a85c;
+  }
+
+  html, body {
+    height: 100%;
+    font-family: system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-y: auto;
+  }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+
+  /* CRT scanlines */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 1px,
+      rgba(0,0,0,0.07) 1px,
+      rgba(0,0,0,0.07) 2px
+    );
+  }
+
+  /* ─── PLAYER ─── */
+  #player {
+    width: 100%;
+    max-width: 360px;
+    background: var(--panel);
+    border: 2px solid var(--border);
+    position: relative;
+  }
+
+  /* corner accents (◆) */
+  #player::before,
+  #player::after {
+    content: '◆';
+    position: absolute;
+    font-size: 7px;
+    color: var(--accent);
+    opacity: 0.5;
+  }
+  #player::before { top: 6px;  left: 8px; }
+  #player::after  { top: 6px; right: 8px; }
+
+  /* ─── HEADER ─── */
+  .top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 16px 0;
+    margin-bottom: 10px;
+  }
+
+  .rec {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--red);
+    transition: opacity 0.3s;
+  }
+  .rec.on { animation: recBlink 1.8s step-end infinite; }
+  .rec.off { opacity: 0.12; }
+  @keyframes recBlink { 50% { opacity: 0.2; } }
+
+  .top-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    color: var(--faint);
+    text-transform: uppercase;
+  }
+
+  .top-status {
+    margin-left: auto;
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--faint);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+  .top-status.ok  { color: var(--green); }
+  .top-status.err { color: var(--red); }
+  .top-status.buf { color: var(--yellow); }
+
+  /* ─── COVER ─── */
+  .frame {
+    position: relative;
+    margin: 0 16px;
+    border: 2px solid var(--border);
+    overflow: hidden;
+    background: #0a0a0a;
+  }
+  .frame .aspect {
+    padding-bottom: 100%;
+    position: relative;
+  }
+  .frame .aspect > * {
+    position: absolute;
+    inset: 0;
+  }
+
+  .frame .ph-old {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0a0a0a;
+    transition: opacity 0.35s;
+  }
+  .frame .ph-old.hide {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .frame .ph-old svg {
+    width: 38px; height: 38px;
+    color: var(--faint);
+    opacity: 0.15;
+  }
+
+  .frame img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.4s;
+  }
+
+  /* frame corner markers */
+  .frame::before,
+  .frame::after {
+    content: '';
+    position: absolute;
+    width: 8px; height: 8px;
+    border-color: var(--accent);
+    opacity: 0.35;
+    z-index: 2;
+  }
+  .frame::before {
+    top: -1px; left: -1px;
+    border-top: 2px solid;
+    border-left: 2px solid;
+  }
+  .frame::after {
+    top: -1px; right: -1px;
+    border-top: 2px solid;
+    border-right: 2px solid;
+  }
+
+  .frame .crnr-b {
+    position: absolute;
+    bottom: -1px;
+    width: 8px; height: 8px;
+    border-bottom: 2px solid var(--accent);
+    opacity: 0.35;
+    z-index: 2;
+  }
+  .frame .crnr-bl { left: -1px; border-left: 2px solid; }
+  .frame .crnr-br { right: -1px; border-right: 2px solid; }
+
+  /* ─── DISPLAY (track info) ─── */
+  .lcd {
+    margin: 12px 16px 0;
+    background: #0a0a0a;
+    border: 1px solid var(--border);
+    padding: 10px 12px;
+    min-height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .lcd-ttl {
+    font-family: 'Courier New', 'Consolas', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+  }
+  .lcd-ttl.ph { color: var(--faint); font-weight: 400; }
+
+  .lcd-art {
+    font-family: 'Courier New', 'Consolas', monospace;
+    font-size: 11px;
+    color: var(--dim);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4;
+    margin-top: 1px;
+  }
+  .lcd-art.ph { color: var(--faint); }
+
+  /* ─── VU METER ─── */
+  .vu-wrap {
+    margin: 10px 16px 0;
+  }
+  .vu-track {
+    height: 6px;
+    background: #0a0a0a;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .vu-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(to right, var(--accent) 0%, var(--accent) 25%, var(--cyan) 50%, var(--yellow) 70%, var(--red) 85%);
+    transition: width 0.25s ease;
+  }
+
+  /* ─── CONTROLS ─── */
+  .ctrls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 14px 16px 16px;
+  }
+
+  .ctrls button {
+    width: 40px; height: 40px;
+    border: 2px solid var(--border);
+    background: var(--panel);
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.06s;
+    font-size: 14px;
+    line-height: 1;
+  }
+  .ctrls button:active { transform: scale(0.94); }
+  .ctrls button:hover:not(:disabled) { background: #2e2b28; }
+  .ctrls button:disabled { opacity: 0.2; cursor: default; }
+
+  .ctrls .play {
+    width: 48px; height: 48px;
+    background: linear-gradient(135deg, var(--accent), var(--cyan));
+    color: #0a0a0a;
+    border: none;
+    font-size: 16px;
+  }
+  .ctrls .play:hover:not(:disabled) {
+    background: linear-gradient(135deg, var(--cyan), var(--accent));
+  }
+
+  /* ─── VOLUME ─── */
+  .vol {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .vol-icon {
+    width: 15px; height: 15px;
+    color: var(--faint);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+  .vol-icon svg { width: 100%; height: 100%; }
+
+  .vol input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 56px;
+    height: 4px;
+    background: #0a0a0a;
+    border: 1px solid var(--border);
+    outline: none;
+    cursor: pointer;
+    border-radius: 0;
+  }
+  .vol input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 10px; height: 14px;
+    background: var(--accent);
+    border: none;
+    cursor: pointer;
+    border-radius: 0;
+  }
+  .vol input::-moz-range-thumb {
+    width: 10px; height: 14px;
+    background: var(--accent);
+    border: none;
+    cursor: pointer;
+    border-radius: 0;
+  }
+
+  .vol .pct {
+    font-family: 'Courier New', 'Consolas', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--faint);
+    min-width: 28px;
+    text-align: right;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 380px) {
+    #player { border-width: 1px; }
+    .top { padding: 10px 12px 0; }
+    .frame { margin: 0 12px; }
+    .lcd { margin: 10px 12px 0; padding: 8px 10px; }
+    .vu-wrap { margin: 8px 12px 0; }
+    .ctrls { padding: 12px 12px 14px; gap: 4px; }
+    .vol input { width: 44px; }
+    .ctrls button { width: 36px; height: 36px; }
+    .ctrls .play { width: 42px; height: 42px; }
+  }
+
+  @media (max-width: 280px) {
+    .vol input { width: 36px; }
+    .ctrls { flex-wrap: wrap; }
+    .vol { margin-left: 0; }
+  }
+
+  /* ─── HISTORY ─── */
+  .hist {
+    border-top: 1px solid var(--border);
+    padding: 10px 16px 14px;
+  }
+  .hist-hdr {
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    color: var(--faint);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .hist-list {
+    max-height: 155px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--faint) transparent;
+  }
+  .hist-list::-webkit-scrollbar { width: 3px; }
+  .hist-list::-webkit-scrollbar-track { background: transparent; }
+  .hist-list::-webkit-scrollbar-thumb { background: var(--faint); }
+
+  .hist-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .hist-item:last-child { border-bottom: none; }
+
+  .hist-item .thmb {
+    width: 34px; height: 34px;
+    flex-shrink: 0;
+    border: 1px solid var(--border);
+    background: #0a0a0a;
+    object-fit: cover;
+    display: block;
+  }
+  .hist-item .thmb-fb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hist-item .thmb-fb svg {
+    width: 14px; height: 14px;
+    color: var(--faint);
+    opacity: 0.12;
+  }
+
+  .hist-item .hi {
+    min-width: 0;
+    flex: 1;
+  }
+  .hist-item .hi-t {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+  }
+  .hist-item .hi-a {
+    font-size: 9.5px;
+    color: var(--dim);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+  }
+
+  @media (max-width: 380px) {
+    .hist { padding: 8px 12px 12px; }
+    .hist-list { max-height: 130px; }
+    .hist-item .thmb { width: 30px; height: 30px; }
+    .hist-item .hi-t { font-size: 10px; }
+    .hist-item .hi-a { font-size: 9px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="player">
+  <!-- Header -->
+  <div class="top">
+    <span class="rec on" id="recLed"></span>
+    <span class="top-label">Emissão</span>
+    <span class="top-status" id="st">a ligar...</span>
+  </div>
+
+  <!-- Cover art -->
+  <div class="frame" id="coverW">
+    <div class="aspect">
+      <div class="ph-old" id="coverFb">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 6v6l4 2"/>
+        </svg>
+      </div>
+      <img id="coverImg" src="" alt="" referrerpolicy="no-referrer" style="opacity:0;">
+    </div>
+    <span class="crnr-b crnr-bl"></span>
+    <span class="crnr-b crnr-br"></span>
+  </div>
+
+  <!-- LCD display -->
+  <div class="lcd">
+    <div class="lcd-ttl ph" id="ttl">A carregar...</div>
+    <div class="lcd-art ph" id="art">A aguardar música</div>
+  </div>
+
+  <!-- VU meter -->
+  <div class="vu-wrap">
+    <div class="vu-track">
+      <div class="vu-fill" id="vuFill"></div>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div class="ctrls">
+    <button class="prev" disabled id="prevBtn" title="Anterior">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+        <polygon points="19 20 9 12 19 4 19 20"/>
+        <line x1="5" y1="19" x2="5" y2="5"/>
+      </svg>
+    </button>
+    <button class="play" id="playBtn" title="Play / Pausa">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" id="playI">
+        <polygon points="5 3 19 12 5 21 5 3"/>
+      </svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" id="pauseI" style="display:none">
+        <line x1="6" y1="4" x2="6" y2="20"/>
+        <line x1="18" y1="4" x2="18" y2="20"/>
+      </svg>
+    </button>
+    <button class="next" disabled id="nextBtn" title="Seguinte">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+        <polygon points="5 4 15 12 5 20 5 4"/>
+        <line x1="19" y1="5" x2="19" y2="19"/>
+      </svg>
+    </button>
+
+    <div class="vol">
+      <span class="vol-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+        </svg>
+      </span>
+      <input type="range" id="volS" min="0" max="100" value="80">
+      <span class="pct" id="volP">80%</span>
+    </div>
+
+  </div>
+
+  <!-- history -->
+  <div class="hist">
+    <div class="hist-hdr">histórico</div>
+    <div class="hist-list" id="histList"></div>
+  </div>
+
+<script>
+(() => {
+  'use strict';
+  const STREAM   = 'https://stream.zeno.fm/fmgajinfd6ctv';
+  const META     = 'https://api.zeno.fm/mounts/metadata/subscribe/g4yosibn9yivv';
+  const PROXY    = 'http://nexuspt.great-site.net/radio.php?q=';
+  const VOL_KEY  = 'nx_vol';
+
+  const a = new Audio();
+  a.preload='auto'; a.volume=parseFloat(localStorage.getItem(VOL_KEY))||0.8; a.muted=true;
+
+  const $=s=>document.getElementById(s);
+  const playBtn=$('playBtn'),playI=$('playI'),pauseI=$('pauseI');
+  const coverImg=$('coverImg'),coverFb=$('coverFb');
+  const ttl=$('ttl'),art=$('art'),st=$('st'),recLed=$('recLed');
+  const volS=$('volS'),volP=$('volP'),vuFill=$('vuFill');
+
+  let playing=0,curT='',curA='',lastArt='',metaOK=0;
+  let vuInt=null,sseStop=0,recT=null;
+  const histList=$('histList');
+  const history=[];
+  const MAX_HIST=30;
+
+  function addHist(a,t){
+    history.unshift({artist:a,title:t,cover:''});
+    if(history.length>MAX_HIST)history.pop();
+    renderHist();
+  }
+  function updHistCover(u){
+    if(history.length&&!history[0].cover&&u){history[0].cover=u;renderHist();}
+  }
+  function renderHist(){
+    let h='';
+    for(const e of history){
+      if(e.cover){
+        h+='<div class="hist-item"><img class="thmb" src="'+e.cover+'" alt="" referrerpolicy="no-referrer" loading="lazy"><div class="hi"><div class="hi-t">'+e.title+'</div><div class="hi-a">'+e.artist+'</div></div></div>';
+      }else{
+        h+='<div class="hist-item"><span class="thmb thmb-fb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span><div class="hi"><div class="hi-t">'+e.title+'</div><div class="hi-a">'+e.artist+'</div></div></div>';
+      }
+    }
+    histList.innerHTML=h;
+  }
+
+  function sts(t,type=''){
+    st.textContent=t;
+    st.className='top-status'+(type?' '+type:'');
+  }
+
+  // ── VU meter ──
+  function vu(on){
+    if(on){
+      if(vuInt)return;
+      vuInt=setInterval(()=>{
+        if(!playing){vuFill.style.width='0%';return;}
+        const lv=10+Math.random()*80;
+        vuFill.style.width=lv+'%';
+      },250);
+    }else{
+      if(vuInt){clearInterval(vuInt);vuInt=null;}
+      vuFill.style.width='0%';
+    }
+  }
+
+  function parse(s){
+    if(!s||!s.trim())return{a:'—',t:'A carregar...'};
+    const p=s.split(' - ');
+    return p.length>=2?{a:p[0].trim(),t:p.slice(1).join(' - ').trim()}:{a:'—',t:s.trim()};
+  }
+
+  function show(t,a){
+    ttl.textContent=t;art.textContent=a;
+    ttl.classList.toggle('ph',t==='A carregar...');
+    art.classList.toggle('ph',!a||a==='—');
+  }
+
+  function setImg(url){
+    if(!url){coverImg.style.opacity='0';coverFb.classList.remove('hide');lastArt='';return;}
+    if(url===lastArt&&coverImg.style.opacity==='1')return;
+    lastArt=url;coverFb.classList.add('hide');coverImg.style.opacity='0';
+    coverImg.onload=()=>{coverImg.style.opacity='1'};
+    coverImg.onerror=()=>{coverImg.style.opacity='0';coverFb.classList.remove('hide');coverImg.removeAttribute('src')};
+    coverImg.src=url;
+  }
+
+  function btn(on){
+    playing=on;
+    playI.style.display=on?'none':'block';
+    pauseI.style.display=on?'block':'none';
+    recLed.className='rec'+(on?' on':' off');
+    vu(on);
+  }
+
+  // ── vol ──
+  (()=>{const v=volS.value;volP.textContent=v+'%'})();
+  volS.addEventListener('input',()=>{
+    const v=volS.value/100;
+    a.volume=v;
+    volP.textContent=volS.value+'%';
+    localStorage.setItem(VOL_KEY,v);
+  });
+
+  // ── cover via proxy + deezer + itunes fallback ──
+  let artT=null;
+  function fetchCover(artist,title){
+    if(!artist||!title||artist==='—'){setImg('');return;}
+    if(artT)clearTimeout(artT);
+    artT=setTimeout(()=>{
+      const q1=encodeURIComponent(artist+' '+title);
+      const q2=encodeURIComponent(title);
+
+      // try to set cover from any source's response
+      function trySet(d,coverKey,sizeKey){
+        // deezer-style: d.data[0].album.cover_xl
+        if(d.data&&d.data[0]&&d.data[0].album&&d.data[0].album[coverKey]){
+          const u=d.data[0].album[coverKey];
+          setImg(u);msess(curT,curA,u);
+          updHistCover(u);
+          return true;
+        }
+        // itunes-style: d.results[0].artworkUrl100
+        if(d.results&&d.results[0]&&d.results[0][sizeKey]){
+          const u=d.results[0][sizeKey].replace('100x100bb','600x600bb');
+          setImg(u);msess(curT,curA,u);
+          updHistCover(u);
+          return true;
+        }
+        return false;
+      }
+
+      function tryProxy(i,qs){
+        if(i>=qs.length){tryDeezer(0,[q1,q2]);return;}
+        fetch(PROXY+qs[i])
+          .then(r=>r.json())
+          .then(d=>{if(!trySet(d,'cover_xl','artworkUrl100'))tryProxy(i+1,qs);})
+          .catch(()=>tryProxy(i+1,qs));
+      }
+      function tryDeezer(i,qs){
+        if(i>=qs.length){tryItunes(0,[q1,q2]);return;}
+        fetch('https://api.deezer.com/search?q='+qs[i])
+          .then(r=>r.json())
+          .then(d=>{if(!trySet(d,'cover_xl','artworkUrl100'))tryDeezer(i+1,qs);})
+          .catch(()=>tryDeezer(i+1,qs));
+      }
+      function tryItunes(i,qs){
+        if(i>=qs.length)return;
+        fetch('https://itunes.apple.com/search?term='+qs[i]+'&limit=5&entity=song')
+          .then(r=>r.json())
+          .then(d=>{if(!trySet(d,'cover_xl','artworkUrl100'))tryItunes(i+1,qs);})
+          .catch(()=>{});
+      }
+
+      tryProxy(0,[q1,q2]);
+    },150);
+  }
+
+  // ── media session ──
+  function msess(t,a,u){
+    if(!('mediaSession'in navigator))return;
+    const m={};if(t)m.title=t;if(a)m.artist=a;
+    if(u)m.artwork=[{src:u,sizes:'256x256',type:'image/jpeg'},{src:u.replace('cover_xl','cover_big'),sizes:'500x500',type:'image/jpeg'}];
+    try{navigator.mediaSession.metadata=new MediaMetadata(m)}catch(_){}
+  }
+  if('mediaSession'in navigator){
+    navigator.mediaSession.setActionHandler('play',()=>{if(!playing)tg()});
+    navigator.mediaSession.setActionHandler('pause',()=>{if(playing)tg()});
+  }
+
+  // ── new track ──
+  function onTrack(raw){
+    const{a:artist,t:title}=parse(raw);
+    if(title===curT&&artist===curA)return;
+    curT=title;curA=artist;metaOK=1;
+    show(title,artist);fetchCover(artist,title);msess(title,artist,'');
+    addHist(artist,title);
+  }
+
+  // ── zeno ──
+  async function connect(){
+    if(recT){clearTimeout(recT);recT=null;}
+    sseStop=0;sts('a ligar...');
+    while(!sseStop){
+      try{
+        const r=await fetch(META);
+        if(!r.ok)throw Error('HTTP '+r.status);
+        const rd=r.body.getReader(),dc=new TextDecoder();
+        let buf='';sts('conectado');
+        while(!sseStop){
+          const{done,value}=await rd.read();
+          if(done)break;
+          buf+=dc.decode(value,{stream:true});
+          const ps=buf.split('\n\n');buf=ps.pop()||'';
+          for(const e of ps){if(e.trim())parseSSE(e);}
+        }
+        rd.releaseLock();
+      }catch(e){console.warn('⚠️',e.message);sts(e.message,'err');}
+      if(!sseStop)await new Promise(r=>{recT=setTimeout(r,4000)});
+    }
+  }
+  function parseSSE(raw){
+    let t='',d='';
+    for(const l of raw.split('\n')){
+      if(l.startsWith('event:'))t=l.slice(6).trim();
+      else if(l.startsWith('data:'))d=l.slice(5).trim();
+    }
+    if(t==='message'&&d){
+      try{
+        const p=JSON.parse(d);
+        if(p.streamTitle){onTrack(p.streamTitle);if(playing)sts('a tocar','ok');else sts('em pausa');}
+      }catch(_){}
+    }
+  }
+
+  // ── audio ──
+  a.src=STREAM;
+  a.addEventListener('canplay',()=>{
+    a.play().then(()=>{a.muted=0;btn(1);sts('a tocar','ok')}).catch(e=>{
+      setTimeout(()=>{a.play().then(()=>{a.muted=0;btn(1);sts('a tocar','ok')}).catch(()=>{})},500);
+    });
+  });
+  a.addEventListener('play',()=>{a.muted=0;btn(1);sts(metaOK?'a tocar':'a tocar...','ok')});
+  a.addEventListener('pause',()=>{btn(0);sts('em pausa')});
+  a.addEventListener('waiting',()=>sts('a bufferizar...','buf'));
+  a.addEventListener('error',()=>{sts('erro no stream','err');btn(0)});
+
+  function tg(){if(playing){a.pause()}else{a.play().then(()=>sts('a tocar','ok')).catch(()=>{})}}
+  playBtn.addEventListener('click',tg);
+  document.addEventListener('keydown',e=>{if(e.code==='Space'&&e.target===document.body){e.preventDefault();tg()}});
+
+  connect();
+  setInterval(()=>{if(curT&&curT!=='A carregar...'&&playing)fetchCover(curA,curT)},120000);
+})();
+</script>
+</body>
+</html>
