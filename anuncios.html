@@ -20,17 +20,15 @@
   --container: 1280px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden}
 body{
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   background: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
-  overflow-x: hidden;
 }
 .wrap{max-width: var(--container); margin: auto; padding: 0 24px}
 
-/* ===== HEADER ===== */
 .header{
   position: fixed;
   width: 100%;
@@ -59,7 +57,6 @@ body{
 }
 .nav a:hover,.nav a.active{color: var(--text-primary); background: rgba(255,255,255,0.08)}
 
-/* Mobile Menu */
 .menu-toggle{
   display: none;
   flex-direction: column;
@@ -128,8 +125,13 @@ body{
   opacity: 0;
   transition: opacity 0.3s var(--ease-smooth);
   z-index: 998;
+  pointer-events: none;
 }
-.mobile-overlay.active{opacity: 1}
+.mobile-overlay.active{
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+}
 
 /* ===== PAGE HEADER ===== */
 .page-header{
@@ -182,7 +184,6 @@ body{
 }
 .ad-section a.test-link:hover{transform: translateY(-2px)}
 
-/* ===== FOOTER ===== */
 .footer{
   background: var(--bg-secondary);
   border-top: 1px solid var(--border-subtle);
@@ -217,7 +218,6 @@ body{
   opacity: 0.85;
 }
 
-/* ===== ANIMATIONS ===== */
 .fade-in{
   opacity: 0;
   transform: translateY(20px);
@@ -236,11 +236,10 @@ body{
   transition: width 0.1s linear;
 }
 
-/* ===== RESPONSIVE ===== */
 @media(max-width: 768px){
   .menu-toggle{display: flex}
   .mobile-nav{display: block}
-  .mobile-overlay{display: block}
+  .mobile-overlay.active{display: block}
   .nav{display: none}
   .page-header{padding-top: 100px; padding-bottom: 40px}
   .ad-section{padding: 60px 24px}
@@ -273,6 +272,7 @@ body{
 <script>(function(s){s.dataset.zone='11035385',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 
 <script src="https://kikalabs-server.nexuspt.eu/js/site-nxweb/fh.js"></script>
+
 <script>
 const fadeElements = document.querySelectorAll('.fade-in');
 const fadeObserver = new IntersectionObserver((entries) => {
