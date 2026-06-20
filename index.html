@@ -16,7 +16,6 @@
 
   <meta name="robots" content="index, follow" />
 
-<!-- Canonical -->
 <link rel="canonical" href="https://nexuspt.eu/" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -35,14 +34,13 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden}
 
 body{
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   background: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
-  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar{width: 8px}
@@ -56,7 +54,6 @@ body{
 
 .wrap{max-width: var(--container); margin: auto; padding: 0 24px}
 
-/* ===== HEADER ===== */
 .header{
   position: fixed;
   width: 100%;
@@ -94,7 +91,6 @@ body{
   background: rgba(255,255,255,0.08);
 }
 
-/* Mobile Menu */
 .menu-toggle{
   display: none;
   flex-direction: column;
@@ -163,10 +159,15 @@ body{
   opacity: 0;
   transition: opacity 0.3s var(--ease-smooth);
   z-index: 998;
+  pointer-events: none;
 }
-.mobile-overlay.active{opacity: 1}
+.mobile-overlay.active{
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+}
 
-/* ===== HERO SLIDER ===== */
+
 .hero-slider{
   position: relative;
   height: 100vh;
@@ -175,9 +176,8 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: grab;
+  cursor: default;
 }
-.hero-slider:active{cursor: grabbing}
 .slide{
   position: absolute;
   inset: 0;
@@ -282,6 +282,7 @@ body{
   border: none;
   cursor: pointer;
   transition: transform 0.3s var(--ease-smooth);
+  pointer-events: auto;
 }
 .btn-sm{
   display: inline-flex;
@@ -298,10 +299,10 @@ body{
   cursor: pointer;
   transition: transform 0.3s var(--ease-smooth);
   margin-top: auto;
+  pointer-events: auto;
 }
 .btn-sm:hover{transform: translateY(-2px)}
 
-/* ===== SECTIONS ===== */
 .section{padding: 120px 0}
 .section-title{
   text-align: center;
@@ -319,7 +320,6 @@ body{
   margin: 0 auto;
 }
 
-/* ===== SERVICES GRID ===== */
 .services-grid{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -383,7 +383,6 @@ body{
   font-weight: bold;
 }
 
-/* ===== PRODUCTS GRID ===== */
 .products-section{
   background: var(--bg-secondary);
 }
@@ -454,7 +453,6 @@ body{
   cursor: not-allowed;
 }
 
-/* ===== CLIENTS GRID ===== */
 .clients-grid{
   display: flex;
   justify-content: center;
@@ -486,7 +484,6 @@ body{
   cursor: pointer;
 }
 
-/* ===== MODAL ===== */
 .modal{
   display: none;
   position: fixed;
@@ -552,7 +549,6 @@ body{
   font-size: 16px;
 }
 
-/* ===== CTA ===== */
 .cta{
   position: relative;
   padding: 140px 0;
@@ -598,7 +594,6 @@ body{
   margin-bottom: 32px;
 }
 
-/* ===== FOOTER ===== */
 .footer{
   background: var(--bg-secondary);
   border-top: 1px solid var(--border-subtle);
@@ -620,7 +615,6 @@ body{
 .footer-links a:hover{color: var(--text-primary)}
 .footer p{color: var(--text-secondary); font-size: 14px}
 
-/* ===== ANIMATIONS ===== */
 .fade-in{
   opacity: 0;
   transform: translateY(20px);
@@ -631,7 +625,6 @@ body{
   transform: translateY(0);
 }
 
-/* ===== CLIENT AREA ICON ===== */
 .client-area {
   display: flex;
   align-items: center;
@@ -653,7 +646,6 @@ body{
   .client-area { display: none; }
 }
 
-/* ===== SCROLL PROGRESS ===== */
 .scroll-progress{
   position: fixed;
   top: 0;
@@ -664,11 +656,10 @@ body{
   transition: width 0.1s linear;
 }
 
-/* ===== RESPONSIVE ===== */
 @media(max-width: 768px){
   .menu-toggle{display: flex}
   .mobile-nav{display: block}
-  .mobile-overlay{display: block}
+  .mobile-overlay.active{display: block}
   .nav{display: none}
   .slider-controls{bottom: 24px; right: 24px}
   .slider-arrow{width: 38px; height: 38px; font-size: 16px}
@@ -687,7 +678,6 @@ body{
 
 <body>
 
-<!-- ===== HERO SLIDER ===== -->
 <section class="hero-slider" id="heroSlider">
   <div class="slide active">
     <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80" alt="Tecnologia">
@@ -711,7 +701,6 @@ body{
   </div>
 </section>
 
-<!-- ===== SERVICES ===== -->
 <section class="section" id="servicos">
   <div class="wrap">
     <div class="section-title fade-in">
@@ -774,7 +763,6 @@ body{
   </div>
 </section>
 
-<!-- ===== PRODUCTS ===== -->
 <section class="section products-section" id="produtos">
   <div class="wrap">
     <div class="section-title fade-in">
@@ -819,7 +807,6 @@ body{
   </div>
 </section>
 
-<!-- ===== CLIENTS ===== -->
 <section class="section" id="clientes" style="background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
   <div class="wrap">
     <div class="section-title fade-in">
@@ -837,34 +824,32 @@ body{
   </div>
 </section>
 
-<!-- ===== MODAL VILA JAPONESA ===== -->
 <div class="modal" id="vjModal" onclick="closeModal(event, 'vjModal')">
   <div class="modal-content" onclick="event.stopPropagation()">
     <button class="modal-close" onclick="closeModal(null, 'vjModal')">&times;</button>
-    <div style="text-align: center; margin-bottom: 20px;">
-      <img src="https://kikalabs-server.nexuspt.eu/images/site-vilajaponesa/vilajaponesalogo.png" alt="Vila Japonesa" style="max-height: 60px; max-width: 200px; opacity: 0.9;">
+    <div>
+      <img src="https://kikalabs-server.nexuspt.eu/images/site-vilajaponesa/vilajaponesalogo.png" alt="Vila Japonesa">
     </div>
-    <h3 style="text-align: center;">Vila Japonesa</h3>
+    <h3>Vila Japonesa</h3>
     <p>A Vila Japonesa é um servidor dedicado ao entretenimento de videojogos (Minecraft). Desenvolvemos um site para os jogadores, e um painel para a gestão do mesmo.</p>
   </div>
 </div>
 
-<!-- ===== MODAL AEHS ===== -->
 <div class="modal" id="aehsModal" onclick="closeModal(event, 'aehsModal')">
   <div class="modal-content" onclick="event.stopPropagation()">
     <button class="modal-close" onclick="closeModal(null, 'aehsModal')">&times;</button>
-    <div style="text-align: center; margin-bottom: 20px;">
-      <img src="https://i.ibb.co/d0p2G68n/image.png" alt="AEHS" style="max-height: 60px; max-width: 200px; opacity: 0.9;">
+    <div>
+      <img src="https://i.ibb.co/d0p2G68n/image.png" alt="AEHS" >
     </div>
-    <h3 style="text-align: center;">AEHS</h3>
+    <h3>AEHS</h3>
     <p>A AEHS é um agrupamento de escolas públicas. Desenvolvemos o <strong>CMSTIS</strong> (Custom Made School Technological Inventory System) — uma plataforma completa para registo e gestão eficiente de todos os equipamentos tecnológicos das escolas.</p>
   </div>
 </div>
 
-<!-- ===== FOOTER ===== -->
 <script src="https://kikalabs-server.nexuspt.eu/js/site-nxweb/fh.js"></script>
+
 <script>
-/* ===== HERO SLIDER ===== */
+
 class Slider {
   constructor(el, prev, next) {
     this.el = el;
@@ -873,9 +858,25 @@ class Slider {
     this.auto = setInterval(() => this.go(1), 6000);
     prev.onclick = () => this.go(-1);
     next.onclick = () => this.go(1);
-    el.addEventListener('mousedown', e => this.dragStart(e));
-    window.addEventListener('mousemove', e => this.dragMove(e));
-    window.addEventListener('mouseup', () => this.dragEnd());
+    this.initTouch();
+  }
+  initTouch() {
+    var self = this;
+    var startX = 0, moved = false;
+    self.el.addEventListener('touchstart', function(e) {
+      startX = e.touches[0].clientX;
+      moved = false;
+    }, {passive: true});
+    self.el.addEventListener('touchmove', function(e) {
+      if(!startX) return;
+      if(Math.abs(e.touches[0].clientX - startX) > 15) moved = true;
+    }, {passive: true});
+    self.el.addEventListener('touchend', function(e) {
+      if(!moved) { startX = 0; return; }
+      var diff = e.changedTouches[0].clientX - startX;
+      if(Math.abs(diff) > 80) self.go(diff > 0 ? -1 : 1);
+      startX = 0; moved = false;
+    }, {passive: true});
   }
   go(dir) {
     this.slides[this.idx].classList.remove('active');
@@ -884,19 +885,9 @@ class Slider {
     clearInterval(this.auto);
     this.auto = setInterval(() => this.go(1), 6000);
   }
-  dragStart(e) { if(e.target.closest('a')) return; this.sx = e.clientX; this.el.style.cursor = 'grabbing'; }
-  dragMove(e) { if(!this.sx) return; const d = e.clientX - this.sx; if(Math.abs(d) > 10) this.dragged = true; }
-  dragEnd() {
-    if(this.dragged) {
-      const diff = event.clientX - this.sx;
-      if(Math.abs(diff) > 80) this.go(diff > 0 ? -1 : 1);
-    }
-    this.sx = null; this.dragged = false; this.el.style.cursor = 'grab';
-  }
 }
 new Slider(document.getElementById('heroSlider'), document.getElementById('prevSlide'), document.getElementById('nextSlide'));
 
-/* ===== MODAL FUNCTIONS ===== */
 function openModal(modalId){
   document.getElementById(modalId).classList.add('active');
   document.body.style.overflow = 'hidden';
@@ -916,7 +907,13 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// Override footer links
+// Forcar geracao de eventos click em mobile
+document.addEventListener('click', function(e) {
+  var link = e.target.closest('a');
+  if(link && link.href && !link.target) {
+    return;
+  }
+}, true);
 (function() {
   const footerLinks = document.querySelectorAll('.footer-links a');
   if (footerLinks.length >= 4) {
