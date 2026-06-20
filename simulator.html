@@ -23,19 +23,17 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden}
 
 body{
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   background: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
-  overflow-x: hidden;
 }
 
 .wrap{max-width: var(--container); margin: auto; padding: 0 24px}
 
-/* ===== HEADER ===== */
 .header{
   position: fixed;
   width: 100%;
@@ -73,7 +71,6 @@ body{
   background: rgba(255,255,255,0.08);
 }
 
-/* Mobile Menu Toggle */
 .menu-toggle{
   display: none;
   flex-direction: column;
@@ -124,7 +121,6 @@ body{
   top: 0;
 }
 
-/* Mobile Navigation */
 .mobile-nav{
   display: none;
   position: fixed;
@@ -166,12 +162,14 @@ body{
   opacity: 0;
   transition: opacity 0.3s var(--ease-smooth);
   z-index: 998;
+  pointer-events: none;
 }
 .mobile-overlay.active{
+  display: block;
   opacity: 1;
+  pointer-events: auto;
 }
 
-/* ===== SIMULATOR SECTION ===== */
 .simulator-section{
   padding: 180px 0 120px 0;
 }
@@ -299,7 +297,6 @@ body{
   background: rgba(255,255,255,0.08);
 }
 
-/* ===== FOOTER ===== */
 .footer{
   background: var(--bg-secondary);
   border-top: 1px solid var(--border-subtle);
@@ -322,7 +319,6 @@ body{
 .footer-links a:hover{color: var(--text-primary)}
 .footer p{color: var(--text-secondary); font-size: 14px}
 
-/* ===== SCROLL PROGRESS ===== */
 .scroll-progress{
   position: fixed;
   top: 0;
@@ -333,7 +329,6 @@ body{
   transition: width 0.1s linear;
 }
 
-/* ===== RESPONSIVE ===== */
 @media(max-width: 768px){
   .menu-toggle{
     display: flex;
@@ -469,6 +464,7 @@ body{
 </section>
 
 <script src="https://kikalabs-server.nexuspt.eu/js/site-nxweb/fh.js"></script>
+
 <script>
 /* ===== PRICE CALCULATOR ===== */
 let pricingData = null;
