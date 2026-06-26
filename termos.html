@@ -5,281 +5,84 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Termos e Condições | NexusPT</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --bg-primary: #0a0a0a;
-  --bg-secondary: #141414;
-  --bg-tertiary: #1a1a1a;
-  --text-primary: #ffffff;
-  --text-secondary: #b0b0b0;
-  --accent-gradient: linear-gradient(135deg, #00f43c 0%, #00c9ff 100%);
-  --border-subtle: rgba(255,255,255,0.08);
-  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-  --container: 1280px;
+  --bg: #000000; --bg-secondary: #0a0a0a; --bg-tertiary: #111111;
+  --text: #f5f5f7; --text-secondary: #86868b; --text-tertiary: #6e6e73;
+  --accent: #00f43c; --accent-gradient: linear-gradient(135deg, #00f43c, #00c9ff);
+  --border: rgba(255,255,255,0.08);
+  --nav-blur: blur(60px) saturate(180%); --nav-bg: rgba(0,0,0,0.8);
+  --ease: cubic-bezier(0.42, 0, 0.58, 1); --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --container: 1200px; --radius: 16px; --radius-lg: 24px;
 }
-
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;overflow-x:hidden}
+html{scroll-behavior:smooth;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+::selection{background:rgba(0,244,60,0.3)}
+.wrap{max-width:var(--container);margin:0 auto;padding:0 28px}
 
-body{
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  line-height: 1.6;
-}
+.header{position:fixed;width:100%;top:0;z-index:1000;padding:0;height:52px;display:flex;align-items:center;transition:background .4s var(--ease),backdrop-filter .4s var(--ease),border-color .4s var(--ease);background:transparent;border-bottom:1px solid transparent}
+.header.scrolled{background:var(--nav-bg);backdrop-filter:var(--nav-blur);-webkit-backdrop-filter:var(--nav-blur);border-bottom-color:var(--border)}
+.header .wrap{display:flex;justify-content:space-between;align-items:center;width:100%}
+.logo{display:flex;align-items:center;text-decoration:none;color:var(--text);font-weight:600;font-size:18px;letter-spacing:-.02em}
+.logo img{height:26px;display:block}
+.nav{display:flex;align-items:center;gap:2px}
+.nav a{color:var(--text-secondary);text-decoration:none;font-weight:400;font-size:13px;padding:6px 14px;border-radius:6px;transition:color .3s var(--ease),background .3s var(--ease);letter-spacing:.01em}
+.nav a:hover{color:var(--text);background:rgba(255,255,255,0.06)}
+.nav a.active{color:var(--text)}
+.menu-toggle{display:none;flex-direction:column;justify-content:center;align-items:center;width:36px;height:36px;background:transparent;border:none;cursor:pointer;padding:0}
+.menu-toggle span,.menu-toggle span::before,.menu-toggle span::after{display:block;width:18px;height:1.5px;background:var(--text);border-radius:1px;position:relative;transition:all .3s var(--ease)}
+.menu-toggle span::before{content:'';position:absolute;left:0;top:-5px}
+.menu-toggle span::after{content:'';position:absolute;left:0;top:5px}
+.menu-toggle.active span{background:transparent}
+.menu-toggle.active span::before{transform:rotate(45deg);top:0}
+.menu-toggle.active span::after{transform:rotate(-45deg);top:0}
+.mobile-nav{display:none;position:fixed;top:52px;right:-100%;width:100%;max-width:360px;height:calc(100vh - 52px);background:rgba(0,0,0,0.97);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);padding:32px 28px;transition:right .5s var(--ease-out);z-index:999;border-left:1px solid var(--border)}
+.mobile-nav.active{right:0}
+.mobile-nav a{display:block;color:var(--text-secondary);text-decoration:none;font-weight:400;font-size:17px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.04);transition:color .3s var(--ease)}
+.mobile-nav a:hover,.mobile-nav a.active{color:var(--text)}
+.mobile-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);opacity:0;transition:opacity .4s var(--ease);z-index:998;pointer-events:none}
+.mobile-overlay.active{display:block;opacity:1;pointer-events:auto}
+.client-area{display:flex;align-items:center;justify-content:center;margin-left:12px;opacity:.6;transition:opacity .3s var(--ease)}
+.client-area:hover{opacity:1}
+.client-area img{width:20px;height:20px;display:block}
+@media(max-width:768px){.client-area{display:none}}
+.scroll-progress{position:fixed;top:0;left:0;height:1px;background:var(--accent-gradient);z-index:1001;transition:width .1s linear}
 
-.wrap{max-width: var(--container); margin: auto; padding: 0 24px}
+.page-header{padding-top:120px;padding-bottom:80px;text-align:center}
+.page-header h1{font-size:clamp(32px,4vw,56px);font-weight:600;letter-spacing:-.03em;margin-bottom:12px}
+.page-header p{color:var(--text-secondary);font-size:18px;max-width:600px;margin:0 auto}
 
-.header{
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 1000;
-  padding: 20px 0;
-  transition: all 0.4s var(--ease-smooth);
-}
-.header.scrolled{
-  padding: 12px 0;
-  background: rgba(10,10,10,0.95);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border-subtle);
-}
-.header .wrap{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.logo img{height: 42px}
+.content-section{padding:0 0 100px 0;max-width:900px;margin:0 auto}
+.content-section h2{font-size:clamp(22px,3vw,32px);font-weight:600;letter-spacing:-.02em;margin:48px 0 20px;color:var(--text)}
+.content-section h2:first-child{margin-top:0}
+.content-section h3{font-size:17px;font-weight:600;margin-top:28px;margin-bottom:10px;color:var(--text)}
+.content-section h4{font-size:15px;font-weight:600;margin-top:24px;margin-bottom:8px;color:var(--text)}
+.content-section p{color:var(--text-secondary);font-size:15px;line-height:1.8;margin-bottom:12px}
+.content-section ul{margin:8px 0 16px 20px;color:var(--text-secondary);font-size:15px;line-height:1.8}
+.content-section ul li{margin-bottom:6px}
+.content-section strong{color:var(--text)}
+.content-section a{color:var(--accent);text-decoration:underline}
 
-.nav{display: flex; gap: 8px}
-.nav a{
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 14px;
-  padding: 10px 16px;
-  border-radius: 8px;
-  transition: all 0.3s var(--ease-smooth);
-}
-.nav a:hover,
-.nav a.active{
-  color: var(--text-primary);
-  background: rgba(255,255,255,0.08);
-}
+.footer{background:var(--bg-secondary);border-top:1px solid var(--border);padding:48px 0 24px;text-align:center}
+.footer-links{display:flex;justify-content:center;gap:28px;margin-bottom:28px;flex-wrap:wrap}
+.footer-links a{color:var(--text-secondary);text-decoration:none;font-size:12px;transition:color .3s var(--ease);letter-spacing:.02em}
+.footer-links a:hover{color:var(--text)}
+.footer p{color:var(--text-tertiary);font-size:12px}
 
-.menu-toggle{
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 44px;
-  height: 44px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid var(--border-subtle);
-  border-radius: 8px;
-  cursor: pointer;
-}
-.menu-toggle span{
-  display: block;
-  width: 20px;
-  height: 2px;
-  background: var(--text-primary);
-  position: relative;
-}
-.menu-toggle span::before,
-.menu-toggle span::after{
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 2px;
-  background: var(--text-primary);
-  left: 0;
-}
-.menu-toggle span::before{top: -6px}
-.menu-toggle span::after{top: 6px}
-.menu-toggle.active span{background: transparent}
-.menu-toggle.active span::before{transform: rotate(45deg); top: 0}
-.menu-toggle.active span::after{transform: rotate(-45deg); top: 0}
-
-.mobile-nav{
-  display: none;
-  position: fixed;
-  top: 0;
-  right: -100%;
-  width: 80%;
-  max-width: 320px;
-  height: 100vh;
-  background: var(--bg-secondary);
-  padding: 100px 32px 32px;
-  transition: right 0.4s var(--ease-smooth);
-  z-index: 999;
-  border-left: 1px solid var(--border-subtle);
-}
-.mobile-nav.active{right: 0}
-.mobile-nav a{
-  display: block;
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 18px;
-  padding: 16px 0;
-  border-bottom: 1px solid var(--border-subtle);
-}
-.mobile-nav a.active{color: var(--text-primary)}
-.mobile-overlay{
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(4px);
-  opacity: 0;
-  transition: opacity 0.3s var(--ease-smooth);
-  z-index: 998;
-  pointer-events: none;
-}
-.mobile-overlay.active{
-  display: block;
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.page-header{
-  padding-top: 140px;
-  padding-bottom: 60px;
-  text-align: center;
-  background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-  border-bottom: 1px solid var(--border-subtle);
-}
-.page-header h1{
-  font-size: clamp(28px, 4vw, 48px);
-  font-weight: 600;
-  margin-bottom: 12px;
-  letter-spacing: -0.02em;
-}
-.page-header p{
-  color: var(--text-secondary);
-  font-size: 18px;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-/* ===== TERMS SECTION ===== */
-.terms-section{padding: 80px 0; max-width: 900px; margin: 0 auto}
-.terms-section h2{
-  font-size: clamp(22px, 3vw, 32px);
-  font-weight: 600;
-  margin-bottom: 24px;
-  color: var(--text-primary);
-}
-.terms-section h3{
-  font-size: 18px;
-  font-weight: 600;
-  margin-top: 32px;
-  margin-bottom: 12px;
-  color: var(--text-primary);
-}
-.terms-section p{
-  color: var(--text-secondary);
-  font-size: 15px;
-  line-height: 1.8;
-  margin-bottom: 12px;
-}
-.terms-section ul{
-  margin: 8px 0 16px 20px;
-  color: var(--text-secondary);
-  font-size: 15px;
-  line-height: 1.8;
-}
-.terms-section ul li{
-  margin-bottom: 6px;
-}
-.terms-section strong{
-  color: var(--text-primary);
-}
-.terms-section h4{
-  font-size: 16px;
-  font-weight: 600;
-  margin-top: 24px;
-  margin-bottom: 8px;
-  color: var(--text-primary);
-}
-
-.footer{
-  background: var(--bg-secondary);
-  border-top: 1px solid var(--border-subtle);
-  padding: 60px 0 30px;
-  text-align: center;
-}
-.footer-links{
-  display: flex;
-  justify-content: center;
-  gap: 32px;
-  margin-bottom: 30px;
-  flex-wrap: wrap;
-}
-.footer-links a{
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-size: 14px;
-}
-.footer-links a:hover{color: var(--text-primary)}
-.footer p{color: var(--text-secondary); font-size: 14px}
-
-/* ===== CLIENT AREA ICON ===== */
-.client-area {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 1rem;
-  text-decoration: none;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-.client-area img {
-  width: 32px;
-  height: 32px;
-  display: block;
-}
-.client-area:hover {
-  transform: scale(1.1);
-  opacity: 0.85;
-}
-
-.fade-in{
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.5s var(--ease-smooth);
-}
-.fade-in.show{
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ===== SCROLL PROGRESS ===== */
-.scroll-progress{
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 2px;
-  background: var(--accent-gradient);
-  z-index: 1001;
-  transition: width 0.1s linear;
-}
-
-@media(max-width: 768px){
-  .menu-toggle{display: flex}
-  .mobile-nav{display: block}
-  .mobile-overlay.active{display: block}
-  .nav{display: none}
-  .page-header{padding-top: 100px; padding-bottom: 40px}
-  .terms-section{padding: 60px 24px}
-  .client-area { display: none; }
+@media(max-width:768px){
+  .menu-toggle{display:flex}.mobile-nav{display:block}.mobile-overlay.active{display:block}.nav{display:none}
+  .page-header{padding-top:90px;padding-bottom:60px}
+  .content-section{padding:0 24px 80px}
+  .footer{padding:36px 0 20px}.footer-links{gap:20px}
 }
 </style>
 </head>
-
 <body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
 
 <section class="page-header">
   <div class="wrap">
@@ -288,12 +91,12 @@ body{
   </div>
 </section>
 
-<section class="terms-section">
+<section class="content-section">
   <div class="wrap">
     <h2>1. Introdução</h2>
     <p>Bem-vindo aos websites e serviços da Nexus Solutions (referida como "Nexus", "NexusPT", "NexusWeb", "nós" ou "nosso"). Ao aceder ou utilizar os nossos websites, aplicações, ou qualquer outro serviço oferecido (coletivamente referidos como "Serviços"), você concorda com estes Termos e Condições.</p>
     <p>Por favor, leia atentamente este documento. Ao utilizar os nossos Serviços, você aceita e concorda em vincular-se a estes termos. Se não concordar com alguma parte destes termos, pedimos que não utilize os nossos Serviços.</p>
-    <p>Estes Termos e Condições devem ser lidos em conjunto com a nossa <a href="privacidade.html" style="color: #00f43c; text-decoration: underline;">Política de Privacidade</a> e <a href="privacidade.html#cookies" style="color: #00f43c; text-decoration: underline;">Política de Cookies</a>.</p>
+    <p>Estes Termos e Condições devem ser lidos em conjunto com a nossa <a href="privacidade.html">Política de Privacidade</a> e <a href="cookies.html">Política de Cookies</a>.</p>
 
     <h2>2. Definições</h2>
     <p>Nestes Termos e Condições, salvo se o contexto exigir de outra forma:</p>
@@ -331,12 +134,10 @@ body{
       <li>Não recolher ou armazenar informações pessoais de outros utilizadores sem autorização;</li>
       <li>Não transmitir qualquer vírus, malware ou outros códigos maliciosos.</li>
     </ul>
-    <p><strong>Importante:</strong> Ao submeter conteúdo nos nossos Serviços, o Utilizador continua a manter seus direitos de propriedade intelectual, mas concede-nos uma licença para usar, modificar, exibir e distribuir esse conteúdo para fins de fornecimento e promoção dos Serviços.</p>
 
     <h2>5. Conteúdo e Propriedade Intelectual</h2>
-
     <h3>5.1. Conteúdo do Utilizador</h3>
-    <p>O Utilizador é o único responsável por qualquer conteúdo que crie, transmita, armazene ou compartilhe ao utilizar os nossos Serviços. Ao submeter conteúdo, o Utilizador garante que tem todos os direitos necessários para o fazer e que esse conteúdo não viola direitos de terceiros.</p>
+    <p>O Utilizador é o único responsável por qualquer conteúdo que crie, transmita, armazene ou compartilhe ao utilizar os nossos Serviços.</p>
 
     <h3>5.2. Conteúdo Proibido</h3>
     <p>É expressamente proibido submeter conteúdo que:</p>
@@ -350,53 +151,30 @@ body{
     </ul>
 
     <h3>5.3. Propriedade Intelectual da Nexus</h3>
-    <p>O Utilizador reconhece que todos os direitos de propriedade intelectual relativos aos Serviços, incluindo mas não limitado a direitos autorais, marcas comerciais, segredos comerciais e patentes, são de propriedade da Nexus ou dos seus licenciantes. Nenhuma disposição destes Termos e Condições transfere qualquer direito de propriedade intelectual para o Utilizador.</p>
+    <p>O Utilizador reconhece que todos os direitos de propriedade intelectual relativos aos Serviços, incluindo mas não limitado a direitos autorais, marcas comerciais, segredos comerciais e patentes, são de propriedade da Nexus ou dos seus licenciantes.</p>
 
     <h2>6. Serviços Premium e Pagamentos</h2>
-    <p>Alguns dos nossos Serviços podem requerer pagamento ("Serviços Premium"). Ao adquirir Serviços Premium, o Utilizador concorda com as seguintes condições:</p>
+    <p>Alguns dos nossos Serviços podem requerer pagamento ("Serviços Premium"). Ao adquirir Serviços Premium, o Utilizador concorda com as condições descritas na plataforma.</p>
 
     <h3>6.1. Preços e Pagamentos</h3>
-    <p>Todos os preços são apresentados em Euros (€) e incluem IVA à taxa legal em vigor. Os pagamentos podem ser efetuados através dos métodos disponibilizados na plataforma. Reservamo-nos o direito de alterar os preços dos Serviços Premium a qualquer momento, com notificação prévia.</p>
+    <p>Todos os preços são apresentados em Euros (€) e incluem IVA à taxa legal em vigor. Os pagamentos podem ser efetuados através dos métodos disponibilizados na plataforma.</p>
 
     <h3>6.2. Subscrições e Renovações Automáticas</h3>
-    <p>Se o Utilizador optar por uma subscrição, esta será renovada automaticamente no final do período de subscrição, a menos que o Utilizador cancele a renovação automática antes da data de renovação. O Utilizador pode cancelar a renovação automática a qualquer momento através das configurações da sua conta.</p>
+    <p>Se o Utilizador optar por uma subscrição, esta será renovada automaticamente no final do período de subscrição, a menos que o Utilizador cancele a renovação automática antes da data de renovação.</p>
 
     <h3>6.3. Política de Reembolso</h3>
     <p>Os reembolsos são processados de acordo com a legislação portuguesa aplicável. Para Serviços Premium digitais, o Utilizador pode solicitar um reembolso no prazo de 14 dias após a compra, desde que não tenha utilizado significativamente o serviço.</p>
 
     <h2>7. Limitação de Responsabilidade</h2>
-    <p>Na máxima extensão permitida por lei:</p>
-    <ul>
-      <li>Os nossos Serviços são fornecidos "tal como estão" e "conforme disponíveis", sem garantias de qualquer tipo, expressas ou implícitas;</li>
-      <li>Não garantimos que os Serviços serão ininterruptos, oportunos, seguros ou livres de erros;</li>
-      <li>Não seremos responsáveis por quaisquer danos diretos, indiretos, incidentais, especiais, consequenciais ou exemplares resultantes da utilização ou impossibilidade de utilização dos Serviços;</li>
-      <li>A nossa responsabilidade total perante o Utilizador por todas as reclamações relacionadas com os Serviços não excederá o valor pago pelo Utilizador pelos Serviços Premium nos 12 meses anteriores à reclamação.</li>
-    </ul>
+    <p>Na máxima extensão permitida por lei, os nossos Serviços são fornecidos "tal como estão" e "conforme disponíveis", sem garantias de qualquer tipo, expressas ou implícitas.</p>
 
-    <h2>8. Indemnização</h2>
-    <p>O Utilizador concorda em indemnizar, defender e isentar a Nexus, os seus diretores, funcionários, agentes e parceiros de quaisquer reclamações, responsabilidades, custos e despesas (incluindo honorários advocatícios razoáveis) resultantes de:</p>
-    <ul>
-      <li>Violação destes Termos e Condições;</li>
-      <li>Conteúdo submetido pelo Utilizador;</li>
-      <li>Atividade do Utilizador nos Serviços;</li>
-      <li>Violação de direitos de terceiros pelo Utilizador.</li>
-    </ul>
-
-    <h2>9. Legislação Aplicável e Resolução de Litígios</h2>
+    <h2>8. Legislação Aplicável</h2>
     <p>Estes Termos e Condições são regidos e interpretados de acordo com as leis de Portugal. Qualquer litígio decorrente ou relacionado com estes Termos e Condições será submetido à jurisdição exclusiva dos tribunais de Portugal.</p>
-    <p>Antes de recorrer aos tribunais, encorajamos o Utilizador a contactar-nos diretamente para tentarmos resolver amigavelmente qualquer problema.</p>
 
-    <h2>10. Alterações aos Termos e Condições</h2>
-    <p>Reservamo-nos o direito de modificar estes Termos e Condições a qualquer momento. As alterações entrarão em vigor imediatamente após a publicação dos Termos e Condições atualizados no nosso website. O uso continuado dos nossos Serviços após tais alterações constitui a aceitação dos novos Termos e Condições.</p>
-    <p>Tentaremos notificar os Utilizadores sobre alterações significativas através de e-mail ou notificações nos nossos Serviços. No entanto, é responsabilidade do Utilizador rever periodicamente estes Termos e Condições.</p>
+    <h2>9. Alterações aos Termos</h2>
+    <p>Reservamo-nos o direito de modificar estes Termos e Condições a qualquer momento. As alterações entrarão em vigor imediatamente após a publicação dos Termos atualizados no nosso website.</p>
 
-    <h2>11. Disposições Gerais</h2>
-    <p><strong>Divisibilidade:</strong> Se qualquer disposição destes Termos e Condições for considerada inválida ou inexequível, as restantes disposições permanecerão em pleno vigor e efeito.</p>
-    <p><strong>Renúncia:</strong> A nossa falha em fazer cumprir qualquer direito ou disposição destes Termos e Condições não será considerada uma renúncia a esse direito ou disposição.</p>
-    <p><strong>Cessão:</strong> O Utilizador não pode ceder ou transferir estes Termos e Condições sem o nosso consentimento prévio por escrito.</p>
-    <p><strong>Acordo Integral:</strong> Estes Termos e Condições, juntamente com a Política de Privacidade e a Política de Cookies, constituem o acordo integral entre o Utilizador e a Nexus relativamente aos Serviços.</p>
-
-    <h2>12. Contacto</h2>
+    <h2>10. Contacto</h2>
     <p>Se tiver alguma questão sobre estes Termos e Condições, por favor contacte-nos:</p>
     <ul>
       <li><strong>Email:</strong> geral@nexuspt.eu</li>
@@ -408,26 +186,14 @@ body{
 <script src="https://kikalabs-server.nexuspt.eu/js/site-nxweb/fh.js"></script>
 
 <script>
-const fadeElements = document.querySelectorAll('.fade-in');
-const fadeObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('show');
-      fadeObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1 });
-fadeElements.forEach(el => fadeObserver.observe(el));
-
-// Override footer links
+const progressBar = document.getElementById('scrollProgress');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  progressBar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100 + '%';
+});
 (function() {
-  const footerLinks = document.querySelectorAll('.footer-links a');
-  if (footerLinks.length >= 4) {
-    footerLinks[0].href = 'privacidade.html';
-    footerLinks[1].href = 'termos.html';
-    footerLinks[2].href = 'privacidade.html';
-    footerLinks[3].href = '#';
-  }
+  const links = document.querySelectorAll('.footer-links a');
+  if(links.length >= 4) { links[0].href = 'privacidade.html'; links[1].href = 'termos.html'; links[2].href = 'privacidade.html'; links[3].href = '#'; }
 })();
 </script>
 

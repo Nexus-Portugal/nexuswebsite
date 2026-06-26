@@ -5,340 +5,179 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>História | NexusPT</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --bg-primary: #0a0a0a;
-  --bg-secondary: #141414;
-  --bg-tertiary: #1a1a1a;
-  --text-primary: #ffffff;
-  --text-secondary: #b0b0b0;
-  --accent-gradient: linear-gradient(135deg, #00f43c 0%, #00c9ff 100%);
-  --border-subtle: rgba(255,255,255,0.08);
-  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-  --container: 1280px;
+  --bg: #000000;
+  --bg-secondary: #0a0a0a;
+  --bg-tertiary: #111111;
+  --text: #f5f5f7;
+  --text-secondary: #86868b;
+  --text-tertiary: #6e6e73;
+  --accent: #00f43c;
+  --accent-gradient: linear-gradient(135deg, #00f43c, #00c9ff);
+  --border: rgba(255,255,255,0.08);
+  --nav-blur: blur(60px) saturate(180%);
+  --nav-bg: rgba(0,0,0,0.8);
+  --ease: cubic-bezier(0.42, 0, 0.58, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --container: 1200px;
+  --radius: 16px;
+  --radius-lg: 24px;
 }
-
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;overflow-x:hidden}
-
+html{scroll-behavior:smooth;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 body{
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--bg-primary);
-  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+  background: var(--bg);
+  color: var(--text);
   line-height: 1.6;
 }
-
-.wrap{max-width: var(--container); margin: auto; padding: 0 24px}
+::selection{background: rgba(0,244,60,0.3)}
+.wrap{max-width: var(--container); margin: 0 auto; padding: 0 28px}
 
 .header{
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 1000;
-  padding: 20px 0;
-  transition: all 0.4s var(--ease-smooth);
+  padding: 0;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  transition: background 0.4s var(--ease), backdrop-filter 0.4s var(--ease), border-color 0.4s var(--ease);
+  background: transparent;
+  border-bottom: 1px solid transparent;
 }
 .header.scrolled{
-  padding: 12px 0;
-  background: rgba(10,10,10,0.95);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border-subtle);
+  background: var(--nav-bg);
+  backdrop-filter: var(--nav-blur);
+  -webkit-backdrop-filter: var(--nav-blur);
+  border-bottom-color: var(--border);
 }
-.header .wrap{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.logo img{height: 42px}
-
-.nav{display: flex; gap: 8px}
+.header .wrap{display: flex; justify-content: space-between; align-items: center; width: 100%}
+.logo{display: flex; align-items: center; text-decoration: none; color: var(--text); font-weight: 600; font-size: 18px; letter-spacing: -0.02em}
+.logo img{height: 26px; display: block}
+.nav{display: flex; align-items: center; gap: 2px}
 .nav a{
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 14px;
-  padding: 10px 16px;
-  border-radius: 8px;
-  transition: all 0.3s var(--ease-smooth);
+  color: var(--text-secondary); text-decoration: none; font-weight: 400;
+  font-size: 13px; padding: 6px 14px; border-radius: 6px;
+  transition: color 0.3s var(--ease), background 0.3s var(--ease);
+  letter-spacing: 0.01em;
 }
-.nav a:hover,
-.nav a.active{
-  color: var(--text-primary);
-  background: rgba(255,255,255,0.08);
-}
+.nav a:hover{color: var(--text); background: rgba(255,255,255,0.06)}
+.nav a.active{color: var(--text)}
 
 .menu-toggle{
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 44px;
-  height: 44px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid var(--border-subtle);
-  border-radius: 8px;
-  cursor: pointer;
+  display: none; flex-direction: column; justify-content: center; align-items: center;
+  width: 36px; height: 36px; background: transparent; border: none; cursor: pointer; padding: 0;
 }
-.menu-toggle span{
-  display: block;
-  width: 20px;
-  height: 2px;
-  background: var(--text-primary);
-  position: relative;
+.menu-toggle span, .menu-toggle span::before, .menu-toggle span::after{
+  display: block; width: 18px; height: 1.5px; background: var(--text);
+  border-radius: 1px; position: relative; transition: all 0.3s var(--ease);
 }
-.menu-toggle span::before,
-.menu-toggle span::after{
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 2px;
-  background: var(--text-primary);
-  left: 0;
-}
-.menu-toggle span::before{top: -6px}
-.menu-toggle span::after{top: 6px}
+.menu-toggle span::before{content: ''; position: absolute; left: 0; top: -5px}
+.menu-toggle span::after{content: ''; position: absolute; left: 0; top: 5px}
 .menu-toggle.active span{background: transparent}
 .menu-toggle.active span::before{transform: rotate(45deg); top: 0}
 .menu-toggle.active span::after{transform: rotate(-45deg); top: 0}
 
 .mobile-nav{
-  display: none;
-  position: fixed;
-  top: 0;
-  right: -100%;
-  width: 80%;
-  max-width: 320px;
-  height: 100vh;
-  background: var(--bg-secondary);
-  padding: 100px 32px 32px;
-  transition: right 0.4s var(--ease-smooth);
-  z-index: 999;
-  border-left: 1px solid var(--border-subtle);
+  display: none; position: fixed; top: 52px; right: -100%; width: 100%;
+  max-width: 360px; height: calc(100vh - 52px);
+  background: rgba(0,0,0,0.97); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+  padding: 32px 28px; transition: right 0.5s var(--ease-out); z-index: 999;
+  border-left: 1px solid var(--border);
 }
 .mobile-nav.active{right: 0}
 .mobile-nav a{
-  display: block;
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 18px;
-  padding: 16px 0;
-  border-bottom: 1px solid var(--border-subtle);
+  display: block; color: var(--text-secondary); text-decoration: none;
+  font-weight: 400; font-size: 17px; padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04); transition: color 0.3s var(--ease);
 }
-.mobile-nav a.active{color: var(--text-primary)}
+.mobile-nav a:hover, .mobile-nav a.active{color: var(--text)}
 .mobile-overlay{
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(4px);
-  opacity: 0;
-  transition: opacity 0.3s var(--ease-smooth);
-  z-index: 998;
-  pointer-events: none;
+  display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+  opacity: 0; transition: opacity 0.4s var(--ease); z-index: 998; pointer-events: none;
 }
-.mobile-overlay.active{
-  display: block;
-  opacity: 1;
-  pointer-events: auto;
-}
+.mobile-overlay.active{display: block; opacity: 1; pointer-events: auto}
+
+.client-area{display: flex; align-items: center; justify-content: center; margin-left: 12px; opacity: 0.6; transition: opacity 0.3s var(--ease)}
+.client-area:hover{opacity: 1}
+.client-area img{width: 20px; height: 20px; display: block}
+@media(max-width:768px){.client-area{display:none}}
+
+.scroll-progress{position: fixed; top: 0; left: 0; height: 1px; background: var(--accent-gradient); z-index: 1001; transition: width 0.1s linear}
 
 .page-header{
-  padding-top: 140px;
-  padding-bottom: 60px;
-  text-align: center;
-  background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-  border-bottom: 1px solid var(--border-subtle);
+  padding-top: 120px; padding-bottom: 80px; text-align: center;
 }
 .page-header h1{
-  font-size: clamp(28px, 4vw, 48px);
-  font-weight: 600;
-  margin-bottom: 12px;
-  letter-spacing: -0.02em;
+  font-size: clamp(32px, 4vw, 56px); font-weight: 600;
+  letter-spacing: -0.03em; margin-bottom: 12px;
 }
-.page-header p{
-  color: var(--text-secondary);
-  font-size: 18px;
-  max-width: 600px;
-  margin: 0 auto;
-}
+.page-header p{color: var(--text-secondary); font-size: 18px; max-width: 600px; margin: 0 auto}
 
-.history-section{padding: 120px 0}
-.section-title{
-  text-align: center;
-  margin-bottom: 60px;
-}
-.section-title h2{
-  font-size: clamp(28px, 4vw, 40px);
-  font-weight: 600;
-  margin-bottom: 16px;
-}
-.section-title p{
-  color: var(--text-secondary);
-  font-size: 18px;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.timeline{
-  max-width: 800px;
-  margin: 0 auto;
-  position: relative;
-}
+.history-section{padding: 0 0 120px 0}
+.timeline{max-width: 720px; margin: 0 auto; position: relative}
 .timeline::before{
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 8px;
-  bottom: 0;
-  width: 1px;
-  background: var(--border-subtle);
+  content: ''; position: absolute; left: 15px; top: 8px;
+  bottom: 0; width: 1px; background: var(--border);
 }
-
 .timeline-item{
-  position: relative;
-  padding-left: 48px;
-  padding-bottom: 48px;
+  position: relative; padding-left: 52px; padding-bottom: 48px;
 }
 .timeline-item:last-child{padding-bottom: 0}
-
 .timeline-item::before{
-  content: '';
-  position: absolute;
-  left: -5px;
-  top: 4px;
-  width: 11px;
-  height: 11px;
-  background: var(--bg-primary);
-  border: 2px solid #00f43c;
-  border-radius: 50%;
+  content: ''; position: absolute; left: 10px; top: 6px;
+  width: 11px; height: 11px; background: var(--bg);
+  border: 2px solid var(--accent); border-radius: 50%;
 }
-
 .timeline-year{
-  display: inline-block;
-  font-size: 14px;
-  font-weight: 600;
-  color: #00f43c;
-  margin-bottom: 8px;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
+  display: inline-block; font-size: 12px; font-weight: 600;
+  color: var(--accent); margin-bottom: 6px;
+  letter-spacing: 0.08em; text-transform: uppercase;
 }
-
-.timeline-title{
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 12px;
-}
-
+.timeline-title{font-size: 20px; font-weight: 600; margin-bottom: 12px; letter-spacing: -0.02em}
 .timeline-image{
-  width: 100%;
-  height: 140px;
-  background: var(--bg-tertiary);
-  border-radius: 12px;
-  margin: 16px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px;
+  width: 100%; max-width: 320px; height: 120px;
+  background: var(--bg-tertiary); border-radius: var(--radius);
+  margin: 16px 0; display: flex; align-items: center;
+  justify-content: center; padding: 12px; border: 1px solid var(--border);
 }
-.timeline-image img{
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
-
-.timeline-description{
-  color: var(--text-secondary);
-  font-size: 15px;
-  line-height: 1.6;
-}
+.timeline-image img{max-width: 100%; max-height: 100%; object-fit: contain}
+.timeline-description{color: var(--text-secondary); font-size: 15px; line-height: 1.7}
 
 .footer{
-  background: var(--bg-secondary);
-  border-top: 1px solid var(--border-subtle);
-  padding: 60px 0 30px;
-  text-align: center;
+  background: var(--bg-secondary); border-top: 1px solid var(--border);
+  padding: 48px 0 24px; text-align: center;
 }
-.footer-links{
-  display: flex;
-  justify-content: center;
-  gap: 32px;
-  margin-bottom: 30px;
-  flex-wrap: wrap;
-}
-.footer-links a{
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-size: 14px;
-}
-.footer-links a:hover{color: var(--text-primary)}
-.footer p{color: var(--text-secondary); font-size: 14px}
+.footer-links{display: flex; justify-content: center; gap: 28px; margin-bottom: 28px; flex-wrap: wrap}
+.footer-links a{color: var(--text-secondary); text-decoration: none; font-size: 12px; transition: color 0.3s var(--ease); letter-spacing: 0.02em}
+.footer-links a:hover{color: var(--text)}
+.footer p{color: var(--text-tertiary); font-size: 12px}
 
-.fade-in{
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.5s var(--ease-smooth);
-}
-.fade-in.show{
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.scroll-progress{
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 2px;
-  background: var(--accent-gradient);
-  z-index: 1001;
-  transition: width 0.1s linear;
-}
+.reveal{opacity: 0; transform: translateY(24px); transition: all 0.7s var(--ease-out)}
+.reveal.show{opacity: 1; transform: translateY(0)}
 
 @media(max-width: 768px){
   .menu-toggle{display: flex}
   .mobile-nav{display: block}
   .mobile-overlay.active{display: block}
   .nav{display: none}
-  .page-header{padding-top: 100px; padding-bottom: 40px}
-  .history-section{padding: 80px 0}
-  .timeline-item{padding-left: 40px; padding-bottom: 40px}
-  .timeline-image{height: 120px}
+  .page-header{padding-top: 90px; padding-bottom: 60px}
+  .history-section{padding: 0 0 80px 0}
+  .timeline-item{padding-left: 44px; padding-bottom: 40px}
+  .timeline-image{height: 100px; max-width: 100%}
+  .footer{padding: 36px 0 20px}
+  .footer-links{gap: 20px}
 }
-        /* Ícone da Área do Cliente */
-        .client-area {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-left: 1rem;
-            text-decoration: none;
-            transition: transform 0.2s ease, opacity 0.2s ease;
-        }
-
-        .client-area img {
-            width: 32px;
-            height: 32px;
-            display: block;
-        }
-
-        .client-area:hover {
-            transform: scale(1.1);
-            opacity: 0.85;
-        }
-
-        /* Em mobile, esconder o ícone no header porque já existe no menu */
-        @media (max-width: 768px) {
-          .client-area {
-            display: none;
-          }
-        }
-        .history-section{text-align: left}
-        .timeline-description{text-align: left}
 </style>
 </head>
-
 <body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
 
 <section class="page-header">
   <div class="wrap">
@@ -350,79 +189,61 @@ body{
 <section class="history-section">
   <div class="wrap">
     <div class="timeline">
-      
-      <article class="timeline-item fade-in">
+      <article class="timeline-item reveal">
         <span class="timeline-year">2020</span>
         <h3 class="timeline-title">GamesStudios</h3>
-        <div class="timeline-image">
-          <img src="https://i.ibb.co/PvFQgFr4/Games-Studio.png" alt="GamesStudios">
-        </div>
+        <div class="timeline-image"><img src="https://i.ibb.co/PvFQgFr4/Games-Studio.png" alt="GamesStudios" loading="lazy"></div>
         <p class="timeline-description">Foi aqui que tudo começou, originalmente com o nome GameStudios. Era um estúdio simples de criação de mods para FNF com o nosso co‑fundador Diogo; também desenvolvemos alguns jogos no Roblox.</p>
       </article>
 
-      <article class="timeline-item fade-in">
+      <article class="timeline-item reveal">
         <span class="timeline-year">2021</span>
         <h3 class="timeline-title">Flux Labs</h3>
-        <div class="timeline-image">
-          <img src="https://i.ibb.co/nMNt18YM/Flux-LABS-2021-completed-logo.png" alt="Flux Labs">
-        </div>
+        <div class="timeline-image"><img src="https://i.ibb.co/nMNt18YM/Flux-LABS-2021-completed-logo.png" alt="Flux Labs" loading="lazy"></div>
         <p class="timeline-description">Foi aqui que redefinimos o nosso rumo, ainda focados principalmente no Roblox, mas já com alguns projetos orientados para a tecnologia.</p>
       </article>
 
-      <article class="timeline-item fade-in">
+      <article class="timeline-item reveal">
         <span class="timeline-year">2021</span>
         <h3 class="timeline-title">Flux (novo logótipo)</h3>
-        <div class="timeline-image">
-          <img src="https://i.ibb.co/mnkL7Z4/Flux-LOGOV3.png" alt="Flux">
-        </div>
+        <div class="timeline-image"><img src="https://i.ibb.co/mnkL7Z4/Flux-LOGOV3.png" alt="Flux" loading="lazy"></div>
         <p class="timeline-description">Alterámos a nossa identidade visual mais uma vez, para refletir de forma crescente a tecnologia e as soluções que, à data, ainda eram básicas, relacionadas com tecnologia e sites personalizados.</p>
       </article>
 
-      <article class="timeline-item fade-in">
+      <article class="timeline-item reveal">
         <span class="timeline-year">2022</span>
         <h3 class="timeline-title">TAMTW</h3>
-        <div class="timeline-image">
-          <img src="https://i.ibb.co/PzgNKKmf/image.png" alt="TAMTW">
-        </div>
+        <div class="timeline-image"><img src="https://i.ibb.co/PzgNKKmf/image.png" alt="TAMTW" loading="lazy"></div>
         <p class="timeline-description">Decidimos renovar a marca mais uma vez; esta foi a que teve menos resultados, devido a uma co‑liderança frágil.</p>
       </article>
 
-      <article class="timeline-item fade-in">
+      <article class="timeline-item reveal">
         <span class="timeline-year">2023</span>
         <h3 class="timeline-title">NexusWeb</h3>
-        <div class="timeline-image">
-          <img src="https://i.ibb.co/FGWrbWj/Only-Logo-Zoom.png" alt="NexusWeb">
-        </div>
+        <div class="timeline-image"><img src="https://i.ibb.co/FGWrbWj/Only-Logo-Zoom.png" alt="NexusWeb" loading="lazy"></div>
         <p class="timeline-description">Realizámos um rebranding completo, com o aparecimento de várias novas tecnologias e sites personalizados. Queríamos pôr fim às inconsistências nos nossos nomes anteriores e conduzir a atual NexusPT para um caminho cada vez mais tecnológico e inovador.</p>
       </article>
 
-      <article class="timeline-item fade-in">
+      <article class="timeline-item reveal">
         <span class="timeline-year">2024</span>
         <h3 class="timeline-title">NexusPT</h3>
-        <div class="timeline-image">
-          <img src="https://i.ibb.co/yBMfPBtC/Nexus-Afastado.png" alt="NexusPT">
-        </div>
+        <div class="timeline-image"><img src="https://i.ibb.co/yBMfPBtC/Nexus-Afastado.png" alt="NexusPT" loading="lazy"></div>
         <p class="timeline-description">Este foi o nosso último rebranding, reforçando a consistência no nome e no logótipo, refletindo os nossos valores tecnológicos e inovadores, com soluções utilizadas por muitas pessoas e com o objetivo de alcançar novas parcerias, estratégias, desenvolvimento e uma boa liderança.</p>
       </article>
 
-      <article class="timeline-item fade-in">
+      <article class="timeline-item reveal">
         <span class="timeline-year">Abr. 2025</span>
         <h3 class="timeline-title">Drippi</h3>
-        <div class="timeline-image">
-          <img src="https://i.ibb.co/Kj3pHchp/file-0000000088a0624685cfc856e9a6951c-removebg-preview.png" alt="Drippi">
-        </div>
+        <div class="timeline-image"><img src="https://i.ibb.co/Kj3pHchp/file-0000000088a0624685cfc856e9a6951c-removebg-preview.png" alt="Drippi" loading="lazy"></div>
         <p class="timeline-description">Desenvolvemos a nossa primeira rede social, com tecnologias recentes e através de uma escuta ativa às críticas e sugestões da comunidade, resolvendo proativamente quaisquer bugs. Consideramo‑nos inovadores neste marco.</p>
       </article>
 
-      <article class="timeline-item fade-in">
+      <article class="timeline-item reveal">
         <span class="timeline-year">Jun. 2025</span>
         <h3 class="timeline-title">NexusIOT</h3>
-        <div class="timeline-image">
-          <img src="https://i.ibb.co/YGFSNsL/IoTnEXUS.png" alt="NexusIOT">
-        </div>
+        <div class="timeline-image"><img src="https://i.ibb.co/YGFSNsL/IoTnEXUS.png" alt="NexusIOT" loading="lazy"></div>
         <p class="timeline-description">Começámos o desenvolvimento do NexusIOT, uma plataforma de IoT e, posteriormente, de alarmes, para tornar a casa dos nossos clientes mais inteligente. Uma casa "inteligente" em que é necessário ter duas ou três apps não é realmente inteligente; foi esse o propósito do NexusIOT, para além da proteção com alarmes anti‑intrusão inovadores, com equipamentos físicos e fiáveis.</p>
       </article>
-
     </div>
   </div>
 </section>
@@ -430,16 +251,17 @@ body{
 <script src="https://kikalabs-server.nexuspt.eu/js/site-nxweb/fh.js"></script>
 
 <script>
-const fadeElements = document.querySelectorAll('.fade-in');
-const fadeObserver = new IntersectionObserver((entries) => {
+const progressBar = document.getElementById('scrollProgress');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  progressBar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100 + '%';
+});
+const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('show');
-      fadeObserver.unobserve(entry.target);
-    }
+    if(entry.isIntersecting) { entry.target.classList.add('show'); revealObserver.unobserve(entry.target); }
   });
-}, { threshold: 0.1 });
-fadeElements.forEach(el => fadeObserver.observe(el));
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 </script>
 
 </body>
