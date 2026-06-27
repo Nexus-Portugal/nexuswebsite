@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="pt-pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Download Rádio NexusPT | NexusPT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg: #000000; --bg-secondary: #0a0a0a; --bg-tertiary: #111111;
+  --text: #f5f5f7; --text-secondary: #86868b; --text-tertiary: #6e6e73;
+  --accent: #00f43c; --accent-gradient: linear-gradient(135deg, #00f43c, #00c9ff);
+  --border: rgba(255,255,255,0.08);
+  --glass: rgba(255,255,255,0.03);
+  --glass-border: rgba(255,255,255,0.06);
+  --glass-blur: blur(24px) saturate(160%);
+  --nav-blur: blur(60px) saturate(180%); --nav-bg: rgba(0,0,0,0.8);
+  --ease: cubic-bezier(0.42, 0, 0.58, 1); --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --container: 1200px; --radius: 16px; --radius-lg: 24px;
+}
+@keyframes liquidShift{
+  0%, 100%{transform: translate(-10%, -10%) rotate(0deg); opacity: 0.6}
+  50%{transform: translate(10%, 10%) rotate(5deg); opacity: 1}
+}
+@keyframes glassShimmer{
+  0%, 100%{transform: translate(0, 0) rotate(0deg); opacity: 0.5}
+  33%{transform: translate(5%, 5%) rotate(1deg); opacity: 0.8}
+  66%{transform: translate(-5%, -5%) rotate(-1deg); opacity: 0.6}
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+::selection{background:rgba(0,244,60,0.3)}
+.wrap{max-width:var(--container);margin:0 auto;padding:0 28px}
+
+.header{position:fixed;width:100%;top:0;z-index:1000;padding:0;height:52px;display:flex;align-items:center;transition:background .4s var(--ease),backdrop-filter .4s var(--ease),border-color .4s var(--ease);background:transparent;border-bottom:1px solid transparent}
+.header.scrolled{background:var(--nav-bg);backdrop-filter:var(--nav-blur);-webkit-backdrop-filter:var(--nav-blur);border-bottom-color:var(--border)}
+.header .wrap{display:flex;justify-content:space-between;align-items:center;width:100%}
+.logo{display:flex;align-items:center;text-decoration:none;color:var(--text);font-weight:600;font-size:18px;letter-spacing:-.02em}
+.logo img{height:26px;display:block}
+.nav{display:flex;align-items:center;gap:2px}
+.nav a{color:var(--text-secondary);text-decoration:none;font-weight:400;font-size:13px;padding:6px 14px;border-radius:6px;transition:color .3s var(--ease),background .3s var(--ease);letter-spacing:.01em}
+.nav a:hover{color:var(--text);background:rgba(255,255,255,0.06)}
+.nav a.active{color:var(--text)}
+.menu-toggle{display:none;flex-direction:column;justify-content:center;align-items:center;width:36px;height:36px;background:transparent;border:none;cursor:pointer;padding:0}
+.menu-toggle span,.menu-toggle span::before,.menu-toggle span::after{display:block;width:18px;height:1.5px;background:var(--text);border-radius:1px;position:relative;transition:all .3s var(--ease)}
+.menu-toggle span::before{content:'';position:absolute;left:0;top:-5px}
+.menu-toggle span::after{content:'';position:absolute;left:0;top:5px}
+.menu-toggle.active span{background:transparent}
+.menu-toggle.active span::before{transform:rotate(45deg);top:0}
+.menu-toggle.active span::after{transform:rotate(-45deg);top:0}
+.mobile-nav{display:none;position:fixed;top:52px;right:-100%;width:100%;max-width:360px;height:calc(100vh - 52px);background:rgba(0,0,0,0.97);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);padding:32px 28px;transition:right .5s var(--ease-out);z-index:999;border-left:1px solid var(--border)}
+.mobile-nav.active{right:0}
+.mobile-nav a{display:block;color:var(--text-secondary);text-decoration:none;font-weight:400;font-size:17px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.04);transition:color .3s var(--ease)}
+.mobile-nav a:hover,.mobile-nav a.active{color:var(--text)}
+.mobile-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);opacity:0;transition:opacity .4s var(--ease);z-index:998;pointer-events:none}
+.mobile-overlay.active{display:block;opacity:1;pointer-events:auto}
+.client-area{display:flex;align-items:center;justify-content:center;margin-left:12px;opacity:.6;transition:opacity .3s var(--ease)}
+.client-area:hover{opacity:1}
+.client-area img{width:20px;height:20px;display:block}
+@media(max-width:768px){.client-area{display:none}}
+.scroll-progress{position:fixed;top:0;left:0;height:1px;background:var(--accent-gradient);z-index:1001;transition:width .1s linear}
+
+.page-header{
+  padding-top:120px;padding-bottom:80px;text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.page-header::before{
+  content:'';
+  position:absolute;
+  top:-50%;left:-50%;
+  width:200%;height:200%;
+  background:radial-gradient(ellipse at center,rgba(0,244,60,0.03) 0%,transparent 60%);
+  animation:glassShimmer 15s ease-in-out infinite;
+  pointer-events:none;
+}
+.page-header h1{font-size:clamp(32px,4vw,56px);font-weight:600;letter-spacing:-.03em;margin-bottom:12px;position:relative;z-index:1}
+.page-header p{color:var(--text-secondary);font-size:18px;max-width:600px;margin:0 auto;position:relative;z-index:1}
+
+.download-section{padding:0 0 120px 0;position:relative}
+.download-section::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse at 50% 30%,rgba(0,244,60,0.03) 0%,transparent 60%);
+  pointer-events:none;
+}
+.download-container{max-width:700px;margin:0 auto;text-align:center}
+.download-card{
+  background:var(--glass);border:1px solid var(--glass-border);
+  backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+  border-radius:var(--radius-lg);padding:48px 40px;position:relative;overflow:hidden;
+}
+.download-card::after{
+  content:'';
+  position:absolute;top:-50%;left:-50%;
+  width:200%;height:200%;
+  background:radial-gradient(circle at 30% 50%,rgba(255,255,255,0.03) 0%,transparent 50%);
+  animation:liquidShift 8s ease-in-out infinite;
+  pointer-events:none;border-radius:inherit;
+}
+.download-icon{
+  width:72px;height:72px;margin:0 auto 24px;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,rgba(0,244,60,0.15),rgba(0,201,255,0.1));
+  border:1px solid rgba(0,244,60,0.2);border-radius:50%;
+}
+.download-icon svg{width:32px;height:32px;color:#fff}
+.download-card h2{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:-.02em;margin-bottom:12px;position:relative;z-index:1}
+.download-card p{color:var(--text-secondary);font-size:15px;line-height:1.8;margin-bottom:8px;position:relative;z-index:1}
+.download-info{
+  display:flex;justify-content:center;gap:24px;margin:20px 0 32px;flex-wrap:wrap;
+  position:relative;z-index:1;
+}
+.download-info span{
+  color:var(--text-tertiary);font-size:13px;display:flex;align-items:center;gap:6px;
+}
+.download-info span::before{
+  content:'';width:4px;height:4px;border-radius:50%;background:var(--accent);display:block;
+}
+.download-btn{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:18px 40px;
+  background:linear-gradient(135deg,rgba(0,244,60,0.15),rgba(0,201,255,0.1));
+  backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);
+  color:#fff;font-weight:600;font-size:16px;text-decoration:none;
+  border-radius:100px;border:1px solid rgba(0,244,60,0.2);
+  position:relative;overflow:hidden;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease);
+}
+.download-btn::before{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0.12) 0%,transparent 40%,rgba(255,255,255,0.03) 80%);
+  pointer-events:none;border-radius:inherit;
+}
+.download-btn::after{
+  content:'';
+  position:absolute;top:-50%;left:-50%;
+  width:200%;height:200%;
+  background:radial-gradient(circle at 30% 50%,rgba(255,255,255,0.08) 0%,transparent 50%);
+  animation:liquidShift 6s ease-in-out infinite;
+  pointer-events:none;border-radius:inherit;
+}
+.download-btn:hover{transform:scale(1.04);box-shadow:0 0 40px rgba(0,244,60,0.25);border-color:rgba(0,244,60,0.35)}
+.download-btn svg{width:22px;height:22px;position:relative;z-index:1}
+.download-btn span{position:relative;z-index:1}
+.download-card .size{
+  color:var(--text-tertiary);font-size:12px;margin-top:20px;
+  position:relative;z-index:1;
+}
+.download-card .back-link{
+  display:inline-flex;align-items:center;gap:6px;margin-top:16px;
+  color:var(--text-secondary);text-decoration:none;font-size:13px;
+  transition:color .3s var(--ease);position:relative;z-index:1;
+}
+.download-card .back-link:hover{color:var(--text)}
+
+.footer{background:var(--bg-secondary);border-top:1px solid var(--border);padding:48px 0 24px;text-align:center}
+.footer-links{display:flex;justify-content:center;gap:28px;margin-bottom:28px;flex-wrap:wrap}
+.footer-links a{color:var(--text-secondary);text-decoration:none;font-size:12px;transition:color .3s var(--ease);letter-spacing:.02em}
+.footer-links a:hover{color:var(--text)}
+.footer p{color:var(--text-tertiary);font-size:12px}
+
+.reveal{opacity:0;transform:translateY(24px);transition:all .7s var(--ease-out)}
+.reveal.show{opacity:1;transform:translateY(0)}
+
+@media(max-width:768px){
+  .menu-toggle{display:flex}.mobile-nav{display:block}.mobile-overlay.active{display:block}.nav{display:none}
+  .page-header{padding-top:90px;padding-bottom:60px}
+  .download-section{padding:0 24px 80px}
+  .download-card{padding:32px 24px}
+  .download-info{gap:16px}
+  .download-btn{padding:14px 28px;font-size:14px}
+  .footer{padding:36px 0 20px}.footer-links{gap:20px}
+}
+</style>
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<section class="page-header">
+  <div class="wrap">
+    <h1>Rádio NexusPT</h1>
+    <p>Descarrega o nosso leitor de rádio para Windows</p>
+  </div>
+</section>
+
+<section class="download-section">
+  <div class="wrap">
+    <div class="download-container">
+      <div class="download-card reveal">
+        <div class="download-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+          </svg>
+        </div>
+        <h2>NexusRadioSetup.exe</h2>
+        <p>Ouve a Rádio NexusPT diretamente no teu PC com o nosso player exclusivo.<br>Leve, rápido e sem complicações.</p>
+        <div class="download-info">
+          <span>Windows</span>
+          <span>~100 MB</span>
+          <span>v1.0</span>
+        </div>
+        <a href="../NexusRadioSetup.exe" class="download-btn" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          <span>Descarregar</span>
+        </a>
+        <div class="size">O download começa automaticamente após clicar</div>
+        <a href="../radio.html" class="back-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" width="14" height="14"><polyline points="15 18 9 12 15 6"/></svg>
+          Voltar para a Rádio
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://kikalabs-server.nexuspt.eu/js/site-nxweb/fh.js"></script>
+
+<script>
+const progressBar = document.getElementById('scrollProgress');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  progressBar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100 + '%';
+});
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) { entry.target.classList.add('show'); revealObserver.unobserve(entry.target); }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+(function() {
+  const links = document.querySelectorAll('.footer-links a');
+  if(links.length >= 4) { links[0].href = 'cookies.html'; links[1].href = 'privacidade.html'; links[2].href = 'termos.html'; links[3].href = '#'; }
+})();
+</script>
+
+</body>
+</html>
