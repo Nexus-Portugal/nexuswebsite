@@ -594,7 +594,6 @@ a, button, input, textarea, select{touch-action: manipulation}
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border-radius: var(--radius-lg);
-  overflow: hidden;
   border: 1px solid var(--glass-border);
   transition: all 0.5s var(--ease-out);
   text-decoration: none;
@@ -605,6 +604,7 @@ a, button, input, textarea, select{touch-action: manipulation}
   content: '';
   position: absolute;
   inset: 0;
+  border-radius: inherit;
   background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 50%);
   pointer-events: none;
 }
@@ -622,6 +622,7 @@ a, button, input, textarea, select{touch-action: manipulation}
   justify-content: center;
   position: relative;
   overflow: hidden;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
 }
 .product-image img{
   width: 100%;
@@ -630,7 +631,7 @@ a, button, input, textarea, select{touch-action: manipulation}
   transition: transform 0.7s var(--ease-out);
 }
 .product-card:hover .product-image img{transform: scale(1.05)}
-.product-content{padding: 28px; display: flex; flex-direction: column; flex: 1}
+.product-content{padding: 28px; display: flex; flex-direction: column; flex: 1; border-radius: 0 0 var(--radius-lg) var(--radius-lg)}
 .product-content h3{
   font-size: 18px;
   font-weight: 600;
@@ -657,6 +658,33 @@ a, button, input, textarea, select{touch-action: manipulation}
 }
 .product-card:hover .product-link{gap: 10px}
 .product-card.disabled .product-link{color: var(--text-secondary)}
+.product-card:hover .product-image svg{transform: scale(1.05)}
+.product-image svg{transition: transform 0.7s var(--ease-out); filter: drop-shadow(0 0 20px rgba(0,244,60,0.15))}
+
+.product-dropdown{position: relative; display: inline-block}
+.product-btn{
+  display: inline-flex; align-items: center; gap: 6px;
+  background: transparent; border: 1px solid var(--accent);
+  color: var(--accent); padding: 8px 20px; border-radius: 8px;
+  cursor: pointer; font-family: inherit; font-size: 13px;
+  font-weight: 500; transition: all 0.3s var(--ease);
+}
+.product-btn:hover{background: rgba(0,244,60,0.1)}
+.dropdown-menu{
+  position: absolute; top: calc(100% + 8px); left: 0;
+  background: var(--bg-tertiary); border: 1px solid var(--border);
+  border-radius: 12px; padding: 6px; min-width: 160px;
+  opacity: 0; visibility: hidden; transform: translateY(-4px);
+  transition: all 0.3s var(--ease); z-index: 100;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+}
+.dropdown-menu.active{opacity: 1; visibility: visible; transform: translateY(0)}
+.dropdown-item{
+  display: flex; align-items: center; padding: 10px 14px;
+  border-radius: 8px; color: var(--text); text-decoration: none;
+  font-size: 13px; transition: background 0.2s var(--ease);
+}
+.dropdown-item:hover{background: rgba(255,255,255,0.06); color: var(--accent)}
 
 /* ─── CLIENTS ─── */
 .clients-grid{
@@ -1016,6 +1044,23 @@ a, button, input, textarea, select{touch-action: manipulation}
           <span class="product-link">Em desenvolvimento ⏳</span>
         </div>
       </div>
+
+      <div class="product-card reveal">
+        <div class="product-image">
+          <img src="radio.png" alt="NexusRádio" loading="lazy">
+        </div>
+        <div class="product-content">
+          <h3>NexusRádio</h3>
+          <p>Rádio online portuguesa com transmissão ao vivo, música e programas em direto.</p>
+          <div class="product-dropdown">
+            <button class="product-btn" onclick="toggleRadioMenu(event)">Abrir →</button>
+            <div class="dropdown-menu" id="radio-menu">
+              <a href="radio/download.html" class="dropdown-item">Download</a>
+              <a href="radio.html" class="dropdown-item">Abrir Web</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1132,6 +1177,16 @@ document.addEventListener('keydown', e => {
       document.body.style.overflow = '';
     });
   }
+});
+
+// ─── RADIO DROPDOWN ───
+function toggleRadioMenu(e) {
+  e.stopPropagation();
+  document.getElementById('radio-menu').classList.toggle('active');
+}
+document.addEventListener('click', function() {
+  var menu = document.getElementById('radio-menu');
+  if (menu) menu.classList.remove('active');
 });
 
 // ─── SCROLL REVEAL ───
