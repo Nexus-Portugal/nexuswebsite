@@ -33,56 +33,71 @@
             user-select: none;
             -webkit-user-drag: none;
         }
+
+        #checker {
+            display: none;
+        }
     </style>
 </head>
 
 <body>
+
     <img
         src="https://kikalabs-server.nexuspt.eu/images/site-nxweb/nginx/manutencaonexus.png"
         alt="Página de manutenção"
     >
 
+    <iframe id="checker"></iframe>
+
     <script>
-        const redirectUrl = "https://ia.nexuspt.eu";
-        const interval = 5000;
+        const SERVICE = "https://ia.nexuspt.eu/";
+        const CHECK_INTERVAL = 5000;
 
-        async function checkSite() {
-            // Só permite o redirecionamento quando esta página
-            // está num domínio nexuspt.eu ou num subdomínio dele.
-            const hostname = window.location.hostname;
+        // Só permite esta lógica em nexuspt.eu
+        const hostname = window.location.hostname;
 
-            if (
-                hostname !== "nexuspt.eu" &&
-                !hostname.endsWith(".nexuspt.eu")
-            ) {
-                return;
-            }
+        if (
+            hostname === "nexuspt.eu" ||
+            hostname.endsWith(".nexuspt.eu")
+        ) {
+            const checker = document.getElementById("checker");
 
-            try {
-                const controller = new AbortController();
-                const timeout = setTimeout(() => controller.abort(), 4000);
+            let checking = false;
 
-                const response = await fetch(
-                    redirectUrl + "/?maintenance_check=" + Date.now(),
-                    {
-                        method: "HEAD",
-                        cache: "no-store",
-                        signal: controller.signal
+            function checkService() {
+                if (checking) return;
+
+                checking = true;
+
+                let redirected = false;
+
+                const redirect = () => {
+                    if (redirected) return;
+
+                    redirected = true;
+                    window.location.replace(SERVICE);
+                };
+
+                checker.onload = redirect;
+
+                checker.onerror = () => {
+                    checking = false;
+                };
+
+                checker.src = SERVICE + "?maintenance_check=" + Date.now();
+
+                setTimeout(() => {
+                    if (!redirected) {
+                        checking = false;
                     }
-                );
-
-                clearTimeout(timeout);
-
-                if (response.ok) {
-                    window.location.replace(redirectUrl);
-                }
-            } catch (error) {
-
+                }, 4000);
             }
-        }
 
-        checkSite();
-        setInterval(checkSite, interval);
+            checkService();
+
+            setInterval(checkService, CHECK_INTERVAL);
+        }
     </script>
+
 </body>
 </html>
