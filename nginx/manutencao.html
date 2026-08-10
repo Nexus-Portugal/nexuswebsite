@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexusPT - Manutenção</title>
+    <title>Manutenção</title>
 
     <style>
         * {
@@ -35,9 +35,54 @@
         }
     </style>
 </head>
+
 <body>
+    <img
+        src="https://kikalabs-server.nexuspt.eu/images/site-nxweb/nginx/manutencaonexus.png"
+        alt="Página de manutenção"
+    >
 
-    <img src="https://kikalabs-server.nexuspt.eu/images/site-nxweb/nginx/manutencaonexus.png" alt="Página de manutenção">
+    <script>
+        const redirectUrl = "https://ia.nexuspt.eu";
+        const interval = 5000;
 
+        async function checkSite() {
+            // Só permite o redirecionamento quando esta página
+            // está num domínio nexuspt.eu ou num subdomínio dele.
+            const hostname = window.location.hostname;
+
+            if (
+                hostname !== "nexuspt.eu" &&
+                !hostname.endsWith(".nexuspt.eu")
+            ) {
+                return;
+            }
+
+            try {
+                const controller = new AbortController();
+                const timeout = setTimeout(() => controller.abort(), 4000);
+
+                const response = await fetch(
+                    redirectUrl + "/?maintenance_check=" + Date.now(),
+                    {
+                        method: "HEAD",
+                        cache: "no-store",
+                        signal: controller.signal
+                    }
+                );
+
+                clearTimeout(timeout);
+
+                if (response.ok) {
+                    window.location.replace(redirectUrl);
+                }
+            } catch (error) {
+
+            }
+        }
+
+        checkSite();
+        setInterval(checkSite, interval);
+    </script>
 </body>
 </html>
