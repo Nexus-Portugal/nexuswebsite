@@ -388,6 +388,7 @@ const SPEED_I18N = {
   "A TESTAR": "TESTING",
   "REPETIR": "RETEST",
   "TENTAR NOVAMENTE": "TRY AGAIN",
+  "A escolher servidor...": "Choosing server...",
   "A medir ping...": "Measuring ping...",
   "A testar download...": "Testing download...",
   "Download concluído": "Download complete",
@@ -842,7 +843,6 @@ async function runUpload() {
 async function runTest() {
   if (running) return;
   running = true;
-  await serverSelection;
 
   startButton.disabled = true;
   startButton.classList.add("is-server");
@@ -859,15 +859,35 @@ async function runTest() {
   drawGraph();
 
   try {
-    await runPing();
+    setStatus("A escolher servidor...");
+    await serverSelection;
+
+    try {
+      await runPing();
+    } catch (error) {
+      /* Uma falha transitória no ping não devolve matar o teste */
+      console.warn("[NexusPT] Ping falhou, a repetir...", error && error.message);
+      await sleep(400);
+      await runPing();
+    }
     await sleep(300);
 
-    const download = await runDownload();
+    let download;
+    try { download = await runDownload(); }
+    catch (error) { throw new Error("STAGE_DOWNLOAD: " + (error && error.message)); }
     console.log("[NexusPT] Download:", download, "Mbps");
     setStatus("Download concluído");
     await sleep(1000);
 
-    const upload = await runUpload();
+    let upload;
+    try { upload = await runUpload(); }
+    catch (error) {
+      /* O servidor entra às vezes em manutenção a meio do teste; repetir uma vez */
+      console.warn("[NexusPT] Upload falhou, a repetir fase...", error && error.message);
+      await sleep(1500);
+      try { upload = await runUpload(); }
+      catch (error2) { throw new Error("STAGE_UPLOAD: " + (error2 && error2.message)); }
+    }
     console.log("[NexusPT] Upload:", upload, "Mbps");
 
     setStatus("Teste concluído");
@@ -876,6 +896,10 @@ async function runTest() {
   } catch (error) {
     console.error("[NexusPT Speed Test]", error);
     if (error && error.message) console.error("Código:", error.message);
+    const msg = error && error.message ? String(error.message) : "";
+    if (msg.indexOf("STAGE_") === 0) {
+      console.warn("[NexusPT] Fase que falhou:", msg.split(":")[0].replace("STAGE_", ""), "| servidor:", SERVER);
+    }
     setStatus("Erro durante o teste");
     startLabel.textContent = tx("TENTAR NOVAMENTE");
   }
@@ -995,6 +1019,7 @@ let serverSelection = (async function () {
 
   serverElement.hidden = false;
   serverName.textContent = selectedServer.name;
+  console.info("[NexusPT] Servidor:", selectedServer.name, "(" + SERVER + ")", region ? "| região: " + region : "| região desconhecida");
   return selectedServer;
 })().catch(function () {
   serverElement.hidden = true;
