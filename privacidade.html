@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="pt-pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Política de Privacidade | NexusPT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg: #000000; --bg-secondary: #0a0a0a; --bg-tertiary: #111111;
+  --text: #f5f5f7; --text-secondary: #86868b; --text-tertiary: #6e6e73;
+  --accent: #00f43c; --accent-gradient: linear-gradient(135deg, #00f43c, #00c9ff);
+  --border: rgba(255,255,255,0.08);
+  --nav-blur: blur(60px) saturate(180%); --nav-bg: rgba(0,0,0,0.8);
+  --ease: cubic-bezier(0.42, 0, 0.58, 1); --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --container: 1200px; --radius: 16px; --radius-lg: 24px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+::selection{background:rgba(0,244,60,0.3)}
+.wrap{max-width:var(--container);margin:0 auto;padding:0 28px}
+
+.header{position:fixed;width:100%;top:0;z-index:1000;padding:0;height:52px;display:flex;align-items:center;transition:background .4s var(--ease),backdrop-filter .4s var(--ease),border-color .4s var(--ease);background:transparent;border-bottom:1px solid transparent}
+.header.scrolled{background:var(--nav-bg);backdrop-filter:var(--nav-blur);-webkit-backdrop-filter:var(--nav-blur);border-bottom-color:var(--border)}
+.header .wrap{display:flex;justify-content:space-between;align-items:center;width:100%}
+.logo{display:flex;align-items:center;text-decoration:none;color:var(--text);font-weight:600;font-size:18px;letter-spacing:-.02em}
+.logo img{height:26px;display:block}
+.nav{display:flex;align-items:center;gap:2px}
+.nav a{color:var(--text-secondary);text-decoration:none;font-weight:400;font-size:13px;padding:6px 14px;border-radius:6px;transition:color .3s var(--ease),background .3s var(--ease);letter-spacing:.01em}
+.nav a:hover{color:var(--text);background:rgba(255,255,255,0.06)}
+.nav a.active{color:var(--text)}
+.menu-toggle{display:none;flex-direction:column;justify-content:center;align-items:center;width:36px;height:36px;background:transparent;border:none;cursor:pointer;padding:0}
+.menu-toggle span,.menu-toggle span::before,.menu-toggle span::after{display:block;width:18px;height:1.5px;background:var(--text);border-radius:1px;position:relative;transition:all .3s var(--ease)}
+.menu-toggle span::before{content:'';position:absolute;left:0;top:-5px}
+.menu-toggle span::after{content:'';position:absolute;left:0;top:5px}
+.menu-toggle.active span{background:transparent}
+.menu-toggle.active span::before{transform:rotate(45deg);top:0}
+.menu-toggle.active span::after{transform:rotate(-45deg);top:0}
+.mobile-nav{display:none;position:fixed;top:52px;right:-100%;width:100%;max-width:360px;height:calc(100vh - 52px);background:rgba(0,0,0,0.97);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);padding:32px 28px;transition:right .5s var(--ease-out);z-index:999;border-left:1px solid var(--border)}
+.mobile-nav.active{right:0}
+.mobile-nav a{display:block;color:var(--text-secondary);text-decoration:none;font-weight:400;font-size:17px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.04);transition:color .3s var(--ease)}
+.mobile-nav a:hover,.mobile-nav a.active{color:var(--text)}
+.mobile-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);opacity:0;transition:opacity .4s var(--ease);z-index:998;pointer-events:none}
+.mobile-overlay.active{display:block;opacity:1;pointer-events:auto}
+.client-area{display:flex;align-items:center;justify-content:center;margin-left:12px;opacity:.6;transition:opacity .3s var(--ease)}
+.client-area:hover{opacity:1}
+.client-area img{width:20px;height:20px;display:block}
+@media(max-width:768px){.client-area{display:none}}
+.scroll-progress{position:fixed;top:0;left:0;height:1px;background:var(--accent-gradient);z-index:1001;transition:width .1s linear}
+
+.page-header{padding-top:120px;padding-bottom:80px;text-align:center}
+.page-header h1{font-size:clamp(32px,4vw,56px);font-weight:600;letter-spacing:-.03em;margin-bottom:12px}
+.page-header p{color:var(--text-secondary);font-size:18px;max-width:600px;margin:0 auto}
+
+.content-section{padding:0 0 100px 0;max-width:900px;margin:0 auto}
+.content-section h2{font-size:clamp(22px,3vw,32px);font-weight:600;letter-spacing:-.02em;margin:48px 0 20px;color:var(--text)}
+.content-section h2:first-child{margin-top:0}
+.content-section h3{font-size:17px;font-weight:600;margin-top:28px;margin-bottom:10px;color:var(--text)}
+.content-section p{color:var(--text-secondary);font-size:15px;line-height:1.8;margin-bottom:12px}
+.content-section ul{margin:8px 0 16px 20px;color:var(--text-secondary);font-size:15px;line-height:1.8}
+.content-section ul li{margin-bottom:6px}
+.content-section strong{color:var(--text)}
+.content-section a{color:var(--accent);text-decoration:underline}
+
+.footer{background:var(--bg-secondary);border-top:1px solid var(--border);padding:48px 0 24px;text-align:center}
+.footer-links{display:flex;justify-content:center;gap:28px;margin-bottom:28px;flex-wrap:wrap}
+.footer-links a{color:var(--text-secondary);text-decoration:none;font-size:12px;transition:color .3s var(--ease);letter-spacing:.02em}
+.footer-links a:hover{color:var(--text)}
+.footer p{color:var(--text-tertiary);font-size:12px}
+
+@media(max-width:768px){
+  .menu-toggle{display:flex}.mobile-nav{display:block}.mobile-overlay.active{display:block}.nav{display:none}
+  .page-header{padding-top:90px;padding-bottom:60px}
+  .content-section{padding:0 24px 80px}
+  .footer{padding:36px 0 20px}.footer-links{gap:20px}
+}
+</style>
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<section class="page-header">
+  <div class="wrap">
+    <h1>Política de Privacidade</h1>
+    <p>Saiba como recolhemos, utilizamos e protegemos os seus dados pessoais.</p>
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="wrap">
+    <h2>1. Introdução</h2>
+    <p>A Nexus Solutions (referida como "Nexus", "NexusPT", "NexusWeb", "nós" ou "nosso") valoriza a sua privacidade e está comprometida em proteger os seus dados pessoais. Esta Política de Privacidade descreve como recolhemos, utilizamos, processamos e armazenamos as suas informações pessoais quando utiliza os nossos serviços, incluindo os nossos websites, aplicações e plataformas.</p>
+    <p>Ao aceder ou utilizar qualquer um dos nossos serviços, concorda com os termos e práticas descritos nesta Política de Privacidade. Se não concordar com qualquer parte desta política, por favor não utilize os nossos serviços.</p>
+
+    <h2>2. Dados que Recolhemos</h2>
+    <p>Recolhemos vários tipos de informações através dos nossos serviços para melhorar a sua experiência e oferecer funcionalidades adequadas. Estas informações podem incluir:</p>
+
+    <h3>2.1. Informações que nos fornece diretamente</h3>
+    <ul>
+      <li><strong>Informações de conta:</strong> Nome de utilizador, endereço de e-mail e credenciais de autenticação para criação de conta e acesso aos nossos serviços.</li>
+      <li><strong>Informações de perfil:</strong> Dados adicionais que opta por incluir no seu perfil ou conta.</li>
+      <li><strong>Comunicações:</strong> Informações que nos fornece quando contacta o nosso suporte, responde a inquéritos ou interage connosco através de outros canais.</li>
+    </ul>
+
+    <h3>2.2. Informações recolhidas automaticamente</h3>
+    <ul>
+      <li><strong>Dados de utilização:</strong> Informações sobre como interage com os nossos serviços, incluindo páginas visitadas, recursos utilizados e tempo gasto.</li>
+      <li><strong>Informações do dispositivo:</strong> Dados sobre o seu dispositivo, incluindo modelo, sistema operativo, navegador, idioma e identificadores únicos.</li>
+      <li><strong>Dados de localização:</strong> Informações de localização geográfica baseadas no seu endereço IP ou outras tecnologias.</li>
+      <li><strong>Registos e análises:</strong> Registos de atividades, erros e outras estatísticas de uso para melhorar os nossos serviços.</li>
+    </ul>
+
+    <h2>3. Serviços de Terceiros</h2>
+    <p>Utilizamos diversos serviços de terceiros para melhorar a funcionalidade, segurança e desempenho dos nossos websites e aplicações. Cada um destes serviços recolhe e processa dados de acordo com as suas próprias políticas de privacidade.</p>
+
+    <h3>Cloudflare</h3>
+    <p>Utilizamos os serviços da Cloudflare para DNS, Turnstile (verificação de segurança), Rocket Loader e entrega de fontes. A Cloudflare pode recolher endereços IP e outras informações técnicas para fornecer os seus serviços de segurança e otimização.</p>
+
+    <h3>AdCash</h3>
+    <p>Em alguns dos nossos sites, utilizamos AdCash para monetização através de publicidade. Este serviço pode utilizar cookies e tecnologias semelhantes para apresentar anúncios relevantes e rastrear o desempenho das campanhas publicitárias.</p>
+
+    <h3>Microsoft Clarity</h3>
+    <p>Utilizamos o Microsoft Clarity em quase todos os nossos sites para analisar o comportamento dos utilizadores, incluindo mapas de calor e gravações de sessões anónimas, ajudando-nos a entender como os utilizadores interagem com as nossas páginas.</p>
+
+    <h3>Hotjar</h3>
+    <p>Apenas no site tv.nexuspt.eu, utilizamos o Hotjar para inquéritos e feedback dos utilizadores, permitindo-nos recolher informações sobre a experiência do utilizador e obter sugestões de melhoria.</p>
+
+    <h3>hCaptcha</h3>
+    <p>Utilizamos o hCaptcha para verificar que os utilizadores são humanos e não robots, protegendo os nossos formulários e funcionalidades contra abusos automatizados.</p>
+
+    <h3>reCAPTCHA</h3>
+    <p>Em algumas situações, utilizamos o Google reCAPTCHA para verificação de utilizadores e proteção contra spam e abusos automatizados.</p>
+
+    <h3>Google Analytics</h3>
+    <p>Utilizamos o Google Analytics para recolher informações sobre como os utilizadores interagem com os nossos sites, incluindo páginas visitadas, tempo de permanência e dados demográficos básicos.</p>
+
+    <h2>4. Como Utilizamos as Suas Informações</h2>
+    <p>Utilizamos as informações recolhidas para os seguintes fins:</p>
+    <ul>
+      <li><strong>Fornecer e melhorar os serviços:</strong> Para operar, manter e melhorar as nossas plataformas e serviços.</li>
+      <li><strong>Autenticação e segurança:</strong> Para verificar a sua identidade, proteger as suas contas e garantir a segurança dos nossos serviços.</li>
+      <li><strong>Personalização:</strong> Para personalizar a sua experiência e oferecer conteúdo e funcionalidades relevantes.</li>
+      <li><strong>Análise e otimização:</strong> Para analisar tendências de utilização, monitorizar o desempenho e otimizar a experiência do utilizador.</li>
+      <li><strong>Comunicações:</strong> Para responder às suas solicitações, fornecer suporte e enviar notificações relacionadas com o serviço.</li>
+      <li><strong>Cumprimento legal:</strong> Para cumprir obrigações legais e regulamentares aplicáveis.</li>
+      <li><strong>Deteção e prevenção de fraudes:</strong> Para identificar, investigar e prevenir atividades fraudulentas ou violações dos nossos termos de serviço.</li>
+    </ul>
+
+    <h2>5. Partilha de Informações</h2>
+    <p>Pode partilhar as suas informações com:</p>
+    <ul>
+      <li><strong>Fornecedores de serviços:</strong> Empresas que nos ajudam a fornecer e melhorar os nossos serviços, como os mencionados na secção "Serviços de Terceiros".</li>
+      <li><strong>Parceiros de negócios:</strong> Em alguns casos, podemos partilhar informações com parceiros de negócios para fornecer serviços específicos ou ofertas conjuntas.</li>
+      <li><strong>Quando exigido por lei:</strong> Para cumprir com obrigações legais, responder a processos legais ou proteger os nossos direitos e segurança.</li>
+      <li><strong>Com o seu consentimento:</strong> Em outras circunstâncias, com o seu consentimento explícito.</li>
+    </ul>
+    <p><strong>Não vendemos</strong> as suas informações pessoais a terceiros para fins de marketing.</p>
+
+    <h2>6. Os Seus Direitos e Escolhas</h2>
+    <p>De acordo com o Regulamento Geral de Proteção de Dados (RGPD) e outras leis de privacidade aplicáveis, pode ter os seguintes direitos:</p>
+    <ul>
+      <li><strong>Acesso:</strong> Solicitar acesso às suas informações pessoais que processamos.</li>
+      <li><strong>Retificação:</strong> Solicitar a correção de informações imprecisas ou incompletas.</li>
+      <li><strong>Eliminação:</strong> Solicitar a eliminação das suas informações pessoais em determinadas circunstâncias.</li>
+      <li><strong>Restrição:</strong> Solicitar a restrição do processamento das suas informações pessoais.</li>
+      <li><strong>Oposição:</strong> Opor-se ao processamento das suas informações pessoais para determinados fins.</li>
+      <li><strong>Portabilidade de dados:</strong> Solicitar uma cópia das suas informações pessoais num formato estruturado e legível por máquina.</li>
+      <li><strong>Revogação do consentimento:</strong> Revogar qualquer consentimento que tenha dado anteriormente.</li>
+    </ul>
+    <p>Para exercer qualquer um destes direitos, entre em contacto connosco através do endereço de e-mail fornecido abaixo.</p>
+
+    <h2>7. Segurança dos Dados</h2>
+    <p>Implementamos medidas de segurança técnicas e organizacionais apropriadas para proteger as suas informações pessoais contra perda acidental, acesso não autorizado, utilização indevida, alteração e divulgação. No entanto, nenhum sistema é completamente seguro, e não podemos garantir a segurança absoluta das suas informações.</p>
+
+    <h2>8. Retenção de Dados</h2>
+    <p>Mantemos as suas informações pessoais apenas pelo tempo necessário para cumprir os fins para os quais foram recolhidas, incluindo para satisfazer requisitos legais, contabilísticos ou de relatórios.</p>
+
+    <h2>9. Transferências Internacionais</h2>
+    <p>As suas informações pessoais podem ser transferidas para, e processadas em, países diferentes do seu país de residência. Estes países podem ter leis de proteção de dados diferentes das do seu país. Quando transferimos informações para fora do Espaço Económico Europeu (EEE), garantimos que existem salvaguardas adequadas em vigor para proteger os seus dados.</p>
+
+    <h2>10. Crianças</h2>
+    <p>Os nossos serviços não se destinam a crianças menores de 16 anos, e não recolhemos intencionalmente informações pessoais de crianças. Se descobrirmos que recolhemos informações pessoais de uma criança menor de 16 anos sem verificação do consentimento parental, tomaremos medidas para remover essas informações dos nossos servidores.</p>
+
+    <h2>11. Alterações a Esta Política</h2>
+    <p>Podemos atualizar esta Política de Privacidade periodicamente para refletir alterações nas nossas práticas de informação ou alterações legislativas. Encorajamos a revisão periódica desta política para se manter informado sobre como protegemos as suas informações.</p>
+
+    <h2>12. Contacto</h2>
+    <p>Se tiver dúvidas, preocupações ou comentários sobre esta Política de Privacidade ou as nossas práticas de dados, entre em contacto connosco:</p>
+    <ul>
+      <li><strong>Email:</strong> dados@nexuspt.eu</li>
+      <li><strong>Última atualização:</strong> 12 de março de 2025</li>
+    </ul>
+  </div>
+</section>
+
+<script src="https://kikalabs-server.nexuspt.eu/js/site-nxweb/fh.js"></script>
+
+<script>
+const progressBar = document.getElementById('scrollProgress');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  progressBar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100 + '%';
+});
+(function() {
+  const links = document.querySelectorAll('.footer-links a');
+  if(links.length >= 4) { links[0].href = 'privacidade.html'; links[1].href = 'termos.html'; links[2].href = 'privacidade.html'; links[3].href = '#'; }
+})();
+</script>
+
+</body>
+</html>

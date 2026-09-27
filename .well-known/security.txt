@@ -1,0 +1,10 @@
+# security.txt for nexuspt.eu
+# Standard: RFC 9116
+# Location: https://nexuspt.eu/.well-known/security.txt
+
+Contact: mailto:rvd@nexuspt.eu
+Contact: https://nexuspt.eu/contact
+
+Preferred-Languages: pt, en
+
+Canonical: https://nexuspt.eu/.well-known/security.txt

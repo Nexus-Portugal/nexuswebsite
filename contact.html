@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="pt-pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Contacto | NexusPT</title>
+<meta name="description" content="Fala com a NexusPT sobre o teu projeto — desenvolvimento web, alojamento e segurança. Respondemos a todas as dúvidas." />
+<link rel="canonical" href="https://nexuspt.eu/contact.html" />
+<link rel="alternate" hreflang="pt" href="https://nexuspt.eu/contact.html" />
+<link rel="alternate" hreflang="en" href="https://en.nexuspt.eu/contact.html" />
+<link rel="alternate" hreflang="x-default" href="https://nexuspt.eu/contact.html" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="NexusPT" />
+<meta property="og:locale" content="pt_PT" />
+<meta property="og:title" content="Contacto | NexusPT" />
+<meta property="og:description" content="Fala com a NexusPT sobre o teu projeto — desenvolvimento web, alojamento e segurança." />
+<meta property="og:url" content="https://nexuspt.eu/contact.html" />
+<meta property="og:image" content="https://i.ibb.co/yBMfPBtC/Nexus-Afastado.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Contacto | NexusPT" />
+<meta name="twitter:description" content="Fala com a NexusPT sobre o teu projeto." />
+<meta name="twitter:image" content="https://i.ibb.co/yBMfPBtC/Nexus-Afastado.png" />
+<meta name="theme-color" content="#000000" />
+<link rel="icon" href="favicon.ico" sizes="32x32" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nexus-shared.css">
+
+<style>
+/* ─── CONTACTO (específico) ─── */
+
+.contact-section{padding: 0 0 120px 0}
+.section-title{margin-bottom: 44px}
+.section-title h2{
+  display: inline-block;
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.section-title h2::after{
+  content: '';
+  display: block;
+  width: 44px;
+  height: 2px;
+  margin-top: 12px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+.section-title p{color: var(--text-secondary); font-size: 15px; margin-top: 10px}
+.contact-container{max-width: 800px; margin: 0 auto}
+
+/* Form Styles (Substituindo o iframe) */
+.contact-form {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  min-height: 500px;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+.form-group label {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  letter-spacing: 0.01em;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  padding: 14px 16px;
+  font-size: 15px;
+  font-family: inherit;
+  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  outline: none;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--text-tertiary);
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(0, 244, 60, 0.08);
+}
+.form-group textarea {
+  min-height: 140px;
+  resize: vertical;
+  line-height: 1.5;
+}
+.form-group select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2386868b' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  cursor: pointer;
+}
+.submit-btn {
+  width: 100%;
+  background: var(--accent-gradient);
+  color: #000;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: opacity 0.3s var(--ease), transform 0.2s var(--ease);
+  margin-top: 8px;
+  letter-spacing: 0.01em;
+}
+.submit-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+.submit-btn:active {
+  transform: translateY(0);
+}
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+.form-message {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  display: none;
+  line-height: 1.5;
+}
+.form-message.success {
+  display: block;
+  background: rgba(0, 244, 60, 0.08);
+  color: var(--accent);
+  border: 1px solid rgba(0, 244, 60, 0.2);
+}
+.form-message.error {
+  display: block;
+  background: rgba(255, 59, 48, 0.08);
+  color: #ff453a;
+  border: 1px solid rgba(255, 59, 48, 0.2);
+}
+
+@media(max-width: 768px){
+  .contact-section{padding: 0 0 80px 0}
+  .contact-form {
+    padding: 24px;
+    min-height: 400px;
+  }
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#conteudo">Saltar para o conteúdo principal</a>
+
+<main id="conteudo">
+
+<section class="page-header">
+  <div class="wrap">
+    <div class="header-rule"></div>
+    <h1>Contacta-nos</h1>
+    <p>Estamos aqui para responder a todas as tuas dúvidas e ajudar no teu projeto.</p>
+  </div>
+</section>
+
+<section class="contact-section">
+  <div class="wrap">
+    <div class="contact-container">
+      <div class="section-title reveal">
+        <h2>Enviar Mensagem</h2>
+        <p>Preenche o formulário abaixo e entraremos em contacto em breve</p>
+      </div>
+      <div class="contact-form reveal">
+        <form id="contactForm" novalidate>
+          <div class="form-group">
+            <label for="name">Nome *</label>
+            <input type="text" id="name" name="name" required placeholder="O teu nome completo">
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required placeholder="exemplo@email.com">
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Telefone (opcional)</label>
+            <input type="tel" id="phone" name="phone" placeholder="+351 9XX XXX XXX">
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Assunto</label>
+            <select id="subject" name="subject">
+              <option value="geral" selected>Geral</option>
+              <option value="tecnico">Técnico</option>
+              <option value="drippi">Drippi</option>
+              <option value="marketing">Marketing</option>
+              <option value="sugestoes">Sugestões</option>
+              <option value="reclamacoes">Reclamações</option>
+              <option value="seguranca">Segurança</option>
+              <option value="privacidade">Privacidade</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Descrição *</label>
+            <textarea id="description" name="description" required placeholder="Descreve o teu pedido ou dúvida em detalhe..."></textarea>
+          </div>
+
+          <button type="submit" id="submitBtn" class="submit-btn">Enviar Mensagem</button>
+          
+          <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script src="https://kikalabs-server.nexuspt.eu/js/site-nxweb/fh.js"></script>
+<script src="i18n/i18n.js" defer></script>
+<script src="consent.js" defer></script>
+
+<script>
+(function () {
+  document.querySelectorAll('.nav a.active, .mobile-nav a.active').forEach(function (a) {
+    a.setAttribute('aria-current', 'page');
+  });
+  var t = document.getElementById('menuToggle');
+  if (t) {
+    t.setAttribute('aria-expanded', 'false');
+    t.addEventListener('click', function () {
+      var nav = document.getElementById('mobileNav');
+      t.setAttribute('aria-expanded', String(nav.classList.contains('active')));
+    });
+  }
+})();
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) { entry.target.classList.add('show'); revealObserver.unobserve(entry.target); }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// Lógica de Submissão do Formulário
+const contactForm = document.getElementById('contactForm');
+const formMessage = document.getElementById('formMessage');
+const submitBtn = document.getElementById('submitBtn');
+
+contactForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  formMessage.className = 'form-message';
+  formMessage.style.display = 'none';
+  formMessage.textContent = '';
+  
+  const formData = new FormData(contactForm);
+  const data = {
+    name: formData.get('name').trim(),
+    email: formData.get('email').trim(),
+    phone: formData.get('phone').trim(),
+    subject: formData.get('subject') || 'geral',
+    description: formData.get('description').trim()
+  };
+
+  const errors = [];
+  if (!data.name) errors.push('Nome é obrigatório');
+  
+  if (!data.email) {
+    errors.push('Email é obrigatório');
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+    errors.push('Email inválido');
+  }
+  
+  if (!data.description) errors.push('Descrição é obrigatória');
+  
+  if (data.phone) {
+    const cleanPhone = data.phone.replace(/\s/g, '');
+    if (!/^\+3519\d{8}$/.test(cleanPhone)) {
+      errors.push('Formato de telefone inválido (deve ser +3519XXXXXXXX)');
+    } else {
+      data.phone = cleanPhone; // Envia o formato limpo
+    }
+  }
+
+  if (errors.length > 0) {
+    formMessage.textContent = errors.join(' • ');
+    formMessage.classList.add('error');
+    formMessage.style.display = 'block';
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'A enviar...';
+
+  try {
+    const response = await fetch('https://my.nexuspt.eu/contactarnexus', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+
+    if (response.ok && result.success) {
+      formMessage.textContent = result.message || 'Mensagem enviada com sucesso! Entraremos em contacto em breve.';
+      formMessage.classList.add('success');
+      formMessage.style.display = 'block';
+      contactForm.reset();
+    } else {
+      const errorMsg = result.errors ? result.errors.join(' • ') : (result.message || 'Ocorreu um erro ao enviar a mensagem.');
+      formMessage.textContent = errorMsg;
+      formMessage.classList.add('error');
+      formMessage.style.display = 'block';
+    }
+  } catch (error) {
+    formMessage.textContent = 'Erro de ligação. Por favor, tenta novamente mais tarde.';
+    formMessage.classList.add('error');
+    formMessage.style.display = 'block';
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Enviar Mensagem';
+  }
+});
+</script>
+
+</body>
+</html>
