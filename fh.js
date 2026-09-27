@@ -334,6 +334,15 @@ const langCss = `
             <button type="button" class="lang-switch__option" data-lang="en" role="menuitem">
               English <i class="fas fa-check" aria-hidden="true"></i>
             </button>
+            <button type="button" class="lang-switch__option" data-lang="fr" role="menuitem">
+              Français <i class="fas fa-check" aria-hidden="true"></i>
+            </button>
+            <button type="button" class="lang-switch__option" data-lang="de" role="menuitem">
+              Deutsch <i class="fas fa-check" aria-hidden="true"></i>
+            </button>
+            <button type="button" class="lang-switch__option" data-lang="es" role="menuitem">
+              Español <i class="fas fa-check" aria-hidden="true"></i>
+            </button>
           </div>
         </div>
         </div>
@@ -366,6 +375,9 @@ const langCss = `
             <div class="lang-switch-mobile">
               <button type="button" data-lang="pt">Português <i class="fas fa-check" aria-hidden="true"></i></button>
               <button type="button" data-lang="en">English <i class="fas fa-check" aria-hidden="true"></i></button>
+              <button type="button" data-lang="fr">Français <i class="fas fa-check" aria-hidden="true"></i></button>
+              <button type="button" data-lang="de">Deutsch <i class="fas fa-check" aria-hidden="true"></i></button>
+              <button type="button" data-lang="es">Español <i class="fas fa-check" aria-hidden="true"></i></button>
             </div>
             </div>
           </div>
@@ -517,32 +529,52 @@ const langCss = `
 
   document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
 
-  // ─── Seletor de idioma PT/EN ───
-  // no nexuspt.eu → PT nativo; no en.nexuspt.eu → EN.
-  // Em localhost (dev): usa o override ?lang= do i18n.js.
+  // ─── Seletor de idioma PT/EN/FR/DE/ES ───
+  // EN tem subdomínio próprio (en.nexuspt.eu). FR/DE/ES ainda não têm
+  // DNS, por isso são servidos no próprio domínio via ?l=xx — o i18n.js
+  // guarda a escolha em localStorage e mantém-a entre páginas.
+  const LANG_KEY = 'nx-lang';
   const LANGS = {
     pt: { label: 'PT', hostname: 'nexuspt.eu' },
-    en: { label: 'EN', hostname: 'en.nexuspt.eu' }
+    en: { label: 'EN', hostname: 'en.nexuspt.eu' },
+    fr: { label: 'FR', hostname: null },
+    de: { label: 'DE', hostname: null },
+    es: { label: 'ES', hostname: null }
   };
 
+  function readSavedLang() {
+    try { return window.localStorage.getItem(LANG_KEY) || ''; } catch (e) { return ''; }
+  }
+
   function currentLang() {
-    const forced = new URLSearchParams(window.location.search).get('lang');
-    if (forced === 'en' || forced === 'pt') return forced;
+    const p = new URLSearchParams(window.location.search);
+    const forced = (p.get('l') || p.get('lang') || '').trim().toLowerCase();
+    if (forced && LANGS[forced]) return forced;
     const host = (window.location.hostname || '').toLowerCase();
-    return host.startsWith('en.') ? 'en' : 'pt';
+    if (host.startsWith('en.')) return 'en';
+    const saved = readSavedLang();
+    return saved && LANGS[saved] ? saved : 'pt';
   }
 
   function targetLangUrl(lang) {
     const url = new URL(window.location.href);
     const host = (window.location.hostname || '').toLowerCase();
     const isLocal = !host.includes('nexuspt.eu');
-    if (isLocal) {
-      // dev: troca via parâmetro ?lang= (o i18n.js faz o resto)
-      if (lang === 'pt') url.searchParams.delete('lang');
-      else url.searchParams.set('lang', 'en');
+    const useParam = isLocal || !LANGS[lang].hostname;
+
+    if (useParam) {
+      // sem subdomínio: ?l=xx (o i18n.js faz o resto)
+      if (lang === 'pt') {
+        url.searchParams.delete('l');
+        url.searchParams.delete('lang');
+      } else {
+        url.searchParams.delete('lang');
+        url.searchParams.set('l', lang);
+      }
     } else {
       // produção: troca de subdomínio, preservando caminho e query
       url.hostname = LANGS[lang].hostname;
+      url.searchParams.delete('l');
       url.searchParams.delete('lang');
     }
     return url.toString();
@@ -570,6 +602,13 @@ const langCss = `
 
   function switchLang(lang) {
     if (lang === currentLang()) return;
+    // O i18n.js aplica o idioma a partir de ?l=xx ou do valor guardado.
+    // Escrever aqui garante que a próxima página já arranca no certo;
+    // voltar ao PT limpa a escolha, senão voltava ao idioma anterior.
+    try {
+      if (lang === 'pt') window.localStorage.removeItem(LANG_KEY);
+      else window.localStorage.setItem(LANG_KEY, lang);
+    } catch (e) { /* modo privado */ }
     window.location.href = targetLangUrl(lang);
   }
 

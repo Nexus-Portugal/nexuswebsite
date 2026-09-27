@@ -1,14 +1,22 @@
 /* ─────────────────────────────────────────────────────────────
-   NexusPT — i18n por subdomínio
+   NexusPT — i18n
    Configuração em i18n/i18n-config.json (junto a este ficheiro):
    {
      "en.nexuspt.eu": { "file": "en.json", "lang": "en" },
      "fr.nexuspt.eu": { "file": "fr.json", "lang": "fr" }
    }
    Dicionário flat de texto exato: { "olá": "hello", ... }
-   Só traduz quando o hostname tem entrada na config
-   (ex.: en.nexuspt.eu). Em nexuspt.eu fica PT nativo.
-   Override de teste: ?lang=en (não grava nada).
+
+   Como se escolhe o idioma, por ordem de prioridade:
+     1. ?l=fr  (ou ?lang=fr, alias antigo) — grava a escolha em
+        localStorage, por isso mantém-se ao navegar entre páginas.
+     2. entrada do hostname na config (en.nexuspt.eu → en).
+     3. último idioma guardado em localStorage.
+     4. PT nativo (sem dicionário; nexuspt.eu é a fonte em português).
+
+   Só existem os idiomas presentes na config. ?l=desconhecido é ignorado.
+   Subdomínios sem DNS podem ser evitados na totalidade: fr/de/es
+   funcionam só com ?l=fr, ?l=de, ?l=es.
    Conteúdo dinâmico: chamar NexusI18n.reapply() após injetar DOM.
    ───────────────────────────────────────────────────────────── */
 
@@ -22,6 +30,19 @@
   })();
 
   var CONFIG_URL = BASE + 'i18n-config.json';
+  var STORE_KEY = 'nx-lang';
+
+  function readStore() {
+    try { return window.localStorage.getItem(STORE_KEY) || ''; } catch (e) { return ''; }
+  }
+
+  function writeStore(lang) {
+    try { window.localStorage.setItem(STORE_KEY, lang); } catch (e) { /* modo privado */ }
+  }
+
+  function clearStore() {
+    try { window.localStorage.removeItem(STORE_KEY); } catch (e) { /* modo privado */ }
+  }
 
   function fetchJSON(url) {
     return fetch(url, { credentials: 'same-origin', cache: 'no-cache' }).then(function (r) {
@@ -84,32 +105,60 @@
     host: null,
     applied: false,
     apply: function (dict) { lastDict = dict; return run(dict); },
-    reapply: function () { return lastDict ? run(lastDict) : { applied: 0 }; }
+    reapply: function () { return lastDict ? run(lastDict) : { applied: 0 }; },
+    saved: readStore,
+    save: function (lang) { writeStore(lang); }
   };
+
+  // ─── Idioma escolhido em ?l= (alias antigo: ?lang=) ───
+  function paramLang() {
+    var p = new URLSearchParams(location.search);
+    return (p.get('l') || p.get('lang') || '').trim().toLowerCase();
+  }
+
+  function collectAvailable(map) {
+    var out = { pt: null };
+    Object.keys(map).forEach(function (h) {
+      var e = map[h];
+      if (e && e.file) out[e.lang || e.file.replace(/\.json$/, '')] = e.file;
+    });
+    return out;
+  }
+
+  function pickLang(available, hostEntry) {
+    var q = paramLang();
+    if (q) {
+      if (!(q in available)) return { lang: 'pt', save: null, warn: 'idioma desconhecido: ' + q };
+      return { lang: q, save: q === 'pt' ? null : q };
+    }
+    if (hostEntry && hostEntry.file) {
+      return { lang: hostEntry.lang || hostEntry.file.replace(/\.json$/, ''), save: null };
+    }
+    var stored = readStore();
+    if (stored && (stored in available) && stored !== 'pt') return { lang: stored, save: null };
+    return { lang: 'pt', save: null };
+  }
 
   function boot() {
     var host = (location.hostname || '').toLowerCase();
     i18n.host = host;
 
-    var forced = new URLSearchParams(location.search).get('lang');
-    var promise;
+    fetchJSON(CONFIG_URL).then(function (map) {
+      var available = collectAvailable(map);
+      var pick = pickLang(available, map[host]);
 
-    if (forced) {
-      i18n.lang = forced;
-      promise = fetchJSON(BASE + forced + '.json');
-    } else {
-      promise = fetchJSON(CONFIG_URL).then(function (map) {
-        var entry = map[host];
-        if (!entry || !entry.file) throw new Error('sem entrada para ' + host);
-        i18n.lang = entry.lang || entry.file.replace(/\.json$/, '');
-        return fetchJSON(BASE + entry.file);
+      if (pick.warn) throw new Error(pick.warn);
+      if (pick.save) writeStore(pick.save);
+      else if (pick.lang === 'pt') clearStore();
+
+      i18n.lang = pick.lang;
+      if (pick.lang === 'pt') return null; // PT nativo, nada a traduzir
+
+      return fetchJSON(BASE + available[pick.lang]).then(function (dict) {
+        if (!dict || !Object.keys(dict).length) throw new Error('dicionário vazio: ' + pick.lang);
+        i18n.apply(dict);
+        i18n.applied = true;
       });
-    }
-
-    promise.then(function (dict) {
-      if (!dict || !Object.keys(dict).length) throw new Error('dicionário vazio');
-      i18n.apply(dict);
-      i18n.applied = true;
     }).catch(function (err) {
       if (window.console && console.info) {
         console.info('[NexusI18n] PT nativo (' + err.message + ')');

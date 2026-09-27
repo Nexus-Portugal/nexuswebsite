@@ -1,3 +1,6 @@
 {
-  "en.nexuspt.eu": { "file": "en.json", "lang": "en" }
+  "en.nexuspt.eu": { "file": "en.json", "lang": "en" },
+  "fr.nexuspt.eu": { "file": "fr.json", "lang": "fr" },
+  "de.nexuspt.eu": { "file": "de.json", "lang": "de" },
+  "es.nexuspt.eu": { "file": "es.json", "lang": "es" }
 }
