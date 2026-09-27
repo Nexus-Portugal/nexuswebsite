@@ -451,6 +451,16 @@ window.addEventListener("resize", resizeCanvas);
    ========================================================== */
 
 function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+
+/* Equivalente a Promise.allSettled para browsers antigos */
+function allSettled(promises) {
+  return Promise.all(promises.map(function (p) {
+    return Promise.resolve(p).then(
+      function (value) { return { status: "fulfilled", value: value }; },
+      function (reason) { return { status: "rejected", reason: reason }; }
+    );
+  }));
+}
 function fadeSwap(el, text, classTarget) {
   const t = classTarget || el;
   if (t._fadeTimer) clearTimeout(t._fadeTimer);
@@ -655,7 +665,7 @@ async function runDownload() {
     } catch (error) { console.warn("Download meter:", error); }
   }, 100);
 
-  await Promise.allSettled(workers);
+  await allSettled(workers);
 
   clearInterval(graphTimer);
   graphTimer = null;
@@ -812,7 +822,7 @@ async function runUpload() {
     } catch (error) { console.warn("Upload meter:", error); }
   }, 100);
 
-  await Promise.allSettled(workers);
+  await allSettled(workers);
 
   clearInterval(graphTimer);
   graphTimer = null;
