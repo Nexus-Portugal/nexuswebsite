@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Nexus Portugal robots
 User-agent: *
 Allow: /
@@ -6,13 +5,3 @@ Allow: /
 # Sitemaps
 Sitemap: https://nexuspt.eu/sitemap.xml
 Sitemap: https://en.nexuspt.eu/sitemap-en.xml
-=======
-# Nexus Portugal v1 robots by Gabriel V.
-
-
-User-agent: *
-Allow: /
-
-# Sitemap
-Sitemap: https://nexuspt.eu/sitemap.xml
->>>>>>> 8e5d591bf2ed28d45015912dacd24211a3bff1dd

@@ -4,7 +4,6 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>História | NexusPT</title>
-<<<<<<< HEAD
 <meta name="description" content="Uma cronologia dos marcos que moldaram a Nexus — de GamesStudios à NexusPT." />
 <link rel="canonical" href="https://nexuspt.eu/history.html" />
 <link rel="alternate" hreflang="pt" href="https://nexuspt.eu/history.html" />
@@ -30,122 +29,6 @@
 <style>
 /* ─── HISTÓRIA (específico) ─── */
 
-=======
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-
-<style>
-:root{
-  --bg: #000000;
-  --bg-secondary: #0a0a0a;
-  --bg-tertiary: #111111;
-  --text: #f5f5f7;
-  --text-secondary: #86868b;
-  --text-tertiary: #6e6e73;
-  --accent: #00f43c;
-  --accent-gradient: linear-gradient(135deg, #00f43c, #00c9ff);
-  --border: rgba(255,255,255,0.08);
-  --nav-blur: blur(60px) saturate(180%);
-  --nav-bg: rgba(0,0,0,0.8);
-  --ease: cubic-bezier(0.42, 0, 0.58, 1);
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --container: 1200px;
-  --radius: 16px;
-  --radius-lg: 24px;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-body{
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-}
-::selection{background: rgba(0,244,60,0.3)}
-.wrap{max-width: var(--container); margin: 0 auto; padding: 0 28px}
-
-.header{
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 1000;
-  padding: 0;
-  height: 52px;
-  display: flex;
-  align-items: center;
-  transition: background 0.4s var(--ease), backdrop-filter 0.4s var(--ease), border-color 0.4s var(--ease);
-  background: transparent;
-  border-bottom: 1px solid transparent;
-}
-.header.scrolled{
-  background: var(--nav-bg);
-  backdrop-filter: var(--nav-blur);
-  -webkit-backdrop-filter: var(--nav-blur);
-  border-bottom-color: var(--border);
-}
-.header .wrap{display: flex; justify-content: space-between; align-items: center; width: 100%}
-.logo{display: flex; align-items: center; text-decoration: none; color: var(--text); font-weight: 600; font-size: 18px; letter-spacing: -0.02em}
-.logo img{height: 26px; display: block}
-.nav{display: flex; align-items: center; gap: 2px}
-.nav a{
-  color: var(--text-secondary); text-decoration: none; font-weight: 400;
-  font-size: 13px; padding: 6px 14px; border-radius: 6px;
-  transition: color 0.3s var(--ease), background 0.3s var(--ease);
-  letter-spacing: 0.01em;
-}
-.nav a:hover{color: var(--text); background: rgba(255,255,255,0.06)}
-.nav a.active{color: var(--text)}
-
-.menu-toggle{
-  display: none; flex-direction: column; justify-content: center; align-items: center;
-  width: 36px; height: 36px; background: transparent; border: none; cursor: pointer; padding: 0;
-}
-.menu-toggle span, .menu-toggle span::before, .menu-toggle span::after{
-  display: block; width: 18px; height: 1.5px; background: var(--text);
-  border-radius: 1px; position: relative; transition: all 0.3s var(--ease);
-}
-.menu-toggle span::before{content: ''; position: absolute; left: 0; top: -5px}
-.menu-toggle span::after{content: ''; position: absolute; left: 0; top: 5px}
-.menu-toggle.active span{background: transparent}
-.menu-toggle.active span::before{transform: rotate(45deg); top: 0}
-.menu-toggle.active span::after{transform: rotate(-45deg); top: 0}
-
-.mobile-nav{
-  display: none; position: fixed; top: 52px; right: -100%; width: 100%;
-  max-width: 360px; height: calc(100vh - 52px);
-  background: rgba(0,0,0,0.97); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
-  padding: 32px 28px; transition: right 0.5s var(--ease-out); z-index: 999;
-  border-left: 1px solid var(--border);
-}
-.mobile-nav.active{right: 0}
-.mobile-nav a{
-  display: block; color: var(--text-secondary); text-decoration: none;
-  font-weight: 400; font-size: 17px; padding: 16px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.04); transition: color 0.3s var(--ease);
-}
-.mobile-nav a:hover, .mobile-nav a.active{color: var(--text)}
-.mobile-overlay{
-  display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5);
-  opacity: 0; transition: opacity 0.4s var(--ease); z-index: 998; pointer-events: none;
-}
-.mobile-overlay.active{display: block; opacity: 1; pointer-events: auto}
-
-.client-area{display: flex; align-items: center; justify-content: center; margin-left: 12px; opacity: 0.6; transition: opacity 0.3s var(--ease)}
-.client-area:hover{opacity: 1}
-.client-area img{width: 20px; height: 20px; display: block}
-@media(max-width:768px){.client-area{display:none}}
-
-.scroll-progress{position: fixed; top: 0; left: 0; height: 1px; background: var(--accent-gradient); z-index: 1001; transition: width 0.1s linear}
-
-.page-header{
-  padding-top: 120px; padding-bottom: 80px; text-align: center;
-}
-.page-header h1{
-  font-size: clamp(32px, 4vw, 56px); font-weight: 600;
-  letter-spacing: -0.03em; margin-bottom: 12px;
-}
-.page-header p{color: var(--text-secondary); font-size: 18px; max-width: 600px; margin: 0 auto}
->>>>>>> 8e5d591bf2ed28d45015912dacd24211a3bff1dd
 
 .history-section{padding: 0 0 120px 0}
 .timeline{max-width: 720px; margin: 0 auto; position: relative}
@@ -177,42 +60,15 @@ body{
 .timeline-image img{max-width: 100%; max-height: 100%; object-fit: contain}
 .timeline-description{color: var(--text-secondary); font-size: 15px; line-height: 1.7}
 
-<<<<<<< HEAD
 @media(max-width: 768px){
   .history-section{padding: 0 0 80px 0}
   .timeline-item{padding-left: 44px; padding-bottom: 40px}
   .timeline-image{height: 100px; max-width: 100%}
-=======
-.footer{
-  background: var(--bg-secondary); border-top: 1px solid var(--border);
-  padding: 48px 0 24px; text-align: center;
-}
-.footer-links{display: flex; justify-content: center; gap: 28px; margin-bottom: 28px; flex-wrap: wrap}
-.footer-links a{color: var(--text-secondary); text-decoration: none; font-size: 12px; transition: color 0.3s var(--ease); letter-spacing: 0.02em}
-.footer-links a:hover{color: var(--text)}
-.footer p{color: var(--text-tertiary); font-size: 12px}
-
-.reveal{opacity: 0; transform: translateY(24px); transition: all 0.7s var(--ease-out)}
-.reveal.show{opacity: 1; transform: translateY(0)}
-
-@media(max-width: 768px){
-  .menu-toggle{display: flex}
-  .mobile-nav{display: block}
-  .mobile-overlay.active{display: block}
-  .nav{display: none}
-  .page-header{padding-top: 90px; padding-bottom: 60px}
-  .history-section{padding: 0 0 80px 0}
-  .timeline-item{padding-left: 44px; padding-bottom: 40px}
-  .timeline-image{height: 100px; max-width: 100%}
-  .footer{padding: 36px 0 20px}
-  .footer-links{gap: 20px}
->>>>>>> 8e5d591bf2ed28d45015912dacd24211a3bff1dd
 }
 </style>
 </head>
 <body>
 
-<<<<<<< HEAD
 <a class="skip-link" href="#conteudo">Saltar para o conteúdo principal</a>
 
 <main id="conteudo">
@@ -221,13 +77,6 @@ body{
   <div class="wrap">
     <div class="header-rule"></div>
     <h1>A nossa <strong>história</strong></h1>
-=======
-<div class="scroll-progress" id="scrollProgress"></div>
-
-<section class="page-header">
-  <div class="wrap">
-    <h1>A Nossa História</h1>
->>>>>>> 8e5d591bf2ed28d45015912dacd24211a3bff1dd
     <p>Uma cronologia dos marcos que moldaram a Nexus.</p>
   </div>
 </section>
@@ -294,7 +143,6 @@ body{
   </div>
 </section>
 
-<<<<<<< HEAD
 </main>
 
 <script src="https://kikalabs-server.nexuspt.eu/js/site-nxweb/fh.js"></script>
@@ -316,16 +164,6 @@ body{
   }
 })();
 
-=======
-<script src="https://kikalabs-server.nexuspt.eu/js/site-nxweb/fh.js"></script>
-
-<script>
-const progressBar = document.getElementById('scrollProgress');
-window.addEventListener('scroll', () => {
-  const h = document.documentElement;
-  progressBar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100 + '%';
-});
->>>>>>> 8e5d591bf2ed28d45015912dacd24211a3bff1dd
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if(entry.isIntersecting) { entry.target.classList.add('show'); revealObserver.unobserve(entry.target); }
@@ -333,9 +171,5 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 </script>
-<<<<<<< HEAD
-=======
-
->>>>>>> 8e5d591bf2ed28d45015912dacd24211a3bff1dd
 </body>
 </html>
