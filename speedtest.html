@@ -34,9 +34,7 @@
 .st-app{
   max-width: 820px;
   margin: 0 auto;
-  background: rgba(255,255,255,0.02);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
+  background: #0d0d0d;
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
   padding: 40px 32px 32px;
@@ -106,9 +104,7 @@
   margin-top: 32px;
   border-radius: 50%;
   border: 2px solid rgba(0,244,60,0.45);
-  background: rgba(0,244,60,0.08);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background: #0b2f14;
   color: var(--accent);
   font-family: inherit;
   cursor: pointer;
@@ -121,7 +117,7 @@
 }
 .st-start:hover:not(:disabled){
   transform: scale(1.04);
-  background: rgba(0,244,60,0.14);
+  background: #0e3d19;
   border-color: rgba(0,244,60,0.7);
   box-shadow: 0 0 60px rgba(0,244,60,0.18);
 }
@@ -156,7 +152,7 @@
   gap: 14px;
 }
 .st-card{
-  background: rgba(255,255,255,0.02);
+  background: #0d0d0d;
   border: 1px solid var(--glass-border);
   border-radius: 16px;
   padding: 20px 10px;
@@ -188,7 +184,7 @@
 .st-graph{
   height: 150px;
   margin-top: 14px;
-  background: rgba(255,255,255,0.02);
+  background: #0d0d0d;
   border: 1px solid var(--glass-border);
   border-radius: 16px;
   overflow: hidden;
@@ -211,6 +207,22 @@
 .st-jitter-value{transition: opacity 0.3s var(--ease)}
 .st-jitter-value.is-idle{opacity: 0}
 
+/* ─── Análise de rede ─── */
+.st-analysis{display: none; text-align: left; margin-top: 36px; border-top: 1px solid var(--border); padding-top: 26px}
+.st-analysis.is-visible{display: block; animation: stReveal 0.45s var(--ease)}
+.st-analysis-title{font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 12px}
+.st-an-summary{font-size: 15px; color: var(--text); margin-bottom: 16px; line-height: 1.6}
+.st-an-grid{display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 14px}
+.st-an-row dt{font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 4px}
+.st-an-row dd{margin: 0; font-size: 15px; color: var(--text); font-variant-numeric: tabular-nums; line-height: 1.45}
+.st-an-row dd span{font-weight: 600}
+.st-an-note{font-size: 13.5px; color: var(--text-secondary); line-height: 1.8}
+.st-an-note .st-ok{color: #4ade80}
+.st-an-note .st-bad{color: #f87171}
+.st-an-label{font-weight: 600; color: var(--text-secondary)}
+.st-an-label.st-ok{color: #4ade80}
+.st-an-label.st-bad{color: #f87171}
+
 /* Cards/gráfico/info só aparecem ao iniciar o teste */
 .st-lower{display:none}
 .st-lower.is-open{display:block; animation: stReveal 0.45s var(--ease)}
@@ -224,6 +236,7 @@
   .st-card{padding: 16px 4px}
   .st-value{font-size: 19px}
   .st-info{gap: 16px}
+  .st-an-grid{grid-template-columns: repeat(2, 1fr)}
 }
 </style>
 </head>
@@ -299,6 +312,8 @@
         <div>Threads: <strong><span id="threads">6</span></strong></div>
         <div>Dados: <strong><span id="data">0</span> MB</strong></div>
       </div>
+
+      <div id="analysis" class="st-analysis" hidden></div>
       </div>
     </div>
   </div>
@@ -319,11 +334,12 @@
    ========================================================== */
 
 const SERVERS_JSON_URL = "https://kikalabs-server.nexuspt.eu/json/site-nxweb/speedtest.json";
+/* Fallback quando a lista (speedtest.json) não carrega */
 const DEFAULT_SERVER = {
-  name: "Litoral Alentejano, Portugal",
-  url: "https://speedtest.nexuspt.eu",
-  location: "Setúbal",
-  priority: true
+  name: "speedcheck.digi.pt",
+  url: "https://speedcheck.digi.pt",
+  location: "Portugal",
+  priority: false
 };
 
 let selectedServer = DEFAULT_SERVER;
@@ -379,6 +395,7 @@ let running = false;
 let graphTimer = null;
 let graphValues = [];
 let totalBytes = 0;
+let testValues = { ping: 0, jitter: 0, download: 0, upload: 0 };
 
 resetValues();
 
@@ -556,6 +573,8 @@ async function runPing() {
   jitterBox.classList.remove("is-idle");
   pingElement.textContent = ping.toFixed(1);
   jitterElement.textContent = jitter.toFixed(1);
+  testValues.ping = ping;
+  testValues.jitter = jitter;
   return { ping, jitter };
 }
 
@@ -685,6 +704,7 @@ async function runDownload() {
   speedBox.classList.remove("is-idle");
   downloadElement.textContent = result.toFixed(1);
   speedElement.textContent = result.toFixed(1);
+  testValues.download = result;
   updateData();
   return result;
 }
@@ -842,8 +862,79 @@ async function runUpload() {
   speedBox.classList.remove("is-idle");
   uploadElement.textContent = result.toFixed(1);
   speedElement.textContent = result.toFixed(1);
+  testValues.upload = result;
   updateData();
   return result;
+}
+
+/* ==========================================================
+   ANÁLISE DE REDE — thresholds:
+   Download ≥100/25/10 · Upload ≥20/10/2 · Ping ≤20/50/100 · Jitter ≤5/10/20
+   ========================================================== */
+
+const analysisElement = document.getElementById("analysis");
+
+function rateMetric(value, thresholds, betterHigh) {
+  const labels = [tx("Excelente"), tx("Bom"), tx("Razoável"), tx("Fraco")];
+  for (let i = 0; i < thresholds.length; i++) {
+    const ok = betterHigh ? value >= thresholds[i] : value <= thresholds[i];
+    if (ok) return { level: i, label: labels[i] };
+  }
+  return { level: thresholds.length, label: labels[thresholds.length] };
+}
+
+function analyzeConnection(d, u, p, j) {
+  const dl = rateMetric(d, [100, 25, 10], true);
+  const ul = rateMetric(u, [20, 10, 2], true);
+  const ping = rateMetric(p, [20, 50, 100], false);
+  const jitter = rateMetric(j, [5, 10, 20], false);
+
+  const worst = Math.max(dl.level, ul.level, ping.level, jitter.level);
+  const verdictHead = [
+    tx("Ligação excelente, pronta para qualquer uso."),
+    tx("Boa ligação, adequada para a maioria das atividades."),
+    tx("Ligação razoável, com limitações em tarefas exigentes."),
+    tx("Ligação fraca, com problemas prováveis no dia a dia.")
+  ][worst];
+
+  const limiting = [
+    { level: ping.level, name: tx("Ping") },
+    { level: jitter.level, name: tx("Jitter") },
+    { level: dl.level, name: tx("Download") },
+    { level: ul.level, name: tx("Upload") }
+  ].sort(function (a, b) { return b.level - a.level; })[0];
+
+  const why = tx("O ponto mais fraco é o ") + limiting.name + ".";
+
+  return { dl: dl, ul: ul, ping: ping, jitter: jitter, worst: worst, verdictHead: verdictHead, why: why };
+}
+
+function renderAnalysis(a, values) {
+  const esc = function (s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  };
+
+  const rows = [
+    { name: tx("Download"), value: values.d, label: a.dl.label },
+    { name: tx("Upload"), value: values.u, label: a.ul.label },
+    { name: tx("Ping"), value: values.p, label: a.ping.label },
+    { name: tx("Jitter"), value: values.j, label: a.jitter.label }
+  ].map(function (m) {
+    const cls = m.label === "Excelente" ? " st-ok" : m.label === "Fraco" ? " st-bad" : "";
+    return '<div class="st-an-row"><dt>' + esc(m.name) + '</dt><dd>' + esc(m.value) +
+      " \u00b7 <span class=\"st-an-label" + cls + "\">" + esc(m.label) + "</span></dd></div>";
+  }).join("");
+
+  analysisElement.innerHTML =
+    '<h3 class="st-analysis-title">' + esc(tx("Análise de rede")) + "</h3>" +
+    '<p class="st-an-summary">' + esc(a.verdictHead) + "</p>" +
+    '<dl class="st-an-grid">' + rows + "</dl>" +
+    (a.worst >= 2 ? '<p class="st-an-note">' + esc(a.why) + "</p>" : "");
+
+  analysisElement.hidden = false;
+  analysisElement.classList.add("is-visible");
 }
 
 /* ==========================================================
@@ -865,8 +956,12 @@ async function runTest() {
   dataElement.textContent = "0";
   graphValues = [];
   totalBytes = 0;
+  testValues = { ping: 0, jitter: 0, download: 0, upload: 0 };
   graphBox.classList.remove("is-visible");
   drawGraph();
+  analysisElement.hidden = true;
+  analysisElement.classList.remove("is-visible");
+  analysisElement.innerHTML = "";
 
   try {
     setStatus("A escolher servidor...");
@@ -903,6 +998,12 @@ async function runTest() {
     setStatus("Teste concluído");
     speedElement.textContent = upload.toFixed(1);
     startLabel.textContent = tx("REPETIR");
+
+    /* Análise de rede */
+    renderAnalysis(
+      analyzeConnection(testValues.download, testValues.upload, testValues.ping, testValues.jitter),
+      { d: testValues.download.toFixed(2), u: testValues.upload.toFixed(2), p: testValues.ping.toFixed(1), j: testValues.jitter.toFixed(2) }
+    );
   } catch (error) {
     console.error("[NexusPT Speed Test]", error);
     if (error && error.message) console.error("Código:", error.message);
@@ -1005,6 +1106,12 @@ function applyServer(server) {
   UPLOAD_URL = SERVER + "/upload";
 }
 
+/* Nome a mostrar: o speedcheck.digi.pt fica em Lisboa */
+function serverDisplayName(server) {
+  if (/speedcheck\.digi\.pt/i.test(String(server && server.url))) return "Lisboa, Portugal";
+  return String((server && server.name) || "");
+}
+
 let serverSelection = (async function () {
   const list = await fetchServerList();
   const region = await getUserRegion();
@@ -1028,7 +1135,7 @@ let serverSelection = (async function () {
   }
 
   serverElement.hidden = false;
-  serverName.textContent = selectedServer.name;
+  serverName.textContent = serverDisplayName(selectedServer);
   console.info("[NexusPT] Servidor:", selectedServer.name, "(" + SERVER + ")", region ? "| região: " + region : "| região desconhecida");
   return selectedServer;
 })().catch(function () {

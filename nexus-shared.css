@@ -9,8 +9,8 @@
   --bg-secondary: #0a0a0a;
   --bg-tertiary: #111111;
   --text: #f5f5f7;
-  --text-secondary: #86868b;
-  --text-tertiary: #8e8e93;
+  --text-secondary: #a1a1a6;
+  --text-tertiary: #a8a8ad;
   --accent: #00f43c;
   --accent-gradient: linear-gradient(135deg, #00f43c, #00c9ff);
   --border: rgba(255,255,255,0.08);
@@ -18,7 +18,7 @@
   --glass-border: rgba(255,255,255,0.06);
   --glass-blur: blur(24px) saturate(160%);
   --nav-blur: blur(60px) saturate(180%);
-  --nav-bg: rgba(0,0,0,0.8);
+  --nav-bg: rgba(0,0,0,0.92);
   --ease: cubic-bezier(0.42, 0, 0.58, 1);
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --container: 1200px;
@@ -35,6 +35,9 @@ body{
   line-height: 1.6;
 }
 ::selection{background: rgba(0,244,60,0.3)}
+
+input::placeholder,
+textarea::placeholder{color: #8a8a90; opacity: 1}
 
 .wrap{max-width: var(--container); margin: 0 auto; padding: 0 28px}
 
@@ -307,7 +310,7 @@ body{
 .nx-consent-box{
   pointer-events: auto;
   width: 100%;
-  background: rgba(10,10,10,0.92);
+  background: #101010;
   backdrop-filter: blur(24px) saturate(160%);
   -webkit-backdrop-filter: blur(24px) saturate(160%);
   border: 1px solid var(--border);
@@ -343,19 +346,17 @@ body{
   transition: all 0.3s var(--ease);
 }
 .nx-consent-primary{
-  background: rgba(0,244,60,0.14);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background: #0b2f14;
   color: var(--accent);
-  border: 1px solid rgba(0,244,60,0.3);
+  border: 1px solid rgba(0,244,60,0.42);
 }
-.nx-consent-primary:hover{background: rgba(0,244,60,0.22)}
+.nx-consent-primary:hover{background: #0e3d19}
 .nx-consent-ghost{
-  background: rgba(255,255,255,0.04);
+  background: #161616;
   color: var(--text);
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255,255,255,0.18);
 }
-.nx-consent-ghost:hover{background: rgba(255,255,255,0.09)}
+.nx-consent-ghost:hover{background: #1e1e1e}
 
 .nx-consent-overlay{
   position: fixed;
@@ -375,7 +376,7 @@ body{
   max-width: 480px;
   max-height: 85vh;
   overflow: auto;
-  background: rgba(10,10,10,0.97);
+  background: #101010;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 24px;
@@ -397,8 +398,8 @@ body{
   height: 36px;
   border-radius: 50%;
   border: none;
-  background: rgba(255,255,255,0.06);
-  color: var(--text-secondary);
+  background: #1c1c1c;
+  color: #c7c7cc;
   font-size: 20px;
   cursor: pointer;
 }

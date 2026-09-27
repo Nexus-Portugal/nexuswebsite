@@ -6,6 +6,7 @@
   "História": "History",
   "Contacto": "Contact",
   "Área do Cliente": "Client Area",
+  "Idioma": "Language",
   "Inovação digital": "Digital innovation",
   "Infraestrutura cloud": "Cloud infrastructure",
   "Desenvolvimento & Hospedagem": "Development & Hosting",
@@ -116,8 +117,10 @@
   "Serviço público de cloud para armazenamento na nuvem com 10GB grátis.": "Public cloud service for cloud storage with 10GB free.",
   "Speed": "Speed",
   "Test": "Test",
+  "INICIAR": "START",
   "Mede a velocidade da tua ligação diretamente aos servidores NexusPT.": "Measure your connection speed directly to NexusPT servers.",
   "Mede a velocidade da tua ligação nos servidores NexusPT.": "Measure your connection speed on NexusPT servers.",
+  "A AEHS é um agrupamento de escolas públicas. Desenvolvemos o CMSTIS (Custom Made School Technological Inventory System) — uma plataforma completa para registo e gestão eficiente de todos os equipamentos tecnológicos das escolas.": "AEHS is a public school cluster. We developed CMSTIS (Custom Made School Technological Inventory System)—a comprehensive platform for the registration and efficient management of all the schools' technological equipment.",
   "Ligado ao servidor NexusPT": "Connected to the NexusPT server",
   "Todos os serviços": "All services"
 }
