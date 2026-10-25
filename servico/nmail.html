@@ -1,0 +1,779 @@
+<!doctype html>
+<html lang="pt-pt">
+<head>
+<meta charset="utf-8" />
+<base href="/" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NexusMail · Email @mail.nexuspt.eu | NexusPT</title>
+<meta name="description" content="O futuro serviço de email da NexusPT. Endereços @mail.nexuspt.eu, com lançamento oficial marcado para 14 de novembro às 15h00." />
+<link rel="canonical" href="https://nexuspt.eu/servico/nmail" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="NexusPT" />
+<meta property="og:locale" content="pt_PT" />
+<meta property="og:title" content="NexusMail · Email @mail.nexuspt.eu" />
+<meta property="og:description" content="O futuro serviço de email da NexusPT. Lançamento oficial a 14 de novembro, às 15h00." />
+<meta property="og:url" content="https://nexuspt.eu/servico/nmail" />
+<meta property="og:image" content="https://i.ibb.co/LzxDZ3bR/nmailprimeiroad.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="NexusMail · Email @mail.nexuspt.eu" />
+<meta name="twitter:description" content="O futuro serviço de email da NexusPT. Lançamento oficial a 14 de novembro, às 15h00." />
+<meta name="twitter:image" content="https://i.ibb.co/LzxDZ3bR/nmailprimeiroad.png" />
+<meta name="theme-color" content="#000000" />
+<link rel="icon" href="/favicon.ico" sizes="32x32" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/nexus-shared.css" />
+
+<style>
+.nmail{padding: 72px 0 88px}
+.nmail-grid{
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 56px;
+  align-items: center;
+}
+.nmail-grid > *{min-width: 0}
+.nmail-art{
+  margin: 0;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.nmail-art img{display: block; width: 100%; height: auto}
+
+.nmail-countdown{
+  padding: 56px 0;
+  border-bottom: 1px solid var(--border);
+  background:
+    radial-gradient(ellipse at 50% 130%, rgba(0,244,60,0.10), transparent 62%),
+    var(--bg);
+}
+.nmail-countdown .wrap{text-align: center}
+.nmail-countdown-label{
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 24px;
+}
+.countdown{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  max-width: 520px;
+  margin: 0 auto;
+}
+.countdown-item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 18px 12px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.countdown-num{
+  font-size: clamp(28px, 3.4vw, 40px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.05;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.countdown-unit{
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.nmail-claim-title{
+  font-size: clamp(21px, 2.3vw, 26px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin-bottom: 18px;
+}
+.nmail-claim-note{
+  margin-top: 18px;
+  font-size: 13.5px;
+  color: var(--text-tertiary);
+  line-height: 1.5;
+}
+.nmail-claim-note a{
+  color: var(--text-secondary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.3s var(--ease);
+}
+.nmail-claim-note a:hover{color: var(--accent)}
+.nmail-claim{display: flex; align-items: center; gap: 10px}
+.nmail-claim-field{
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+  padding: 0 14px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.nmail-claim-field:focus-within{
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(0,244,60,0.08);
+}
+.nmail-claim-field input{
+  flex: 1;
+  width: 0;
+  min-width: 0;
+  padding: 14px 0;
+  background: transparent;
+  border: 0;
+  outline: none;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+}
+.nmail-claim-field input::placeholder{color: var(--text-tertiary); font-weight: 400}
+.nmail-claim-field span{
+  font-size: 15px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+.nmail-claim-btn{
+  flex: none;
+  width: 46px;
+  height: 46px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--accent-gradient);
+  color: #000;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.2s var(--ease), opacity 0.3s var(--ease);
+}
+.nmail-claim-btn:hover{transform: translateY(-1px); opacity: 0.9}
+.nmail-cta{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 32px;
+  padding: 15px 28px;
+  border-radius: 100px;
+  background: var(--accent-gradient);
+  color: #000;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s var(--ease), opacity 0.3s var(--ease);
+}
+.nmail-cta:hover{transform: translateY(-1px); opacity: 0.9}
+.nmail-cta--button{border: 0; font-family: inherit; cursor: pointer}
+.nmail-ghost{
+  display: inline-flex;
+  align-items: center;
+  padding: 13px 24px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  text-decoration: none;
+  transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
+}
+.nmail-ghost:hover{color: var(--text); border-color: rgba(255,255,255,0.2)}
+
+.nmail-h2{
+  font-size: clamp(21px, 2.5vw, 28px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+}
+
+.nmail-plans{padding: 8px 0 120px}
+.plan-grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  align-items: stretch;
+}
+.plan{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 32px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.plan-free{border-color: rgba(0,244,60,0.28)}
+.plan-tag{
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+.plan-tag--soon{color: var(--text-tertiary)}
+.plan-name{font-size: 20px; font-weight: 600; margin-bottom: 4px}
+.plan-price{
+  font-size: 34px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin-bottom: 22px;
+}
+.plan-price small{font-size: 13px; font-weight: 400; color: var(--text-tertiary); letter-spacing: 0}
+.plan-list{list-style: none; margin: 0 0 28px; padding: 0}
+.plan-list li{
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 11px;
+  font-size: 14.5px;
+  color: var(--text-secondary);
+}
+.plan-list li::before{
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.plan-actions{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: auto;
+}
+.plan .nmail-cta{margin-top: 0}
+
+.plan-soon{border-style: dashed}
+.plan-badge{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+.plan-soon .plan-name{color: var(--text-secondary)}
+.plan-blur{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  filter: blur(6px);
+  opacity: 0.55;
+  pointer-events: none;
+  user-select: none;
+}
+.plan-blur .skeleton{
+  display: block;
+  height: 12px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.16);
+  margin-bottom: 22px;
+}
+.plan-blur .skeleton-price{height: 30px; width: 46%; margin-bottom: 26px}
+.plan-blur .skeleton:nth-of-type(3){width: 92%}
+.plan-blur .skeleton:nth-of-type(4){width: 78%}
+.plan-blur .skeleton:nth-of-type(5){width: 84%}
+.plan-blur .skeleton:nth-of-type(6){width: 70%}
+.plan-blur .skeleton:nth-of-type(7){width: 88%}
+.plan-blur .skeleton-btn{width: 229px; max-width: 100%; height: 54px; border-radius: 100px; margin: auto 0 0}
+
+.nmail-modal{
+  position: fixed;
+  inset: 0;
+  z-index: 4200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0,0,0,0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.nmail-modal.open{display: flex}
+.nmail-modal-card{
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 30px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 30px 90px rgba(0,0,0,0.65);
+}
+.nmail-modal-close{
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+}
+.nmail-modal-close:hover{color: var(--text); border-color: rgba(255,255,255,0.2)}
+.nmail-modal-card h2{
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+.nmail-modal-intro{
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: 24px;
+}
+.nmail-field{margin-bottom: 16px}
+.nmail-field label{
+  display: block;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  margin-bottom: 7px;
+}
+.nmail-field input{
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.nmail-field input::placeholder{color: var(--text-tertiary)}
+.nmail-field input:focus{
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(0,244,60,0.08);
+}
+.nmail-field-hint{font-size: 12px; color: var(--text-tertiary); margin-top: 6px; line-height: 1.45}
+.nmail-address-field{
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 0 14px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.nmail-address-field:focus-within{
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(0,244,60,0.08);
+}
+.nmail-address-field input{
+  flex: 1;
+  min-width: 0;
+  padding: 12px 0;
+  background: transparent;
+  border: 0;
+  outline: none;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 15px;
+}
+.nmail-address-field span{font-size: 14px; color: var(--text-secondary); white-space: nowrap}
+.nmail-submit{
+  width: 100%;
+  margin-top: 8px;
+  padding: 14px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--accent-gradient);
+  color: #000;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.3s var(--ease), transform 0.2s var(--ease);
+}
+.nmail-submit:hover{transform: translateY(-1px)}
+.nmail-submit:disabled{opacity: 0.6; cursor: not-allowed; transform: none}
+.nmail-form-msg{display: none; margin-top: 14px; font-size: 13.5px; line-height: 1.5}
+.nmail-form-msg.show{display: block}
+.nmail-form-msg.ok{color: var(--accent)}
+.nmail-form-msg.err{color: #ff453a}
+
+@media(max-width: 880px){
+  .nmail{padding: 48px 0 80px}
+  .nmail-grid{grid-template-columns: 1fr; gap: 36px}
+  .nmail-countdown{padding: 40px 0}
+  .countdown{gap: 8px}
+  .countdown-item{padding: 14px 8px}
+  .countdown-unit{font-size: 9.5px; letter-spacing: 0.06em}
+  .nmail-plans{padding: 40px 0 80px}
+  .plan-grid{grid-template-columns: 1fr}
+  .plan{padding: 26px}
+  .nmail-claim-field span{font-size: 12.5px}
+  .nmail-modal-card{padding: 24px}
+}
+</style>
+</head>
+<body>
+
+<main id="conteudo">
+
+<section class="page-header">
+  <div class="wrap">
+    <div class="header-rule"></div>
+    <h1>Nexus<span>Mail</span></h1>
+    <p>O futuro serviço de email da NexusPT.</p>
+  </div>
+</section>
+
+<section class="nmail-countdown">
+  <div class="wrap">
+    <p class="nmail-countdown-label" id="countdownLabel">Lançamento oficial · 14 de novembro, às 15h00</p>
+    <div class="countdown" aria-hidden="true">
+      <div class="countdown-item">
+        <span class="countdown-num" id="cdDias">00</span>
+        <span class="countdown-unit">Dias</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-num" id="cdHoras">00</span>
+        <span class="countdown-unit">Horas</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-num" id="cdMinutos">00</span>
+        <span class="countdown-unit">Minutos</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-num" id="cdSegundos">00</span>
+        <span class="countdown-unit">Segundos</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="nmail">
+  <div class="wrap nmail-grid">
+    <figure class="nmail-art reveal">
+      <img
+        src="https://i.ibb.co/LzxDZ3bR/nmailprimeiroad.png"
+        alt="NexusMail, o futuro serviço de email da NexusPT"
+      />
+    </figure>
+
+    <div class="reveal">
+      <h2 class="nmail-claim-title">Reserva o teu endereço de email</h2>
+
+      <form class="nmail-claim" id="claimForm" novalidate>
+        <label class="nmail-claim-field" for="claimInput">
+          <input
+            id="claimInput"
+            name="address"
+            type="text"
+            autocomplete="off"
+            spellcheck="false"
+            aria-label="Nome do endereço de email"
+            placeholder="o-teu-nome"
+          />
+          <span>@mail.nexuspt.eu</span>
+        </label>
+        <button class="nmail-claim-btn" type="submit" aria-label="Reservar este endereço">→</button>
+      </form>
+
+      <p class="nmail-claim-note">
+        Ainda não queres reservar?
+        <a href="https://servicosinternos.nexuspt.eu/questionarios/192651?lang=pt&amp;newtest=Y" target="_blank" rel="noopener noreferrer">Inscreve-te na beta</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="nmail-plans">
+  <div class="wrap">
+    <h2 class="nmail-h2 reveal">Planos</h2>
+    <div class="plan-grid">
+      <article class="plan plan-free reveal">
+        <p class="plan-tag">Disponível no lançamento</p>
+        <h3 class="plan-name">Free</h3>
+        <p class="plan-price">0 €</p>
+        <ul class="plan-list">
+          <li>Endereço @mail.nexuspt.eu</li>
+          <li>5 GB de armazenamento</li>
+          <li>5 aliases de email</li>
+          <li>10 contactos</li>
+          <li>200 emails enviados por dia</li>
+        </ul>
+        <div class="plan-actions">
+          <button type="button" class="nmail-cta nmail-cta--button" data-reserve>Reservar endereço →</button>
+          <a
+            class="nmail-ghost"
+            href="https://servicosinternos.nexuspt.eu/questionarios/192651?lang=pt&amp;newtest=Y"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Inscrever-me na beta</a>
+        </div>
+      </article>
+
+      <article class="plan plan-soon reveal" aria-label="Plano pago, brevemente">
+        <span class="plan-badge">Brevemente</span>
+        <p class="plan-tag plan-tag--soon">Plano pago</p>
+        <h3 class="plan-name">Pro</h3>
+        <div class="plan-blur" aria-hidden="true">
+          <span class="skeleton skeleton-price"></span>
+          <span class="skeleton"></span>
+          <span class="skeleton"></span>
+          <span class="skeleton"></span>
+          <span class="skeleton"></span>
+          <span class="skeleton"></span>
+          <span class="skeleton"></span>
+          <span class="skeleton skeleton-btn"></span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div class="nmail-modal" id="claimModal" aria-hidden="true">
+  <div class="nmail-modal-card" role="dialog" aria-modal="true" aria-labelledby="claimTitle">
+    <button type="button" class="nmail-modal-close" id="claimClose" aria-label="Fechar">&times;</button>
+    <h2 id="claimTitle">Reservar endereço</h2>
+    <p class="nmail-modal-intro">
+      Escolhe o teu endereço de email. Quando lançar, ficas com um nome exclusivo.
+    </p>
+
+    <form id="reserveForm" novalidate>
+      <div class="nmail-field">
+        <label for="reserveAddress">Endereço</label>
+        <div class="nmail-address-field">
+          <input id="reserveAddress" type="text" autocomplete="off" spellcheck="false" placeholder="o-teu-nome" />
+          <span>@mail.nexuspt.eu</span>
+        </div>
+      </div>
+
+      <div class="nmail-field">
+        <label for="reserveClient">Número de cliente MyNexus</label>
+        <input id="reserveClient" type="text" autocomplete="off" placeholder="Ex.: 1024" />
+        <p class="nmail-field-hint">Encontras o número na tua área de cliente. Se ainda não tens conta, deixa em branco.</p>
+      </div>
+
+      <div class="nmail-field">
+        <label for="reserveName">Nome *</label>
+        <input id="reserveName" type="text" autocomplete="name" placeholder="O teu nome" />
+      </div>
+
+      <div class="nmail-field">
+        <label for="reserveEmail">Email de contacto *</label>
+        <input id="reserveEmail" type="email" autocomplete="email" placeholder="exemplo@email.com" />
+      </div>
+
+      <button type="submit" class="nmail-submit" id="reserveBtn">Enviar pedido</button>
+      <p class="nmail-form-msg" id="reserveMsg" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</div>
+
+<script src="https://kikalabs-server.nexuspt.eu/js/site-nxweb/fh.js"></script>
+<script src="/i18n/i18n.js" defer></script>
+<script src="/consent.js" defer></script>
+
+<script>
+const t = (key) => (window.NexusI18n && NexusI18n.t ? NexusI18n.t(key) : key);
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+const launch = new Date('2026-11-14T15:00:00+00:00');
+const countdownLabel = document.getElementById('countdownLabel');
+const fields = {
+  days: document.getElementById('cdDias'),
+  hours: document.getElementById('cdHoras'),
+  minutes: document.getElementById('cdMinutos'),
+  seconds: document.getElementById('cdSegundos')
+};
+const pad = value => String(value).padStart(2, '0');
+
+function updateCountdown() {
+  const remaining = launch - Date.now();
+
+  if (remaining <= 0) {
+    Object.values(fields).forEach(el => { el.textContent = '00'; });
+    countdownLabel.textContent = t('Lançamento oficial · já disponível');
+    return false;
+  }
+
+  const total = Math.floor(remaining / 1000);
+  fields.days.textContent = pad(Math.floor(total / 86400));
+  fields.hours.textContent = pad(Math.floor((total % 86400) / 3600));
+  fields.minutes.textContent = pad(Math.floor((total % 3600) / 60));
+  fields.seconds.textContent = pad(total % 60);
+  return true;
+}
+
+if (updateCountdown()) {
+  const timer = setInterval(() => {
+    if (!updateCountdown()) clearInterval(timer);
+  }, 1000);
+}
+
+const claimInput = document.getElementById('claimInput');
+const claimModal = document.getElementById('claimModal');
+const claimClose = document.getElementById('claimClose');
+const reserveForm = document.getElementById('reserveForm');
+const reserveAddress = document.getElementById('reserveAddress');
+const reserveClient = document.getElementById('reserveClient');
+const reserveName = document.getElementById('reserveName');
+const reserveEmail = document.getElementById('reserveEmail');
+const reserveBtn = document.getElementById('reserveBtn');
+const reserveMsg = document.getElementById('reserveMsg');
+let claimTrigger = null;
+
+function cleanAddress(value) {
+  return value
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/@.*$/, '')
+    .replace(/[^a-z0-9._-]/g, '')
+    .slice(0, 30);
+}
+
+function showReserveMessage(text, ok) {
+  reserveMsg.textContent = text;
+  reserveMsg.className = 'nmail-form-msg show ' + (ok ? 'ok' : 'err');
+}
+
+function openClaimModal() {
+  claimTrigger = document.activeElement;
+  reserveAddress.value = cleanAddress(claimInput.value);
+  reserveMsg.className = 'nmail-form-msg';
+  reserveMsg.textContent = '';
+  claimModal.classList.add('open');
+  claimModal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => reserveAddress.focus(), 40);
+}
+
+function closeClaimModal() {
+  claimModal.classList.remove('open');
+  claimModal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+  if (claimTrigger && typeof claimTrigger.focus === 'function') claimTrigger.focus();
+}
+
+document.getElementById('claimForm').addEventListener('submit', (event) => {
+  event.preventDefault();
+  openClaimModal();
+});
+
+document.querySelectorAll('[data-reserve]').forEach((button) => {
+  button.addEventListener('click', openClaimModal);
+});
+
+claimClose.addEventListener('click', closeClaimModal);
+
+claimModal.addEventListener('click', (event) => {
+  if (event.target === claimModal) closeClaimModal();
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && claimModal.classList.contains('open')) closeClaimModal();
+});
+
+reserveAddress.addEventListener('input', () => {
+  const cleaned = cleanAddress(reserveAddress.value);
+  if (cleaned !== reserveAddress.value) reserveAddress.value = cleaned;
+});
+
+reserveForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  const address = cleanAddress(reserveAddress.value);
+  const name = reserveName.value.trim();
+  const email = reserveEmail.value.trim();
+  const client = reserveClient.value.trim();
+  const errors = [];
+
+  if (address.length < 3) {
+    errors.push(t('Escolhe um endereço com pelo menos 3 caracteres'));
+  } else if (!/^[a-z0-9](?:[a-z0-9._-]*[a-z0-9])$/.test(address)) {
+    errors.push(t('Usa letras, números, ponto, hífen ou underscore, sem começar ou acabar em símbolo'));
+  }
+  if (!name) errors.push(t('Falta o teu nome'));
+  if (!email) {
+    errors.push(t('Falta o email de contacto'));
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errors.push(t('Email de contacto inválido'));
+  }
+
+  if (errors.length) {
+    showReserveMessage(errors.join(' · '), false);
+    return;
+  }
+
+  const description = 'Pedido de reserva do endereço ' + address + '@mail.nexuspt.eu. Número de cliente MyNexus: ' + (client || 'não indicado') + '.';
+
+  reserveBtn.disabled = true;
+  reserveBtn.textContent = t('A enviar...');
+  reserveMsg.className = 'nmail-form-msg';
+
+  try {
+    const response = await fetch('https://my.nexuspt.eu/contactarnexus', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: name, email: email, subject: 'geral', description: description })
+    });
+    const result = await response.json();
+
+    if (response.ok && result.success) {
+      claimInput.value = address;
+      reserveForm.reset();
+      reserveAddress.value = '';
+      showReserveMessage(result.message || t('Pedido enviado. Vamos confirmar a disponibilidade do endereço e responder ao teu email.'), true);
+    } else {
+      showReserveMessage(result.errors ? result.errors.join(' · ') : (result.message || t('Não foi possível enviar o pedido.')), false);
+    }
+  } catch (error) {
+    showReserveMessage(t('Erro de ligação. Tenta novamente mais tarde.'), false);
+  } finally {
+    reserveBtn.disabled = false;
+    reserveBtn.textContent = t('Enviar pedido');
+  }
+});
+</script>
+
+</body>
+</html>

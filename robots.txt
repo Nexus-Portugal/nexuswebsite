@@ -1,0 +1,10 @@
+# Nexus Portugal robots
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://nexuspt.eu/sitemap.xml
+Sitemap: https://en.nexuspt.eu/sitemap-en.xml
+Sitemap: https://fr.nexuspt.eu/sitemap-fr.xml
+Sitemap: https://de.nexuspt.eu/sitemap-de.xml
+Sitemap: https://es.nexuspt.eu/sitemap-es.xml

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manutenção</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background: #070708;
+            overflow: hidden;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        img {
+            height: 100vh;
+            width: auto;
+            display: block;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        #checker {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <img
+        src="https://kikalabs-server.nexuspt.eu/images/site-nxweb/nginx/manutencaonexus.png"
+        alt="Página de manutenção"
+    >
+
+    <iframe id="checker"></iframe>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const from = params.get("from");
+
+        const checker = document.getElementById("checker");
+
+        // Só aceita subdomínios de nexuspt.eu
+        function isAllowedHost(host) {
+            return (
+                host === "nexuspt.eu" ||
+                host.endsWith(".nexuspt.eu")
+            );
+        }
+
+        let serviceUrl = null;
+
+        if (from) {
+            try {
+                let value = from.trim();
+
+                if (!value.startsWith("http://") && !value.startsWith("https://")) {
+                    value = "https://" + value;
+                }
+
+                const url = new URL(value);
+
+                if (url.protocol === "https:" && isAllowedHost(url.hostname)) {
+                    serviceUrl = url.origin + url.pathname;
+                }
+            } catch (e) {
+                serviceUrl = null;
+            }
+        }
+
+        if (serviceUrl) {
+
+            let checking = false;
+            let redirected = false;
+
+            function checkService() {
+
+                if (checking || redirected) {
+                    return;
+                }
+
+                checking = true;
+
+                let finished = false;
+
+                const timeout = setTimeout(() => {
+                    if (!finished) {
+                        finished = true;
+                        checking = false;
+                    }
+                }, 4000);
+
+                checker.onload = () => {
+                    if (finished || redirected) {
+                        return;
+                    }
+
+                    finished = true;
+                    clearTimeout(timeout);
+
+                    redirected = true;
+
+                    window.location.replace(serviceUrl);
+                };
+
+                checker.onerror = () => {
+                    if (finished) {
+                        return;
+                    }
+
+                    finished = true;
+                    clearTimeout(timeout);
+                    checking = false;
+                };
+
+                checker.src =
+                    serviceUrl +
+                    (serviceUrl.includes("?") ? "&" : "?") +
+                    "_maintenance_check=" +
+                    Date.now();
+            }
+
+            checkService();
+            setInterval(checkService, 5000);
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eclipse 2026 · Nexus</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #f0f0f0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            padding: 20px 0;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .card {
+            background: rgba(18, 18, 18, 0.7);
+            backdrop-filter: blur(6px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+            padding: 28px 32px;
+            margin-bottom: 30px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
+        }
+
+        header.card {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 28px;
+            background: rgba(10, 10, 10, 0.8);
+            border-bottom: 2px solid rgba(25, 211, 249, 0.2);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .logo-nexus {
+            height: 48px;
+            width: auto;
+            filter: drop-shadow(0 0 6px rgba(25, 211, 249, 0.3));
+            transition: filter 0.3s;
+        }
+        .logo-nexus:hover {
+            filter: drop-shadow(0 0 14px rgba(25, 211, 249, 0.6));
+        }
+
+        .header-title h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #19d3f9 0%, #00f23c 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+        }
+        .header-title .sub {
+            font-size: 0.85rem;
+            color: #aaa;
+            letter-spacing: 2px;
+            font-weight: 400;
+        }
+
+        .data-destaque {
+            background: rgba(25, 211, 249, 0.08);
+            padding: 8px 22px;
+            border-radius: 40px;
+            border: 1px solid rgba(0, 242, 60, 0.25);
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            white-space: nowrap;
+        }
+        .data-destaque span {
+            color: #19d3f9;
+            font-weight: 800;
+        }
+
+        .gif-section.card {
+            padding: 12px;
+            background: #0d0d0d;
+            border: 1px solid rgba(102, 45, 145, 0.3);
+        }
+        .gif-section img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 16px;
+            border: 1px solid rgba(25, 211, 249, 0.1);
+        }
+
+        .countdown-wrap.card {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            padding: 30px 20px;
+            background: rgba(12, 12, 12, 0.6);
+            border: 1px solid rgba(25, 211, 249, 0.15);
+        }
+
+        .countdown-item {
+            text-align: center;
+            min-width: 80px;
+        }
+        .countdown-item .number {
+            font-size: 4rem;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            background: linear-gradient(135deg, #00f23c 0%, #19d3f9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            line-height: 1;
+            letter-spacing: 2px;
+        }
+        .countdown-item .label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: #888;
+            letter-spacing: 3px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
+        .seguranca.card {
+            background: rgba(14, 14, 14, 0.6);
+            border: 1px solid rgba(102, 45, 145, 0.25);
+            padding: 30px 28px;
+        }
+        .seguranca-grid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+        }
+        .seguranca-icon {
+            max-width: 120px;
+            height: auto;
+            padding: 6px;
+            background: rgba(25, 211, 249, 0.04);
+            border-radius: 16px;
+            border: 1px solid rgba(0, 242, 60, 0.15);
+            transition: transform 0.2s;
+        }
+        .seguranca-icon:hover {
+            transform: scale(1.03);
+        }
+        .seguranca-lista {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 14px;
+            width: 100%;
+            max-width: 780px;
+            margin: 0 auto;
+        }
+        .seguranca-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(25, 211, 249, 0.03);
+            border: 1px solid rgba(25, 211, 249, 0.1);
+            border-radius: 40px;
+            padding: 10px 18px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            color: #ddd;
+            letter-spacing: 0.2px;
+            transition: background 0.2s;
+        }
+        .seguranca-item:hover {
+            background: rgba(25, 211, 249, 0.08);
+        }
+        .seguranca-item::before {
+            content: "◆";
+            color: #00f23c;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .mapa-section.card {
+            background: rgba(10, 10, 10, 0.5);
+            border: 1px solid rgba(0, 242, 60, 0.15);
+            text-align: center;
+            padding: 24px 20px 20px;
+        }
+        .mapa-section h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #19d3f9, #b28ae0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 18px;
+        }
+        .mapa-wrapper {
+            max-width: 680px;
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(102, 45, 145, 0.2);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        }
+        .mapa-wrapper img {
+            display: block;
+            width: 100%;
+            height: auto;
+            transition: transform 0.4s ease;
+        }
+        .mapa-wrapper img:hover {
+            transform: scale(1.02);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0 8px;
+            color: #999;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            border-top: 1px solid rgba(25, 211, 249, 0.08);
+            margin-top: 20px;
+        }
+        footer span {
+            color: #b28ae0;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            header.card {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 14px;
+                padding: 16px 20px;
+            }
+            .header-left {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .logo-nexus {
+                height: 40px;
+            }
+            .header-title h1 {
+                font-size: 1.8rem;
+                text-align: center;
+            }
+            .data-destaque {
+                text-align: center;
+                white-space: normal;
+                font-size: 0.9rem;
+                padding: 6px 16px;
+            }
+            .countdown-wrap.card {
+                gap: 24px;
+                padding: 20px 12px;
+            }
+            .countdown-item .number {
+                font-size: 3rem;
+            }
+            .seguranca-lista {
+                grid-template-columns: 1fr 1fr;
+            }
+            .mapa-section h2 {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-title h1 {
+                font-size: 1.4rem;
+            }
+            .logo-nexus {
+                height: 32px;
+            }
+            .countdown-item .number {
+                font-size: 2.2rem;
+            }
+            .seguranca-lista {
+                grid-template-columns: 1fr;
+            }
+            .card {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <header class="card">
+            <div class="header-left">
+                <img
+                src="https://kikalabs-server.nexuspt.eu/images/site-nxweb/RealNexusWeb.png"
+                alt="Nexus"
+                class="logo-nexus"
+                />
+                <div class="header-title">
+                    <h1>Eclipse 2026</h1>
+                    <div class="sub">Portugal · 12 de Agosto</div>
+                </div>
+            </div>
+        </header>
+
+        <section class="gif-section card">
+            <img
+            src="https://i.ibb.co/MkGJ3cFX/nexuseclipse.png"
+            alt="Eclipse Solar animado"
+            />
+        </section>
+
+        <div class="countdown-wrap card" id="countdown">
+            <div class="countdown-item">
+                <span class="number" id="dias">00</span>
+                <span class="label">Dias</span>
+            </div>
+            <div class="countdown-item">
+                <span class="number" id="horas">00</span>
+                <span class="label">Horas</span>
+            </div>
+            <div class="countdown-item">
+                <span class="number" id="minutos">00</span>
+                <span class="label">Minutos</span>
+            </div>
+            <div class="countdown-item">
+                <span class="number" id="segundos">00</span>
+                <span class="label">Segundos</span>
+            </div>
+        </div>
+
+        <section class="seguranca card">
+            <div class="seguranca-grid">
+                <img
+                src="https://i.ibb.co/Q7zGcmC5/image-removebg-preview-17.png"
+                alt="Ícones de segurança"
+                class="seguranca-icon"
+                />
+                <div class="seguranca-lista">
+                    <div class="seguranca-item">Não observar à vista desarmada</div>
+                    <div class="seguranca-item">Não observar pelo telescópio sem filtro solar adequado</div>
+                    <div class="seguranca-item">Não observar com óculos de Sol</div>
+                    <div class="seguranca-item">Observar com óculos de eclipse</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mapa-section card">
+            <h2>Visibilidade em Portugal</h2>
+            <div class="mapa-wrapper">
+                <img
+                src="https://i.ibb.co/BHrhm3dz/nexusmapa.png"
+                alt="Mapa de visibilidade do eclipse em Portugal"
+                />
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2026 · NexusPT · Sensibilização para cuidados a ter durante o eclipse</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const target = new Date('2026-08-12T18:39:00+01:00');
+
+        function update() {
+            const now = new Date();
+            const diff = target - now;
+
+            if (diff <= 0) {
+                document.getElementById('dias').textContent = '00';
+                document.getElementById('horas').textContent = '00';
+                document.getElementById('minutos').textContent = '00';
+                document.getElementById('segundos').textContent = '00';
+                return;
+            }
+
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const m = Math.floor((diff / (1000 * 60)) % 60);
+            const s = Math.floor((diff / 1000) % 60);
+
+            document.getElementById('dias').textContent = String(d).padStart(2, '0');
+            document.getElementById('horas').textContent = String(h).padStart(2, '0');
+            document.getElementById('minutos').textContent = String(m).padStart(2, '0');
+            document.getElementById('segundos').textContent = String(s).padStart(2, '0');
+        }
+
+        update();
+        setInterval(update, 1000);
+    </script>
+
+</body>
+</html>
