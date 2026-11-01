@@ -682,16 +682,14 @@ button.client-logo{cursor: pointer}
       <h2>As nossas soluções</h2>
 <p style="font-size:11px;color:#888;text-align:center;margin:8px 0">Publicidade</p>
 <script>
-(function(wjwo){
-var d = document,
-    s = d.createElement('script'),
-    l = d.currentScript || d.scripts[d.scripts.length - 1];
-s.settings = wjwo || {};
-s.src = "\/\/quarrelsomebitter.com\/bxXQV.s\/d\/G-lw0PYhWdcL\/UeSm\/9GuhZ\/UWlGkHPOTmc\/1XO\/DiUIxNM\/DpkbtJN-zuUc4jNYTwE\/xpMQwK";
-s.async = true;
-s.referrerPolicy = 'no-referrer-when-downgrade';
-l.parentNode.insertBefore(s, l);
-})({})
+(function(){
+  var src = window.matchMedia('(max-width:768px)').matches ? "\/\/quarrelsomebitter.com\/b\/X.VesMdEGhlT0pYWWFc_\/Ve\/m\/9\/urZVUWlxk\/P_TFcv1SO\/DYUDyeN-DokntHN\/zxUR4SNzTXIP1TMQwk" : "\/\/quarrelsomebitter.com\/bxXQV.s\/d\/G-lw0PYhWdcL\/UeSm\/9GuhZ\/UWlGkHPOTmc\/1XO\/DiUIxNM\/DpkbtJN-zuUc4jNYTwE\/xpMQwK";
+  var d = document, s = d.createElement('script');
+  s.src = src;
+  s.async = true;
+  s.referrerPolicy = 'no-referrer-when-downgrade';
+  d.currentScript ? d.currentScript.parentNode.insertBefore(s, d.currentScript) : document.head.appendChild(s);
+})();
 </script>
       <p>Soluções desenvolvidas por nós, disponíveis para todos</p>
     </div>
