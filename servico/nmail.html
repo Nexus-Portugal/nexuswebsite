@@ -42,57 +42,15 @@
 }
 .nmail-art img{display: block; width: 100%; height: auto}
 
-.nmail-countdown{
+.nmail-service{
   padding: 56px 0;
   border-bottom: 1px solid var(--border);
   background:
     radial-gradient(ellipse at 50% 130%, rgba(0,244,60,0.10), transparent 62%),
     var(--bg);
 }
-.nmail-countdown .wrap{text-align: center}
-.nmail-countdown-label{
-  font-size: 12px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--text-tertiary);
-  margin-bottom: 24px;
-}
-.countdown{
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
-  max-width: 520px;
-  margin: 0 auto;
-}
-.countdown-item{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  padding: 18px 12px;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-}
-.countdown-num{
-  font-size: clamp(28px, 3.4vw, 40px);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  font-variant-numeric: tabular-nums;
-  line-height: 1.05;
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.countdown-unit{
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-tertiary);
-}
-.nmail-service-link[hidden]{display: none}
-.nmail-service-link{margin-top: 20px}
+.nmail-service .wrap{text-align: center}
+.nmail-service-link{margin-top: 0}
 
 .nmail-claim-title{
   font-size: clamp(21px, 2.3vw, 26px);
@@ -430,10 +388,7 @@
 @media(max-width: 880px){
   .nmail{padding: 48px 0 80px}
   .nmail-grid{grid-template-columns: 1fr; gap: 36px}
-  .nmail-countdown{padding: 40px 0}
-  .countdown{gap: 8px}
-  .countdown-item{padding: 14px 8px}
-  .countdown-unit{font-size: 9.5px; letter-spacing: 0.06em}
+  .nmail-service{padding: 40px 0}
   .nmail-plans{padding: 40px 0 80px}
   .plan-grid{grid-template-columns: 1fr}
   .plan{padding: 26px}
@@ -454,28 +409,9 @@
   </div>
 </section>
 
-<section class="nmail-countdown">
+<section class="nmail-service">
   <div class="wrap">
-    <p class="nmail-countdown-label" id="countdownLabel">Lançamento oficial · 14 de novembro, às 15h00</p>
-    <div class="countdown" aria-hidden="true">
-      <div class="countdown-item">
-        <span class="countdown-num" id="cdDias">00</span>
-        <span class="countdown-unit">Dias</span>
-      </div>
-      <div class="countdown-item">
-        <span class="countdown-num" id="cdHoras">00</span>
-        <span class="countdown-unit">Horas</span>
-      </div>
-      <div class="countdown-item">
-        <span class="countdown-num" id="cdMinutos">00</span>
-        <span class="countdown-unit">Minutos</span>
-      </div>
-      <div class="countdown-item">
-        <span class="countdown-num" id="cdSegundos">00</span>
-        <span class="countdown-unit">Segundos</span>
-      </div>
-    </div>
-    <a class="nmail-cta nmail-service-link" id="serviceLink" href="https://webmail.nexuspt.eu">Aceder ao NexusMail →</a>
+    <a class="nmail-cta nmail-service-link" href="https://webmail.nexuspt.eu">Aceder ao NexusMail →</a>
   </div>
 </section>
 
@@ -489,7 +425,7 @@
     </figure>
 
     <div class="reveal">
-      <h2 class="nmail-claim-title">Reserva o teu endereço de email</h2>
+      <h2 class="nmail-claim-title">O NexusMail acaba de ser lançado</h2>
 
       <form class="nmail-claim" id="claimForm" novalidate>
         <label class="nmail-claim-field" for="claimInput">
@@ -618,43 +554,6 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-const launch = new Date('2026-11-14T15:00:00+00:00');
-const countdownLabel = document.getElementById('countdownLabel');
-const countdown = document.querySelector('.countdown');
-const serviceLink = document.getElementById('serviceLink');
-const fields = {
-  days: document.getElementById('cdDias'),
-  hours: document.getElementById('cdHoras'),
-  minutes: document.getElementById('cdMinutos'),
-  seconds: document.getElementById('cdSegundos')
-};
-const pad = value => String(value).padStart(2, '0');
-
-function updateCountdown() {
-  const remaining = launch - Date.now();
-
-  if (remaining <= 0) {
-    Object.values(fields).forEach(el => { el.textContent = '00'; });
-    countdownLabel.textContent = t('Lançamento oficial · já disponível');
-    countdown.hidden = true;
-    serviceLink.hidden = false;
-    return false;
-  }
-
-  const total = Math.floor(remaining / 1000);
-  fields.days.textContent = pad(Math.floor(total / 86400));
-  fields.hours.textContent = pad(Math.floor((total % 86400) / 3600));
-  fields.minutes.textContent = pad(Math.floor((total % 3600) / 60));
-  fields.seconds.textContent = pad(total % 60);
-  return true;
-}
-
-if (updateCountdown()) {
-  const timer = setInterval(() => {
-    if (!updateCountdown()) clearInterval(timer);
-  }, 1000);
-}
 
 const claimInput = document.getElementById('claimInput');
 const claimModal = document.getElementById('claimModal');
