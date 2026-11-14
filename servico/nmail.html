@@ -91,6 +91,8 @@
   text-transform: uppercase;
   color: var(--text-tertiary);
 }
+.nmail-service-link[hidden]{display: none}
+.nmail-service-link{margin-top: 20px}
 
 .nmail-claim-title{
   font-size: clamp(21px, 2.3vw, 26px);
@@ -473,6 +475,7 @@
         <span class="countdown-unit">Segundos</span>
       </div>
     </div>
+    <a class="nmail-cta nmail-service-link" id="serviceLink" href="https://webmail.nexuspt.eu">Aceder ao NexusMail →</a>
   </div>
 </section>
 
@@ -618,6 +621,8 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 const launch = new Date('2026-11-14T15:00:00+00:00');
 const countdownLabel = document.getElementById('countdownLabel');
+const countdown = document.querySelector('.countdown');
+const serviceLink = document.getElementById('serviceLink');
 const fields = {
   days: document.getElementById('cdDias'),
   hours: document.getElementById('cdHoras'),
@@ -632,6 +637,8 @@ function updateCountdown() {
   if (remaining <= 0) {
     Object.values(fields).forEach(el => { el.textContent = '00'; });
     countdownLabel.textContent = t('Lançamento oficial · já disponível');
+    countdown.hidden = true;
+    serviceLink.hidden = false;
     return false;
   }
 
