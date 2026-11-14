@@ -26,14 +26,9 @@
 
 <style>
 .nmail{padding: 72px 0 88px}
-.nmail-grid{
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  gap: 56px;
-  align-items: center;
-}
-.nmail-grid > *{min-width: 0}
 .nmail-art{
+  position: relative;
+  max-width: 960px;
   margin: 0;
   background: var(--bg-secondary);
   border: 1px solid var(--border);
@@ -41,89 +36,23 @@
   overflow: hidden;
 }
 .nmail-art img{display: block; width: 100%; height: auto}
-
-.nmail-service{
-  padding: 56px 0;
-  border-bottom: 1px solid var(--border);
-  background:
-    radial-gradient(ellipse at 50% 130%, rgba(0,244,60,0.10), transparent 62%),
-    var(--bg);
+.nmail-art::after{
+  position: absolute;
+  inset: 45% 0 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.62));
+  content: '';
+  pointer-events: none;
 }
-.nmail-service .wrap{text-align: center}
-.nmail-service-link{margin-top: 0}
-
-.nmail-claim-title{
-  font-size: clamp(21px, 2.3vw, 26px);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.25;
-  margin-bottom: 18px;
-}
-.nmail-claim-note{
-  margin-top: 18px;
-  font-size: 13.5px;
-  color: var(--text-tertiary);
-  line-height: 1.5;
-}
-.nmail-claim-note a{
-  color: var(--text-secondary);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  transition: color 0.3s var(--ease);
-}
-.nmail-claim-note a:hover{color: var(--accent)}
-.nmail-claim{display: flex; align-items: center; gap: 10px}
-.nmail-claim-field{
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  flex: 1;
-  min-width: 0;
-  padding: 0 14px;
-  background: var(--bg-tertiary);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
-}
-.nmail-claim-field:focus-within{
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(0,244,60,0.08);
-}
-.nmail-claim-field input{
-  flex: 1;
-  width: 0;
-  min-width: 0;
-  padding: 14px 0;
-  background: transparent;
-  border: 0;
-  outline: none;
-  color: var(--text);
-  font-family: inherit;
-  font-size: 16px;
-  font-weight: 500;
-}
-.nmail-claim-field input::placeholder{color: var(--text-tertiary); font-weight: 400}
-.nmail-claim-field span{
-  font-size: 15px;
-  color: var(--text-secondary);
+.nmail-art .nmail-cta{
+  position: absolute;
+  z-index: 1;
+  bottom: 28px;
+  left: 50%;
+  margin: 0;
+  transform: translateX(-50%);
   white-space: nowrap;
 }
-.nmail-claim-btn{
-  flex: none;
-  width: 46px;
-  height: 46px;
-  border: 0;
-  border-radius: 50%;
-  background: var(--accent-gradient);
-  color: #000;
-  font-family: inherit;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 1;
-  cursor: pointer;
-  transition: transform 0.2s var(--ease), opacity 0.3s var(--ease);
-}
-.nmail-claim-btn:hover{transform: translateY(-1px); opacity: 0.9}
+.nmail-art .nmail-cta:hover{transform: translate(-50%, -1px)}
 .nmail-cta{
   display: inline-flex;
   align-items: center;
@@ -139,7 +68,6 @@
   transition: transform 0.2s var(--ease), opacity 0.3s var(--ease);
 }
 .nmail-cta:hover{transform: translateY(-1px); opacity: 0.9}
-.nmail-cta--button{border: 0; font-family: inherit; cursor: pointer}
 .nmail-ghost{
   display: inline-flex;
   align-items: center;
@@ -260,140 +188,13 @@
 .plan-blur .skeleton:nth-of-type(7){width: 88%}
 .plan-blur .skeleton-btn{width: 229px; max-width: 100%; height: 54px; border-radius: 100px; margin: auto 0 0}
 
-.nmail-modal{
-  position: fixed;
-  inset: 0;
-  z-index: 4200;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background: rgba(0,0,0,0.72);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-.nmail-modal.open{display: flex}
-.nmail-modal-card{
-  position: relative;
-  width: 100%;
-  max-width: 480px;
-  max-height: 90vh;
-  overflow-y: auto;
-  padding: 30px;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 30px 90px rgba(0,0,0,0.65);
-}
-.nmail-modal-close{
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 34px;
-  height: 34px;
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  background: transparent;
-  color: var(--text-secondary);
-  font-family: inherit;
-  font-size: 17px;
-  line-height: 1;
-  cursor: pointer;
-}
-.nmail-modal-close:hover{color: var(--text); border-color: rgba(255,255,255,0.2)}
-.nmail-modal-card h2{
-  font-size: 22px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  margin-bottom: 6px;
-}
-.nmail-modal-intro{
-  font-size: 14px;
-  color: var(--text-secondary);
-  line-height: 1.55;
-  margin-bottom: 24px;
-}
-.nmail-field{margin-bottom: 16px}
-.nmail-field label{
-  display: block;
-  font-size: 12.5px;
-  color: var(--text-secondary);
-  margin-bottom: 7px;
-}
-.nmail-field input{
-  width: 100%;
-  padding: 12px 14px;
-  background: var(--bg-tertiary);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  color: var(--text);
-  font-family: inherit;
-  font-size: 15px;
-  outline: none;
-  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
-}
-.nmail-field input::placeholder{color: var(--text-tertiary)}
-.nmail-field input:focus{
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(0,244,60,0.08);
-}
-.nmail-field-hint{font-size: 12px; color: var(--text-tertiary); margin-top: 6px; line-height: 1.45}
-.nmail-address-field{
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  padding: 0 14px;
-  background: var(--bg-tertiary);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
-}
-.nmail-address-field:focus-within{
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(0,244,60,0.08);
-}
-.nmail-address-field input{
-  flex: 1;
-  min-width: 0;
-  padding: 12px 0;
-  background: transparent;
-  border: 0;
-  outline: none;
-  color: var(--text);
-  font-family: inherit;
-  font-size: 15px;
-}
-.nmail-address-field span{font-size: 14px; color: var(--text-secondary); white-space: nowrap}
-.nmail-submit{
-  width: 100%;
-  margin-top: 8px;
-  padding: 14px;
-  border: 0;
-  border-radius: 12px;
-  background: var(--accent-gradient);
-  color: #000;
-  font-family: inherit;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: opacity 0.3s var(--ease), transform 0.2s var(--ease);
-}
-.nmail-submit:hover{transform: translateY(-1px)}
-.nmail-submit:disabled{opacity: 0.6; cursor: not-allowed; transform: none}
-.nmail-form-msg{display: none; margin-top: 14px; font-size: 13.5px; line-height: 1.5}
-.nmail-form-msg.show{display: block}
-.nmail-form-msg.ok{color: var(--accent)}
-.nmail-form-msg.err{color: #ff453a}
 
 @media(max-width: 880px){
   .nmail{padding: 48px 0 80px}
-  .nmail-grid{grid-template-columns: 1fr; gap: 36px}
-  .nmail-service{padding: 40px 0}
   .nmail-plans{padding: 40px 0 80px}
   .plan-grid{grid-template-columns: 1fr}
   .plan{padding: 26px}
-  .nmail-claim-field span{font-size: 12.5px}
-  .nmail-modal-card{padding: 24px}
+  .nmail-art .nmail-cta{bottom: 18px}
 }
 </style>
 </head>
@@ -409,45 +210,15 @@
   </div>
 </section>
 
-<section class="nmail-service">
-  <div class="wrap">
-    <a class="nmail-cta nmail-service-link" href="https://webmail.nexuspt.eu">Aceder ao NexusMail →</a>
-  </div>
-</section>
-
 <section class="nmail">
-  <div class="wrap nmail-grid">
+  <div class="wrap">
     <figure class="nmail-art reveal">
       <img
         src="https://kikalabs-server.nexuspt.eu/images/site-nxweb/nmailprimeiroad.png"
         alt="NexusMail, o futuro serviço de email da NexusPT"
       />
+      <a class="nmail-cta" href="https://webmail.nexuspt.eu">Aceder ao NexusMail →</a>
     </figure>
-
-    <div class="reveal">
-      <h2 class="nmail-claim-title">O NexusMail acaba de ser lançado</h2>
-
-      <form class="nmail-claim" id="claimForm" novalidate>
-        <label class="nmail-claim-field" for="claimInput">
-          <input
-            id="claimInput"
-            name="address"
-            type="text"
-            autocomplete="off"
-            spellcheck="false"
-            aria-label="Nome do endereço de email"
-            placeholder="o-teu-nome"
-          />
-          <span>@mail.nexuspt.eu</span>
-        </label>
-        <button class="nmail-claim-btn" type="submit" aria-label="Reservar este endereço">→</button>
-      </form>
-
-      <p class="nmail-claim-note">
-        Ainda não queres reservar?
-        <a href="https://servicosinternos.nexuspt.eu/questionarios/192651?lang=pt&amp;newtest=Y" target="_blank" rel="noopener noreferrer">Inscreve-te na beta</a>
-      </p>
-    </div>
   </div>
 </section>
 
@@ -467,7 +238,6 @@
           <li>200 emails enviados por dia</li>
         </ul>
         <div class="plan-actions">
-          <button type="button" class="nmail-cta nmail-cta--button" data-reserve>Reservar endereço →</button>
           <a
             class="nmail-ghost"
             href="https://servicosinternos.nexuspt.eu/questionarios/192651?lang=pt&amp;newtest=Y"
@@ -498,52 +268,11 @@
 
 </main>
 
-<div class="nmail-modal" id="claimModal" aria-hidden="true">
-  <div class="nmail-modal-card" role="dialog" aria-modal="true" aria-labelledby="claimTitle">
-    <button type="button" class="nmail-modal-close" id="claimClose" aria-label="Fechar">&times;</button>
-    <h2 id="claimTitle">Reservar endereço</h2>
-    <p class="nmail-modal-intro">
-      Escolhe o teu endereço de email. Quando lançar, ficas com um nome exclusivo.
-    </p>
-
-    <form id="reserveForm" novalidate>
-      <div class="nmail-field">
-        <label for="reserveAddress">Endereço</label>
-        <div class="nmail-address-field">
-          <input id="reserveAddress" type="text" autocomplete="off" spellcheck="false" placeholder="o-teu-nome" />
-          <span>@mail.nexuspt.eu</span>
-        </div>
-      </div>
-
-      <div class="nmail-field">
-        <label for="reserveClient">Número de cliente MyNexus</label>
-        <input id="reserveClient" type="text" autocomplete="off" placeholder="Ex.: 1024" />
-        <p class="nmail-field-hint">Encontras o número na tua área de cliente. Se ainda não tens conta, deixa em branco.</p>
-      </div>
-
-      <div class="nmail-field">
-        <label for="reserveName">Nome *</label>
-        <input id="reserveName" type="text" autocomplete="name" placeholder="O teu nome" />
-      </div>
-
-      <div class="nmail-field">
-        <label for="reserveEmail">Email de contacto *</label>
-        <input id="reserveEmail" type="email" autocomplete="email" placeholder="exemplo@email.com" />
-      </div>
-
-      <button type="submit" class="nmail-submit" id="reserveBtn">Enviar pedido</button>
-      <p class="nmail-form-msg" id="reserveMsg" role="status" aria-live="polite"></p>
-    </form>
-  </div>
-</div>
-
 <script src="https://kikalabs-server.nexuspt.eu/js/site-nxweb/fh.js"></script>
 <script src="/i18n/i18n.js" defer></script>
 <script src="/consent.js" defer></script>
 
 <script>
-const t = (key) => (window.NexusI18n && NexusI18n.t ? NexusI18n.t(key) : key);
-
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -554,131 +283,6 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-const claimInput = document.getElementById('claimInput');
-const claimModal = document.getElementById('claimModal');
-const claimClose = document.getElementById('claimClose');
-const reserveForm = document.getElementById('reserveForm');
-const reserveAddress = document.getElementById('reserveAddress');
-const reserveClient = document.getElementById('reserveClient');
-const reserveName = document.getElementById('reserveName');
-const reserveEmail = document.getElementById('reserveEmail');
-const reserveBtn = document.getElementById('reserveBtn');
-const reserveMsg = document.getElementById('reserveMsg');
-let claimTrigger = null;
-
-function cleanAddress(value) {
-  return value
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/@.*$/, '')
-    .replace(/[^a-z0-9._-]/g, '')
-    .slice(0, 30);
-}
-
-function showReserveMessage(text, ok) {
-  reserveMsg.textContent = text;
-  reserveMsg.className = 'nmail-form-msg show ' + (ok ? 'ok' : 'err');
-}
-
-function openClaimModal() {
-  claimTrigger = document.activeElement;
-  reserveAddress.value = cleanAddress(claimInput.value);
-  reserveMsg.className = 'nmail-form-msg';
-  reserveMsg.textContent = '';
-  claimModal.classList.add('open');
-  claimModal.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden';
-  setTimeout(() => reserveAddress.focus(), 40);
-}
-
-function closeClaimModal() {
-  claimModal.classList.remove('open');
-  claimModal.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
-  if (claimTrigger && typeof claimTrigger.focus === 'function') claimTrigger.focus();
-}
-
-document.getElementById('claimForm').addEventListener('submit', (event) => {
-  event.preventDefault();
-  openClaimModal();
-});
-
-document.querySelectorAll('[data-reserve]').forEach((button) => {
-  button.addEventListener('click', openClaimModal);
-});
-
-claimClose.addEventListener('click', closeClaimModal);
-
-claimModal.addEventListener('click', (event) => {
-  if (event.target === claimModal) closeClaimModal();
-});
-
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' && claimModal.classList.contains('open')) closeClaimModal();
-});
-
-reserveAddress.addEventListener('input', () => {
-  const cleaned = cleanAddress(reserveAddress.value);
-  if (cleaned !== reserveAddress.value) reserveAddress.value = cleaned;
-});
-
-reserveForm.addEventListener('submit', async (event) => {
-  event.preventDefault();
-
-  const address = cleanAddress(reserveAddress.value);
-  const name = reserveName.value.trim();
-  const email = reserveEmail.value.trim();
-  const client = reserveClient.value.trim();
-  const errors = [];
-
-  if (address.length < 3) {
-    errors.push(t('Escolhe um endereço com pelo menos 3 caracteres'));
-  } else if (!/^[a-z0-9](?:[a-z0-9._-]*[a-z0-9])$/.test(address)) {
-    errors.push(t('Usa letras, números, ponto, hífen ou underscore, sem começar ou acabar em símbolo'));
-  }
-  if (!name) errors.push(t('Falta o teu nome'));
-  if (!email) {
-    errors.push(t('Falta o email de contacto'));
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    errors.push(t('Email de contacto inválido'));
-  }
-
-  if (errors.length) {
-    showReserveMessage(errors.join(' · '), false);
-    return;
-  }
-
-  const description = 'Pedido de reserva do endereço ' + address + '@mail.nexuspt.eu. Número de cliente MyNexus: ' + (client || 'não indicado') + '.';
-
-  reserveBtn.disabled = true;
-  reserveBtn.textContent = t('A enviar...');
-  reserveMsg.className = 'nmail-form-msg';
-
-  try {
-    const response = await fetch('https://my.nexuspt.eu/contactarnexus', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: name, email: email, subject: 'geral', description: description })
-    });
-    const result = await response.json();
-
-    if (response.ok && result.success) {
-      claimInput.value = address;
-      reserveForm.reset();
-      reserveAddress.value = '';
-      showReserveMessage(result.message || t('Pedido enviado. Vamos confirmar a disponibilidade do endereço e responder ao teu email.'), true);
-    } else {
-      showReserveMessage(result.errors ? result.errors.join(' · ') : (result.message || t('Não foi possível enviar o pedido.')), false);
-    }
-  } catch (error) {
-    showReserveMessage(t('Erro de ligação. Tenta novamente mais tarde.'), false);
-  } finally {
-    reserveBtn.disabled = false;
-    reserveBtn.textContent = t('Enviar pedido');
-  }
-});
 </script>
 
 </body>
