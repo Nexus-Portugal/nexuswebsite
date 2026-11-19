@@ -1,266 +1,406 @@
+
 <!doctype html>
 <html lang="pt-pt">
 <head>
 <meta charset="utf-8" />
 <base href="/" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+
 <title>NexusMail · Email @mail.nexuspt.eu | NexusPT</title>
-<meta name="description" content="O futuro serviço de email da NexusPT. Endereços @mail.nexuspt.eu, com lançamento oficial marcado para 14 de novembro às 15h00." />
+
+<meta name="description" content="NexusMail, o serviço de email da NexusPT. Cria a tua conta gratuitamente ou escolhe o plano Pro a partir de 1,99 €/mês." />
+
 <link rel="canonical" href="https://nexuspt.eu/servico/nmail" />
+
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="NexusPT" />
 <meta property="og:locale" content="pt_PT" />
 <meta property="og:title" content="NexusMail · Email @mail.nexuspt.eu" />
-<meta property="og:description" content="O futuro serviço de email da NexusPT. Lançamento oficial a 14 de novembro, às 15h00." />
+<meta property="og:description" content="Email da NexusPT. Cria a tua conta gratuitamente ou escolhe o plano Pro a partir de 1,99 €/mês." />
 <meta property="og:url" content="https://nexuspt.eu/servico/nmail" />
 <meta property="og:image" content="https://kikalabs-server.nexuspt.eu/images/site-nxweb/nmailprimeiroad.png" />
+
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="NexusMail · Email @mail.nexuspt.eu" />
-<meta name="twitter:description" content="O futuro serviço de email da NexusPT. Lançamento oficial a 14 de novembro, às 15h00." />
+<meta name="twitter:description" content="Email da NexusPT. Disponível nos planos Free e Pro." />
 <meta name="twitter:image" content="https://kikalabs-server.nexuspt.eu/images/site-nxweb/nmailprimeiroad.png" />
+
 <meta name="theme-color" content="#000000" />
+
 <link rel="icon" href="/favicon.ico" sizes="32x32" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="/nexus-shared.css" />
 
 <style>
-.nmail{padding: 72px 0 88px}
+.nmail{padding:72px 0 88px}
+
 .nmail-art{
-  position: relative;
-  max-width: 960px;
-  margin: 0;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
+    position:relative;
+    max-width:960px;
+    margin:0;
+    background:var(--bg-secondary);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
 }
-.nmail-art img{display: block; width: 100%; height: auto}
+
+.nmail-art img{
+    display:block;
+    width:100%;
+    height:auto;
+}
+
 .nmail-art::after{
-  position: absolute;
-  inset: 45% 0 0;
-  background: linear-gradient(transparent, rgba(0,0,0,0.62));
-  content: '';
-  pointer-events: none;
+    position:absolute;
+    inset:45% 0 0;
+    background:linear-gradient(transparent,rgba(0,0,0,0.62));
+    content:'';
+    pointer-events:none;
 }
+
 .nmail-art .nmail-cta{
-  position: absolute;
-  z-index: 1;
-  bottom: 28px;
-  left: 50%;
-  margin: 0;
-  transform: translateX(-50%);
-  white-space: nowrap;
+    position:absolute;
+    z-index:1;
+    bottom:28px;
+    left:50%;
+    margin:0;
+    transform:translateX(-50%);
+    white-space:nowrap;
 }
-.nmail-art .nmail-cta:hover{transform: translate(-50%, -1px)}
+
+.nmail-art .nmail-cta:hover{
+    transform:translate(-50%,-1px);
+}
+
 .nmail-cta{
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 32px;
-  padding: 15px 28px;
-  border-radius: 100px;
-  background: var(--accent-gradient);
-  color: #000;
-  font-size: 15px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: transform 0.2s var(--ease), opacity 0.3s var(--ease);
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    margin-top:32px;
+    padding:15px 28px;
+    border-radius:100px;
+    background:var(--accent-gradient);
+    color:#000;
+    font-size:15px;
+    font-weight:600;
+    text-decoration:none;
+    transition:transform .2s var(--ease),opacity .3s var(--ease);
 }
-.nmail-cta:hover{transform: translateY(-1px); opacity: 0.9}
+
+.nmail-cta:hover{
+    transform:translateY(-1px);
+    opacity:.9;
+}
+
 .nmail-ghost{
-  display: inline-flex;
-  align-items: center;
-  padding: 13px 24px;
-  border: 1px solid var(--border);
-  border-radius: 100px;
-  color: var(--text-secondary);
-  font-size: 14px;
-  text-decoration: none;
-  transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:13px 24px;
+    border:1px solid var(--border);
+    border-radius:100px;
+    color:var(--text-secondary);
+    font-size:14px;
+    text-decoration:none;
+    transition:border-color .3s var(--ease),color .3s var(--ease);
 }
-.nmail-ghost:hover{color: var(--text); border-color: rgba(255,255,255,0.2)}
+
+.nmail-ghost:hover{
+    color:var(--text);
+    border-color:rgba(255,255,255,.2);
+}
 
 .nmail-h2{
-  font-size: clamp(21px, 2.5vw, 28px);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  margin-bottom: 24px;
+    font-size:clamp(21px,2.5vw,28px);
+    font-weight:600;
+    letter-spacing:-.02em;
+    margin-bottom:24px;
 }
 
-.nmail-plans{padding: 8px 0 120px}
+.nmail-plans{
+    padding:8px 0 120px;
+}
+
 .plan-grid{
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
-  align-items: stretch;
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:20px;
+    align-items:stretch;
 }
+
 .plan{
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  padding: 32px;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+    display:flex;
+    flex-direction:column;
+    position:relative;
+    padding:32px;
+    background:var(--bg-secondary);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
 }
-.plan-free{border-color: rgba(0,244,60,0.28)}
+
+.plan-free{
+    border-color:rgba(255,255,255,.12);
+}
+
+.plan-pro{
+    border-color:rgba(0,244,60,.48);
+    background:linear-gradient(
+        145deg,
+        rgba(0,244,60,.075),
+        var(--bg-secondary) 48%
+    );
+    box-shadow:0 0 35px rgba(0,244,60,.055);
+}
+
 .plan-tag{
-  display: inline-block;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 14px;
+    display:inline-block;
+    font-size:11px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:14px;
 }
-.plan-tag--soon{color: var(--text-tertiary)}
-.plan-name{font-size: 20px; font-weight: 600; margin-bottom: 4px}
+
+.plan-tag--pro{
+    color:#00ea63;
+}
+
+.plan-name{
+    font-size:20px;
+    font-weight:600;
+    margin-bottom:4px;
+}
+
 .plan-price{
-  font-size: 34px;
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.2;
-  margin-bottom: 22px;
+    font-size:34px;
+    font-weight:600;
+    letter-spacing:-.03em;
+    line-height:1.2;
+    margin-bottom:22px;
 }
-.plan-price small{font-size: 13px; font-weight: 400; color: var(--text-tertiary); letter-spacing: 0}
-.plan-list{list-style: none; margin: 0 0 28px; padding: 0}
+
+.plan-price small{
+    font-size:13px;
+    font-weight:400;
+    color:var(--text-tertiary);
+    letter-spacing:0;
+}
+
+.plan-list{
+    list-style:none;
+    margin:0 0 28px;
+    padding:0;
+}
+
 .plan-list li{
-  position: relative;
-  padding-left: 24px;
-  margin-bottom: 11px;
-  font-size: 14.5px;
-  color: var(--text-secondary);
+    position:relative;
+    padding-left:24px;
+    margin-bottom:11px;
+    font-size:14.5px;
+    color:var(--text-secondary);
 }
+
 .plan-list li::before{
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 8px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent);
+    content:'';
+    position:absolute;
+    left:0;
+    top:8px;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--accent);
 }
+
+.plan-pro .plan-list li::before{
+    background:#00ea63;
+}
+
 .plan-actions{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  margin-top: auto;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+    margin-top:auto;
 }
-.plan .nmail-cta{margin-top: 0}
 
-.plan-soon{border-style: dashed}
-.plan-badge{
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  padding: 4px 10px;
-  border: 1px solid var(--border);
-  border-radius: 100px;
-  font-size: 10.5px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-tertiary);
+.plan .nmail-cta{
+    margin-top:0;
 }
-.plan-soon .plan-name{color: var(--text-secondary)}
-.plan-blur{
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  filter: blur(6px);
-  opacity: 0.55;
-  pointer-events: none;
-  user-select: none;
-}
-.plan-blur .skeleton{
-  display: block;
-  height: 12px;
-  border-radius: 100px;
-  background: rgba(255,255,255,0.16);
-  margin-bottom: 22px;
-}
-.plan-blur .skeleton-price{height: 30px; width: 46%; margin-bottom: 26px}
-.plan-blur .skeleton:nth-of-type(3){width: 92%}
-.plan-blur .skeleton:nth-of-type(4){width: 78%}
-.plan-blur .skeleton:nth-of-type(5){width: 84%}
-.plan-blur .skeleton:nth-of-type(6){width: 70%}
-.plan-blur .skeleton:nth-of-type(7){width: 88%}
-.plan-blur .skeleton-btn{width: 229px; max-width: 100%; height: 54px; border-radius: 100px; margin: auto 0 0}
 
+.plan .nmail-ghost{
+    margin-top:0;
+}
 
-@media(max-width: 880px){
-  .nmail{padding: 48px 0 80px}
-  .nmail-plans{padding: 40px 0 80px}
-  .plan-grid{grid-template-columns: 1fr}
-  .plan{padding: 26px}
-  .nmail-art .nmail-cta{bottom: 18px}
+.plan-pro .nmail-cta{
+    background:linear-gradient(110deg,#19d9dc,#00ea63);
+    box-shadow:0 4px 24px rgba(0,234,99,.12);
+}
+
+.plan-highlight{
+    position:absolute;
+    top:20px;
+    right:20px;
+    padding:5px 11px;
+    border:1px solid rgba(0,234,99,.35);
+    border-radius:100px;
+    background:rgba(0,234,99,.08);
+    color:#00ea63;
+    font-size:10px;
+    font-weight:600;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+}
+
+@media(max-width:880px){
+    .nmail{
+        padding:48px 0 80px;
+    }
+
+    .nmail-plans{
+        padding:40px 0 80px;
+    }
+
+    .plan-grid{
+        grid-template-columns:1fr;
+    }
+
+    .plan{
+        padding:26px;
+    }
+
+    .nmail-art .nmail-cta{
+        bottom:18px;
+    }
+}
+
+@media(max-width:480px){
+    .nmail-art .nmail-cta{
+        bottom:12px;
+        padding:11px 18px;
+        font-size:12px;
+    }
+
+    .plan-highlight{
+        top:16px;
+        right:16px;
+    }
 }
 </style>
 </head>
+
 <body>
 
 <main id="conteudo">
 
 <section class="page-header">
-  <div class="wrap">
-    <div class="header-rule"></div>
-    <h1>Nexus<span>Mail</span></h1>
-    <p>O futuro serviço de email da NexusPT.</p>
-  </div>
+    <div class="wrap">
+        <div class="header-rule"></div>
+        <h1>Nexus<span>Mail</span></h1>
+        <p>O teu email. À tua maneira.</p>
+    </div>
 </section>
 
 <section class="nmail">
-  <div class="wrap">
-    <figure class="nmail-art reveal">
-      <img
-        src="https://kikalabs-server.nexuspt.eu/images/site-nxweb/nmailprimeiroad.png"
-        alt="NexusMail, o futuro serviço de email da NexusPT"
-      />
-      <a class="nmail-cta" href="https://webmail.nexuspt.eu">Aceder ao NexusMail →</a>
-    </figure>
-  </div>
+    <div class="wrap">
+        <figure class="nmail-art reveal">
+            <img
+                src="https://kikalabs-server.nexuspt.eu/images/site-nxweb/nmailprimeiroad.png"
+                alt="NexusMail, o serviço de email da NexusPT"
+            />
+
+            <a
+                class="nmail-cta"
+                href="https://webmail.nexuspt.eu"
+            >
+                Aceder ao NexusMail →
+            </a>
+        </figure>
+    </div>
 </section>
 
 <section class="nmail-plans">
-  <div class="wrap">
-    <h2 class="nmail-h2 reveal">Planos</h2>
-    <div class="plan-grid">
-      <article class="plan plan-free reveal">
-        <p class="plan-tag">Disponível no lançamento</p>
-        <h3 class="plan-name">Free</h3>
-        <p class="plan-price">0 €</p>
-        <ul class="plan-list">
-          <li>Endereço @mail.nexuspt.eu</li>
-          <li>5 GB de armazenamento</li>
-          <li>5 aliases de email</li>
-          <li>10 contactos</li>
-          <li>200 emails enviados por dia</li>
-          <li>Com publicidade</li>
-        </ul>
-        <div class="plan-actions">
-          <a
-            class="nmail-ghost"
-            href="https://servicosinternos.nexuspt.eu/questionarios/192651?lang=pt&amp;newtest=Y"
-            target="_blank"
-            rel="noopener noreferrer"
-          >Inscrever-me na beta</a>
-        </div>
-      </article>
+    <div class="wrap">
 
-      <article class="plan plan-soon reveal" aria-label="Plano pago, brevemente">
-        <p class="plan-tag plan-tag--soon">Plano pago</p>
-        <h3 class="plan-name">Pro</h3>
-        <ul>
-          <li>10 GB de armazenamento</li>
-          <li>25 aliases de email</li>
-          <li>100 contactos</li>
-          <li>500 emails enviados por dia</li>
-          <li>Sem publicidade</li>
-        </ul>
-      </article>
+        <h2 class="nmail-h2 reveal">Planos</h2>
+
+        <div class="plan-grid">
+
+            <!-- FREE PLAN -->
+            <article class="plan plan-free reveal">
+
+                <p class="plan-tag">Começa gratuitamente</p>
+
+                <h3 class="plan-name">Free</h3>
+
+                <p class="plan-price">
+                    0 €
+                    <small>/ para sempre</small>
+                </p>
+
+                <ul class="plan-list">
+                    <li>Endereço @mail.nexuspt.eu</li>
+                    <li>5 GB de armazenamento</li>
+                    <li>5 aliases de email</li>
+                    <li>10 contactos</li>
+                    <li>200 emails enviados por dia</li>
+                    <li>Com publicidade</li>
+                </ul>
+
+                <div class="plan-actions">
+                    <a
+                        class="nmail-ghost"
+                        href="https://webmail.nexuspt.eu/signup"
+                    >
+                        Criar conta →
+                    </a>
+                </div>
+
+            </article>
+
+            <!-- PRO PLAN -->
+            <article class="plan plan-pro reveal">
+
+                <span class="plan-highlight">Recomendado</span>
+
+                <p class="plan-tag plan-tag--pro">
+                    Mais possibilidades
+                </p>
+
+                <h3 class="plan-name">Pro</h3>
+
+                <p class="plan-price">
+                    Desde 1,99 €
+                    <small>/ mês</small>
+                </p>
+
+                <ul class="plan-list">
+                    <li>Endereço @mail.nexuspt.eu</li>
+                    <li>10 GB de armazenamento</li>
+                    <li>25 aliases de email</li>
+                    <li>100 contactos</li>
+                    <li>500 emails enviados por dia</li>
+                    <li>Sem publicidade</li>
+                </ul>
+
+                <div class="plan-actions">
+                    <a
+                        class="nmail-cta"
+                        href="https://nexuspt.mysellauth.com/product/nmail-pro"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Comprar NexusMail Pro →
+                    </a>
+                </div>
+
+            </article>
+
+        </div>
     </div>
-  </div>
 </section>
 
 </main>
@@ -271,15 +411,20 @@
 
 <script>
 const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('show');
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, {
+    threshold:0.08,
+    rootMargin:'0px 0px -40px 0px'
+});
 
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+document.querySelectorAll('.reveal').forEach(el => {
+    revealObserver.observe(el);
+});
 </script>
 
 </body>
