@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>NexusPT — Tecnologia para empresas</title>
+  <meta name="description" content="A NexusPT desenvolve soluções digitais e disponibiliza serviços tecnológicos para empresas.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue: #66b9e8;
+      --blue-deep: #168ac8;
+      --green: #8bd7ae;
+      --green-deep: #4bb982;
+      --ink: #172b3a;
+      --muted: #61717d;
+      --line: #e5ebef;
+      --soft: #f5f8fa;
+      --white: #fff;
+      --max: 1180px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: var(--white); font-family: Inter, Arial, sans-serif; line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--max), calc(100% - 48px)); margin: 0 auto; }
+    .topbar { height: 82px; display: flex; align-items: center; background: #fff; border-bottom: 1px solid var(--line); position: relative; z-index: 5; }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 21px; font-weight: 800; letter-spacing: -.055em; white-space: nowrap; }
+    .brand-mark { width: 31px; height: 31px; display: grid; place-items: center; border-radius: 8px; color: #fff; background: linear-gradient(145deg, var(--blue), var(--green)); font-size: 17px; font-weight: 800; }
+    .brand span:last-child { color: var(--ink); }
+    .nav-links { display: flex; align-items: center; gap: 31px; margin-left: auto; }
+    .nav-links a { font-size: 13px; font-weight: 600; color: #455966; transition: color .2s; }
+    .nav-links a:hover { color: var(--blue-deep); }
+    .nav-contact { border: 1px solid #cbd8df; border-radius: 3px; padding: 10px 17px; font-size: 12px; font-weight: 700; }
+    .nav-contact:hover { border-color: var(--blue-deep); color: var(--blue-deep); }
+    .menu { display: none; border: 0; background: none; font-size: 25px; color: var(--ink); }
+    .hero { min-height: 570px; background: #172b3a; color: #fff; overflow: hidden; position: relative; }
+    .hero:before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 78% 40%, rgba(102,185,232,.17), transparent 45%), linear-gradient(110deg, #172b3a 0%, #1c3445 57%, #142937 100%); }
+    .hero-inner { min-height: 570px; display: grid; grid-template-columns: .92fr 1.08fr; align-items: center; gap: 54px; position: relative; }
+    .hero-copy { padding: 75px 0; max-width: 540px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; text-transform: uppercase; letter-spacing: .15em; font-size: 10px; font-weight: 700; color: #a8d9f2; margin-bottom: 22px; }
+    .eyebrow:before { content: ""; width: 25px; height: 2px; background: var(--green); }
+    h1 { font-size: clamp(38px, 4.4vw, 59px); line-height: 1.08; letter-spacing: -.055em; margin: 0 0 22px; font-weight: 700; }
+    h1 em { color: #9bd8b7; font-style: normal; }
+    .hero-copy p { max-width: 465px; margin: 0 0 32px; color: #d2dce2; font-size: 16px; line-height: 1.8; }
+    .actions { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 47px; padding: 0 22px; background: var(--green); color: #163344; font-size: 12px; font-weight: 800; border-radius: 2px; transition: background .2s, transform .2s; }
+    .button:hover { background: #a5e4c2; transform: translateY(-2px); }
+    .text-link { color: #e3edf2; font-size: 12px; font-weight: 700; }
+    .text-link span { color: var(--green); margin-left: 6px; }
+    .hero-visual { position: relative; height: 390px; }
+    .hero-photo { position: absolute; inset: 22px 0 22px 28px; overflow: hidden; background: #25475a; }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(.78); }
+    .hero-frame { position: absolute; top: 0; right: -18px; width: 88%; height: 100%; border: 12px solid var(--blue); border-left-color: var(--green); border-bottom-color: var(--green); pointer-events: none; }
+    .hero-caption { position: absolute; bottom: 0; left: 0; background: #fff; color: var(--ink); padding: 13px 19px; font-size: 10px; letter-spacing: .08em; font-weight: 800; text-transform: uppercase; }
+    .trust-strip { border-bottom: 1px solid var(--line); background: #fff; }
+    .trust-inner { display: flex; justify-content: space-between; align-items: center; gap: 22px; padding: 22px 0; color: #637581; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+    .trust-inner span { display: inline-flex; align-items: center; gap: 9px; }
+    .trust-inner i { display: block; width: 7px; height: 7px; border-radius: 50%; background: var(--green-deep); }
+    section.content { padding: 91px 0; }
+    .section-heading { max-width: 650px; margin-bottom: 42px; }
+    .section-heading .eyebrow { color: var(--blue-deep); margin-bottom: 13px; }
+    h2 { margin: 0 0 14px; font-size: clamp(29px, 3.2vw, 40px); line-height: 1.17; letter-spacing: -.045em; }
+    .section-heading p { color: var(--muted); font-size: 14px; max-width: 570px; margin: 0; }
+    .capabilities { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .capability { padding: 30px 25px 32px 0; border-right: 1px solid var(--line); margin-right: 25px; }
+    .capability:last-child { border: 0; margin: 0; }
+    .cap-icon { width: 43px; height: 43px; display: grid; place-items: center; color: var(--blue-deep); background: #edf7fc; border-radius: 50%; margin-bottom: 22px; }
+    .cap-icon svg { width: 21px; height: 21px; }
+    .capability h3 { margin: 0 0 9px; font-size: 15px; letter-spacing: -.02em; }
+    .capability p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.75; }
+    .products-section { background: var(--soft); }
+    .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .product { min-height: 218px; background: #fff; border: 1px solid #e6edf1; padding: 27px; display: flex; flex-direction: column; transition: border-color .2s, transform .2s; }
+    .product:hover { border-color: #9bcfe8; transform: translateY(-3px); }
+    .product-label { color: var(--blue-deep); font-size: 9px; letter-spacing: .13em; font-weight: 800; text-transform: uppercase; margin-bottom: 19px; }
+    .product h3 { margin: 0 0 8px; font-size: 19px; letter-spacing: -.04em; }
+    .product p { color: var(--muted); font-size: 12px; line-height: 1.75; margin: 0 0 24px; }
+    .product a { margin-top: auto; color: #328fbd; font-size: 11px; font-weight: 800; }
+    .about { display: grid; grid-template-columns: .8fr 1.2fr; gap: 80px; align-items: start; }
+    .about-aside { border-left: 3px solid var(--green); padding: 5px 0 5px 22px; color: #526774; font-size: 14px; line-height: 1.8; }
+    .about-copy p { color: var(--muted); font-size: 14px; line-height: 1.85; margin: 0 0 18px; }
+    .cta { background: #eaf5fa; border-top: 1px solid #dcecf3; border-bottom: 1px solid #dcecf3; padding: 54px 0; }
+    .cta-inner { display: flex; justify-content: space-between; align-items: center; gap: 30px; }
+    .cta h2 { font-size: 27px; margin: 0 0 8px; }
+    .cta p { color: var(--muted); font-size: 13px; margin: 0; }
+    .cta .button { background: var(--blue-deep); color: #fff; white-space: nowrap; }
+    .cta .button:hover { background: #087bb7; }
+    footer { padding: 35px 0; background: #fff; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .footer-brand { font-size: 14px; font-weight: 800; letter-spacing: -.04em; }
+    .footer-brand small { display: block; font-size: 10px; font-weight: 400; color: #7b8a93; letter-spacing: 0; margin-top: 4px; }
+    .footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
+    .footer-links a, .copyright { color: #74838c; font-size: 10px; }
+    @media (max-width: 850px) {
+      .nav-links { gap: 17px; }
+      .hero-inner { grid-template-columns: 1fr 1fr; gap: 25px; }
+      .hero-visual { height: 320px; }
+      .capabilities { grid-template-columns: repeat(2, 1fr); }
+      .capability:nth-child(2) { border-right: 0; }
+      .capability:nth-child(3), .capability:nth-child(4) { border-top: 1px solid var(--line); }
+      .capability:nth-child(4) { border-right: 0; }
+      .about { gap: 35px; }
+    }
+    @media (max-width: 640px) {
+      .container { width: min(100% - 36px, var(--max)); }
+      .topbar { height: 70px; }
+      .nav-links, .nav-contact { display: none; }
+      .menu { display: block; }
+      .hero-inner { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
+      .hero-copy { padding: 75px 0 34px; }
+      h1 { font-size: 42px; }
+      .hero-copy p { font-size: 14px; }
+      .hero-visual { height: 260px; margin: 0 0 45px; }
+      .hero-photo { inset: 15px 0 15px 15px; }
+      .hero-frame { right: -7px; border-width: 8px; }
+      .trust-inner { justify-content: flex-start; overflow-x: auto; padding: 17px 0; }
+      .trust-inner span { white-space: nowrap; }
+      section.content { padding: 67px 0; }
+      .capabilities, .products-grid { grid-template-columns: 1fr; }
+      .capability, .capability:nth-child(2), .capability:nth-child(3) { border-right: 0; border-bottom: 1px solid var(--line); margin: 0; padding: 25px 0; }
+      .capability:last-child { border: 0; }
+      .capability { display: grid; grid-template-columns: 44px 1fr; column-gap: 15px; }
+      .cap-icon { grid-row: span 2; margin: 0; }
+      .capability h3 { align-self: end; }
+      .about { grid-template-columns: 1fr; gap: 25px; }
+      .cta-inner, .footer-inner { align-items: flex-start; flex-direction: column; }
+      .footer-links { gap: 15px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#" aria-label="NexusPT — início"><span class="brand-mark">N</span><span>NEXUSPT</span></a>
+      <nav class="nav-links" aria-label="Navegação principal">
+        <a href="#empresa">Empresa</a>
+        <a href="#areas">Áreas de atuação</a>
+        <a href="#produtos">Produtos</a>
+        <a href="#contactos">Contactos</a>
+      </nav>
+      <a class="nav-contact" href="contact.html">Falar connosco&nbsp; ↗</a>
+      <button class="menu" aria-label="Abrir navegação" onclick="document.querySelector('.nav-links').classList.toggle('mobile-open')">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <span class="eyebrow">Tecnologia · Infraestrutura · Desenvolvimento</span>
+          <h1>Construímos tecnologia para <em>ligar possibilidades.</em></h1>
+          <p>Apoiamos empresas e projetos com soluções digitais, desenvolvimento de software e serviços tecnológicos.</p>
+          <div class="actions">
+            <a class="button" href="#areas">Conhecer a NexusPT&nbsp; ↗</a>
+            <a class="text-link" href="contact.html">Entrar em contacto <span>→</span></a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-label="Infraestrutura tecnológica">
+          <div class="hero-photo"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1300&q=85" alt="Infraestrutura de servidores num centro de dados"></div>
+          <div class="hero-frame"></div>
+          <div class="hero-caption">Tecnologia com propósito</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="trust-strip">
+      <div class="container trust-inner">
+        <span><i></i> Soluções digitais</span>
+        <span><i></i> Infraestrutura tecnológica</span>
+        <span><i></i> Desenvolvimento de software</span>
+        <span><i></i> Serviços cloud</span>
+      </div>
+    </div>
+
+    <section class="content" id="areas">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">O que fazemos</span>
+          <h2>Tecnologia pensada para responder a desafios reais.</h2>
+          <p>Combinamos diferentes áreas tecnológicas para criar, disponibilizar e apoiar soluções digitais.</p>
+        </div>
+        <div class="capabilities">
+          <article class="capability">
+            <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M8 21h8M12 17v4M7 8h10M7 11h6"/></svg></div>
+            <h3>Desenvolvimento</h3><p>Aplicações e plataformas digitais concebidas de acordo com as necessidades de cada projeto.</p>
+          </article>
+          <article class="capability">
+            <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><ellipse cx="12" cy="5" rx="8.5" ry="3"/><path d="M3.5 5v14c0 1.7 3.8 3 8.5 3s8.5-1.3 8.5-3V5M3.5 12c0 1.7 3.8 3 8.5 3s8.5-1.3 8.5-3"/></svg></div>
+            <h3>Cloud &amp; Hosting</h3><p>Serviços de alojamento e infraestrutura para disponibilizar aplicações e serviços online.</p>
+          </article>
+          <article class="capability">
+            <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3 20 6v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg></div>
+            <h3>Segurança</h3><p>Abordagens e ferramentas orientadas para a proteção e acompanhamento de sistemas.</p>
+          </article>
+          <article class="capability">
+            <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 18.5h16M6 15V8h12v7M9 8V5h6v3M9 18.5v-3.5m6 3.5v-3.5"/></svg></div>
+            <h3>Serviços digitais</h3><p>Produtos e serviços online desenvolvidos para simplificar a experiência digital.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content products-section" id="produtos">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Ecossistema NexusPT</span>
+          <h2>Produtos e serviços para o dia a dia digital.</h2>
+          <p>Um conjunto de soluções próprias, com identidades e finalidades distintas.</p>
+        </div>
+        <div class="products-grid">
+          <article class="product"><span class="product-label">Comunicação</span><h3>NexusMail</h3><p>Serviço de email para comunicação e colaboração digital.</p><a href="servico/nmail.html">Conhecer o serviço&nbsp; ↗</a></article>
+          <article class="product"><span class="product-label">Armazenamento</span><h3>NXCloud</h3><p>Uma solução cloud para guardar e aceder a ficheiros.</p><a href="https://cloud.nexuspt.eu">Aceder à plataforma&nbsp; ↗</a></article>
+          <article class="product"><span class="product-label">Comunidade</span><h3>Drippi</h3><p>Uma plataforma social para partilhar e descobrir conteúdos.</p><a href="https://drippi.nexuspt.eu">Conhecer o Drippi&nbsp; ↗</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content" id="empresa">
+      <div class="container about">
+        <div><span class="eyebrow">Sobre a NexusPT</span><h2>Uma abordagem integrada à tecnologia.</h2></div>
+        <div class="about-copy">
+          <p>A NexusPT trabalha no desenvolvimento e disponibilização de soluções tecnológicas, reunindo software, infraestrutura e serviços digitais.</p>
+          <p>O nosso foco é criar ferramentas úteis, manter serviços acessíveis e explorar novas formas de responder às necessidades de pessoas e organizações.</p>
+          <div class="about-aside">Da conceção ao funcionamento: tecnologia desenvolvida com atenção à utilidade, à fiabilidade e à evolução contínua.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="contactos">
+      <div class="container cta-inner">
+        <div><h2>Tem um projeto em mente?</h2><p>Fale connosco sobre o que pretende desenvolver ou melhorar.</p></div>
+        <a class="button" href="contact.html">Contactar a NexusPT&nbsp; ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-brand">NEXUSPT<small>Tecnologia e soluções digitais</small></div>
+      <div class="footer-links"><a href="privacidade.html">Privacidade</a><a href="termos.html">Termos</a><a href="cookies.html">Cookies</a><a href="contact.html">Contactos</a></div>
+      <div class="copyright">© 2026 NexusPT</div>
+    </div>
+  </footer>
+  <script>
+    const menuButton = document.querySelector('.menu');
+    menuButton.addEventListener('click', () => {
+      const nav = document.querySelector('.nav-links');
+      const open = nav.classList.toggle('mobile-open');
+      menuButton.setAttribute('aria-expanded', String(open));
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => {
+      document.querySelector('.nav-links').classList.remove('mobile-open');
+    }));
+  </script>
+  <style>
+    @media(max-width:640px) {
+      .nav-links.mobile-open { display:flex; position:absolute; top:69px; left:0; right:0; padding:18px 24px 24px; flex-direction:column; align-items:flex-start; gap:17px; background:#fff; border-bottom:1px solid var(--line); box-shadow:0 12px 25px rgba(20,40,55,.08); }
+    }
+  </style>
+</body>
+</html>
